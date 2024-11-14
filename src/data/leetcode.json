@@ -1,0 +1,14 @@
+[
+	{
+		"topic": "Array / String",
+		"code": "// Initialization\nlet arr = Array(n).fill(0);\n// Array of size n filled with 0\nlet str = \"example\";\n// Find Duplicates\nlet seen = new Set();\nfor (let num of arr) {\n if (seen.has(num)) return true;\n seen.add(num);\n}"
+	},
+	{
+		"topic": "Two Pointers",
+		"code": "let left = 0, right = arr.length - 1;\nwhile (left < right) {\n if (arr[left] + arr[right] === target) {\n  return [left, right];\n } else if (arr[left] + arr[right] < target) {\n  left++;\n } else {\n  right--;\n }\n}"
+	},
+	{
+		"topic": "Sliding Window",
+		"code": "// Fixed Window\nfor (let i = 0; i <= arr.length - k; i++) {\n let windowSum = arr.slice(i, i + k).reduce((a, b) => a + b, 0);\n}\n// Dynamic Window\nlet left = 0, maxLen = 0, charSet = new Set();\nfor (let right = 0; right < s.length; right++) {\n while (charSet.has(s[right])) {\n  charSet.delete(s[left]);\n  left++;\n }\n charSet.add(s[right]);\n maxLen = Math.max(maxLen, right - left + 1);\n}"
+	}
+]

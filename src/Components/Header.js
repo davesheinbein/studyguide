@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Header/Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,10 +7,35 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
-const Header = () => {
+const Header = ({ onTabClick }) => {
+	const [activeTab, setActiveTab] = useState('cheatsheet');
+
+	const handleTabClick = (tab) => {
+		setActiveTab(tab);
+		onTabClick(tab);
+	};
+
 	return (
 		<header className='header'>
 			<div className='name'>David S.</div>
+			<div className='tabs'>
+				<div
+					className={`tab ${
+						activeTab === 'cheatsheet' ? 'active' : ''
+					}`}
+					onClick={() => handleTabClick('cheatsheet')}
+				>
+					Cheatsheet
+				</div>
+				<div
+					className={`tab ${
+						activeTab === 'leetcode' ? 'active' : ''
+					}`}
+					onClick={() => handleTabClick('leetcode')}
+				>
+					LeetCode
+				</div>
+			</div>
 			<div className='links'>
 				<a
 					href='https://github.com/davesheinbein/'
