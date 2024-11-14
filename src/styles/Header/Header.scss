@@ -3,11 +3,11 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
-	background: linear-gradient(45deg, #000000, #434343);
+	background: linear-gradient(45deg, #0d0d0d, #434343);
 }
 
 .header .name {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-weight: bold;
 	color: #ffffff;
 }
@@ -25,6 +25,6 @@
 }
 
 .header .links a:hover {
-	color: #007bff;
+	color: #ffcc00;
 	transform: scale(1.2) rotate(360deg);
 }
