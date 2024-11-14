@@ -80,7 +80,7 @@
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
 .card-item.expanded .card-item-topic {
-  margin: 0;
+  margin: 0 0 3px;
   padding: 0;
   font-weight: 900;
   text-decoration: underline;
@@ -91,6 +91,7 @@
   align-items: center;
   background: #1a1a1a;
   color: #ffffff;
+  padding: 3px 0;
 }
 .card-item.expanded .card-item-topic-text {
   position: relative;
@@ -107,17 +108,18 @@
 
 .card-item .close-button {
   position: absolute;
-  top: 15px;
-  right: 5px;
+  top: 5px;
+  right: 10px;
   background: #ff5f5f;
   border: none;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   color: white;
   font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
 }/*# sourceMappingURL=Card.css.map */
