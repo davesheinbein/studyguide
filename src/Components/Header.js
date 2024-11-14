@@ -8,7 +8,7 @@ import {
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ onTabClick }) => {
-	const [activeTab, setActiveTab] = useState('cheatsheet');
+	const [activeTab, setActiveTab] = useState('reviewsheet');
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
@@ -21,11 +21,11 @@ const Header = ({ onTabClick }) => {
 			<div className='tabs'>
 				<div
 					className={`tab ${
-						activeTab === 'cheatsheet' ? 'active' : ''
+						activeTab === 'reviewsheet' ? 'active' : ''
 					}`}
-					onClick={() => handleTabClick('cheatsheet')}
+					onClick={() => handleTabClick('reviewsheet')}
 				>
-					Cheatsheet
+					Reviewsheet
 				</div>
 				<div
 					className={`tab ${

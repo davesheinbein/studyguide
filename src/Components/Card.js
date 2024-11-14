@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Card/Card.css';
-import cheatsheetData from '../data/cheatsheet.json';
+import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
 
 const Card = ({ activeTab }) => {
-	const [cheatsheet, setCheatsheet] = useState([]);
+	const [reviewsheet, setReviewsheet] = useState([]);
 	const [leetcode, setLeetcode] = useState([]);
 	const [expandedIndex, setExpandedIndex] = useState(null);
 
 	useEffect(() => {
-		setCheatsheet(cheatsheetData);
+		setReviewsheet(reviewsheetData);
 		setLeetcode(leetcodeData);
 	}, []);
 
@@ -25,10 +25,10 @@ const Card = ({ activeTab }) => {
 
 	return (
 		<>
-			{activeTab === 'cheatsheet' && (
+			{activeTab === 'reviewsheet' && (
 				<div className='card card-A'>
 					<div className='card-grid'>
-						{cheatsheet.map((item, index) => (
+						{reviewsheet.map((item, index) => (
 							<div
 								key={index}
 								className={`card-item ${
