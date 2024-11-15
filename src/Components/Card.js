@@ -22,16 +22,72 @@ const Card = ({ activeTab }) => {
 
 	useEffect(() => {
 		Prism.highlightAll();
-	}, [expandedIndex, activeTab]);
+	}, [
+		expandedIndex,
+		activeTab,
+		reviewsheet,
+		leetcode,
+		principles,
+	]);
 
-	const handleCardClick = (index) => {
-		setExpandedIndex(
-			expandedIndex === index ? null : index
-		);
+	const createCardClone = (item) => {
+		const cardClone = document.createElement('div');
+		cardClone.className = 'card-item expanded';
+		cardClone.innerHTML = `
+			<button class='close-button'>&times;</button>
+			<div class='card-item-topic'>
+				<div class='card-item-topic-text'>${item.topic}</div>
+			</div>
+			<div class='card-item-code'>
+				<pre><code class='language-javascript'>${item.code}</code></pre>
+			</div>
+		`;
+
+		const overlay = document.createElement('div');
+		overlay.className = 'card-overlay active';
+		overlay.addEventListener('click', () => {
+			cardClone.remove();
+			overlay.remove();
+		});
+
+		document.body.appendChild(overlay);
+		document.body.appendChild(cardClone);
+
+		const closeButton =
+			cardClone.querySelector('.close-button');
+		closeButton.addEventListener('click', () => {
+			cardClone.remove();
+			overlay.remove();
+		});
+
+		Prism.highlightAll();
 	};
 
-	const handleCloseClick = () => {
-		setExpandedIndex(null);
+	const handleCardClick = (index, item) => {
+		createCardClone(item);
+	};
+
+	const renderCards = (data) => {
+		return data.map((item, index) => (
+			<div
+				key={index}
+				className='card-item'
+				onClick={() => handleCardClick(index, item)}
+			>
+				<div className='card-item-topic'>
+					<div className='card-item-topic-text'>
+						{item.topic}
+					</div>
+				</div>
+				<div className='card-item-code'>
+					<pre>
+						<code className='language-javascript'>
+							{item.code}
+						</code>
+					</pre>
+				</div>
+			</div>
+		));
 	};
 
 	return (
@@ -39,127 +95,22 @@ const Card = ({ activeTab }) => {
 			{activeTab === 'reviewsheet' && (
 				<div className='card card-A'>
 					<div className='card-grid'>
-						{reviewsheet.map((item, index) => (
-							<div
-								key={index}
-								className={`card-item ${
-									expandedIndex === index ? 'expanded' : ''
-								}`}
-								onClick={() => handleCardClick(index)}
-							>
-								{expandedIndex === index && (
-									<button
-										className='close-button'
-										onClick={handleCloseClick}
-									>
-										&times;
-									</button>
-								)}
-								<div className='card-item-topic'>
-									<div className='card-item-topic-text'>
-										{item.topic}
-									</div>
-								</div>
-								<div className='card-item-code'>
-									<pre>
-										<code className='language-javascript'>
-											{item.code}
-										</code>
-									</pre>
-								</div>
-							</div>
-						))}
+						{renderCards(reviewsheet)}
 					</div>
-					{expandedIndex !== null && (
-						<div
-							className='card-overlay active'
-							onClick={handleCloseClick}
-						></div>
-					)}
 				</div>
 			)}
 			{activeTab === 'leetcode' && (
 				<div className='card card-B'>
 					<div className='card-grid'>
-						{leetcode.map((item, index) => (
-							<div
-								key={index}
-								className={`card-item ${
-									expandedIndex === index ? 'expanded' : ''
-								}`}
-								onClick={() => handleCardClick(index)}
-							>
-								{expandedIndex === index && (
-									<button
-										className='close-button'
-										onClick={handleCloseClick}
-									>
-										&times;
-									</button>
-								)}
-								<div className='card-item-topic'>
-									<div className='card-item-topic-text'>
-										{item.topic}
-									</div>
-								</div>
-								<div className='card-item-code'>
-									<pre>
-										<code className='language-javascript'>
-											{item.code}
-										</code>
-									</pre>
-								</div>
-							</div>
-						))}
+						{renderCards(leetcode)}
 					</div>
-					{expandedIndex !== null && (
-						<div
-							className='card-overlay active'
-							onClick={handleCloseClick}
-						></div>
-					)}
 				</div>
 			)}
-			{activeTab === 'principles' && ( // Add principles tab
+			{activeTab === 'principles' && (
 				<div className='card card-C'>
 					<div className='card-grid'>
-						{principles.map((item, index) => (
-							<div
-								key={index}
-								className={`card-item ${
-									expandedIndex === index ? 'expanded' : ''
-								}`}
-								onClick={() => handleCardClick(index)}
-							>
-								{expandedIndex === index && (
-									<button
-										className='close-button'
-										onClick={handleCloseClick}
-									>
-										&times;
-									</button>
-								)}
-								<div className='card-item-topic'>
-									<div className='card-item-topic-text'>
-										{item.topic}
-									</div>
-								</div>
-								<div className='card-item-code'>
-									<pre>
-										<code className='language-javascript'>
-											{item.code}
-										</code>
-									</pre>
-								</div>
-							</div>
-						))}
+						{renderCards(principles)}
 					</div>
-					{expandedIndex !== null && (
-						<div
-							className='card-overlay active'
-							onClick={handleCloseClick}
-						></div>
-					)}
 				</div>
 			)}
 		</>

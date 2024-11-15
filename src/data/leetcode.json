@@ -1,14 +1,596 @@
 [
 	{
-		"topic": "Array / String",
-		"code": "// Initialization\nlet arr = Array(n).fill(0);\n// Array of size n filled with 0\nlet str = \"example\";\n// Find Duplicates\nlet seen = new Set();\nfor (let num of arr) {\n if (seen.has(num)) return true;\n seen.add(num);\n}"
+		"topic": "Merge Sorted Array",
+		"code": "// Merge two sorted arrays\nfunction merge(nums1, m, nums2, n) {\n let i = m - 1, j = n - 1, k = m + n - 1;\n while (i >= 0 && j >= 0) {\n nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];\n }\n while (j >= 0) {\n nums1[k--] = nums2[j--];\n }\n}\n",
+		"explanation": "This function merges two sorted arrays into one sorted array in-place.",
+		"category": "Array / String"
 	},
 	{
-		"topic": "Two Pointers",
-		"code": "let left = 0, right = arr.length - 1;\nwhile (left < right) {\n if (arr[left] + arr[right] === target) {\n  return [left, right];\n } else if (arr[left] + arr[right] < target) {\n  left++;\n } else {\n  right--;\n }\n}"
+		"topic": "Remove Element",
+		"code": "// Remove element from array\nfunction removeElement(nums, val) {\n let k = 0;\n for (let i = 0; i < nums.length; i++) {\n if (nums[i] !== val) {\n nums[k++] = nums[i];\n }\n }\n return k;\n}\n",
+		"explanation": "This function removes all instances of a value in-place and returns the new length of the array.",
+		"category": "Array / String"
 	},
 	{
-		"topic": "Sliding Window",
-		"code": "// Fixed Window\nfor (let i = 0; i <= arr.length - k; i++) {\n let windowSum = arr.slice(i, i + k).reduce((a, b) => a + b, 0);\n}\n// Dynamic Window\nlet left = 0, maxLen = 0, charSet = new Set();\nfor (let right = 0; right < s.length; right++) {\n while (charSet.has(s[right])) {\n  charSet.delete(s[left]);\n  left++;\n }\n charSet.add(s[right]);\n maxLen = Math.max(maxLen, right - left + 1);\n}"
+		"topic": "Remove Duplicates from Sorted Array",
+		"code": "// Remove duplicates from sorted array\nfunction removeDuplicates(nums) {\n if (nums.length === 0) return 0;\n let k = 1;\n for (let i = 1; i < nums.length; i++) {\n if (nums[i] !== nums[i - 1]) {\n nums[k++] = nums[i];\n }\n }\n return k;\n}\n",
+		"explanation": "This function removes duplicates from a sorted array in-place and returns the new length.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Remove Duplicates from Sorted Array II",
+		"code": "// Remove duplicates from sorted array allowing at most two occurrences\nfunction removeDuplicates(nums) {\n let k = 0;\n for (let num of nums) {\n if (k < 2 || num > nums[k - 2]) {\n nums[k++] = num;\n }\n }\n return k;\n}\n",
+		"explanation": "This function removes duplicates from a sorted array allowing at most two occurrences and returns the new length.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Majority Element",
+		"code": "// Find majority element\nfunction majorityElement(nums) {\n let count = 0, candidate = null;\n for (let num of nums) {\n if (count === 0) {\n candidate = num;\n }\n count += (num === candidate) ? 1 : -1;\n }\n return candidate;\n}\n",
+		"explanation": "This function finds the majority element in an array using the Boyer-Moore Voting Algorithm.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Rotate Array",
+		"code": "// Rotate array to the right by k steps\nfunction rotate(nums, k) {\n k = k % nums.length;\n nums.reverse();\n reverse(nums, 0, k - 1);\n reverse(nums, k, nums.length - 1);\n}\nfunction reverse(nums, start, end) {\n while (start < end) {\n [nums[start], nums[end]] = [nums[end], nums[start]];\n start++;\n end--;\n }\n}\n",
+		"explanation": "This function rotates an array to the right by k steps using array reversal.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Best Time to Buy and Sell Stock",
+		"code": "// Find the maximum profit\nfunction maxProfit(prices) {\n let minPrice = Infinity, maxProfit = 0;\n for (let price of prices) {\n if (price < minPrice) minPrice = price;\n else if (price - minPrice > maxProfit) maxProfit = price - minPrice;\n }\n return maxProfit;\n}\n",
+		"explanation": "This function finds the maximum profit from buying and selling a stock once.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Best Time to Buy and Sell Stock II",
+		"code": "// Find the maximum profit with multiple transactions\nfunction maxProfit(prices) {\n let profit = 0;\n for (let i = 1; i < prices.length; i++) {\n if (prices[i] > prices[i - 1]) {\n profit += prices[i] - prices[i - 1];\n }\n }\n return profit;\n}\n",
+		"explanation": "This function finds the maximum profit from multiple transactions.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Jump Game",
+		"code": "// Determine if you can reach the last index\nfunction canJump(nums) {\n let maxReach = 0;\n for (let i = 0; i < nums.length; i++) {\n if (i > maxReach) return false;\n maxReach = Math.max(maxReach, i + nums[i]);\n }\n return true;\n}\n",
+		"explanation": "This function determines if you can reach the last index of the array.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Jump Game II",
+		"code": "// Find the minimum number of jumps to reach the last index\nfunction jump(nums) {\n let jumps = 0, currentEnd = 0, farthest = 0;\n for (let i = 0; i < nums.length - 1; i++) {\n farthest = Math.max(farthest, i + nums[i]);\n if (i === currentEnd) {\n jumps++;\n currentEnd = farthest;\n }\n }\n return jumps;\n}\n",
+		"explanation": "This function finds the minimum number of jumps to reach the last index of the array.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "H-Index",
+		"code": "// Calculate H-Index\nfunction hIndex(citations) {\n citations.sort((a, b) => b - a);\n let h = 0;\n while (h < citations.length && citations[h] > h) {\n h++;\n }\n return h;\n}\n",
+		"explanation": "This function calculates the H-Index given an array of citations.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Insert Delete GetRandom O(1)",
+		"code": "// Implement Insert Delete GetRandom O(1)\nclass RandomizedSet {\n constructor() {\n this.map = new Map();\n this.list = [];\n }\n insert(val) {\n if (this.map.has(val)) return false;\n this.map.set(val, this.list.length);\n this.list.push(val);\n return true;\n }\n remove(val) {\n if (!this.map.has(val)) return false;\n let index = this.map.get(val);\n let lastElement = this.list.pop();\n if (index < this.list.length) {\n this.list[index] = lastElement;\n this.map.set(lastElement, index);\n }\n this.map.delete(val);\n return true;\n }\n getRandom() {\n return this.list[Math.floor(Math.random() * this.list.length)];\n }\n}\n",
+		"explanation": "This class implements a data structure that supports insert, delete, and getRandom operations in O(1) time.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Product of Array Except Self",
+		"code": "// Calculate product of array except self\nfunction productExceptSelf(nums) {\n let output = Array(nums.length).fill(1);\n let left = 1, right = 1;\n for (let i = 0; i < nums.length; i++) {\n output[i] *= left;\n left *= nums[i];\n }\n for (let i = nums.length - 1; i >= 0; i--) {\n output[i] *= right;\n right *= nums[i];\n }\n return output;\n}\n",
+		"explanation": "This function returns an array where each element is the product of all the elements of the input array except itself.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Gas Station",
+		"code": "// Find the starting gas station\nfunction canCompleteCircuit(gas, cost) {\n let total = 0, tank = 0, start = 0;\n for (let i = 0; i < gas.length; i++) {\n total += gas[i] - cost[i];\n tank += gas[i] - cost[i];\n if (tank < 0) {\n start = i + 1;\n tank = 0;\n }\n }\n return total >= 0 ? start : -1;\n}\n",
+		"explanation": "This function finds the starting gas station index from which you can complete the circuit.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Candy",
+		"code": "// Distribute candies\nfunction candy(ratings) {\n let candies = Array(ratings.length).fill(1);\n for (let i = 1; i < ratings.length; i++) {\n if (ratings[i] > ratings[i - 1]) {\n candies[i] = candies[i - 1] + 1;\n }\n }\n for (let i = ratings.length - 2; i >= 0; i--) {\n if (ratings[i] > ratings[i + 1]) {\n candies[i] = Math.max(candies[i], candies[i + 1] + 1);\n }\n }\n return candies.reduce((a, b) => a + b, 0);\n}\n",
+		"explanation": "This function distributes candies to children such that each child must have at least one candy and children with a higher rating get more candies than their neighbors.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Trapping Rain Water",
+		"code": "// Calculate trapped rain water\nfunction trap(height) {\n let left = 0, right = height.length - 1;\n let leftMax = 0, rightMax = 0, water = 0;\n while (left < right) {\n if (height[left] < height[right]) {\n height[left] >= leftMax ? leftMax = height[left] : water += leftMax - height[left];\n left++;\n } else {\n height[right] >= rightMax ? rightMax = height[right] : water += rightMax - height[right];\n right--;\n }\n }\n return water;\n}\n",
+		"explanation": "This function calculates the amount of water that can be trapped after raining given an array of heights.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Roman to Integer",
+		"code": "// Convert Roman numeral to integer\nfunction romanToInt(s) {\n const map = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };\n let num = 0;\n for (let i = 0; i < s.length; i++) {\n if (i < s.length - 1 && map[s[i]] < map[s[i + 1]]) {\n num -= map[s[i]];\n } else {\n num += map[s[i]];\n }\n }\n return num;\n}\n",
+		"explanation": "This function converts a Roman numeral to an integer.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Integer to Roman",
+		"code": "// Convert integer to Roman numeral\nfunction intToRoman(num) {\n const map = [\n ['M', 1000], ['CM', 900], ['D', 500], ['CD', 400],\n ['C', 100], ['XC', 90], ['L', 50], ['XL', 40],\n ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]\n ];\n let roman = '';\n for (let [symbol, value] of map) {\n while (num >= value) {\n roman += symbol;\n num -= value;\n }\n }\n return roman;\n}\n",
+		"explanation": "This function converts an integer to a Roman numeral.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Length of Last Word",
+		"code": "// Find length of last word\nfunction lengthOfLastWord(s) {\n return s.trim().split(' ').pop().length;\n}\n",
+		"explanation": "This function returns the length of the last word in a given string.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Longest Common Prefix",
+		"code": "// Find longest common prefix\nfunction longestCommonPrefix(strs) {\n if (!strs.length) return '';\n let prefix = strs[0];\n for (let i = 1; i < strs.length; i++) {\n while (strs[i].indexOf(prefix) !== 0) {\n prefix = prefix.slice(0, -1);\n if (!prefix) return '';\n }\n }\n return prefix;\n}\n",
+		"explanation": "This function finds the longest common prefix string amongst an array of strings.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Reverse Words in a String",
+		"code": "// Reverse words in a string\nfunction reverseWords(s) {\n return s.trim().split(/s+/).reverse().join(' ');\n}\n",
+		"explanation": "This function reverses the words in a given string.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Zigzag Conversion",
+		"code": "// Convert string to zigzag pattern\nfunction convert(s, numRows) {\n if (numRows === 1) return s;\n let rows = Array(Math.min(numRows, s.length)).fill('');\n let curRow = 0, goingDown = false;\n for (let c of s) {\n rows[curRow] += c;\n if (curRow === 0 || curRow === numRows - 1) goingDown = !goingDown;\n curRow += goingDown ? 1 : -1;\n }\n return rows.join('');\n}\n",
+		"explanation": "This function converts a string to a zigzag pattern on a given number of rows.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Find the Index of the First Occurrence in a String",
+		"code": "// Find the index of the first occurrence in a string\nfunction strStr(haystack, needle) {\n if (!needle) return 0;\n for (let i = 0; i <= haystack.length - needle.length; i++) {\n if (haystack.slice(i, i + needle.length) === needle) return i;\n }\n return -1;\n}\n",
+		"explanation": "This function finds the index of the first occurrence of a substring in a string.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Text Justification",
+		"code": "// Justify text\nfunction fullJustify(words, maxWidth) {\n let result = [], line = [], lineLength = 0;\n for (let word of words) {\n if (lineLength + word.length + line.length > maxWidth) {\n for (let i = 0; i < maxWidth - lineLength; i++) {\n line[i % (line.length - 1 || 1)] += ' ';\n }\n result.push(line.join(''));\n line = [];\n lineLength = 0;\n }\n line.push(word);\n lineLength += word.length;\n }\n result.push(line.join(' ') + ' '.repeat(maxWidth - lineLength - line.length + 1));\n return result;\n}\n",
+		"explanation": "This function justifies text to a given width.",
+		"category": "Array / String"
+	},
+	{
+		"topic": "Valid Palindrome",
+		"code": "// Check if a string is a valid palindrome\nfunction isPalindrome(s) {\n s = s.replace(/[^A-Za-z0-9]/g, '').toLowerCase();\n let left = 0, right = s.length - 1;\n while (left < right) {\n if (s[left] !== s[right]) return false;\n left++;\n right--;\n }\n return true;\n}\n",
+		"explanation": "This function checks if a given string is a valid palindrome, considering only alphanumeric characters and ignoring cases.",
+		"category": "Two Pointers"
+	},
+	{
+		"topic": "Is Subsequence",
+		"code": "// Check if s is a subsequence of t\nfunction isSubsequence(s, t) {\n let i = 0, j = 0;\n while (i < s.length && j < t.length) {\n if (s[i] === t[j]) i++;\n j++;\n }\n return i === s.length;\n}\n",
+		"explanation": "This function checks if string s is a subsequence of string t.",
+		"category": "Two Pointers"
+	},
+	{
+		"topic": "Two Sum II - Input Array Is Sorted",
+		"code": "// Find two numbers that add up to a specific target\nfunction twoSum(numbers, target) {\n let left = 0, right = numbers.length - 1;\n while (left < right) {\n let sum = numbers[left] + numbers[right];\n if (sum === target) return [left + 1, right + 1];\n else if (sum < target) left++;\n else right--;\n }\n return [];\n}\n",
+		"explanation": "This function finds two numbers in a sorted array that add up to a specific target and returns their indices.",
+		"category": "Two Pointers"
+	},
+	{
+		"topic": "Container With Most Water",
+		"code": "// Find the container with the most water\nfunction maxArea(height) {\n let left = 0, right = height.length - 1, maxArea = 0;\n while (left < right) {\n let width = right - left;\n let h = Math.min(height[left], height[right]);\n maxArea = Math.max(maxArea, width * h);\n if (height[left] < height[right]) left++;\n else right--;\n }\n return maxArea;\n}\n",
+		"explanation": "This function finds the container that can hold the most water given an array of heights.",
+		"category": "Two Pointers"
+	},
+	{
+		"topic": "3Sum",
+		"code": "// Find all unique triplets that sum up to zero\nfunction threeSum(nums) {\n nums.sort((a, b) => a - b);\n let result = [];\n for (let i = 0; i < nums.length - 2; i++) {\n if (i > 0 && nums[i] === nums[i - 1]) continue;\n let left = i + 1, right = nums.length - 1;\n while (left < right) {\n let sum = nums[i] + nums[left] + nums[right];\n if (sum === 0) {\n result.push([nums[i], nums[left], nums[right]]);\n while (nums[left] === nums[left + 1]) left++;\n while (nums[right] === nums[right - 1]) right--;\n left++;\n right--;\n } else if (sum < 0) left++;\n else right--;\n }\n }\n return result;\n}\n",
+		"explanation": "This function finds all unique triplets in the array that sum up to zero.",
+		"category": "Two Pointers"
+	},
+	{
+		"topic": "Minimum Size Subarray Sum",
+		"code": "// Find the minimum size subarray sum\nfunction minSubArrayLen(target, nums) {\n let left = 0, sum = 0, minLength = Infinity;\n for (let right = 0; right < nums.length; right++) {\n sum += nums[right];\n while (sum >= target) {\n minLength = Math.min(minLength, right - left + 1);\n sum -= nums[left++];\n }\n }\n return minLength === Infinity ? 0 : minLength;\n}\n",
+		"explanation": "This function finds the minimal length of a contiguous subarray of which the sum is at least the target.",
+		"category": "Sliding Window"
+	},
+	{
+		"topic": "Longest Substring Without Repeating Characters",
+		"code": "// Find the length of the longest substring without repeating characters\nfunction lengthOfLongestSubstring(s) {\n let map = new Map(), left = 0, maxLength = 0;\n for (let right = 0; right < s.length; right++) {\n if (map.has(s[right])) left = Math.max(map.get(s[right]) + 1, left);\n map.set(s[right], right);\n maxLength = Math.max(maxLength, right - left + 1);\n }\n return maxLength;\n}\n",
+		"explanation": "This function finds the length of the longest substring without repeating characters.",
+		"category": "Sliding Window"
+	},
+	{
+		"topic": "Substring with Concatenation of All Words",
+		"code": "// Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once\nfunction findSubstring(s, words) {\n if (!s || !words || !words.length) return [];\n let wordLength = words[0].length, wordCount = words.length, totalLength = wordLength * wordCount;\n let wordMap = new Map();\n for (let word of words) wordMap.set(word, (wordMap.get(word) || 0) + 1);\n let result = [];\n for (let i = 0; i < wordLength; i++) {\n let left = i, right = i, count = 0, currentMap = new Map();\n while (right + wordLength <= s.length) {\n let word = s.slice(right, right + wordLength);\n right += wordLength;\n if (wordMap.has(word)) {\n currentMap.set(word, (currentMap.get(word) || 0) + 1);\n count++;\n while (currentMap.get(word) > wordMap.get(word)) {\n let leftWord = s.slice(left, left + wordLength);\n currentMap.set(leftWord, currentMap.get(leftWord) - 1);\n count--;\n left += wordLength;\n }\n if (count === wordCount) result.push(left);\n } else {\n currentMap.clear();\n count = 0;\n left = right;\n }\n }\n }\n return result;\n}\n",
+		"explanation": "This function finds all starting indices of substring(s) in s that is a concatenation of each word in words exactly once.",
+		"category": "Sliding Window"
+	},
+	{
+		"topic": "Minimum Window Substring",
+		"code": "// Find the minimum window substring\nfunction minWindow(s, t) {\n let map = new Map();\n for (let char of t) map.set(char, (map.get(char) || 0) + 1);\n let left = 0, right = 0, count = t.length, minLength = Infinity, minStart = 0;\n while (right < s.length) {\n if (map.get(s[right]) > 0) count--;\n map.set(s[right], (map.get(s[right]) || 0) - 1);\n right++;\n while (count === 0) {\n if (right - left < minLength) {\n minLength = right - left;\n minStart = left;\n }\n map.set(s[left], (map.get(s[left]) || 0) + 1);\n if (map.get(s[left]) > 0) count++;\n left++;\n }\n }\n return minLength === Infinity ? '' : s.slice(minStart, minStart + minLength);\n}\n",
+		"explanation": "This function finds the minimum window substring in s that contains all the characters in t.",
+		"category": "Sliding Window"
+	},
+	{
+		"topic": "Valid Sudoku",
+		"code": "// Check if a Sudoku board is valid\nfunction isValidSudoku(board) {\n let rows = Array(9).fill().map(() => new Set());\n let cols = Array(9).fill().map(() => new Set());\n let boxes = Array(9).fill().map(() => new Set());\n for (let r = 0; r < 9; r++) {\n for (let c = 0; c < 9; c++) {\n let val = board[r][c];\n if (val === '.') continue;\n let boxIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3);\n if (rows[r].has(val) || cols[c].has(val) || boxes[boxIndex].has(val)) return false;\n rows[r].add(val);\n cols[c].add(val);\n boxes[boxIndex].add(val);\n }\n }\n return true;\n}\n",
+		"explanation": "This function checks if a given Sudoku board is valid.",
+		"category": "Matrix"
+	},
+	{
+		"topic": "Spiral Matrix",
+		"code": "// Return all elements of the matrix in spiral order\nfunction spiralOrder(matrix) {\n let result = [];\n if (matrix.length === 0) return result;\n let top = 0, bottom = matrix.length - 1;\n let left = 0, right = matrix[0].length - 1;\n while (top <= bottom && left <= right) {\n for (let i = left; i <= right; i++) result.push(matrix[top][i]);\n top++;\n for (let i = top; i <= bottom; i++) result.push(matrix[i][right]);\n right--;\n if (top <= bottom) {\n for (let i = right; i >= left; i--) result.push(matrix[bottom][i]);\n bottom--;\n }\n if (left <= right) {\n for (let i = bottom; i >= top; i--) result.push(matrix[i][left]);\n left++;\n }\n }\n return result;\n}\n",
+		"explanation": "This function returns all elements of the matrix in spiral order.",
+		"category": "Matrix"
+	},
+	{
+		"topic": "Rotate Image",
+		"code": "// Rotate the image by 90 degrees (clockwise)\nfunction rotate(matrix) {\n let n = matrix.length;\n for (let i = 0; i < n; i++) {\n for (let j = i; j < n; j++) {\n [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];\n }\n }\n for (let i = 0; i < n; i++) {\n matrix[i].reverse();\n }\n}\n",
+		"explanation": "This function rotates the image (matrix) by 90 degrees clockwise.",
+		"category": "Matrix"
+	},
+	{
+		"topic": "Set Matrix Zeroes",
+		"code": "// Set matrix zeroes\nfunction setZeroes(matrix) {\n let rows = new Set(), cols = new Set();\n for (let r = 0; r < matrix.length; r++) {\n for (let c = 0; c < matrix[0].length; c++) {\n if (matrix[r][c] === 0) {\n rows.add(r);\n cols.add(c);\n }\n }\n }\n for (let r of rows) {\n for (let c = 0; c < matrix[0].length; c++) {\n matrix[r][c] = 0;\n }\n }\n for (let c of cols) {\n for (let r = 0; r < matrix.length; r++) {\n matrix[r][c] = 0;\n }\n }\n}\n",
+		"explanation": "This function sets the entire row and column to zeroes if an element is zero.",
+		"category": "Matrix"
+	},
+	{
+		"topic": "Game of Life",
+		"code": "// Implement the Game of Life\nfunction gameOfLife(board) {\n const directions = [[0, 1], [1, 0], [1, 1], [1, -1], [-1, 0], [-1, 1], [-1, -1], [0, -1]];\n const copyBoard = board.map(arr => [...arr]);\n for (let r = 0; r < board.length; r++) {\n for (let c = 0; c < board[0].length; c++) {\n let liveNeighbors = 0;\n for (let [dr, dc] of directions) {\n let nr = r + dr, nc = c + dc;\n if (nr >= 0 && nr < board.length && nc >= 0 && nc < board[0].length && copyBoard[nr][nc] === 1) {\n liveNeighbors++;\n }\n }\n if (copyBoard[r][c] === 1 && (liveNeighbors < 2 || liveNeighbors > 3)) {\n board[r][c] = 0;\n }\n if (copyBoard[r][c] === 0 && liveNeighbors === 3) {\n board[r][c] = 1;\n }\n }\n }\n}\n",
+		"explanation": "This function implements the Game of Life according to the rules.",
+		"category": "Matrix"
+	},
+	{
+		"topic": "Ransom Note",
+		"code": "// Check if ransom note can be constructed from magazine\nfunction canConstruct(ransomNote, magazine) {\n let map = new Map();\n for (let char of magazine) {\n map.set(char, (map.get(char) || 0) + 1);\n }\n for (let char of ransomNote) {\n if (!map.has(char) || map.get(char) === 0) return false;\n map.set(char, map.get(char) - 1);\n }\n return true;\n}\n",
+		"explanation": "This function checks if a ransom note can be constructed from the letters in a magazine.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Isomorphic Strings",
+		"code": "// Check if two strings are isomorphic\nfunction isIsomorphic(s, t) {\n let mapS = new Map(), mapT = new Map();\n for (let i = 0; i < s.length; i++) {\n let charS = s[i], charT = t[i];\n if ((mapS.has(charS) && mapS.get(charS) !== charT) || (mapT.has(charT) && mapT.get(charT) !== charS)) return false;\n mapS.set(charS, charT);\n mapT.set(charT, charS);\n }\n return true;\n}\n",
+		"explanation": "This function checks if two strings are isomorphic.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Word Pattern",
+		"code": "// Check if a pattern matches a string\nfunction wordPattern(pattern, s) {\n let words = s.split(' ');\n if (pattern.length !== words.length) return false;\n let mapP = new Map(), mapW = new Map();\n for (let i = 0; i < pattern.length; i++) {\n let charP = pattern[i], word = words[i];\n if ((mapP.has(charP) && mapP.get(charP) !== word) || (mapW.has(word) && mapW.get(word) !== charP)) return false;\n mapP.set(charP, word);\n mapW.set(word, charP);\n }\n return true;\n}\n",
+		"explanation": "This function checks if a pattern matches a string.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Valid Anagram",
+		"code": "// Check if two strings are anagrams\nfunction isAnagram(s, t) {\n if (s.length !== t.length) return false;\n let map = new Map();\n for (let char of s) {\n map.set(char, (map.get(char) || 0) + 1);\n }\n for (let char of t) {\n if (!map.has(char) || map.get(char) === 0) return false;\n map.set(char, map.get(char) - 1);\n }\n return true;\n}\n",
+		"explanation": "This function checks if two strings are anagrams.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Group Anagrams",
+		"code": "// Group anagrams\nfunction groupAnagrams(strs) {\n let map = new Map();\n for (let str of strs) {\n let sortedStr = str.split('').sort().join('');\n if (!map.has(sortedStr)) map.set(sortedStr, []);\n map.get(sortedStr).push(str);\n }\n return Array.from(map.values());\n}\n",
+		"explanation": "This function groups anagrams together.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Two Sum",
+		"code": "// Find two numbers that add up to a specific target\nfunction twoSum(nums, target) {\n let map = new Map();\n for (let i = 0; i < nums.length; i++) {\n let complement = target - nums[i];\n if (map.has(complement)) return [map.get(complement), i];\n map.set(nums[i], i);\n }\n return [];\n}\n",
+		"explanation": "This function finds two numbers in an array that add up to a specific target and returns their indices.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Happy Number",
+		"code": "// Check if a number is a happy number\nfunction isHappy(n) {\n let seen = new Set();\n while (n !== 1 && !seen.has(n)) {\n seen.add(n);\n n = n.toString().split('').reduce((sum, num) => sum + Math.pow(num, 2), 0);\n }\n return n === 1;\n}\n",
+		"explanation": "This function checks if a number is a happy number.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Contains Duplicate II",
+		"code": "// Check if the array contains duplicates within k distance\nfunction containsNearbyDuplicate(nums, k) {\n let map = new Map();\n for (let i = 0; i < nums.length; i++) {\n if (map.has(nums[i]) && i - map.get(nums[i]) <= k) return true;\n map.set(nums[i], i);\n }\n return false;\n}\n",
+		"explanation": "This function checks if the array contains duplicates within k distance.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Longest Consecutive Sequence",
+		"code": "// Find the length of the longest consecutive sequence\nfunction longestConsecutive(nums) {\n let set = new Set(nums);\n let maxLength = 0;\n for (let num of nums) {\n if (!set.has(num - 1)) {\n let length = 0;\n while (set.has(num + length)) length++;\n maxLength = Math.max(maxLength, length);\n }\n }\n return maxLength;\n}\n",
+		"explanation": "This function finds the length of the longest consecutive sequence in an array.",
+		"category": "Hashmap"
+	},
+	{
+		"topic": "Summary Ranges",
+		"code": "// Find summary ranges\nfunction summaryRanges(nums) {\n let ranges = [];\n for (let i = 0; i < nums.length; i++) {\n let start = nums[i];\n while (i + 1 < nums.length && nums[i + 1] === nums[i] + 1) i++;\n if (start !== nums[i]) ranges.push(`${start}->${nums[i]}`);\n else ranges.push(`${start}`);\n }\n return ranges;\n}\n",
+		"explanation": "This function finds the summary ranges in a sorted array without duplicates.",
+		"category": "Intervals"
+	},
+	{
+		"topic": "Merge Intervals",
+		"code": "// Merge overlapping intervals\nfunction merge(intervals) {\n if (!intervals.length) return [];\n intervals.sort((a, b) => a[0] - b[0]);\n let merged = [intervals[0]];\n for (let i = 1; i < intervals.length; i++) {\n let [prevStart, prevEnd] = merged[merged.length - 1];\n let [currStart, currEnd] = intervals[i];\n if (currStart <= prevEnd) {\n merged[merged.length - 1][1] = Math.max(prevEnd, currEnd);\n } else {\n merged.push(intervals[i]);\n }\n }\n return merged;\n}\n",
+		"explanation": "This function merges overlapping intervals in an array.",
+		"category": "Intervals"
+	},
+	{
+		"topic": "Insert Interval",
+		"code": "// Insert a new interval into a list of non-overlapping intervals\nfunction insert(intervals, newInterval) {\n let result = [];\n let i = 0;\n while (i < intervals.length && intervals[i][1] < newInterval[0]) {\n result.push(intervals[i++]);\n }\n while (i < intervals.length && intervals[i][0] <= newInterval[1]) {\n newInterval[0] = Math.min(newInterval[0], intervals[i][0]);\n newInterval[1] = Math.max(newInterval[1], intervals[i][1]);\n i++;\n }\n result.push(newInterval);\n while (i < intervals.length) {\n result.push(intervals[i++]);\n }\n return result;\n}\n",
+		"explanation": "This function inserts a new interval into a list of non-overlapping intervals and merges if necessary.",
+		"category": "Intervals"
+	},
+	{
+		"topic": "Minimum Number of Arrows to Burst Balloons",
+		"code": "// Find the minimum number of arrows to burst all balloons\nfunction findMinArrowShots(points) {\n if (!points.length) return 0;\n points.sort((a, b) => a[1] - b[1]);\n let arrows = 1, end = points[0][1];\n for (let i = 1; i < points.length; i++) {\n if (points[i][0] > end) {\n arrows++;\n end = points[i][1];\n }\n }\n return arrows;\n}\n",
+		"explanation": "This function finds the minimum number of arrows required to burst all balloons represented as intervals.",
+		"category": "Intervals"
+	},
+	{
+		"topic": "Valid Parentheses",
+		"code": "// Check if the parentheses are valid\nfunction isValid(s) {\n let stack = [];\n let map = { '(': ')', '{': '}', '[': ']' };\n for (let char of s) {\n if (map[char]) stack.push(map[char]);\n else if (stack.length === 0 || stack.pop() !== char) return false;\n }\n return stack.length === 0;\n}\n",
+		"explanation": "This function checks if the parentheses in a string are valid.",
+		"category": "Stack"
+	},
+	{
+		"topic": "Simplify Path",
+		"code": "// Simplify the file path\nfunction simplifyPath(path) {\n let stack = [];\n let parts = path.split('/');\n for (let part of parts) {\n if (part === '' || part === '.') continue;\n if (part === '..') stack.pop();\n else stack.push(part);\n }\n return '/' + stack.join('/');\n}\n",
+		"explanation": "This function simplifies a given file path.",
+		"category": "Stack"
+	},
+	{
+		"topic": "Min Stack",
+		"code": "// Implement a stack that supports push, pop, top, and retrieving the minimum element\nclass MinStack {\n constructor() {\n this.stack = [];\n this.minStack = [];\n }\n push(val) {\n this.stack.push(val);\n if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {\n this.minStack.push(val);\n }\n }\n pop() {\n let val = this.stack.pop();\n if (val === this.minStack[this.minStack.length - 1]) {\n this.minStack.pop();\n }\n }\n top() {\n return this.stack[this.stack.length - 1];\n }\n getMin() {\n return this.minStack[this.minStack.length - 1];\n }\n}\n",
+		"explanation": "This class implements a stack that supports push, pop, top, and retrieving the minimum element in constant time.",
+		"category": "Stack"
+	},
+	{
+		"topic": "Evaluate Reverse Polish Notation",
+		"code": "// Evaluate the value of an arithmetic expression in Reverse Polish Notation\nfunction evalRPN(tokens) {\n let stack = [];\n for (let token of tokens) {\n if (!isNaN(token)) stack.push(Number(token));\n else {\n let b = stack.pop(), a = stack.pop();\n switch (token) {\n case '+': stack.push(a + b); break;\n case '-': stack.push(a - b); break;\n case '*': stack.push(a * b); break;\n case '/': stack.push(Math.trunc(a / b)); break;\n }\n }\n }\n return stack[0];\n}\n",
+		"explanation": "This function evaluates the value of an arithmetic expression in Reverse Polish Notation.",
+		"category": "Stack"
+	},
+	{
+		"topic": "Basic Calculator",
+		"code": "// Implement a basic calculator to evaluate a simple expression string\nfunction calculate(s) {\n let stack = [], num = 0, sign = 1, result = 0;\n for (let char of s) {\n if (!isNaN(char) && char !== ' ') num = num * 10 + Number(char);\n else if (char === '+') {\n result += sign * num;\n num = 0;\n sign = 1;\n } else if (char === '-') {\n result += sign * num;\n num = 0;\n sign = -1;\n } else if (char === '(') {\n stack.push(result);\n stack.push(sign);\n result = 0;\n sign = 1;\n } else if (char === ')') {\n result += sign * num;\n num = 0;\n result *= stack.pop();\n result += stack.pop();\n }\n }\n return result + (sign * num);\n}\n",
+		"explanation": "This function implements a basic calculator to evaluate a simple expression string.",
+		"category": "Stack"
+	},
+	{
+		"topic": "Linked List Cycle",
+		"code": "// Check if a linked list has a cycle\nfunction hasCycle(head) {\n let slow = head, fast = head;\n while (fast && fast.next) {\n slow = slow.next;\n fast = fast.next.next;\n if (slow === fast) return true;\n }\n return false;\n}\n",
+		"explanation": "This function checks if a linked list has a cycle using the two-pointer technique.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Add Two Numbers",
+		"code": "// Add two numbers represented by linked lists\nfunction addTwoNumbers(l1, l2) {\n let dummy = new ListNode(0);\n let p = l1, q = l2, current = dummy;\n let carry = 0;\n while (p || q) {\n let x = p ? p.val : 0;\n let y = q ? q.val : 0;\n let sum = carry + x + y;\n carry = Math.floor(sum / 10);\n current.next = new ListNode(sum % 10);\n current = current.next;\n if (p) p = p.next;\n if (q) q = q.next;\n }\n if (carry > 0) {\n current.next = new ListNode(carry);\n }\n return dummy.next;\n}\n",
+		"explanation": "This function adds two numbers represented by linked lists and returns the sum as a linked list.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Merge Two Sorted Lists",
+		"code": "// Merge two sorted linked lists\nfunction mergeTwoLists(l1, l2) {\n let dummy = new ListNode(0);\n let current = dummy;\n while (l1 && l2) {\n if (l1.val < l2.val) {\n current.next = l1;\n l1 = l1.next;\n } else {\n current.next = l2;\n l2 = l2.next;\n }\n current = current.next;\n }\n current.next = l1 ? l1 : l2;\n return dummy.next;\n}\n",
+		"explanation": "This function merges two sorted linked lists and returns the merged list.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Copy List with Random Pointer",
+		"code": "// Copy a linked list with random pointer\nfunction copyRandomList(head) {\n if (!head) return null;\n let map = new Map();\n let current = head;\n while (current) {\n map.set(current, new ListNode(current.val));\n current = current.next;\n }\n current = head;\n while (current) {\n map.get(current).next = map.get(current.next) || null;\n map.get(current).random = map.get(current.random) || null;\n current = current.next;\n }\n return map.get(head);\n}\n",
+		"explanation": "This function copies a linked list with random pointers and returns the deep copy.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Reverse Linked List II",
+		"code": "// Reverse a linked list from position m to n\nfunction reverseBetween(head, m, n) {\n if (!head) return null;\n let dummy = new ListNode(0);\n dummy.next = head;\n let prev = dummy;\n for (let i = 1; i < m; i++) prev = prev.next;\n let start = prev.next;\n let then = start.next;\n for (let i = 0; i < n - m; i++) {\n start.next = then.next;\n then.next = prev.next;\n prev.next = then;\n then = start.next;\n }\n return dummy.next;\n}\n",
+		"explanation": "This function reverses a linked list from position m to n.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Reverse Nodes in k-Group",
+		"code": "// Reverse nodes in k-group\nfunction reverseKGroup(head, k) {\n let count = 0;\n let node = head;\n while (node && count < k) {\n node = node.next;\n count++;\n }\n if (count === k) {\n let reversedHead = reverse(head, k);\n head.next = reverseKGroup(node, k);\n return reversedHead;\n }\n return head;\n}\nfunction reverse(head, k) {\n let prev = null, current = head;\n while (k--) {\n let next = current.next;\n current.next = prev;\n prev = current;\n current = next;\n }\n return prev;\n}\n",
+		"explanation": "This function reverses nodes in k-group in a linked list.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Remove Nth Node From End of List",
+		"code": "// Remove the nth node from the end of the list\nfunction removeNthFromEnd(head, n) {\n let dummy = new ListNode(0);\n dummy.next = head;\n let first = dummy, second = dummy;\n for (let i = 0; i <= n; i++) first = first.next;\n while (first) {\n first = first.next;\n second = second.next;\n }\n second.next = second.next.next;\n return dummy.next;\n}\n",
+		"explanation": "This function removes the nth node from the end of the list.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Remove Duplicates from Sorted List II",
+		"code": "// Remove duplicates from sorted list\nfunction deleteDuplicates(head) {\n let dummy = new ListNode(0);\n dummy.next = head;\n let prev = dummy;\n while (head) {\n if (head.next && head.val === head.next.val) {\n while (head.next && head.val === head.next.val) head = head.next;\n prev.next = head.next;\n } else {\n prev = prev.next;\n }\n head = head.next;\n }\n return dummy.next;\n}\n",
+		"explanation": "This function removes duplicates from a sorted linked list.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Rotate List",
+		"code": "// Rotate a linked list to the right by k places\nfunction rotateRight(head, k) {\n if (!head || !head.next) return head;\n let length = 1;\n let tail = head;\n while (tail.next) {\n tail = tail.next;\n length++;\n }\n k = k % length;\n if (k === 0) return head;\n tail.next = head;\n for (let i = 0; i < length - k; i++) tail = tail.next;\n let newHead = tail.next;\n tail.next = null;\n return newHead;\n}\n",
+		"explanation": "This function rotates a linked list to the right by k places.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Partition List",
+		"code": "// Partition a linked list around a value x\nfunction partition(head, x) {\n let before = new ListNode(0), after = new ListNode(0);\n let beforeHead = before, afterHead = after;\n while (head) {\n if (head.val < x) {\n before.next = head;\n before = before.next;\n } else {\n after.next = head;\n after = after.next;\n }\n head = head.next;\n }\n after.next = null;\n before.next = afterHead.next;\n return beforeHead.next;\n}\n",
+		"explanation": "This function partitions a linked list around a value x.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "LRU Cache",
+		"code": "// Implement LRU Cache\nclass LRUCache {\n constructor(capacity) {\n this.capacity = capacity;\n this.cache = new Map();\n }\n get(key) {\n if (!this.cache.has(key)) return -1;\n let value = this.cache.get(key);\n this.cache.delete(key);\n this.cache.set(key, value);\n return value;\n }\n put(key, value) {\n if (this.cache.has(key)) this.cache.delete(key);\n this.cache.set(key, value);\n if (this.cache.size > this.capacity) this.cache.delete(this.cache.keys().next().value);\n }\n}\n",
+		"explanation": "This class implements an LRU Cache.",
+		"category": "Linked List"
+	},
+	{
+		"topic": "Course Schedule",
+		"code": "// Determine if you can finish all courses\nfunction canFinish(numCourses, prerequisites) {\n let graph = new Map();\n let indegree = Array(numCourses).fill(0);\n for (let [course, prereq] of prerequisites) {\n if (!graph.has(prereq)) graph.set(prereq, []);\n graph.get(prereq).push(course);\n indegree[course]++;\n }\n let queue = [];\n for (let i = 0; i < numCourses; i++) {\n if (indegree[i] === 0) queue.push(i);\n }\n let count = 0;\n while (queue.length) {\n let course = queue.shift();\n count++;\n if (graph.has(course)) {\n for (let nextCourse of graph.get(course)) {\n indegree[nextCourse]--;\n if (indegree[nextCourse] === 0) queue.push(nextCourse);\n }\n }\n }\n return count === numCourses;\n}\n",
+		"explanation": "This function determines if you can finish all courses given the prerequisites.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Course Schedule II",
+		"code": "// Find the order of courses to finish all courses\nfunction findOrder(numCourses, prerequisites) {\n let graph = new Map();\n let indegree = Array(numCourses).fill(0);\n for (let [course, prereq] of prerequisites) {\n if (!graph.has(prereq)) graph.set(prereq, []);\n graph.get(prereq).push(course);\n indegree[course]++;\n }\n let queue = [];\n for (let i = 0; i < numCourses; i++) {\n if (indegree[i] === 0) queue.push(i);\n }\n let order = [];\n while (queue.length) {\n let course = queue.shift();\n order.push(course);\n if (graph.has(course)) {\n for (let nextCourse of graph.get(course)) {\n indegree[nextCourse]--;\n if (indegree[nextCourse] === 0) queue.push(nextCourse);\n }\n }\n }\n return order.length === numCourses ? order : [];\n}\n",
+		"explanation": "This function finds the order of courses to finish all courses given the prerequisites.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Snakes and Ladders",
+		"code": "// Find the minimum number of moves to reach the last square\nfunction snakesAndLadders(board) {\n let n = board.length;\n let visited = new Set();\n let queue = [[1, 0]];\n while (queue.length) {\n let [s, moves] = queue.shift();\n for (let i = 1; i <= 6; i++) {\n let next = s + i;\n let [r, c] = [Math.floor((next - 1) / n), (next - 1) % n];\n if (r % 2 === 1) c = n - 1 - c;\n r = n - 1 - r;\n if (board[r][c] !== -1) next = board[r][c];\n if (next === n * n) return moves + 1;\n if (!visited.has(next)) {\n visited.add(next);\n queue.push([next, moves + 1]);\n }\n }\n }\n return -1;\n}\n",
+		"explanation": "This function finds the minimum number of moves to reach the last square in a Snakes and Ladders game.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Minimum Genetic Mutation",
+		"code": "// Find the minimum number of mutations to reach the end gene\nfunction minMutation(start, end, bank) {\n let bankSet = new Set(bank);\n if (!bankSet.has(end)) return -1;\n let queue = [[start, 0]];\n let visited = new Set([start]);\n let chars = ['A', 'C', 'G', 'T'];\n while (queue.length) {\n let [gene, mutations] = queue.shift();\n if (gene === end) return mutations;\n for (let i = 0; i < gene.length; i++) {\n for (let char of chars) {\n let newGene = gene.slice(0, i) + char + gene.slice(i + 1);\n if (bankSet.has(newGene) && !visited.has(newGene)) {\n visited.add(newGene);\n queue.push([newGene, mutations + 1]);\n }\n }\n }\n }\n return -1;\n}\n",
+		"explanation": "This function finds the minimum number of mutations needed to reach the end gene from the start gene.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Word Ladder",
+		"code": "// Find the length of the shortest transformation sequence from beginWord to endWord\nfunction ladderLength(beginWord, endWord, wordList) {\n let wordSet = new Set(wordList);\n if (!wordSet.has(endWord)) return 0;\n let queue = [[beginWord, 1]];\n while (queue.length) {\n let [word, length] = queue.shift();\n if (word === endWord) return length;\n for (let i = 0; i < word.length; i++) {\n for (let char of 'abcdefghijklmnopqrstuvwxyz') {\n let newWord = word.slice(0, i) + char + word.slice(i + 1);\n if (wordSet.has(newWord)) {\n wordSet.delete(newWord);\n queue.push([newWord, length + 1]);\n }\n }\n }\n }\n return 0;\n}\n",
+		"explanation": "This function finds the length of the shortest transformation sequence from beginWord to endWord.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Implement Trie (Prefix Tree)",
+		"code": "// Implement a Trie (Prefix Tree)\nclass Trie {\n constructor() {\n this.children = {};\n this.isEndOfWord = false;\n }\n insert(word) {\n let node = this;\n for (let char of word) {\n if (!node.children[char]) node.children[char] = new Trie();\n node = node.children[char];\n }\n node.isEndOfWord = true;\n }\n search(word) {\n let node = this;\n for (let char of word) {\n if (!node.children[char]) return false;\n node = node.children[char];\n }\n return node.isEndOfWord;\n }\n startsWith(prefix) {\n let node = this;\n for (let char of prefix) {\n if (!node.children[char]) return false;\n node = node.children[char];\n }\n return true;\n }\n}\n",
+		"explanation": "This class implements a Trie (Prefix Tree) with insert, search, and startsWith methods.",
+		"category": "Trie"
+	},
+	{
+		"topic": "Design Add and Search Words Data Structure",
+		"code": "// Design a data structure that supports adding and searching words\nclass WordDictionary {\n constructor() {\n this.children = {};\n this.isEndOfWord = false;\n }\n addWord(word) {\n let node = this;\n for (let char of word) {\n if (!node.children[char]) node.children[char] = new WordDictionary();\n node = node.children[char];\n }\n node.isEndOfWord = true;\n }\n search(word) {\n function dfs(node, i) {\n if (i === word.length) return node.isEndOfWord;\n if (word[i] === '.') {\n for (let child in node.children) {\n if (dfs(node.children[child], i + 1)) return true;\n }\n return false;\n }\n if (!node.children[word[i]]) return false;\n return dfs(node.children[word[i]], i + 1);\n }\n return dfs(this, 0);\n }\n}\n",
+		"explanation": "This class implements a data structure that supports adding and searching words with '.' as a wildcard character.",
+		"category": "Trie"
+	},
+	{
+		"topic": "Word Search II",
+		"code": "// Find all words in the board\nfunction findWords(board, words) {\n let result = [];\n let trie = new Trie();\n for (let word of words) trie.insert(word);\n function dfs(node, i, j, path) {\n if (node.isEndOfWord) {\n result.push(path);\n node.isEndOfWord = false;\n }\n if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || !node.children[board[i][j]]) return;\n let char = board[i][j];\n board[i][j] = '#';\n for (let [dx, dy] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {\n dfs(node.children[char], i + dx, j + dy, path + char);\n }\n board[i][j] = char;\n }\n for (let i = 0; i < board.length; i++) {\n for (let j = 0; j < board[0].length; j++) {\n if (trie.children[board[i][j]]) dfs(trie, i, j, '');\n }\n }\n return result;\n}\n",
+		"explanation": "This function finds all words in the board using a Trie and DFS.",
+		"category": "Trie"
+	},
+	{
+		"topic": "Letter Combinations of a Phone Number",
+		"code": "// Find all letter combinations of a phone number\nfunction letterCombinations(digits) {\n if (!digits.length) return [];\n let map = {\n '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n };\n let result = [];\n function backtrack(index, path) {\n if (index === digits.length) {\n result.push(path);\n return;\n }\n for (let char of map[digits[index]]) {\n backtrack(index + 1, path + char);\n }\n }\n backtrack(0, '');\n return result;\n}\n",
+		"explanation": "This function finds all letter combinations of a phone number.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "Combinations",
+		"code": "// Find all combinations of k numbers out of 1 to n\nfunction combine(n, k) {\n let result = [];\n function backtrack(start, path) {\n if (path.length === k) {\n result.push([...path]);\n return;\n }\n for (let i = start; i <= n; i++) {\n path.push(i);\n backtrack(i + 1, path);\n path.pop();\n }\n }\n backtrack(1, []);\n return result;\n}\n",
+		"explanation": "This function finds all combinations of k numbers out of 1 to n.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "Generate Parentheses",
+		"code": "// Generate all combinations of well-formed parentheses\nfunction generateParenthesis(n) {\n let result = [];\n function backtrack(s = '', left = 0, right = 0) {\n if (s.length === 2 * n) {\n result.push(s);\n return;\n }\n if (left < n) backtrack(s + '(', left + 1, right);\n if (right < left) backtrack(s + ')', left, right + 1);\n }\n backtrack();\n return result;\n}\n",
+		"explanation": "This function generates all combinations of well-formed parentheses.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "Word Search",
+		"code": "// Find if a word exists in the board\nfunction exist(board, word) {\n function dfs(i, j, k) {\n if (k === word.length) return true;\n if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] !== word[k]) return false;\n let temp = board[i][j];\n board[i][j] = '#';\n let found = dfs(i + 1, j, k + 1) || dfs(i - 1, j, k + 1) || dfs(i, j + 1, k + 1) || dfs(i, j - 1, k + 1);\n board[i][j] = temp;\n return found;\n }\n for (let i = 0; i < board.length; i++) {\n for (let j = 0; j < board[0].length; j++) {\n if (dfs(i, j, 0)) return true;\n }\n }\n return false;\n}\n",
+		"explanation": "This function finds if a word exists in the board using DFS.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "Convert Sorted Array to Binary Search Tree",
+		"code": "// Convert sorted array to binary search tree\nfunction sortedArrayToBST(nums) {\n if (!nums.length) return null;\n function convert(left, right) {\n if (left > right) return null;\n let mid = Math.floor((left + right) / 2);\n let node = new TreeNode(nums[mid]);\n node.left = convert(left, mid - 1);\n node.right = convert(mid + 1, right);\n return node;\n }\n return convert(0, nums.length - 1);\n}\n",
+		"explanation": "This function converts a sorted array to a binary search tree.",
+		"category": "Divide & Conquer"
+	},
+	{
+		"topic": "Sort List",
+		"code": "// Sort a linked list in O(n log n) time\nfunction sortList(head) {\n if (!head || !head.next) return head;\n let slow = head, fast = head, prev = null;\n while (fast && fast.next) {\n prev = slow;\n slow = slow.next;\n fast = fast.next.next;\n }\n prev.next = null;\n let l1 = sortList(head);\n let l2 = sortList(slow);\n return merge(l1, l2);\n}\nfunction merge(l1, l2) {\n let dummy = new ListNode(0), current = dummy;\n while (l1 && l2) {\n if (l1.val < l2.val) {\n current.next = l1;\n l1 = l1.next;\n } else {\n current.next = l2;\n l2 = l2.next;\n }\n current = current.next;\n }\n current.next = l1 ? l1 : l2;\n return dummy.next;\n}\n",
+		"explanation": "This function sorts a linked list in O(n log n) time using merge sort.",
+		"category": "Divide & Conquer"
+	},
+	{
+		"topic": "Construct Quad Tree",
+		"code": "// Construct a quad tree\nfunction construct(grid) {\n function build(x, y, length) {\n if (length === 1) return new Node(grid[x][y] === 1, true);\n let half = length / 2;\n let topLeft = build(x, y, half);\n let topRight = build(x, y + half, half);\n let bottomLeft = build(x + half, y, half);\n let bottomRight = build(x + half, y + half, half);\n if (topLeft.isLeaf && topRight.isLeaf && bottomLeft.isLeaf && bottomRight.isLeaf && topLeft.val === topRight.val && topRight.val === bottomLeft.val && bottomLeft.val === bottomRight.val) {\n return new Node(topLeft.val, true);\n }\n return new Node('*', false, topLeft, topRight, bottomLeft, bottomRight);\n }\n return build(0, 0, grid.length);\n}\n",
+		"explanation": "This function constructs a quad tree from a grid.",
+		"category": "Divide & Conquer"
+	},
+	{
+		"topic": "Merge k Sorted Lists",
+		"code": "// Merge k sorted linked lists\nfunction mergeKLists(lists) {\n if (!lists.length) return null;\n function mergeTwoLists(l1, l2) {\n let dummy = new ListNode(0), current = dummy;\n while (l1 && l2) {\n if (l1.val < l2.val) {\n current.next = l1;\n l1 = l1.next;\n } else {\n current.next = l2;\n l2 = l2.next;\n }\n current = current.next;\n }\n current.next = l1 ? l1 : l2;\n return dummy.next;\n }\n while (lists.length > 1) {\n let l1 = lists.shift();\n let l2 = lists.shift();\n let merged = mergeTwoLists(l1, l2);\n lists.push(merged);\n }\n return lists[0];\n}\n",
+		"explanation": "This function merges k sorted linked lists into one sorted linked list.",
+		"category": "Divide & Conquer"
+	},
+	{
+		"topic": "Maximum Subarray",
+		"code": "// Find the contiguous subarray with the maximum sum\nfunction maxSubArray(nums) {\n let maxSum = nums[0], currentSum = nums[0];\n for (let i = 1; i < nums.length; i++) {\n currentSum = Math.max(nums[i], currentSum + nums[i]);\n maxSum = Math.max(maxSum, currentSum);\n }\n return maxSum;\n}\n",
+		"explanation": "This function finds the contiguous subarray with the maximum sum using Kadane's Algorithm.",
+		"category": "Kadane's Algorithm"
+	},
+	{
+		"topic": "Maximum Sum Circular Subarray",
+		"code": "// Find the maximum sum of a circular subarray\nfunction maxSubarraySumCircular(A) {\n let total = 0, maxSum = A[0], currentMax = 0, minSum = A[0], currentMin = 0;\n for (let a of A) {\n currentMax = Math.max(currentMax + a, a);\n maxSum = Math.max(maxSum, currentMax);\n currentMin = Math.min(currentMin + a, a);\n minSum = Math.min(minSum, currentMin);\n total += a;\n }\n return maxSum > 0 ? Math.max(maxSum, total - minSum) : maxSum;\n}\n",
+		"explanation": "This function finds the maximum sum of a circular subarray.",
+		"category": "Kadane's Algorithm"
+	},
+	{
+		"topic": "Search Insert Position",
+		"code": "// Find the index where a target should be inserted\nfunction searchInsert(nums, target) {\n let left = 0, right = nums.length - 1;\n while (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (nums[mid] === target) return mid;\n if (nums[mid] < target) left = mid + 1;\n else right = mid - 1;\n }\n return left;\n}\n",
+		"explanation": "This function finds the index where a target should be inserted in a sorted array.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Search a 2D Matrix",
+		"code": "// Search a target in a 2D matrix\nfunction searchMatrix(matrix, target) {\n if (!matrix.length || !matrix[0].length) return false;\n let rows = matrix.length, cols = matrix[0].length;\n let left = 0, right = rows * cols - 1;\n while (left <= right) {\n let mid = Math.floor((left + right) / 2);\n let midVal = matrix[Math.floor(mid / cols)][mid % cols];\n if (midVal === target) return true;\n if (midVal < target) left = mid + 1;\n else right = mid - 1;\n }\n return false;\n}\n",
+		"explanation": "This function searches for a target in a 2D matrix.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Find Peak Element",
+		"code": "// Find peak element\nfunction findPeakElement(nums) {\n let left = 0, right = nums.length - 1;\n while (left < right) {\n let mid = Math.floor((left + right) / 2);\n if (nums[mid] > nums[mid + 1]) right = mid;\n else left = mid + 1;\n }\n return left;\n}\n",
+		"explanation": "This function finds a peak element in an array.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Search in Rotated Sorted Array",
+		"code": "// Search in rotated sorted array\nfunction search(nums, target) {\n let left = 0, right = nums.length - 1;\n while (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (nums[mid] === target) return mid;\n if (nums[left] <= nums[mid]) {\n if (nums[left] <= target && target < nums[mid]) right = mid - 1;\n else left = mid + 1;\n } else {\n if (nums[mid] < target && target <= nums[right]) left = mid + 1;\n else right = mid - 1;\n }\n }\n return -1;\n}\n",
+		"explanation": "This function searches for a target in a rotated sorted array.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Find First and Last Position of Element in Sorted Array",
+		"code": "// Find first and last position of element in sorted array\nfunction searchRange(nums, target) {\n function findBound(isFirst) {\n let left = 0, right = nums.length - 1;\n while (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (nums[mid] === target) {\n if (isFirst) {\n if (mid === left || nums[mid - 1] !== target) return mid;\n right = mid - 1;\n } else {\n if (mid === right || nums[mid + 1] !== target) return mid;\n left = mid + 1;\n }\n } else if (nums[mid] < target) left = mid + 1;\n else right = mid - 1;\n }\n return -1;\n }\n return [findBound(true), findBound(false)];\n}\n",
+		"explanation": "This function finds the first and last position of an element in a sorted array.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Find Minimum in Rotated Sorted Array",
+		"code": "// Find minimum in rotated sorted array\nfunction findMin(nums) {\n let left = 0, right = nums.length - 1;\n while (left < right) {\n let mid = Math.floor((left + right) / 2);\n if (nums[mid] > nums[right]) left = mid + 1;\n else right = mid;\n }\n return nums[left];\n}\n",
+		"explanation": "This function finds the minimum element in a rotated sorted array.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Median of Two Sorted Arrays",
+		"code": "// Find median of two sorted arrays\nfunction findMedianSortedArrays(nums1, nums2) {\n let m = nums1.length, n = nums2.length;\n if (m > n) [nums1, nums2, m, n] = [nums2, nums1, n, m];\n let imin = 0, imax = m, halfLen = Math.floor((m + n + 1) / 2);\n while (imin <= imax) {\n let i = Math.floor((imin + imax) / 2);\n let j = halfLen - i;\n if (i < m && nums1[i] < nums2[j - 1]) imin = i + 1;\n else if (i > 0 && nums1[i - 1] > nums2[j]) imax = i - 1;\n else {\n let maxOfLeft = 0;\n if (i === 0) maxOfLeft = nums2[j - 1];\n else if (j === 0) maxOfLeft = nums1[i - 1];\n else maxOfLeft = Math.max(nums1[i - 1], nums2[j - 1]);\n if ((m + n) % 2 === 1) return maxOfLeft;\n let minOfRight = 0;\n if (i === m) minOfRight = nums2[j];\n else if (j === n) minOfRight = nums1[i];\n else minOfRight = Math.min(nums1[i], nums2[j]);\n return (maxOfLeft + minOfRight) / 2;\n }\n }\n return 0;\n}\n",
+		"explanation": "This function finds the median of two sorted arrays.",
+		"category": "Binary Search"
+	},
+	{
+		"topic": "Kth Largest Element in an Array",
+		"code": "// Find kth largest element in an array\nfunction findKthLargest(nums, k) {\n let heap = new MinHeap();\n for (let num of nums) {\n heap.add(num);\n if (heap.size() > k) heap.poll();\n }\n return heap.peek();\n}\nclass MinHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index] >= this.heap[parentIndex]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild < element) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild < element) || (swap !== null && rightChild < leftChild)) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\n",
+		"explanation": "This function finds the kth largest element in an array using a min heap.",
+		"category": "Heap"
+	},
+	{
+		"topic": "IPO",
+		"code": "// Find the maximum capital after k projects\nfunction findMaximizedCapital(k, W, Profits, Capital) {\n let minCapital = new MinHeap(), maxProfit = new MaxHeap();\n for (let i = 0; i < Capital.length; i++) minCapital.add([Capital[i], Profits[i]]);\n for (let i = 0; i < k; i++) {\n while (minCapital.size() && minCapital.peek()[0] <= W) maxProfit.add(minCapital.poll()[1]);\n if (!maxProfit.size()) break;\n W += maxProfit.poll();\n }\n return W;\n}\nclass MinHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index][0] >= this.heap[parentIndex][0]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild[0] < element[0]) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild[0] < element[0]) || (swap !== null && rightChild[0] < leftChild[0])) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\nclass MaxHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index] <= this.heap[parentIndex]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild > element) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\n",
+		"explanation": "This function finds the maximum capital after k projects.",
+		"category": "Heap"
+	},
+	{
+		"topic": "Find K Pairs with Smallest Sums",
+		"code": "// Find k pairs with smallest sums\nfunction kSmallestPairs(nums1, nums2, k) {\n let heap = new MinHeap();\n for (let i = 0; i < Math.min(nums1.length, k); i++) heap.add([nums1[i] + nums2[0], i, 0]);\n let result = [];\n while (k-- > 0 && heap.size()) {\n let [sum, i, j] = heap.poll();\n result.push([nums1[i], nums2[j]]);\n if (j + 1 < nums2.length) heap.add([nums1[i] + nums2[j + 1], i, j + 1]);\n }\n return result;\n}\nclass MinHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index][0] >= this.heap[parentIndex][0]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild[0] < element[0]) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild[0] < element[0]) || (swap !== null && rightChild[0] < leftChild[0])) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\n",
+		"explanation": "This function finds k pairs with the smallest sums.",
+		"category": "Heap"
+	},
+	{
+		"topic": "Find Median from Data Stream",
+		"code": "// Find median from data stream\nclass MedianFinder {\n constructor() {\n this.small = new MaxHeap();\n this.large = new MinHeap();\n }\n addNum(num) {\n this.small.add(num);\n this.large.add(this.small.poll());\n if (this.small.size() < this.large.size()) this.small.add(this.large.poll());\n }\n findMedian() {\n return this.small.size() > this.large.size() ? this.small.peek() : (this.small.peek() + this.large.peek()) / 2;\n }\n}\nclass MinHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index] >= this.heap[parentIndex]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild < element) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild < element) || (swap !== null && rightChild < leftChild)) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\nclass MaxHeap {\n constructor() {\n this.heap = [];\n }\n add(val) {\n this.heap.push(val);\n this.bubbleUp();\n }\n poll() {\n if (this.size() === 1) return this.heap.pop();\n let root = this.heap[0];\n this.heap[0] = this.heap.pop();\n this.bubbleDown();\n return root;\n }\n peek() {\n return this.heap[0];\n }\n size() {\n return this.heap.length;\n }\n bubbleUp() {\n let index = this.heap.length - 1;\n while (index > 0) {\n let parentIndex = Math.floor((index - 1) / 2);\n if (this.heap[index] <= this.heap[parentIndex]) break;\n [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];\n index = parentIndex;\n }\n }\n bubbleDown() {\n let index = 0;\n let length = this.heap.length;\n let element = this.heap[0];\n while (true) {\n let leftChildIndex = 2 * index + 1;\n let rightChildIndex = 2 * index + 2;\n let leftChild, rightChild;\n let swap = null;\n if (leftChildIndex < length) {\n leftChild = this.heap[leftChildIndex];\n if (leftChild > element) swap = leftChildIndex;\n }\n if (rightChildIndex < length) {\n rightChild = this.heap[rightChildIndex];\n if ((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)) swap = rightChildIndex;\n }\n if (swap === null) break;\n this.heap[index] = this.heap[swap];\n this.heap[swap] = element;\n index = swap;\n }\n }\n}\n",
+		"explanation": "This function finds the median from a data stream.",
+		"category": "Heap"
+	},
+	{
+		"topic": "Add Binary",
+		"code": "// Add two binary numbers\nfunction addBinary(a, b) {\n let result = '', carry = 0, i = a.length - 1, j = b.length - 1;\n while (i >= 0 || j >= 0 || carry) {\n let sum = carry;\n if (i >= 0) sum += parseInt(a[i--], 2);\n if (j >= 0) sum += parseInt(b[j--], 2);\n result = (sum % 2) + result;\n carry = Math.floor(sum / 2);\n }\n return result;\n}\n",
+		"explanation": "This function adds two binary numbers and returns the result as a binary string.",
+		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Reverse Bits",
+		"code": "// Reverse bits of a given 32 bits unsigned integer\nfunction reverseBits(n) {\n let result = 0;\n for (let i = 0; i < 32; i++) {\n result = (result << 1) | (n & 1);\n n >>>= 1;\n }\n return result >>> 0;\n}\n",
+		"explanation": "This function reverses the bits of a given 32 bits unsigned integer.",
+		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Number of 1 Bits",
+		"code": "// Count the number of 1 bits\nfunction hammingWeight(n) {\n let count = 0;\n while (n !== 0) {\n count += n & 1;\n n >>>= 1;\n }\n return count;\n}\n",
+		"explanation": "This function counts the number of 1 bits in a given integer.",
+		"category": "Bit Manipulation"
 	}
 ]

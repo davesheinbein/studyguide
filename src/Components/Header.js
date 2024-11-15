@@ -17,7 +17,7 @@ const Header = ({ onTabClick }) => {
 
 	return (
 		<header className='header'>
-			<div className='name'>David S.</div>
+			<div className='name'>Study Guide</div>
 			<div className='tabs'>
 				<div
 					className={`tab ${

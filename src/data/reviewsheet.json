@@ -1,94 +1,117 @@
 [
 	{
 		"topic": "Array / String",
-		"code": "// Initialization\nlet arr = Array(n).fill(0); \n// Array of size n filled with 0\nlet str = \"example\"; \n// String initialization\n// Find Duplicates\nlet seen = new Set();\nfor (let num of arr) {\n if (seen.has(num)) return true; \n// Duplicate found\n seen.add(num); \n// Add to set\n}\n\n// Explanation: This snippet demonstrates how to initialize an array and a string, \n// and how to find duplicates in an array using a Set."
+		"code": "// Initialization\nlet arr = Array(n).fill(0); \n// Array of size n filled with 0\nlet str = \"example\"; \n// String initialization\n// Find Duplicates\nlet seen = new Set();\nfor (let num of arr) {\n if (seen.has(num)) return true; \n// Duplicate found\n seen.add(num); \n// Add to set\n}",
+		"explanation": "This snippet demonstrates how to initialize an array and a string, \n// and how to find duplicates in an array using a Set."
 	},
 	{
 		"topic": "Two Pointers",
-		"code": "// Two Pointers Technique\nlet left = 0, right = arr.length - 1;\nwhile (left < right) {\n if (arr[left] + arr[right] === target) {\n  return [left, right]; \n// Pair found\n } else if (arr[left] + arr[right] < target) {\n  left++; \n// Move left pointer\n } else {\n  right--; \n// Move right pointer\n }\n}\n\n// Explanation: This snippet uses the two pointers technique to find a pair of numbers \n// in a sorted array that sum up to a target value."
+		"code": "// Two Pointers Technique\nlet left = 0, right = arr.length - 1;\nwhile (left < right) {\n if (arr[left] + arr[right] === target) {\n  return [left, right]; \n// Pair found\n } else if (arr[left] + arr[right] < target) {\n  left++; \n// Move left pointer\n } else {\n  right--; \n// Move right pointer\n }\n}",
+		"explanation": "This snippet uses the two pointers technique to find a pair of numbers \n// in a sorted array that sum up to a target value."
 	},
 	{
 		"topic": "Sliding Window",
-		"code": "// Fixed Window\nfor (let i = 0; i <= arr.length - k; i++) {\n let windowSum = arr.slice(i, i + k).reduce((a, b) => a + b, 0); \n// Sum of fixed window\n}\n// Dynamic Window\nlet left = 0, maxLen = 0, charSet = new Set();\nfor (let right = 0; right < s.length; right++) {\n while (charSet.has(s[right])) {\n  charSet.delete(s[left]); \n// Shrink window\n  left++;\n }\n charSet.add(s[right]); \n// Expand window\n maxLen = Math.max(maxLen, right - left + 1); \n// Update max length\n}\n\n// Explanation: This snippet demonstrates both fixed and dynamic sliding window techniques. \n// The fixed window calculates the sum of subarrays of size k, while the dynamic window \n// finds the length of the longest substring without repeating characters."
+		"code": "// Fixed Window\nfor (let i = 0; i <= arr.length - k; i++) {\n let windowSum = arr.slice(i, i + k).reduce((a, b) => a + b, 0); \n// Sum of fixed window\n}\n// Dynamic Window\nlet left = 0, maxLen = 0, charSet = new Set();\nfor (let right = 0; right < s.length; right++) {\n while (charSet.has(s[right])) {\n  charSet.delete(s[left]); \n// Shrink window\n  left++;\n }\n charSet.add(s[right]); \n// Expand window\n maxLen = Math.max(maxLen, right - left + 1); \n// Update max length\n}",
+		"explanation": "This snippet demonstrates both fixed and dynamic sliding window techniques. \n// The fixed window calculates the sum of subarrays of size k, while the dynamic window \n// finds the length of the longest substring without repeating characters."
 	},
 	{
 		"topic": "Matrix",
-		"code": "// Traversal\nlet rows = matrix.length, cols = matrix[0].length;\nfor (let r = 0; r < rows; r++) {\n for (let c = 0; c < cols; c++) {\n  console.log(matrix[r][c]); \n// Access each element\n }\n}\n// Directions (e.g., for BFS in 4 directions)\nlet directions = [[0,1], [1,0], [0,-1], [-1,0]];\nfor (let [dr, dc] of directions) {\n let nr = r + dr, nc = c + dc;\n if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {\n  console.log(matrix[nr][nc]); \n// Access neighboring elements\n }\n}\n\n// Explanation: This snippet shows how to traverse a matrix and access its elements. \n// It also demonstrates how to use direction vectors for BFS traversal in four directions."
+		"code": "// Traversal\nlet rows = matrix.length, cols = matrix[0].length;\nfor (let r = 0; r < rows; r++) {\n for (let c = 0; c < cols; c++) {\n  console.log(matrix[r][c]); \n// Access each element\n }\n}\n// Directions (e.g., for BFS in 4 directions)\nlet directions = [[0,1], [1,0], [0,-1], [-1,0]];\nfor (let [dr, dc] of directions) {\n let nr = r + dr, nc = c + dc;\n if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {\n  console.log(matrix[nr][nc]); \n// Access neighboring elements\n }\n}",
+		"explanation": "This snippet shows how to traverse a matrix and access its elements. \n// It also demonstrates how to use direction vectors for BFS traversal in four directions."
 	},
 	{
 		"topic": "Hashmap",
-		"code": "// Initialization and Operations\nlet hashmap = new Map();\nhashmap.set(key, value); \n// Set key-value pair\nhashmap.get(key, defaultValue); \n// Retrieve or default value\nhashmap.delete(key); \n// Remove key\n\n// Explanation: This snippet demonstrates basic operations on a hashmap, \n// including setting, getting, and deleting key-value pairs."
+		"code": "// Initialization and Operations\nlet hashmap = new Map();\nhashmap.set(key, value); \n// Set key-value pair\nhashmap.get(key, defaultValue); \n// Retrieve or default value\nhashmap.delete(key); \n// Remove key",
+		"explanation": "This snippet demonstrates basic operations on a hashmap, \n// including setting, getting, and deleting key-value pairs."
 	},
 	{
 		"topic": "Intervals",
-		"code": "// Merge Intervals\nintervals.sort((a, b) => a[0] - b[0]); \n// Sort intervals\nlet merged = [intervals[0]];\nfor (let i = 1; i < intervals.length; i++) {\n let [start, end] = intervals[i];\n let last = merged[merged.length - 1];\n if (start <= last[1]) {\n  last[1] = Math.max(last[1], end); \n// Merge intervals\n } else {\n  merged.push([start, end]); \n// Add new interval\n }\n}\n\n// Explanation: This snippet demonstrates how to merge overlapping intervals. \n// The intervals are first sorted, then merged by comparing the end of the \n// last merged interval with the start of the current interval."
+		"code": "// Merge Intervals\nintervals.sort((a, b) => a[0] - b[0]); \n// Sort intervals\nlet merged = [intervals[0]];\nfor (let i = 1; i < intervals.length; i++) {\n let [start, end] = intervals[i];\n let last = merged[merged.length - 1];\n if (start <= last[1]) {\n  last[1] = Math.max(last[1], end); \n// Merge intervals\n } else {\n  merged.push([start, end]); \n// Add new interval\n }\n}",
+		"explanation": "This snippet demonstrates how to merge overlapping intervals. \n// The intervals are first sorted, then merged by comparing the end of the \n// last merged interval with the start of the current interval."
 	},
 	{
 		"topic": "Stack",
-		"code": "// Initialization and Operations\nlet stack = [];\nstack.push(value); \n// Push\nstack.pop(); \n// Pop\nif (stack.length > 0) { /* Stack is not empty */ }\n\n// Explanation: This snippet demonstrates basic stack operations, \n// including push, pop, and checking if the stack is not empty."
+		"code": "// Initialization and Operations\nlet stack = [];\nstack.push(value); \n// Push\nstack.pop(); \n// Pop\nif (stack.length > 0) { /* Stack is not empty */ }",
+		"explanation": "This snippet demonstrates basic stack operations, \n// including push, pop, and checking if the stack is not empty."
 	},
 	{
 		"topic": "Linked List",
-		"code": "// Node Definition\nclass ListNode {\n constructor(value = 0, next = null) {\n  this.value = value;\n  this.next = next;\n }\n}\n// Traversal\nlet node = head;\nwhile (node) {\n console.log(node.value); \n// Access node value\n node = node.next; \n// Move to next node\n}\n\n// Explanation: This snippet demonstrates how to define \n// a linked list node and traverse a linked list to access each node's value."
+		"code": "// Node Definition\nclass ListNode {\n constructor(value = 0, next = null) {\n  this.value = value;\n  this.next = next;\n }\n}\n// Traversal\nlet node = head;\nwhile (node) {\n console.log(node.value); \n// Access node value\n node = node.next; \n// Move to next node\n}",
+		"explanation": "This snippet demonstrates how to define \n// a linked list node and traverse a linked list to access each node's value."
 	},
 	{
 		"topic": "Binary Tree General",
-		"code": "// TreeNode Definition\nclass TreeNode {\n constructor(value = 0, left = null, right = null) {\n  this.value = value;\n  this.left = left;\n  this.right = right;\n }\n}\n// DFS Recursive\nfunction dfs(node) {\n if (!node) return; \n// Base case\n dfs(node.left); \n// Traverse left\n dfs(node.right); \n// Traverse right\n}\n\n// Explanation: This snippet demonstrates how to define a \n// binary tree node and perform a depth-first search (DFS) traversal recursively."
+		"code": "// TreeNode Definition\nclass TreeNode {\n constructor(value = 0, left = null, right = null) {\n  this.value = value;\n  this.left = left;\n  this.right = right;\n }\n}\n// DFS Recursive\nfunction dfs(node) {\n if (!node) return; \n// Base case\n dfs(node.left); \n// Traverse left\n dfs(node.right); \n// Traverse right\n}",
+		"explanation": "This snippet demonstrates how to define a \n// binary tree node and perform a depth-first search (DFS) traversal recursively."
 	},
 	{
 		"topic": "Binary Tree BFS",
-		"code": "// BFS Level Order\nlet queue = [root];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n if (node.left) queue.push(node.left); \n// Enqueue left child\n if (node.right) queue.push(node.right); \n// Enqueue right child\n}\n\n// Explanation: This snippet demonstrates how to perform a breadth-first search \n// (BFS) traversal on a binary tree using a queue."
+		"code": "// BFS Level Order\nlet queue = [root];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n if (node.left) queue.push(node.left); \n// Enqueue left child\n if (node.right) queue.push(node.right); \n// Enqueue right child\n}",
+		"explanation": "This snippet demonstrates how to perform a breadth-first search \n// (BFS) traversal on a binary tree using a queue."
 	},
 	{
 		"topic": "Binary Search Tree",
-		"code": "// Insert in BST\nfunction insert(root, value) {\n if (!root) return new TreeNode(value); \n// Insert new node\n if (value < root.value) root.left = insert(root.left, value); \n// Insert in left subtree\n else root.right = insert(root.right, value); \n// Insert in right subtree\n return root;\n}\n\n// Explanation: This snippet demonstrates how to insert a \n// value into a binary search tree (BST) recursively."
+		"code": "// Insert in BST\nfunction insert(root, value) {\n if (!root) return new TreeNode(value); \n// Insert new node\n if (value < root.value) root.left = insert(root.left, value); \n// Insert in left subtree\n else root.right = insert(root.right, value); \n// Insert in right subtree\n return root;\n}",
+		"explanation": "This snippet demonstrates how to insert a \n// value into a binary search tree (BST) recursively."
 	},
 	{
 		"topic": "Graph General",
-		"code": "// Graph Representation (Adjacency List)\nlet graph = {};\ngraph[node1] = [node2]; \n// Add edge from node1 to node2\n\n// Explanation: This snippet demonstrates \n// how to represent a graph using an adjacency list."
+		"code": "// Graph Representation (Adjacency List)\nlet graph = {};\ngraph[node1] = [node2]; \n// Add edge from node1 to node2",
+		"explanation": "This snippet demonstrates \n// how to represent a graph using an adjacency list."
 	},
 	{
 		"topic": "Graph BFS",
-		"code": "// BFS\nlet visited = new Set();\nlet queue = [start];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n for (let neighbor of graph[node]) {\n  if (!visited.has(neighbor)) {\n   visited.add(neighbor); \n// Mark as visited\n   queue.push(neighbor); \n// Enqueue neighbor\n  }\n }\n}\n\n// Explanation: This snippet demonstrates how to perform a breadth-first search (BFS) \n// traversal on a graph using a queue and a set to keep track of visited nodes."
+		"code": "// BFS\nlet visited = new Set();\nlet queue = [start];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n for (let neighbor of graph[node]) {\n  if (!visited.has(neighbor)) {\n   visited.add(neighbor); \n// Mark as visited\n   queue.push(neighbor); \n// Enqueue neighbor\n  }\n }\n}",
+		"explanation": "This snippet demonstrates how to perform a breadth-first search (BFS) \n// traversal on a graph using a queue and a set to keep track of visited nodes."
 	},
 	{
 		"topic": "Trie",
-		"code": "// Insert & Search\nclass TrieNode {\n constructor() {\n  this.children = {};\n  this.isEnd = false;\n }\n}\n\nclass Trie {\n constructor() {\n  this.root = new TrieNode();\n }\n\n insert(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) \n    node.children[char] = new TrieNode(); \n// Create new node\n   node = node.children[char]; \n// Move to child node\n  }\n  node.isEnd = true; \n// Mark end of word\n }\n\n search(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) return false; \n// Character not found\n   node = node.children[char]; \n// Move to child node\n  }\n  return node.isEnd; \n// Check if end of word\n }\n}\n\n// Explanation: This snippet demonstrates how to implement a \n// Trie (prefix tree) with insert and search operations."
+		"code": "// Insert & Search\nclass TrieNode {\n constructor() {\n  this.children = {};\n  this.isEnd = false;\n }\n}\n\nclass Trie {\n constructor() {\n  this.root = new TrieNode();\n }\n\n insert(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) \n    node.children[char] = new TrieNode(); \n// Create new node\n   node = node.children[char]; \n// Move to child node\n  }\n  node.isEnd = true; \n// Mark end of word\n }\n\n search(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) return false; \n// Character not found\n   node = node.children[char]; \n// Move to child node\n  }\n  return node.isEnd; \n// Check if end of word\n }\n}",
+		"explanation": "This snippet demonstrates how to implement a \n// Trie (prefix tree) with insert and search operations."
 	},
 	{
 		"topic": "Backtracking",
-		"code": "// Backtracking Template\nfunction backtrack(path, choices) {\n if (valid(path)) result.push([...path]); \n// Check if path is valid\n for (let choice of choices) {\n  path.push(choice); \n// Make choice\n  backtrack(path, choices); \n// Recurse\n  path.pop(); \n// Undo choice\n }\n}\n\n// Explanation: This snippet provides a template for backtracking algorithms, \n// where choices are made, recursed upon, and then undone."
+		"code": "// Backtracking Template\nfunction backtrack(path, choices) {\n if (valid(path)) result.push([...path]); \n// Check if path is valid\n for (let choice of choices) {\n  path.push(choice); \n// Make choice\n  backtrack(path, choices); \n// Recurse\n  path.pop(); \n// Undo choice\n }\n}",
+		"explanation": "This snippet provides a template for backtracking algorithms, \n// where choices are made, recursed upon, and then undone."
 	},
 	{
 		"topic": "Divide & Conquer",
-		"code": "// Template\nfunction divideAndConquer(arr) {\n if (arr.length <= 1) return arr; \n// Base case\n let mid = Math.floor(arr.length / 2); \n// Find midpoint\n let left = divideAndConquer(arr.slice(0, mid)); \n// Divide left\n let right = divideAndConquer(arr.slice(mid)); \n// Divide right\n return merge(left, right); \n// Conquer (merge)\n}\n\n// Explanation: This snippet provides a template for divide \n// and conquer algorithms, where an array is divided into smaller parts, \n// solved recursively, and then merged."
+		"code": "// Template\nfunction divideAndConquer(arr) {\n if (arr.length <= 1) return arr; \n// Base case\n let mid = Math.floor(arr.length / 2); \n// Find midpoint\n let left = divideAndConquer(arr.slice(0, mid)); \n// Divide left\n let right = divideAndConquer(arr.slice(mid)); \n// Divide right\n return merge(left, right); \n// Conquer (merge)\n}",
+		"explanation": "This snippet provides a template for divide \n// and conquer algorithms, where an array is divided into smaller parts, \n// solved recursively, and then merged."
 	},
 	{
 		"topic": "Kadane's Algorithm",
-		"code": "// Max Subarray Sum\nlet maxSum = -Infinity, currSum = 0;\nfor (let num of arr) {\n currSum = Math.max(num, currSum + num); \n// Update current sum\n maxSum = Math.max(maxSum, currSum); \n// Update max sum\n}\n\n// Explanation: This snippet demonstrates Kadane's Algorithm to find \n// the maximum sum of a contiguous subarray in an array."
+		"code": "// Max Subarray Sum\nlet maxSum = -Infinity, currSum = 0;\nfor (let num of arr) {\n currSum = Math.max(num, currSum + num); \n// Update current sum\n maxSum = Math.max(maxSum, currSum); \n// Update max sum\n}",
+		"explanation": "This snippet demonstrates Kadane's Algorithm to find \n// the maximum sum of a contiguous subarray in an array."
 	},
 	{
 		"topic": "Binary Search",
-		"code": "// Template\nlet left = 0, right = arr.length - 1;\nwhile (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (arr[mid] === target) return mid; \n// Target found\n else if (arr[mid] < target) left = mid + 1; \n// Search right half\n else right = mid - 1; \n// Search left half\n}\n\n// Explanation: This snippet provides a template for binary search, \n// which is used to find a target value in a sorted array."
+		"code": "// Template\nlet left = 0, right = arr.length - 1;\nwhile (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (arr[mid] === target) return mid; \n// Target found\n else if (arr[mid] < target) left = mid + 1; \n// Search right half\n else right = mid - 1; \n// Search left half\n}",
+		"explanation": "This snippet provides a template for binary search, \n// which is used to find a target value in a sorted array."
 	},
 	{
 		"topic": "Heap",
-		"code": "// Min-Heap\nclass MinHeap {\n constructor() {\n  this.heap = [];\n }\n push(value) {\n  this.heap.push(value); \n// Add value\n  this.heap.sort((a, b) => a - b); \n// Maintain heap property\n }\n pop() {\n  return this.heap.shift(); \n// Remove min value\n }\n}\n\n// Explanation: This snippet demonstrates a simple implementation \n// of a min-heap, where the smallest element is always at the root."
+		"code": "// Min-Heap\nclass MinHeap {\n constructor() {\n  this.heap = [];\n }\n push(value) {\n  this.heap.push(value); \n// Add value\n  this.heap.sort((a, b) => a - b); \n// Maintain heap property\n }\n pop() {\n  return this.heap.shift(); \n// Remove min value\n }\n}",
+		"explanation": "This snippet demonstrates a simple implementation \n// of a min-heap, where the smallest element is always at the root."
 	},
 	{
 		"topic": "Bit Manipulation",
-		"code": "// Basic Bitwise Operations\nx & y; \n// AND\nx | y; \n// OR\nx ^ y; \n// XOR\nx << 1; \n// Left Shift\nx >> 1; \n// Right Shift\n~x; \n// NOT\n\n// Explanation: This snippet demonstrates basic bitwise operations, \n// including AND, OR, XOR, left shift, right shift, and NOT."
+		"code": "// Basic Bitwise Operations\nx & y; \n// AND\nx | y; \n// OR\nx ^ y; \n// XOR\nx << 1; \n// Left Shift\nx >> 1; \n// Right Shift\n~x; \n// NOT",
+		"explanation": "This snippet demonstrates basic bitwise operations, \n// including AND, OR, XOR, left shift, right shift, and NOT."
 	},
 	{
 		"topic": "Math",
-		"code": "// Factorial\nfunction factorial(n) {\n return n <= 1 ? 1 : n * factorial(n - 1); \n// Recursive factorial\n}\n\n// Explanation: This snippet demonstrates \n// how to calculate the factorial of a number recursively."
+		"code": "// Factorial\nfunction factorial(n) {\n return n <= 1 ? 1 : n * factorial(n - 1); \n// Recursive factorial\n}",
+		"explanation": "This snippet demonstrates \n// how to calculate the factorial of a number recursively."
 	},
 	{
 		"topic": "1D DP",
-		"code": "// Fibonacci\nlet dp = Array(n + 1).fill(0);\ndp[1] = 1;\nfor (let i = 2; i <= n; i++) {\n dp[i] = dp[i - 1] + dp[i - 2]; \n// Fibonacci relation\n}\n\n// Explanation: This snippet demonstrates how to use dynamic programming\n// to calculate the Fibonacci sequence."
+		"code": "// Fibonacci\nlet dp = Array(n + 1).fill(0);\ndp[1] = 1;\nfor (let i = 2; i <= n; i++) {\n dp[i] = dp[i - 1] + dp[i - 2]; \n// Fibonacci relation\n}",
+		"explanation": "This snippet demonstrates how to use dynamic programming\n// to calculate the Fibonacci sequence."
 	},
 	{
 		"topic": "Multidimensional DP",
-		"code": "// Knapsack Problem\nlet dp = Array(rows).fill().map(\n() => Array(cols).fill(0));\nfor (let i = 1; i < rows; i++) {\n for (let w = 1; w < cols; w++) {\n  if (items[i - 1].weight <= w) {\n   dp[i][w] = Math.max(dp[i - 1][w],\n    items[i - 1].value + \n   dp[i - 1][w - items[i - 1].weight]); \n// Include item\n  } else {\n   dp[i][w] = dp[i - 1][w]; \n// Exclude item\n  }\n }\n}\n\n// Explanation: This snippet demonstrates how to solve the knapsack \n// problem using multidimensional dynamic programming."
+		"code": "// Knapsack Problem\nlet dp = Array(rows).fill().map(\n() => Array(cols).fill(0));\nfor (let i = 1; i < rows; i++) {\n for (let w = 1; w < cols; w++) {\n  if (items[i - 1].weight <= w) {\n   dp[i][w] = Math.max(dp[i - 1][w],\n    items[i - 1].value + \n   dp[i - 1][w - items[i - 1].weight]); \n// Include item\n  } else {\n   dp[i][w] = dp[i - 1][w]; \n// Exclude item\n  }\n }\n}",
+		"explanation": "This snippet demonstrates how to solve the knapsack \n// problem using multidimensional dynamic programming."
 	}
 ]
