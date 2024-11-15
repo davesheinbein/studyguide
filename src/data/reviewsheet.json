@@ -4,167 +4,167 @@
 		"topic": "Array / String",
 		"category": "Data Structures",
 		"code": "// Initialization\nlet arr = Array(n).fill(0); \n// Array of size n filled with 0\nlet str = \"example\"; \n// String initialization\n// Find Duplicates\nlet seen = new Set();\nfor (let num of arr) {\n if (seen.has(num)) return true; \n// Duplicate found\n seen.add(num); \n// Add to set\n}",
-		"explanation": "This snippet demonstrates how to initialize an array and a string, <br/>and how to find duplicates in an array using a Set:<br/><br/>1. **Array Initialization**: `Array(n).fill(0)` creates an array of size `n` filled with zeros.<br/>2. **String Initialization**: `let str = \"example\"` initializes a string.<br/>3. **Finding Duplicates**: Using a `Set` to track seen elements and identify duplicates in an array. This method is efficient because `Set` operations (add, has) are average O(1) in time complexity."
+		"explanation": "This snippet demonstrates how to initialize an array and a string, <br/>and how to find duplicates in an array using a Set:<br/><br/>1. Array Initialization: `Array(n).fill(0)` creates an array of size `n` filled with zeros.<br/>2. String Initialization: `let str = \"example\"` initializes a string.<br/>3. Finding Duplicates: Using a `Set` to track seen elements and identify duplicates in an array. This method is efficient because `Set` operations (add, has) are average O(1) in time complexity."
 	},
 	{
 		"id": 2,
 		"topic": "Two Pointers",
 		"category": "Algorithms",
 		"code": "// Two Pointers Technique\nlet left = 0, right = arr.length - 1;\nwhile (left < right) {\n if (arr[left] + arr[right] === target) {\n  return [left, right]; \n// Pair found\n } else if (arr[left] + arr[right] < target) {\n  left++; \n// Move left pointer\n } else {\n  right--; \n// Move right pointer\n }\n}",
-		"explanation": "This snippet uses the two pointers technique to find a pair of numbers <br/>in a sorted array that sum up to a target value:<br/><br/>1. **Initialization**: Set two pointers, `left` at the start and `right` at the end of the array.<br/>2. **Iteration**: Move the pointers towards each other based on the sum of the elements at these pointers:<br/>   - If the sum equals the target, return the indices.<br/>   - If the sum is less than the target, increment the `left` pointer.<br/>   - If the sum is greater than the target, decrement the `right` pointer.<br/>3. **Efficiency**: This method works in O(n) time complexity, making it efficient for sorted arrays."
+		"explanation": "This snippet uses the two pointers technique to find a pair of numbers <br/>in a sorted array that sum up to a target value:<br/><br/>1. Initialization: Set two pointers, `left` at the start and `right` at the end of the array.<br/>2. Iteration: Move the pointers towards each other based on the sum of the elements at these pointers:<br/>   - If the sum equals the target, return the indices.<br/>   - If the sum is less than the target, increment the `left` pointer.<br/>   - If the sum is greater than the target, decrement the `right` pointer.<br/>3. Efficiency: This method works in O(n) time complexity, making it efficient for sorted arrays."
 	},
 	{
 		"id": 3,
 		"topic": "Sliding Window",
 		"category": "Algorithms",
 		"code": "// Fixed Window\nfor (let i = 0; i <= arr.length - k; i++) {\n let windowSum = arr.slice(i, i + k).reduce((a, b) => a + b, 0); \n// Sum of fixed window\n}\n// Dynamic Window\nlet left = 0, maxLen = 0, charSet = new Set();\nfor (let right = 0; right < s.length; right++) {\n while (charSet.has(s[right])) {\n  charSet.delete(s[left]); \n// Shrink window\n  left++;\n }\n charSet.add(s[right]); \n// Expand window\n maxLen = Math.max(maxLen, right - left + 1); \n// Update max length\n}",
-		"explanation": "This snippet demonstrates both fixed and dynamic sliding window techniques:<br/><br/>1. **Fixed Window**:<br/>   - Iterate over the array with a window of fixed size `k`.<br/>   - Calculate the sum of elements within the window using `reduce`.<br/>2. **Dynamic Window**:<br/>   - Use two pointers (`left` and `right`) to expand and shrink the window dynamically.<br/>   - Use a `Set` to track characters and ensure no duplicates within the window.<br/>   - Adjust the window size to find the longest substring without repeating characters.<br/><br/>These techniques are useful for problems involving subarrays or substrings with specific properties."
+		"explanation": "This snippet demonstrates both fixed and dynamic sliding window techniques:<br/><br/>1. Fixed Window:<br/>   - Iterate over the array with a window of fixed size `k`.<br/>   - Calculate the sum of elements within the window using `reduce`.<br/>2. Dynamic Window:<br/>   - Use two pointers (`left` and `right`) to expand and shrink the window dynamically.<br/>   - Use a `Set` to track characters and ensure no duplicates within the window.<br/>   - Adjust the window size to find the longest substring without repeating characters.<br/><br/>These techniques are useful for problems involving subarrays or substrings with specific properties."
 	},
 	{
 		"id": 4,
 		"topic": "Matrix",
 		"category": "Data Structures",
 		"code": "// Traversal\nlet rows = matrix.length, cols = matrix[0].length;\nfor (let r = 0; r < rows; r++) {\n for (let c = 0; c < cols; c++) {\n  console.log(matrix[r][c]); \n// Access each element\n }\n}\n// Directions (e.g., for BFS in 4 directions)\nlet directions = [[0,1], [1,0], [0,-1], [-1,0]];\nfor (let [dr, dc] of directions) {\n let nr = r + dr, nc = c + dc;\n if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {\n  console.log(matrix[nr][nc]); \n// Access neighboring elements\n }\n}",
-		"explanation": "This snippet shows how to traverse a matrix and access its elements:<br/><br/>1. **Matrix Traversal**:<br/>   - Use nested loops to iterate through each element of the matrix.<br/>   - Access and process each element using `matrix[r][c]`.<br/>2. **Directional Movement**:<br/>   - Define direction vectors for moving in four directions (right, down, left, up).<br/>   - Use these vectors to access neighboring elements, useful for algorithms like BFS.<br/><br/>These techniques are fundamental for solving problems involving 2D grids or matrices."
+		"explanation": "This snippet shows how to traverse a matrix and access its elements:<br/><br/>1. Matrix Traversal:<br/>   - Use nested loops to iterate through each element of the matrix.<br/>   - Access and process each element using `matrix[r][c]`.<br/>2. Directional Movement:<br/>   - Define direction vectors for moving in four directions (right, down, left, up).<br/>   - Use these vectors to access neighboring elements, useful for algorithms like BFS.<br/><br/>These techniques are fundamental for solving problems involving 2D grids or matrices."
 	},
 	{
 		"id": 5,
 		"topic": "Hashmap",
 		"category": "Data Structures",
 		"code": "// Initialization and Operations\nlet hashmap = new Map();\nhashmap.set(key, value); \n// Set key-value pair\nhashmap.get(key, defaultValue); \n// Retrieve or default value\nhashmap.delete(key); \n// Remove key",
-		"explanation": "This snippet demonstrates basic operations on a hashmap (JavaScript `Map`):<br/><br/>1. **Initialization**: Create a new `Map` with `let hashmap = new Map()`.<br/>2. **Set**: Add a key-value pair using `hashmap.set(key, value)`.<br/>3. **Get**: Retrieve a value by key with `hashmap.get(key, defaultValue)`, returning a default value if the key is not found.<br/>4. **Delete**: Remove a key-value pair using `hashmap.delete(key)`.<br/><br/>Hashmaps provide efficient O(1) average time complexity for these operations, making them ideal for fast lookups and modifications."
+		"explanation": "This snippet demonstrates basic operations on a hashmap (JavaScript `Map`):<br/><br/>1. Initialization: Create a new `Map` with `let hashmap = new Map()`.<br/>2. Set: Add a key-value pair using `hashmap.set(key, value)`.<br/>3. Get: Retrieve a value by key with `hashmap.get(key, defaultValue)`, returning a default value if the key is not found.<br/>4. Delete: Remove a key-value pair using `hashmap.delete(key)`.<br/><br/>Hashmaps provide efficient O(1) average time complexity for these operations, making them ideal for fast lookups and modifications."
 	},
 	{
 		"id": 6,
 		"topic": "Intervals",
 		"category": "Algorithms",
 		"code": "// Merge Intervals\nintervals.sort((a, b) => a[0] - b[0]); \n// Sort intervals\nlet merged = [intervals[0]];\nfor (let i = 1; i < intervals.length; i++) {\n let [start, end] = intervals[i];\n let last = merged[merged.length - 1];\n if (start <= last[1]) {\n  last[1] = Math.max(last[1], end); \n// Merge intervals\n } else {\n  merged.push([start, end]); \n// Add new interval\n }\n}",
-		"explanation": "This snippet demonstrates how to merge overlapping intervals:<br/><br/>1. **Sort Intervals**: Sort the intervals by their start times using `sort`.<br/>2. **Merge Process**:<br/>   - Initialize the merged list with the first interval.<br/>   - Iterate through the remaining intervals and compare each interval's start time with the end time of the last merged interval.<br/>   - If they overlap, merge them by updating the end time.<br/>   - If they don't overlap, add the interval to the merged list.<br/><br/>This approach ensures that overlapping intervals are combined efficiently, with a time complexity of O(n log n) due to sorting."
+		"explanation": "This snippet demonstrates how to merge overlapping intervals:<br/><br/>1. Sort Intervals: Sort the intervals by their start times using `sort`.<br/>2. Merge Process:<br/>   - Initialize the merged list with the first interval.<br/>   - Iterate through the remaining intervals and compare each interval's start time with the end time of the last merged interval.<br/>   - If they overlap, merge them by updating the end time.<br/>   - If they don't overlap, add the interval to the merged list.<br/><br/>This approach ensures that overlapping intervals are combined efficiently, with a time complexity of O(n log n) due to sorting."
 	},
 	{
 		"id": 7,
 		"topic": "Stack",
 		"category": "Data Structures",
 		"code": "// Initialization and Operations\nlet stack = [];\nstack.push(value); \n// Push\nstack.pop(); \n// Pop\nif (stack.length > 0) { /* Stack is not empty */ }",
-		"explanation": "This snippet demonstrates basic stack operations:<br/><br/>1. **Initialization**: Create a stack using an array with `let stack = []`.<br/>2. **Push**: Add an element to the top of the stack using `stack.push(value)`.<br/>3. **Pop**: Remove and return the top element using `stack.pop()`.<br/>4. **Check if Not Empty**: Verify if the stack is not empty with `stack.length > 0`.<br/><br/>Stacks follow the Last-In-First-Out (LIFO) principle, making them suitable for tasks like reversing data, parsing expressions, and backtracking algorithms."
+		"explanation": "This snippet demonstrates basic stack operations:<br/><br/>1. Initialization: Create a stack using an array with `let stack = []`.<br/>2. Push: Add an element to the top of the stack using `stack.push(value)`.<br/>3. Pop: Remove and return the top element using `stack.pop()`.<br/>4. Check if Not Empty: Verify if the stack is not empty with `stack.length > 0`.<br/><br/>Stacks follow the Last-In-First-Out (LIFO) principle, making them suitable for tasks like reversing data, parsing expressions, and backtracking algorithms."
 	},
 	{
 		"id": 8,
 		"topic": "Linked List",
 		"category": "Data Structures",
 		"code": "// Node Definition\nclass ListNode {\n constructor(value = 0, next = null) {\n  this.value = value;\n  this.next = next;\n }\n}\n// Traversal\nlet node = head;\nwhile (node) {\n console.log(node.value); \n// Access node value\n node = node.next; \n// Move to next node\n}",
-		"explanation": "This snippet demonstrates how to define and traverse a linked list:<br/><br/>1. **Node Definition**: Define a `ListNode` class with a constructor to initialize `value` and `next` properties.<br/>2. **Traversal**:<br/>   - Start from the head node and iterate through the list using a `while` loop.<br/>   - Access and process each node's value with `console.log(node.value)`.<br/>   - Move to the next node using `node = node.next`.<br/><br/>Linked lists are dynamic data structures that allow efficient insertion and deletion of elements, making them useful for implementing stacks, queues, and other abstract data types."
+		"explanation": "This snippet demonstrates how to define and traverse a linked list:<br/><br/>1. Node Definition: Define a `ListNode` class with a constructor to initialize `value` and `next` properties.<br/>2. Traversal:<br/>   - Start from the head node and iterate through the list using a `while` loop.<br/>   - Access and process each node's value with `console.log(node.value)`.<br/>   - Move to the next node using `node = node.next`.<br/><br/>Linked lists are dynamic data structures that allow efficient insertion and deletion of elements, making them useful for implementing stacks, queues, and other abstract data types."
 	},
 	{
 		"id": 9,
 		"topic": "Binary Tree General",
 		"category": "Data Structures",
 		"code": "// TreeNode Definition\nclass TreeNode {\n constructor(value = 0, left = null, right = null) {\n  this.value = value;\n  this.left = left;\n  this.right = right;\n }\n}\n// DFS Recursive\nfunction dfs(node) {\n if (!node) return; \n// Base case\n dfs(node.left); \n// Traverse left\n dfs(node.right); \n// Traverse right\n}",
-		"explanation": "This snippet demonstrates how to define a binary tree node and perform a depth-first search (DFS) traversal recursively:<br/><br/>1. **TreeNode Definition**: Define a `TreeNode` class with a constructor to initialize `value`, `left`, and `right` properties.<br/>2. **DFS Recursive**:<br/>   - Implement a `dfs` function that takes a node as input.<br/>   - Use a base case to return if the node is null.<br/>   - Recursively traverse the left and right subtrees.<br/><br/>DFS is a fundamental tree traversal technique used in various algorithms, including searching, pathfinding, and tree-based data structures."
+		"explanation": "This snippet demonstrates how to define a binary tree node and perform a depth-first search (DFS) traversal recursively:<br/><br/>1. TreeNode Definition: Define a `TreeNode` class with a constructor to initialize `value`, `left`, and `right` properties.<br/>2. DFS Recursive:<br/>   - Implement a `dfs` function that takes a node as input.<br/>   - Use a base case to return if the node is null.<br/>   - Recursively traverse the left and right subtrees.<br/><br/>DFS is a fundamental tree traversal technique used in various algorithms, including searching, pathfinding, and tree-based data structures."
 	},
 	{
 		"id": 10,
 		"topic": "Binary Tree BFS",
 		"category": "Algorithms",
 		"code": "// BFS Level Order\nlet queue = [root];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n if (node.left) queue.push(node.left); \n// Enqueue left child\n if (node.right) queue.push(node.right); \n// Enqueue right child\n}",
-		"explanation": "This snippet demonstrates how to perform a breadth-first search <br/>(BFS) traversal on a binary tree using a queue:<br/><br/>1. **Initialization**: Start with the root node in the queue.<br/>2. **Iteration**:<br/>   - Dequeue a node from the front of the queue.<br/>   - Process the node (e.g., print its value).<br/>   - Enqueue the left and right children of the node if they exist.<br/><br/>BFS is useful for level-order traversal of trees, finding the shortest path in unweighted graphs, and other applications where exploring nodes level by level is beneficial."
+		"explanation": "This snippet demonstrates how to perform a breadth-first search <br/>(BFS) traversal on a binary tree using a queue:<br/><br/>1. Initialization: Start with the root node in the queue.<br/>2. Iteration:<br/>   - Dequeue a node from the front of the queue.<br/>   - Process the node (e.g., print its value).<br/>   - Enqueue the left and right children of the node if they exist.<br/><br/>BFS is useful for level-order traversal of trees, finding the shortest path in unweighted graphs, and other applications where exploring nodes level by level is beneficial."
 	},
 	{
 		"id": 11,
 		"topic": "Binary Search Tree",
 		"category": "Data Structures",
 		"code": "// Insert in BST\nfunction insert(root, value) {\n if (!root) return new TreeNode(value); \n// Insert new node\n if (value < root.value) root.left = insert(root.left, value); \n// Insert in left subtree\n else root.right = insert(root.right, value); \n// Insert in right subtree\n return root;\n}",
-		"explanation": "This snippet demonstrates how to insert a value into a binary search tree (BST) recursively:<br/><br/>1. **Base Case**: If the root is null, create and return a new `TreeNode` with the given value.<br/>2. **Recursive Insertion**:<br/>   - If the value is less than the root's value, insert it into the left subtree.<br/>   - If the value is greater than or equal to the root's value, insert it into the right subtree.<br/>3. **Return Root**: Return the root node after insertion.<br/><br/>BSTs maintain sorted order, allowing efficient O(log n) average time complexity for insertion, deletion, and search operations."
+		"explanation": "This snippet demonstrates how to insert a value into a binary search tree (BST) recursively:<br/><br/>1. Base Case: If the root is null, create and return a new `TreeNode` with the given value.<br/>2. Recursive Insertion:<br/>   - If the value is less than the root's value, insert it into the left subtree.<br/>   - If the value is greater than or equal to the root's value, insert it into the right subtree.<br/>3. Return Root: Return the root node after insertion.<br/><br/>BSTs maintain sorted order, allowing efficient O(log n) average time complexity for insertion, deletion, and search operations."
 	},
 	{
 		"id": 12,
 		"topic": "Graph General",
 		"category": "Data Structures",
 		"code": "// Graph Representation (Adjacency List)\nlet graph = {};\ngraph[node1] = [node2]; \n// Add edge from node1 to node2",
-		"explanation": "This snippet demonstrates how to represent a graph using an adjacency list:<br/><br/>1. **Initialization**: Create an empty object `graph` to represent the adjacency list.<br/>2. **Add Edge**: Add an edge from `node1` to `node2` by assigning an array containing `node2` to `graph[node1]`.<br/><br/>Adjacency lists are efficient for representing sparse graphs, providing O(1) average time complexity for adding edges and O(V + E) time complexity for traversing the graph, where V is the number of vertices and E is the number of edges."
+		"explanation": "This snippet demonstrates how to represent a graph using an adjacency list:<br/><br/>1. Initialization: Create an empty object `graph` to represent the adjacency list.<br/>2. Add Edge: Add an edge from `node1` to `node2` by assigning an array containing `node2` to `graph[node1]`.<br/><br/>Adjacency lists are efficient for representing sparse graphs, providing O(1) average time complexity for adding edges and O(V + E) time complexity for traversing the graph, where V is the number of vertices and E is the number of edges."
 	},
 	{
-			"id": 13,
+		"id": 13,
 		"topic": "Graph BFS",
 		"category": "Algorithms",
 		"code": "// BFS\nlet visited = new Set();\nlet queue = [start];\nwhile (queue.length) {\n let node = queue.shift(); \n// Dequeue\n for (let neighbor of graph[node]) {\n  if (!visited.has(neighbor)) {\n   visited.add(neighbor); \n// Mark as visited\n   queue.push(neighbor); \n// Enqueue neighbor\n  }\n }\n}",
-		"explanation": "This snippet demonstrates how to perform a breadth-first search (BFS) traversal on a graph using a queue and a set to keep track of visited nodes:<br/><br/>1. **Initialization**: Start with the `start` node in the queue and mark it as visited.<br/>2. **Iteration**:<br/>   - Dequeue a node from the front of the queue.<br/>   - For each neighbor of the node, if it hasn't been visited, mark it as visited and enqueue it.<br/><br/>BFS is useful for finding the shortest path in unweighted graphs, exploring all nodes at the present depth level before moving on to nodes at the next depth level."
+		"explanation": "This snippet demonstrates how to perform a breadth-first search (BFS) traversal on a graph using a queue and a set to keep track of visited nodes:<br/><br/>1. Initialization: Start with the `start` node in the queue and mark it as visited.<br/>2. Iteration:<br/>   - Dequeue a node from the front of the queue.<br/>   - For each neighbor of the node, if it hasn't been visited, mark it as visited and enqueue it.<br/><br/>BFS is useful for finding the shortest path in unweighted graphs, exploring all nodes at the present depth level before moving on to nodes at the next depth level."
 	},
 	{
 		"id": 14,
 		"topic": "Trie",
 		"category": "Data Structures",
 		"code": "// Insert & Search\nclass TrieNode {\n constructor() {\n  this.children = {};\n  this.isEnd = false;\n }\n}\n\nclass Trie {\n constructor() {\n  this.root = new TrieNode();\n }\n\n insert(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) \n    node.children[char] = new TrieNode(); \n// Create new node\n   node = node.children[char]; \n// Move to child node\n  }\n  node.isEnd = true; \n// Mark end of word\n }\n\n search(word) {\n  let node = this.root;\n  for (let char of word) {\n   if (!node.children[char]) return false; \n// Character not found\n   node = node.children[char]; \n// Move to child node\n  }\n  return node.isEnd; \n// Check if end of word\n }\n}",
-		"explanation": "This snippet demonstrates how to implement a Trie (prefix tree) with insert and search operations:<br/><br/>1. **TrieNode Definition**: Define a `TrieNode` class with a constructor to initialize `children` (an object) and `isEnd` (a boolean indicating the end of a word).<br/>2. **Trie Class**:<br/>   - **Insert**: Add a word to the Trie by iterating through its characters, creating new nodes as needed, and marking the end of the word.<br/>   - **Search**: Check if a word exists in the Trie by iterating through its characters and verifying the end of the word.<br/><br/>Tries are efficient for prefix-based searches, providing O(m) time complexity for insert and search operations, where m is the length of the word."
+		"explanation": "This snippet demonstrates how to implement a Trie (prefix tree) with insert and search operations:<br/><br/>1. TrieNode Definition: Define a `TrieNode` class with a constructor to initialize `children` (an object) and `isEnd` (a boolean indicating the end of a word).<br/>2. Trie Class:<br/>   - Insert: Add a word to the Trie by iterating through its characters, creating new nodes as needed, and marking the end of the word.<br/>   - Search: Check if a word exists in the Trie by iterating through its characters and verifying the end of the word.<br/><br/>Tries are efficient for prefix-based searches, providing O(m) time complexity for insert and search operations, where m is the length of the word."
 	},
 	{
 		"id": 15,
 		"topic": "Backtracking",
 		"category": "Algorithms",
 		"code": "// Backtracking Template\nfunction backtrack(path, choices) {\n if (valid(path)) result.push([...path]); \n// Check if path is valid\n for (let choice of choices) {\n  path.push(choice); \n// Make choice\n  backtrack(path, choices); \n// Recurse\n  path.pop(); \n// Undo choice\n }\n}",
-		"explanation": "This snippet provides a template for backtracking algorithms:<br/><br/>1. **Base Case**: Check if the current path is valid and add it to the result.<br/>2. **Recursive Case**:<br/>   - Iterate through the available choices.<br/>   - Make a choice by adding it to the path.<br/>   - Recurse with the updated path and choices.<br/>   - Undo the choice by removing it from the path.<br/><br/>Backtracking is useful for solving combinatorial problems, such as generating permutations, combinations, and solving puzzles like Sudoku."
+		"explanation": "This snippet provides a template for backtracking algorithms:<br/><br/>1. Base Case: Check if the current path is valid and add it to the result.<br/>2. Recursive Case:<br/>   - Iterate through the available choices.<br/>   - Make a choice by adding it to the path.<br/>   - Recurse with the updated path and choices.<br/>   - Undo the choice by removing it from the path.<br/><br/>Backtracking is useful for solving combinatorial problems, such as generating permutations, combinations, and solving puzzles like Sudoku."
 	},
 	{
 		"id": 16,
 		"topic": "Divide & Conquer",
 		"category": "Algorithms",
 		"code": "// Template\nfunction divideAndConquer(arr) {\n if (arr.length <= 1) return arr; \n// Base case\n let mid = Math.floor(arr.length / 2); \n// Find midpoint\n let left = divideAndConquer(arr.slice(0, mid)); \n// Divide left\n let right = divideAndConquer(arr.slice(mid)); \n// Divide right\n return merge(left, right); \n// Conquer (merge)\n}",
-		"explanation": "This snippet provides a template for divide and conquer algorithms:<br/><br/>1. **Base Case**: If the array has one or zero elements, return it as it is already sorted.<br/>2. **Divide**: Split the array into two halves at the midpoint.<br/>3. **Conquer**: Recursively apply the divide and conquer approach to both halves.<br/>4. **Merge**: Combine the sorted halves to produce the final sorted array.<br/><br/>Divide and conquer is a powerful technique used in algorithms like merge sort and quicksort, providing efficient solutions to complex problems by breaking them down into smaller, more manageable subproblems."
+		"explanation": "This snippet provides a template for divide and conquer algorithms:<br/><br/>1. Base Case: If the array has one or zero elements, return it as it is already sorted.<br/>2. Divide: Split the array into two halves at the midpoint.<br/>3. Conquer: Recursively apply the divide and conquer approach to both halves.<br/>4. Merge: Combine the sorted halves to produce the final sorted array.<br/><br/>Divide and conquer is a powerful technique used in algorithms like merge sort and quicksort, providing efficient solutions to complex problems by breaking them down into smaller, more manageable subproblems."
 	},
 	{
 		"id": 17,
 		"topic": "Kadane's Algorithm",
 		"category": "Algorithms",
 		"code": "// Max Subarray Sum\nlet maxSum = -Infinity, currSum = 0;\nfor (let num of arr) {\n currSum = Math.max(num, currSum + num); \n// Update current sum\n maxSum = Math.max(maxSum, currSum); \n// Update max sum\n}",
-		"explanation": "This snippet demonstrates Kadane's Algorithm to find the maximum sum of a contiguous subarray in an array:<br/><br/>1. **Initialization**: Set `maxSum` to negative infinity and `currSum` to 0.<br/>2. **Iteration**: Iterate through each element in the array:<br/>   - Update `currSum` to be the maximum of the current element or the sum of `currSum` and the current element.<br/>   - Update `maxSum` to be the maximum of `maxSum` and `currSum`.<br/>3. **Result**: `maxSum` will contain the maximum sum of any contiguous subarray.<br/><br/>Kadane's Algorithm is efficient with a time complexity of O(n), making it suitable for large arrays."
+		"explanation": "This snippet demonstrates Kadane's Algorithm to find the maximum sum of a contiguous subarray in an array:<br/><br/>1. Initialization: Set `maxSum` to negative infinity and `currSum` to 0.<br/>2. Iteration: Iterate through each element in the array:<br/>   - Update `currSum` to be the maximum of the current element or the sum of `currSum` and the current element.<br/>   - Update `maxSum` to be the maximum of `maxSum` and `currSum`.<br/>3. Result: `maxSum` will contain the maximum sum of any contiguous subarray.<br/><br/>Kadane's Algorithm is efficient with a time complexity of O(n), making it suitable for large arrays."
 	},
 	{
 		"id": 18,
 		"topic": "Binary Search",
 		"category": "Algorithms",
 		"code": "// Template\nlet left = 0, right = arr.length - 1;\nwhile (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (arr[mid] === target) return mid; \n// Target found\n else if (arr[mid] < target) left = mid + 1; \n// Search right half\n else right = mid - 1; \n// Search left half\n}",
-		"explanation": "This snippet provides a template for binary search, which is used to find a target value in a sorted array:<br/><br/>1. **Initialization**: Set `left` to 0 and `right` to the last index of the array.<br/>2. **Iteration**: While `left` is less than or equal to `right`:<br/>   - Calculate the midpoint `mid`.<br/>   - If the element at `mid` is the target, return `mid`.<br/>   - If the element at `mid` is less than the target, move `left` to `mid + 1`.<br/>   - If the element at `mid` is greater than the target, move `right` to `mid - 1`.<br/>3. **Result**: If the target is not found, return -1.<br/><br/>Binary search is efficient with a time complexity of O(log n), making it ideal for searching in large sorted arrays."
+		"explanation": "This snippet provides a template for binary search, which is used to find a target value in a sorted array:<br/><br/>1. Initialization: Set `left` to 0 and `right` to the last index of the array.<br/>2. Iteration: While `left` is less than or equal to `right`:<br/>   - Calculate the midpoint `mid`.<br/>   - If the element at `mid` is the target, return `mid`.<br/>   - If the element at `mid` is less than the target, move `left` to `mid + 1`.<br/>   - If the element at `mid` is greater than the target, move `right` to `mid - 1`.<br/>3. Result: If the target is not found, return -1.<br/><br/>Binary search is efficient with a time complexity of O(log n), making it ideal for searching in large sorted arrays."
 	},
 	{
 		"id": 19,
 		"topic": "Heap",
 		"category": "Data Structures",
 		"code": "// Min-Heap\nclass MinHeap {\n constructor() {\n  this.heap = [];\n }\n push(value) {\n  this.heap.push(value); \n// Add value\n  this.heap.sort((a, b) => a - b); \n// Maintain heap property\n }\n pop() {\n  return this.heap.shift(); \n// Remove min value\n }\n}",
-		"explanation": "This snippet demonstrates a simple implementation of a min-heap, where the smallest element is always at the root:<br/><br/>1. **Initialization**: Create a `MinHeap` class with a constructor that initializes an empty array `heap`.<br/>2. **Push**: Add a value to the heap and sort the array to maintain the heap property.<br/>3. **Pop**: Remove and return the smallest value (root) from the heap.<br/><br/>Min-heaps are useful for efficiently finding and removing the smallest element, with applications in priority queues and algorithms like Dijkstra's shortest path."
+		"explanation": "This snippet demonstrates a simple implementation of a min-heap, where the smallest element is always at the root:<br/><br/>1. Initialization: Create a `MinHeap` class with a constructor that initializes an empty array `heap`.<br/>2. Push: Add a value to the heap and sort the array to maintain the heap property.<br/>3. Pop: Remove and return the smallest value (root) from the heap.<br/><br/>Min-heaps are useful for efficiently finding and removing the smallest element, with applications in priority queues and algorithms like Dijkstra's shortest path."
 	},
 	{
 		"id": 20,
 		"topic": "Bit Manipulation",
 		"category": "Algorithms",
 		"code": "// Basic Bitwise Operations\nx & y; \n// AND\nx | y; \n// OR\nx ^ y; \n// XOR\nx << 1; \n// Left Shift\nx >> 1; \n// Right Shift\n~x; \n// NOT",
-		"explanation": "This snippet demonstrates basic bitwise operations:<br/><br/>1. **AND**: `x & y` performs a bitwise AND operation.<br/>2. **OR**: `x | y` performs a bitwise OR operation.<br/>3. **XOR**: `x ^ y` performs a bitwise XOR operation.<br/>4. **Left Shift**: `x << 1` shifts the bits of `x` to the left by 1 position.<br/>5. **Right Shift**: `x >> 1` shifts the bits of `x` to the right by 1 position.<br/>6. **NOT**: `~x` performs a bitwise NOT operation.<br/><br/>Bitwise operations are fundamental in low-level programming, providing efficient ways to manipulate individual bits for tasks like setting, clearing, and toggling bits."
+		"explanation": "This snippet demonstrates basic bitwise operations:<br/><br/>1. AND: `x & y` performs a bitwise AND operation.<br/>2. OR: `x | y` performs a bitwise OR operation.<br/>3. XOR: `x ^ y` performs a bitwise XOR operation.<br/>4. Left Shift: `x << 1` shifts the bits of `x` to the left by 1 position.<br/>5. Right Shift: `x >> 1` shifts the bits of `x` to the right by 1 position.<br/>6. NOT: `~x` performs a bitwise NOT operation.<br/><br/>Bitwise operations are fundamental in low-level programming, providing efficient ways to manipulate individual bits for tasks like setting, clearing, and toggling bits."
 	},
 	{
 		"id": 21,
 		"topic": "Math",
 		"category": "Algorithms",
 		"code": "// Factorial\nfunction factorial(n) {\n return n <= 1 ? 1 : n * factorial(n - 1); \n// Recursive factorial\n}",
-		"explanation": "This snippet demonstrates <br/>how to calculate the factorial of a number recursively."
+		"explanation": "This snippet demonstrates how to calculate the factorial of a number recursively:<br/><br/>1. Base Case: If `n` is less than or equal to 1, return 1.<br/>2. Recursive Case: Multiply `n` by the factorial of `n - 1`.<br/><br/>Factorials are used in various mathematical computations, including permutations, combinations, and probability calculations. The recursive approach is straightforward and easy to understand, but for large values of `n`, an iterative approach or memoization can be more efficient."
 	},
 	{
 		"id": 22,
 		"topic": "1D DP",
 		"category": "Algorithms",
 		"code": "// Fibonacci\nlet dp = Array(n + 1).fill(0);\ndp[1] = 1;\nfor (let i = 2; i <= n; i++) {\n dp[i] = dp[i - 1] + dp[i - 2]; \n// Fibonacci relation\n}",
-		"explanation": "This snippet demonstrates how to use dynamic programming<br/>to calculate the Fibonacci sequence."
+		"explanation": "This snippet demonstrates how to use dynamic programming to calculate the Fibonacci sequence:<br/><br/>1. Initialization: Create an array `dp` of size `n + 1` filled with zeros. Set `dp[1]` to 1.<br/>2. Iteration: Iterate from 2 to `n`, updating each element in the array as the sum of the two preceding elements (`dp[i - 1]` and `dp[i - 2]`).<br/>3. Result: The value at `dp[n]` will be the nth Fibonacci number.<br/><br/>Dynamic programming optimizes the calculation by storing intermediate results, reducing the time complexity to O(n) compared to the exponential time complexity of the naive recursive approach."
 	},
 	{
 		"id": 23,
 		"topic": "Multidimensional DP",
 		"category": "Algorithms",
 		"code": "// Knapsack Problem\nlet dp = Array(rows).fill().map(\n() => Array(cols).fill(0));\nfor (let i = 1; i < rows; i++) {\n for (let w = 1; w < cols; w++) {\n  if (items[i - 1].weight <= w) {\n   dp[i][w] = Math.max(dp[i - 1][w],\n    items[i - 1].value + \n   dp[i - 1][w - items[i - 1].weight]); \n// Include item\n  } else {\n   dp[i][w] = dp[i - 1][w]; \n// Exclude item\n  }\n }\n}",
-		"explanation": "This snippet demonstrates how to solve the knapsack <br/>problem using multidimensional dynamic programming."
+		"explanation": "This snippet demonstrates how to solve the knapsack problem using multidimensional dynamic programming:<br/><br/>1. Initialization: Create a 2D array `dp` with dimensions `rows` and `cols`, filled with zeros.<br/>2. Iteration: Iterate through each item and weight capacity:<br/>   - If the item's weight is less than or equal to the current capacity, update `dp[i][w]` to be the maximum of excluding the item (`dp[i - 1][w]`) or including the item (`items[i - 1].value + dp[i - 1][w - items[i - 1].weight]`).<br/>   - If the item's weight is greater than the current capacity, set `dp[i][w]` to `dp[i - 1][w]`.<br/>3. Result: The value at `dp[rows - 1][cols - 1]` will be the maximum value that can be obtained with the given items and weight capacity.<br/><br/>The knapsack problem is a classic optimization problem, and dynamic programming provides an efficient solution with a time complexity of O(n * W), where `n` is the number of items and `W` is the weight capacity."
 	},
 	{
 		"id": 24,
 		"topic": "Greedy Algorithms",
 		"category": "Algorithms",
 		"code": "// Activity Selection\nactivities.sort((a, b) => a.end - b.end); \n// Sort by end time\nlet lastEnd = 0, selected = [];\nfor (let activity of activities) {\n if (activity.start >= lastEnd) {\n  selected.push(activity); \n// Select activity\n  lastEnd = activity.end; \n// Update last end time\n }\n}",
-		"explanation": "This snippet demonstrates the greedy algorithm for the activity selection problem, <br/>where activities are selected based on their end times to maximize the number of non-overlapping activities."
+		"explanation": "This snippet demonstrates the greedy algorithm for the activity selection problem, where activities are selected based on their end times to maximize the number of non-overlapping activities:<br/><br/>1. Sort Activities: Sort the activities by their end times.<br/>2. Selection Process: Initialize `lastEnd` to 0 and an empty array `selected`.<br/>   - Iterate through the sorted activities.<br/>   - If an activity's start time is greater than or equal to `lastEnd`, select the activity and update `lastEnd` to the activity's end time.<br/>3. Result: The `selected` array will contain the maximum number of non-overlapping activities.<br/><br/>The greedy approach ensures that the earliest finishing activities are selected first, leading to an optimal solution with a time complexity of O(n log n) due to sorting."
 	}
 ]
