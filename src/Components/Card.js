@@ -7,10 +7,11 @@ import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
 import principlesData from '../data/principles.json'; // Import principles data
 
-const Card = ({ activeTab }) => {
+const Card = ({ activeTab, searchQuery }) => {
 	const [reviewsheet, setReviewsheet] = useState([]);
 	const [leetcode, setLeetcode] = useState([]);
 	const [principles, setPrinciples] = useState([]); // State for principles
+	const [filteredData, setFilteredData] = useState([]);
 	const [expandedIndex, setExpandedIndex] = useState(null);
 
 	useEffect(() => {
@@ -21,14 +22,22 @@ const Card = ({ activeTab }) => {
 	}, []);
 
 	useEffect(() => {
+		const data = {
+			reviewsheet,
+			leetcode,
+			principles,
+		}[activeTab];
+
+		const filtered = data.filter((item) =>
+			item.topic.toLowerCase().includes(searchQuery.toLowerCase())
+		);
+
+		setFilteredData(filtered);
+	}, [searchQuery, activeTab, reviewsheet, leetcode, principles]);
+
+	useEffect(() => {
 		Prism.highlightAll();
-	}, [
-		expandedIndex,
-		activeTab,
-		reviewsheet,
-		leetcode,
-		principles,
-	]);
+	}, [filteredData]);
 
 	const createCardClone = (item) => {
 		const cardClone = document.createElement('div');
@@ -38,7 +47,7 @@ const Card = ({ activeTab }) => {
 			<div class='card-item-topic'>
 				<div class='card-item-topic-text'>${item.topic}</div>
 			</div>
-			<div class='card-item-code'>
+			<div className='card-item-code'>
 				<pre><code class='language-javascript'>${item.code}</code></pre>
 			</div>
 		`;
@@ -95,21 +104,21 @@ const Card = ({ activeTab }) => {
 			{activeTab === 'reviewsheet' && (
 				<div className='card card-A'>
 					<div className='card-grid'>
-						{renderCards(reviewsheet)}
+						{renderCards(filteredData)}
 					</div>
 				</div>
 			)}
 			{activeTab === 'leetcode' && (
 				<div className='card card-B'>
 					<div className='card-grid'>
-						{renderCards(leetcode)}
+						{renderCards(filteredData)}
 					</div>
 				</div>
 			)}
 			{activeTab === 'principles' && (
 				<div className='card card-C'>
 					<div className='card-grid'>
-						{renderCards(principles)}
+						{renderCards(filteredData)}
 					</div>
 				</div>
 			)}

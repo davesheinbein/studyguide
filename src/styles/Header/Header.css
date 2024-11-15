@@ -5,20 +5,24 @@
   padding: 5px 20px;
   background: linear-gradient(45deg, #0d0d0d, #434343);
 }
-
 .header .name {
   font-size: 1.2rem;
   font-weight: bold;
   color: #ffffff;
+  margin-right: 20px;
 }
-
+.header .left-section,
+.header .right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Add gap to separate name and tabs */
+}
 .header .tabs {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
-
 .header .tab {
-  padding: 5px 15px;
+  padding: 5px 10px;
   font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
@@ -27,30 +31,35 @@
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
 }
-
 .header .tab:hover {
   background: #555;
   transform: scale(1.05);
 }
-
 .header .tab.active {
   background: #00ccff;
   color: #000;
   transform: scale(1.1);
 }
-
+.header .search-bar {
+  width: 100%;
+}
+.header .search-bar input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+  font-size: 1rem;
+}
 .header .links {
   display: flex;
   gap: 15px;
 }
-
 .header .links a {
   text-decoration: none;
   color: #ffffff;
   font-size: 1.2rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
-
 .header .links a:hover {
   color: #00ccff;
   transform: scale(1.2) rotate(360deg);

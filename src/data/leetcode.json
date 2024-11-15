@@ -1,8 +1,8 @@
 [
 	{
 		"topic": "Merge Sorted Array",
-		"code": "// Merge two sorted arrays\nfunction merge(nums1, m, nums2, n) {\n let i = m - 1, j = n - 1, k = m + n - 1;\n while (i >= 0 && j >= 0) {\n nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];\n }\n while (j >= 0) {\n nums1[k--] = nums2[j--];\n }\n}\n",
-		"explanation": "This function merges two sorted arrays into one sorted array in-place.",
+		"code": "// Define a function to merge two sorted integer arrays\nvar merge = function(nums1, m, nums2, n) {\n    // Initialize pointers for the last elements of nums1 and nums2\n    let i = m - 1; // Pointer for the last element in the first part of nums1\n    let j = n - 1; // Pointer for the last element in nums2\n    let k = m + n - 1; // Pointer for the last position in nums1 (the merged array)\n\n    // While there are still elements to merge from nums2\n    while (j >= 0) {\n        // If there are remaining elements in nums1 and the current element in nums1 is greater than in nums2\n        if (i >= 0 && nums1[i] > nums2[j]) {\n            nums1[k] = nums1[i]; // Place the element from nums1 into the correct position in nums1\n            i--; // Move the pointer in nums1 left\n        } else {\n            // If nums2's current element is greater or nums1 is exhausted\n            nums1[k] = nums2[j]; // Place the element from nums2 into nums1\n            j--; // Move the pointer in nums2 left\n        }\n        // Move the pointer for the merged position left\n        k--;\n    }\n    // No need to return anything since we modify nums1 in place\n};\n",
+		"explanation": "1. Function Purpose: The merge function is designed to combine two sorted arrays, nums1 and nums2, into a single sorted array stored in nums1.\n\n2. Input Specification: \n   - nums1 is an array of integers that contains m elements followed by n zeros. \n   - nums2 is an array of integers containing n elements.\n   - m represents the number of actual elements in nums1.\n   - n represents the number of elements in nums2.\n\n3. Output Specification: \n   - The merged sorted array is stored in nums1.\n   - No return value is necessary as the result modifies nums1 in place.\n\n4. Example Walkthrough:\n   - Example 1: For the input nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3:\n     - Start merging from the end of both arrays, comparing elements and placing them in the correct position.\n     - Final output in nums1 will be [1, 2, 2, 3, 5, 6].\n   - Example 2: For the input nums1 = [1], m = 1, nums2 = [], n = 0:\n     - Since nums2 is empty, nums1 remains [1].\n   - Example 3: For the input nums1 = [0], m = 0, nums2 = [1], n = 1:\n     - All elements from nums2 are placed in nums1, resulting in [1].\n\n5. Constraints:\n   - The function handles constraints ensuring both arrays are of appropriate lengths, with -10^9 <= nums1[i], nums2[j] <= 10^9.\n   - The overall length of the combined arrays does not exceed 200 elements, ensuring efficient performance.\n\n6. In-Place Modification: \n   - This approach modifies nums1 directly, utilizing its extra space to accommodate the merged result without needing additional arrays, thus achieving O(1) extra space complexity.",
 		"category": "Array / String"
 	},
 	{
@@ -432,37 +432,37 @@
 		"category": "Graph BFS"
 	},
 	{
-		"topic": "Pacific Atlantic Water Flow",
-		"code": "// Find the cells that can flow to both the Pacific and Atlantic ocean\nfunction pacificAtlantic(matrix) {\n if (!matrix.length) return [];\n let m = matrix.length, n = matrix[0].length;\n let pacific = Array.from({ length: m }, () => Array(n).fill(false));\n let atlantic = Array.from({ length: m }, () => Array(n).fill(false));\n function dfs(i, j, ocean) {\n ocean[i][j] = true;\n for (let [dx, dy] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {\n let x = i + dx, y = j + dy;\n if (x >= 0 && x < m && y >= 0 && y < n && !ocean[x][y] && matrix[x][y] >= matrix[i][j]) {\n dfs(x, y, ocean);\n }\n }\n }\n for (let i = 0; i < m; i++) {\n dfs(i, 0, pacific);\n dfs(i, n - 1, atlantic);\n }\n for (let j = 0; j < n; j++) {\n dfs(0, j, pacific);\n dfs(m - 1, j, atlantic);\n }\n let result = [];\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (pacific[i][j] && atlantic[i][j]) result.push([i, j]);\n }\n }\n return result;\n}\n",
-		"explanation": "This function finds the cells that can flow to both the Pacific and Atlantic ocean.",
-		"category": "Graph BFS"
+		"topic": "Number of Islands",
+		"code": "// Find the number of islands\nfunction numIslands(grid) {\n if (!grid.length) return 0;\n let count = 0;\n function dfs(i, j) {\n if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] === '0') return;\n grid[i][j] = '0';\n dfs(i + 1, j);\n dfs(i - 1, j);\n dfs(i, j + 1);\n dfs(i, j - 1);\n }\n for (let i = 0; i < grid.length; i++) {\n for (let j = 0; j < grid[0].length; j++) {\n if (grid[i][j] === '1') {\n count++;\n dfs(i, j);\n }\n }\n }\n return count;\n}\n",
+		"explanation": "This function finds the number of islands in a grid using DFS.",
+		"category": "Graph General"
 	},
 	{
-		"topic": "Shortest Path in Binary Matrix",
-		"code": "// Find the shortest path in a binary matrix\nfunction shortestPathBinaryMatrix(grid) {\n if (grid[0][0] === 1 || grid[grid.length - 1][grid[0].length - 1] === 1) return -1;\n let directions = [[1, 0], [0, 1], [1, 1], [-1, 0], [0, -1], [-1, -1], [1, -1], [-1, 1]];\n let queue = [[0, 0, 1]];\n let visited = new Set(['0,0']);\n while (queue.length) {\n let [x, y, dist] = queue.shift();\n if (x === grid.length - 1 && y === grid[0].length - 1) return dist;\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < grid.length && ny >= 0 && ny < grid[0].length && grid[nx][ny] === 0 && !visited.has(`${nx},${ny}`)) {\n queue.push([nx, ny, dist + 1]);\n visited.add(`${nx},${ny}`);\n }\n }\n }\n return -1;\n}\n",
-		"explanation": "This function finds the shortest path in a binary matrix.",
-		"category": "Graph BFS"
+		"topic": "Surrounded Regions",
+		"code": "// Capture all regions surrounded by 'X'\nfunction solve(board) {\n if (!board.length) return;\n let m = board.length, n = board[0].length;\n function dfs(i, j) {\n if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] !== 'O') return;\n board[i][j] = 'T';\n dfs(i + 1, j);\n dfs(i - 1, j);\n dfs(i, j + 1);\n dfs(i, j - 1);\n }\n for (let i = 0; i < m; i++) {\n if (board[i][0] === 'O') dfs(i, 0);\n if (board[i][n - 1] === 'O') dfs(i, n - 1);\n }\n for (let j = 0; j < n; j++) {\n if (board[0][j] === 'O') dfs(0, j);\n if (board[m - 1][j] === 'O') dfs(m - 1, j);\n }\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (board[i][j] === 'O') board[i][j] = 'X';\n if (board[i][j] === 'T') board[i][j] = 'O';\n }\n }\n}\n",
+		"explanation": "This function captures all regions surrounded by 'X' in a board.",
+		"category": "Graph General"
 	},
 	{
-		"topic": "Rotting Oranges",
-		"code": "// Find the minimum time to rot all oranges\nfunction orangesRotting(grid) {\n let fresh = 0, queue = [];\n for (let i = 0; i < grid.length; i++) {\n for (let j = 0; j < grid[0].length; j++) {\n if (grid[i][j] === 1) fresh++;\n if (grid[i][j] === 2) queue.push([i, j]);\n }\n }\n let minutes = 0, directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length && fresh) {\n let size = queue.length;\n for (let i = 0; i < size; i++) {\n let [x, y] = queue.shift();\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < grid.length && ny >= 0 && ny < grid[0].length && grid[nx][ny] === 1) {\n grid[nx][ny] = 2;\n queue.push([nx, ny]);\n fresh--;\n }\n }\n }\n minutes++;\n }\n return fresh === 0 ? minutes : -1;\n}\n",
-		"explanation": "This function finds the minimum time to rot all oranges in a grid.",
-		"category": "Graph BFS"
+		"topic": "Clone Graph",
+		"code": "// Clone a graph\nfunction cloneGraph(node) {\n if (!node) return null;\n let map = new Map();\n function clone(node) {\n if (!map.has(node)) {\n map.set(node, new Node(node.val));\n map.get(node).neighbors = node.neighbors.map(clone);\n }\n return map.get(node);\n }\n return clone(node);\n}\n",
+		"explanation": "This function clones a graph using DFS.",
+		"category": "Graph General"
 	},
 	{
-		"topic": "Shortest Path to Get All Keys",
-		"code": "// Find the shortest path to get all keys\nfunction shortestPathAllKeys(grid) {\n let m = grid.length, n = grid[0].length;\n let keys = 0, start = null;\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (grid[i][j] === '@') start = [i, j];\n if (grid[i][j] >= 'a' && grid[i][j] <= 'f') keys++;\n }\n }\n let queue = [[...start, 0, 0]];\n let visited = new Set([`${start[0]},${start[1]},0`]);\n let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length) {\n let [x, y, steps, state] = queue.shift();\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < m && ny >= 0 && ny < n) {\n let cell = grid[nx][ny];\n if (cell === '#') continue;\n let newState = state;\n if (cell >= 'a' && cell <= 'f') newState |= (1 << (cell.charCodeAt(0) - 'a'.charCodeAt(0)));\n if (newState === (1 << keys) - 1) return steps + 1;\n if (cell >= 'A' && cell <= 'F' && !(state & (1 << (cell.charCodeAt(0) - 'A'.charCodeAt(0))))) continue;\n if (!visited.has(`${nx},${ny},${newState}`)) {\n visited.add(`${nx},${ny},${newState}`);\n queue.push([nx, ny, steps + 1, newState]);\n }\n }\n }\n }\n return -1;\n}\n",
-		"explanation": "This function finds the shortest path to get all keys in a grid.",
-		"category": "Graph BFS"
+		"topic": "Evaluate Division",
+		"code": "// Evaluate division\nfunction calcEquation(equations, values, queries) {\n let graph = new Map();\n function buildGraph(equations, values) {\n for (let i = 0; i < equations.length; i++) {\n let [a, b] = equations[i];\n if (!graph.has(a)) graph.set(a, new Map());\n if (!graph.has(b)) graph.set(b, new Map());\n graph.get(a).set(b, values[i]);\n graph.get(b).set(a, 1 / values[i]);\n }\n }\n function dfs(start, end, visited) {\n if (!graph.has(start) || !graph.has(end)) return -1;\n if (start === end) return 1;\n visited.add(start);\n for (let [neighbor, value] of graph.get(start)) {\n if (!visited.has(neighbor)) {\n let product = dfs(neighbor, end, visited);\n if (product !== -1) return product * value;\n }\n }\n return -1;\n }\n buildGraph(equations, values);\n let results = [];\n for (let [a, b] of queries) {\n results.push(dfs(a, b, new Set()));\n }\n return results;\n}\n",
+		"explanation": "This function evaluates division using a graph and DFS.",
+		"category": "Graph General"
 	},
 	{
-		"topic": "Open the Lock",
-		"code": "// Find the minimum number of turns to open the lock\nfunction openLock(deadends, target) {\n let dead = new Set(deadends);\n if (dead.has('0000')) return -1;\n let queue = [['0000', 0]];\n let visited = new Set(['0000']);\n while (queue.length) {\n let [node, turns] = queue.shift();\n if (node === target) return turns;\n for (let i = 0; i < 4; i++) {\n for (let d of [-1, 1]) {\n let newDigit = (parseInt(node[i]) + d + 10) % 10;\n let newNode = node.slice(0, i) + newDigit + node.slice(i + 1);\n if (!dead.has(newNode) && !visited.has(newNode)) {\n visited.add(newNode);\n queue.push([newNode, turns + 1]);\n }\n }\n }\n }\n return -1;\n}\n",
-		"explanation": "This function finds the minimum number of turns to open the lock.",
-		"category": "Graph BFS"
+		"topic": "Graph Valid Tree",
+		"code": "// Check if a graph is a valid tree\nfunction validTree(n, edges) {\n if (n === 0) return true;\n let graph = new Map();\n for (let [a, b] of edges) {\n if (!graph.has(a)) graph.set(a, []);\n if (!graph.has(b)) graph.set(b, []);\n graph.get(a).push(b);\n graph.get(b).push(a);\n }\n let visited = new Set();\n function dfs(node, parent) {\n if (visited.has(node)) return false;\n visited.add(node);\n for (let neighbor of graph.get(node)) {\n if (neighbor !== parent && !dfs(neighbor, node)) return false;\n }\n return true;\n }\n return dfs(0, -1) && visited.size === n;\n}\n",
+		"explanation": "This function checks if a graph is a valid tree.",
+		"category": "Graph General"
 	},
 	{
-		"topic": "Cut Off Trees for Golf Event",
+		"topic": "Redundant Connection",
 		"code": "// Find the minimum steps to cut off all trees\nfunction cutOffTree(forest) {\n let trees = [];\n for (let i = 0; i < forest.length; i++) {\n for (let j = 0; j < forest[0].length; j++) {\n if (forest[i][j] > 1) trees.push([forest[i][j], i, j]);\n }\n }\n trees.sort((a, b) => a[0] - b[0]);\n let totalSteps = 0, start = [0, 0];\n for (let [height, x, y] of trees) {\n let steps = bfs(start, [x, y]);\n if (steps === -1) return -1;\n totalSteps += steps;\n start = [x, y];\n }\n return totalSteps;\n function bfs(start, target) {\n let queue = [[...start, 0]];\n let visited = new Set([`${start[0]},${start[1]}`]);\n let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length) {\n let [x, y, steps] = queue.shift();\n if (x === target[0] && y === target[1]) return steps;\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < forest.length && ny >= 0 && ny < forest[0].length && forest[nx][ny] !== 0 && !visited.has(`${nx},${ny}`)) {\n visited.add(`${nx},${ny}`);\n queue.push([nx, ny, steps + 1]);\n }\n }\n }\n return -1;\n }\n}\n",
 		"explanation": "This function finds the minimum steps to cut off all trees in a forest for a golf event.",
 		"category": "Graph BFS"
@@ -933,18 +933,6 @@
 		"topic": "Evaluate Division",
 		"code": "// Evaluate division\nfunction calcEquation(equations, values, queries) {\n let graph = new Map();\n function buildGraph(equations, values) {\n for (let i = 0; i < equations.length; i++) {\n let [a, b] = equations[i];\n if (!graph.has(a)) graph.set(a, new Map());\n if (!graph.has(b)) graph.set(b, new Map());\n graph.get(a).set(b, values[i]);\n graph.get(b).set(a, 1 / values[i]);\n }\n }\n function dfs(start, end, visited) {\n if (!graph.has(start) || !graph.has(end)) return -1;\n if (start === end) return 1;\n visited.add(start);\n for (let [neighbor, value] of graph.get(start)) {\n if (!visited.has(neighbor)) {\n let product = dfs(neighbor, end, visited);\n if (product !== -1) return product * value;\n }\n }\n return -1;\n }\n buildGraph(equations, values);\n let results = [];\n for (let [a, b] of queries) {\n results.push(dfs(a, b, new Set()));\n }\n return results;\n}\n",
 		"explanation": "This function evaluates division using a graph and DFS.",
-		"category": "Graph General"
-	},
-	{
-		"topic": "Graph Valid Tree",
-		"code": "// Check if a graph is a valid tree\nfunction validTree(n, edges) {\n if (n === 0) return true;\n let graph = new Map();\n for (let [a, b] of edges) {\n if (!graph.has(a)) graph.set(a, []);\n if (!graph.has(b)) graph.set(b, []);\n graph.get(a).push(b);\n graph.get(b).push(a);\n }\n let visited = new Set();\n function dfs(node, parent) {\n if (visited.has(node)) return false;\n visited.add(node);\n for (let neighbor of graph.get(node)) {\n if (neighbor !== parent && !dfs(neighbor, node)) return false;\n }\n return true;\n }\n return dfs(0, -1) && visited.size === n;\n}\n",
-		"explanation": "This function checks if a graph is a valid tree.",
-		"category": "Graph General"
-	},
-	{
-		"topic": "Redundant Connection",
-		"code": "// Find the redundant connection\nfunction findRedundantConnection(edges) {\n let parent = Array.from({ length: edges.length + 1 }, (_, i) => i);\n function find(x) {\n if (parent[x] !== x) parent[x] = find(parent[x]);\n return parent[x];\n }\n function union(x, y) {\n let rootX = find(x);\n let rootY = find(y);\n if (rootX !== rootY) parent[rootX] = rootY;\n else return [x, y];\n }\n for (let [x, y] of edges) {\n let result = union(x, y);\n if (result) return result;\n }\n}\n",
-		"explanation": "This function finds the redundant connection in a graph.",
 		"category": "Graph General"
 	}
 ]
