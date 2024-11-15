@@ -664,5 +664,41 @@
 		"code": "// Determine if you can segment the string into words\nfunction wordBreak(s, wordDict) {\n let dp = Array(s.length + 1).fill(false);\n dp[0] = true;\n for (let i = 1; i <= s.length; i++) {\n for (let j = 0; j < i; j++) {\n if (dp[j] && wordDict.includes(s.slice(j, i))) {\n dp[i] = true;\n break;\n }\n }\n }\n return dp[s.length];\n}\n",
 		"explanation": "This function determines if you can segment the string into words from the dictionary.",
 		"category": "1D DP"
+	},
+	{
+		"topic": "Coin Change",
+		"code": "// Find the minimum number of coins to make up a given amount\nfunction coinChange(coins, amount) {\n let dp = Array(amount + 1).fill(Infinity);\n dp[0] = 0;\n for (let coin of coins) {\n for (let i = coin; i <= amount; i++) {\n dp[i] = Math.min(dp[i], dp[i - coin] + 1);\n }\n }\n return dp[amount] === Infinity ? -1 : dp[amount];\n}\n",
+		"explanation": "This function finds the minimum number of coins needed to make up a given amount.",
+		"category": "1D DP"
+	},
+	{
+		"topic": "Longest Increasing Subsequence",
+		"code": "// Find the length of the longest increasing subsequence\nfunction lengthOfLIS(nums) {\n let dp = Array(nums.length).fill(1);\n for (let i = 1; i < nums.length; i++) {\n for (let j = 0; j < i; j++) {\n if (nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j] + 1);\n }\n }\n return Math.max(...dp);\n}\n",
+		"explanation": "This function finds the length of the longest increasing subsequence in an array.",
+		"category": "1D DP"
+	},
+	{
+		"topic": "Triangle",
+		"code": "// Find the minimum path sum from top to bottom\nfunction minimumTotal(triangle) {\n let dp = triangle[triangle.length - 1];\n for (let i = triangle.length - 2; i >= 0; i--) {\n for (let j = 0; j < triangle[i].length; j++) {\n dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);\n }\n }\n return dp[0];\n}\n",
+		"explanation": "This function finds the minimum path sum from top to bottom in a triangle.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Minimum Path Sum",
+		"code": "// Find the minimum path sum in a grid\nfunction minPathSum(grid) {\n let m = grid.length, n = grid[0].length;\n let dp = Array(m).fill().map(() => Array(n).fill(0));\n dp[0][0] = grid[0][0];\n for (let i = 1; i < m; i++) dp[i][0] = dp[i - 1][0] + grid[i][0];\n for (let j = 1; j < n; j++) dp[0][j] = dp[0][j - 1] + grid[0][j];\n for (let i = 1; i < m; i++) {\n for (let j = 1; j < n; j++) {\n dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1]);\n }\n }\n return dp[m - 1][n - 1];\n}\n",
+		"explanation": "This function finds the minimum path sum in a grid from top-left to bottom-right.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Unique Paths II",
+		"code": "// Find the number of unique paths in a grid with obstacles\nfunction uniquePathsWithObstacles(obstacleGrid) {\n let m = obstacleGrid.length, n = obstacleGrid[0].length;\n let dp = Array(m).fill().map(() => Array(n).fill(0));\n dp[0][0] = obstacleGrid[0][0] === 1 ? 0 : 1;\n for (let i = 1; i < m; i++) dp[i][0] = obstacleGrid[i][0] === 1 ? 0 : dp[i - 1][0];\n for (let j = 1; j < n; j++) dp[0][j] = obstacleGrid[0][j] === 1 ? 0 : dp[0][j - 1];\n for (let i = 1; i < m; i++) {\n for (let j = 1; j < n; j++) {\n if (obstacleGrid[i][j] === 1) dp[i][j] = 0;\n else dp[i][j] = dp[i - 1][j] + dp[i][j - 1];\n }\n }\n return dp[m - 1][n - 1];\n}\n",
+		"explanation": "This function finds the number of unique paths in a grid with obstacles from top-left to bottom-right.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Longest Palindromic Substring",
+		"code": "// Find the longest palindromic substring\nfunction longestPalindrome(s) {\n let n = s.length;\n let dp = Array(n).fill().map(() => Array(n).fill(false));\n let maxLength = 1, start = 0;\n for (let i = 0; i < n; i++) dp[i][i] = true;\n for (let i = 0; i < n - 1; i++) {\n if (s[i] === s[i + 1]) {\n dp[i][i + 1] = true;\n start = i;\n maxLength = 2;\n }\n }\n for (let k = 3; k <= n; k++) {\n for (let i = 0; i < n - k + 1; i++) {\n let j = i + k - 1;\n if (dp[i + 1][j - 1] && s[i] === s[j]) {\n dp[i][j] = true;\n if (k > maxLength) {\n start = i;\n maxLength = k;\n }\n }\n }\n }\n return s.substring(start, start + maxLength);\n}\n",
+		"explanation": "This function finds the longest palindromic substring in a given string.",
+		"category": "Multidimensional DP"
 	}
 ]
