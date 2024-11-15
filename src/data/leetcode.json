@@ -592,5 +592,41 @@
 		"code": "// Count the number of 1 bits\nfunction hammingWeight(n) {\n let count = 0;\n while (n !== 0) {\n count += n & 1;\n n >>>= 1;\n }\n return count;\n}\n",
 		"explanation": "This function counts the number of 1 bits in a given integer.",
 		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Single Number",
+		"code": "// Find the single number\nfunction singleNumber(nums) {\n let result = 0;\n for (let num of nums) {\n result ^= num;\n }\n return result;\n}\n",
+		"explanation": "This function finds the single number in an array where every other number appears twice.",
+		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Single Number II",
+		"code": "// Find the single number that appears only once\nfunction singleNumber(nums) {\n let ones = 0, twos = 0;\n for (let num of nums) {\n ones = (ones ^ num) & ~twos;\n twos = (twos ^ num) & ~ones;\n }\n return ones;\n}\n",
+		"explanation": "This function finds the single number that appears only once in an array where every other number appears three times.",
+		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Bitwise AND of Numbers Range",
+		"code": "// Find the bitwise AND of numbers range\nfunction rangeBitwiseAnd(m, n) {\n let shift = 0;\n while (m < n) {\n m >>= 1;\n n >>= 1;\n shift++;\n }\n return m << shift;\n}\n",
+		"explanation": "This function finds the bitwise AND of all numbers in a given range.",
+		"category": "Bit Manipulation"
+	},
+	{
+		"topic": "Palindrome Number",
+		"code": "// Check if a number is a palindrome\nfunction isPalindrome(x) {\n if (x < 0 || (x % 10 === 0 && x !== 0)) return false;\n let revertedNumber = 0;\n while (x > revertedNumber) {\n revertedNumber = revertedNumber * 10 + x % 10;\n x = Math.floor(x / 10);\n }\n return x === revertedNumber || x === Math.floor(revertedNumber / 10);\n}\n",
+		"explanation": "This function checks if a number is a palindrome.",
+		"category": "Math"
+	},
+	{
+		"topic": "Plus One",
+		"code": "// Increment a number represented as an array\nfunction plusOne(digits) {\n for (let i = digits.length - 1; i >= 0; i--) {\n if (digits[i] < 9) {\n digits[i]++;\n return digits;\n }\n digits[i] = 0;\n }\n digits.unshift(1);\n return digits;\n}\n",
+		"explanation": "This function increments a number represented as an array of digits by one.",
+		"category": "Math"
+	},
+	{
+		"topic": "Factorial Trailing Zeroes",
+		"code": "// Find the number of trailing zeroes in factorial\nfunction trailingZeroes(n) {\n let count = 0;\n while (n > 0) {\n n = Math.floor(n / 5);\n count += n;\n }\n return count;\n}\n",
+		"explanation": "This function finds the number of trailing zeroes in the factorial of a given number.",
+		"category": "Math"
 	}
 ]
