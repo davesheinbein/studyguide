@@ -432,6 +432,42 @@
 		"category": "Graph BFS"
 	},
 	{
+		"topic": "Pacific Atlantic Water Flow",
+		"code": "// Find the cells that can flow to both the Pacific and Atlantic ocean\nfunction pacificAtlantic(matrix) {\n if (!matrix.length) return [];\n let m = matrix.length, n = matrix[0].length;\n let pacific = Array.from({ length: m }, () => Array(n).fill(false));\n let atlantic = Array.from({ length: m }, () => Array(n).fill(false));\n function dfs(i, j, ocean) {\n ocean[i][j] = true;\n for (let [dx, dy] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {\n let x = i + dx, y = j + dy;\n if (x >= 0 && x < m && y >= 0 && y < n && !ocean[x][y] && matrix[x][y] >= matrix[i][j]) {\n dfs(x, y, ocean);\n }\n }\n }\n for (let i = 0; i < m; i++) {\n dfs(i, 0, pacific);\n dfs(i, n - 1, atlantic);\n }\n for (let j = 0; j < n; j++) {\n dfs(0, j, pacific);\n dfs(m - 1, j, atlantic);\n }\n let result = [];\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (pacific[i][j] && atlantic[i][j]) result.push([i, j]);\n }\n }\n return result;\n}\n",
+		"explanation": "This function finds the cells that can flow to both the Pacific and Atlantic ocean.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Shortest Path in Binary Matrix",
+		"code": "// Find the shortest path in a binary matrix\nfunction shortestPathBinaryMatrix(grid) {\n if (grid[0][0] === 1 || grid[grid.length - 1][grid[0].length - 1] === 1) return -1;\n let directions = [[1, 0], [0, 1], [1, 1], [-1, 0], [0, -1], [-1, -1], [1, -1], [-1, 1]];\n let queue = [[0, 0, 1]];\n let visited = new Set(['0,0']);\n while (queue.length) {\n let [x, y, dist] = queue.shift();\n if (x === grid.length - 1 && y === grid[0].length - 1) return dist;\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < grid.length && ny >= 0 && ny < grid[0].length && grid[nx][ny] === 0 && !visited.has(`${nx},${ny}`)) {\n queue.push([nx, ny, dist + 1]);\n visited.add(`${nx},${ny}`);\n }\n }\n }\n return -1;\n}\n",
+		"explanation": "This function finds the shortest path in a binary matrix.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Rotting Oranges",
+		"code": "// Find the minimum time to rot all oranges\nfunction orangesRotting(grid) {\n let fresh = 0, queue = [];\n for (let i = 0; i < grid.length; i++) {\n for (let j = 0; j < grid[0].length; j++) {\n if (grid[i][j] === 1) fresh++;\n if (grid[i][j] === 2) queue.push([i, j]);\n }\n }\n let minutes = 0, directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length && fresh) {\n let size = queue.length;\n for (let i = 0; i < size; i++) {\n let [x, y] = queue.shift();\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < grid.length && ny >= 0 && ny < grid[0].length && grid[nx][ny] === 1) {\n grid[nx][ny] = 2;\n queue.push([nx, ny]);\n fresh--;\n }\n }\n }\n minutes++;\n }\n return fresh === 0 ? minutes : -1;\n}\n",
+		"explanation": "This function finds the minimum time to rot all oranges in a grid.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Shortest Path to Get All Keys",
+		"code": "// Find the shortest path to get all keys\nfunction shortestPathAllKeys(grid) {\n let m = grid.length, n = grid[0].length;\n let keys = 0, start = null;\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (grid[i][j] === '@') start = [i, j];\n if (grid[i][j] >= 'a' && grid[i][j] <= 'f') keys++;\n }\n }\n let queue = [[...start, 0, 0]];\n let visited = new Set([`${start[0]},${start[1]},0`]);\n let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length) {\n let [x, y, steps, state] = queue.shift();\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < m && ny >= 0 && ny < n) {\n let cell = grid[nx][ny];\n if (cell === '#') continue;\n let newState = state;\n if (cell >= 'a' && cell <= 'f') newState |= (1 << (cell.charCodeAt(0) - 'a'.charCodeAt(0)));\n if (newState === (1 << keys) - 1) return steps + 1;\n if (cell >= 'A' && cell <= 'F' && !(state & (1 << (cell.charCodeAt(0) - 'A'.charCodeAt(0))))) continue;\n if (!visited.has(`${nx},${ny},${newState}`)) {\n visited.add(`${nx},${ny},${newState}`);\n queue.push([nx, ny, steps + 1, newState]);\n }\n }\n }\n }\n return -1;\n}\n",
+		"explanation": "This function finds the shortest path to get all keys in a grid.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Open the Lock",
+		"code": "// Find the minimum number of turns to open the lock\nfunction openLock(deadends, target) {\n let dead = new Set(deadends);\n if (dead.has('0000')) return -1;\n let queue = [['0000', 0]];\n let visited = new Set(['0000']);\n while (queue.length) {\n let [node, turns] = queue.shift();\n if (node === target) return turns;\n for (let i = 0; i < 4; i++) {\n for (let d of [-1, 1]) {\n let newDigit = (parseInt(node[i]) + d + 10) % 10;\n let newNode = node.slice(0, i) + newDigit + node.slice(i + 1);\n if (!dead.has(newNode) && !visited.has(newNode)) {\n visited.add(newNode);\n queue.push([newNode, turns + 1]);\n }\n }\n }\n }\n return -1;\n}\n",
+		"explanation": "This function finds the minimum number of turns to open the lock.",
+		"category": "Graph BFS"
+	},
+	{
+		"topic": "Cut Off Trees for Golf Event",
+		"code": "// Find the minimum steps to cut off all trees\nfunction cutOffTree(forest) {\n let trees = [];\n for (let i = 0; i < forest.length; i++) {\n for (let j = 0; j < forest[0].length; j++) {\n if (forest[i][j] > 1) trees.push([forest[i][j], i, j]);\n }\n }\n trees.sort((a, b) => a[0] - b[0]);\n let totalSteps = 0, start = [0, 0];\n for (let [height, x, y] of trees) {\n let steps = bfs(start, [x, y]);\n if (steps === -1) return -1;\n totalSteps += steps;\n start = [x, y];\n }\n return totalSteps;\n function bfs(start, target) {\n let queue = [[...start, 0]];\n let visited = new Set([`${start[0]},${start[1]}`]);\n let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];\n while (queue.length) {\n let [x, y, steps] = queue.shift();\n if (x === target[0] && y === target[1]) return steps;\n for (let [dx, dy] of directions) {\n let nx = x + dx, ny = y + dy;\n if (nx >= 0 && nx < forest.length && ny >= 0 && ny < forest[0].length && forest[nx][ny] !== 0 && !visited.has(`${nx},${ny}`)) {\n visited.add(`${nx},${ny}`);\n queue.push([nx, ny, steps + 1]);\n }\n }\n }\n return -1;\n }\n}\n",
+		"explanation": "This function finds the minimum steps to cut off all trees in a forest for a golf event.",
+		"category": "Graph BFS"
+	},
+	{
 		"topic": "Implement Trie (Prefix Tree)",
 		"code": "// Implement a Trie (Prefix Tree)\nclass Trie {\n constructor() {\n this.children = {};\n this.isEndOfWord = false;\n }\n insert(word) {\n let node = this;\n for (let char of word) {\n if (!node.children[char]) node.children[char] = new Trie();\n node = node.children[char];\n }\n node.isEndOfWord = true;\n }\n search(word) {\n let node = this;\n for (let char of word) {\n if (!node.children[char]) return false;\n node = node.children[char];\n }\n return node.isEndOfWord;\n }\n startsWith(prefix) {\n let node = this;\n for (let char of prefix) {\n if (!node.children[char]) return false;\n node = node.children[char];\n }\n return true;\n }\n}\n",
 		"explanation": "This class implements a Trie (Prefix Tree) with insert, search, and startsWith methods.",
