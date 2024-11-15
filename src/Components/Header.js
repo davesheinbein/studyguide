@@ -35,6 +35,14 @@ const Header = ({ onTabClick }) => {
 				>
 					LeetCode
 				</div>
+				<div
+					className={`tab ${
+						activeTab === 'principles' ? 'active' : ''
+					}`}
+					onClick={() => handleTabClick('principles')}
+				>
+					Principles
+				</div>
 			</div>
 			<div className='links'>
 				<a

@@ -1,0 +1,32 @@
+/* Customize the color of comments */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #008000 !important;
+}
+
+/* Customize the color of keywords */
+.token.keyword {
+  color: #0000ff !important;
+}
+
+/* Customize the color of strings */
+.token.string {
+  color: #a31515 !important;
+}
+
+/* Customize the color of functions */
+.token.function {
+  color: #795e26 !important;
+}
+
+/* Customize the color of operators */
+.token.operator {
+  color: #000000 !important;
+}
+
+pre[class*=language-] {
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=prism-custom.css.map */
