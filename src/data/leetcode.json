@@ -700,5 +700,143 @@
 		"code": "// Find the longest palindromic substring\nfunction longestPalindrome(s) {\n let n = s.length;\n let dp = Array(n).fill().map(() => Array(n).fill(false));\n let maxLength = 1, start = 0;\n for (let i = 0; i < n; i++) dp[i][i] = true;\n for (let i = 0; i < n - 1; i++) {\n if (s[i] === s[i + 1]) {\n dp[i][i + 1] = true;\n start = i;\n maxLength = 2;\n }\n }\n for (let k = 3; k <= n; k++) {\n for (let i = 0; i < n - k + 1; i++) {\n let j = i + k - 1;\n if (dp[i + 1][j - 1] && s[i] === s[j]) {\n dp[i][j] = true;\n if (k > maxLength) {\n start = i;\n maxLength = k;\n }\n }\n }\n }\n return s.substring(start, start + maxLength);\n}\n",
 		"explanation": "This function finds the longest palindromic substring in a given string.",
 		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Interleaving String",
+		"code": "// Determine if s3 is an interleaving of s1 and s2\nfunction isInterleave(s1, s2, s3) {\n if (s1.length + s2.length !== s3.length) return false;\n let dp = Array(s1.length + 1).fill().map(() => Array(s2.length + 1).fill(false));\n dp[0][0] = true;\n for (let i = 1; i <= s1.length; i++) dp[i][0] = dp[i - 1][0] && s1[i - 1] === s3[i - 1];\n for (let j = 1; j <= s2.length; j++) dp[0][j] = dp[0][j - 1] && s2[j - 1] === s3[j - 1];\n for (let i = 1; i <= s1.length; i++) {\n for (let j = 1; j <= s2.length; j++) {\n dp[i][j] = (dp[i - 1][j] && s1[i - 1] === s3[i + j - 1]) || (dp[i][j - 1] && s2[j - 1] === s3[i + j - 1]);\n }\n }\n return dp[s1.length][s2.length];\n}\n",
+		"explanation": "This function determines if s3 is an interleaving of s1 and s2.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Edit Distance",
+		"code": "// Find the minimum edit distance between two strings\nfunction minDistance(word1, word2) {\n let m = word1.length, n = word2.length;\n let dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0));\n for (let i = 0; i <= m; i++) dp[i][0] = i;\n for (let j = 0; j <= n; j++) dp[0][j] = j;\n for (let i = 1; i <= m; i++) {\n for (let j = 1; j <= n; j++) {\n if (word1[i - 1] === word2[j - 1]) dp[i][j] = dp[i - 1][j - 1];\n else dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;\n }\n }\n return dp[m][n];\n}\n",
+		"explanation": "This function finds the minimum edit distance between two strings.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Best Time to Buy and Sell Stock III",
+		"code": "// Find the maximum profit with at most two transactions\nfunction maxProfit(prices) {\n let t1Cost = Infinity, t2Cost = Infinity;\n let t1Profit = 0, t2Profit = 0;\n for (let price of prices) {\n t1Cost = Math.min(t1Cost, price);\n t1Profit = Math.max(t1Profit, price - t1Cost);\n t2Cost = Math.min(t2Cost, price - t1Profit);\n t2Profit = Math.max(t2Profit, price - t2Cost);\n }\n return t2Profit;\n}\n",
+		"explanation": "This function finds the maximum profit with at most two transactions.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Best Time to Buy and Sell Stock IV",
+		"code": "// Find the maximum profit with at most k transactions\nfunction maxProfit(k, prices) {\n if (prices.length === 0) return 0;\n if (k >= prices.length / 2) {\n let profit = 0;\n for (let i = 1; i < prices.length; i++) {\n if (prices[i] > prices[i - 1]) profit += prices[i] - prices[i - 1];\n }\n return profit;\n }\n let dp = Array(k + 1).fill().map(() => Array(prices.length).fill(0));\n for (let i = 1; i <= k; i++) {\n let maxDiff = -prices[0];\n for (let j = 1; j < prices.length; j++) {\n dp[i][j] = Math.max(dp[i][j - 1], prices[j] + maxDiff);\n maxDiff = Math.max(maxDiff, dp[i - 1][j] - prices[j]);\n }\n }\n return dp[k][prices.length - 1];\n}\n",
+		"explanation": "This function finds the maximum profit with at most k transactions.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Maximal Square",
+		"code": "// Find the largest square containing only 1's\nfunction maximalSquare(matrix) {\n if (matrix.length === 0) return 0;\n let m = matrix.length, n = matrix[0].length;\n let dp = Array(m).fill().map(() => Array(n).fill(0));\n let maxSide = 0;\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (matrix[i][j] === '1') {\n if (i === 0 || j === 0) dp[i][j] = 1;\n else dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1;\n maxSide = Math.max(maxSide, dp[i][j]);\n }\n }\n }\n return maxSide * maxSide;\n}\n",
+		"explanation": "This function finds the largest square containing only 1's in a binary matrix.",
+		"category": "Multidimensional DP"
+	},
+	{
+		"topic": "Maximum Depth of Binary Tree",
+		"code": "// Find the maximum depth of a binary tree\nfunction maxDepth(root) {\n if (!root) return 0;\n return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));\n}\n",
+		"explanation": "This function finds the maximum depth of a binary tree.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Same Tree",
+		"code": "// Check if two binary trees are the same\nfunction isSameTree(p, q) {\n if (!p && !q) return true;\n if (!p || !q || p.val !== q.val) return false;\n return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);\n}\n",
+		"explanation": "This function checks if two binary trees are the same.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Invert Binary Tree",
+		"code": "// Invert a binary tree\nfunction invertTree(root) {\n if (!root) return null;\n let left = invertTree(root.left);\n let right = invertTree(root.right);\n root.left = right;\n root.right = left;\n return root;\n}\n",
+		"explanation": "This function inverts a binary tree.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Symmetric Tree",
+		"code": "// Check if a binary tree is symmetric\nfunction isSymmetric(root) {\n if (!root) return true;\n function isMirror(t1, t2) {\n if (!t1 && !t2) return true;\n if (!t1 || !t2 || t1.val !== t2.val) return false;\n return isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);\n }\n return isMirror(root.left, root.right);\n}\n",
+		"explanation": "This function checks if a binary tree is symmetric.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Construct Binary Tree from Preorder and Inorder Traversal",
+		"code": "// Construct binary tree from preorder and inorder traversal\nfunction buildTree(preorder, inorder) {\n if (!preorder.length || !inorder.length) return null;\n let root = new TreeNode(preorder[0]);\n let mid = inorder.indexOf(preorder[0]);\n root.left = buildTree(preorder.slice(1, mid + 1), inorder.slice(0, mid));\n root.right = buildTree(preorder.slice(mid + 1), inorder.slice(mid + 1));\n return root;\n}\n",
+		"explanation": "This function constructs a binary tree from preorder and inorder traversal.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Construct Binary Tree from Inorder and Postorder Traversal",
+		"code": "// Construct binary tree from inorder and postorder traversal\nfunction buildTree(inorder, postorder) {\n if (!inorder.length || !postorder.length) return null;\n let root = new TreeNode(postorder.pop());\n let mid = inorder.indexOf(root.val);\n root.right = buildTree(inorder.slice(mid + 1), postorder);\n root.left = buildTree(inorder.slice(0, mid), postorder);\n return root;\n}\n",
+		"explanation": "This function constructs a binary tree from inorder and postorder traversal.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Populating Next Right Pointers in Each Node II",
+		"code": "// Populate next right pointers in each node\nfunction connect(root) {\n if (!root) return null;\n let queue = [root];\n while (queue.length) {\n let size = queue.length;\n for (let i = 0; i < size; i++) {\n let node = queue.shift();\n if (i < size - 1) node.next = queue[0];\n if (node.left) queue.push(node.left);\n if (node.right) queue.push(node.right);\n }\n }\n return root;\n}\n",
+		"explanation": "This function populates each next pointer to point to its next right node.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Flatten Binary Tree to Linked List",
+		"code": "// Flatten binary tree to linked list\nfunction flatten(root) {\n if (!root) return;\n flatten(root.left);\n flatten(root.right);\n let left = root.left;\n let right = root.right;\n root.left = null;\n root.right = left;\n let current = root;\n while (current.right) current = current.right;\n current.right = right;\n}\n",
+		"explanation": "This function flattens a binary tree to a linked list in-place.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Path Sum",
+		"code": "// Find if there is a root-to-leaf path with a given sum\nfunction hasPathSum(root, sum) {\n if (!root) return false;\n if (!root.left && !root.right) return root.val === sum;\n return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);\n}\n",
+		"explanation": "This function checks if there is a root-to-leaf path with a given sum.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Sum Root to Leaf Numbers",
+		"code": "// Find the sum of all root-to-leaf numbers\nfunction sumNumbers(root) {\n function dfs(node, currentSum) {\n if (!node) return 0;\n currentSum = currentSum * 10 + node.val;\n if (!node.left && !node.right) return currentSum;\n return dfs(node.left, currentSum) + dfs(node.right, currentSum);\n }\n return dfs(root, 0);\n}\n",
+		"explanation": "This function finds the sum of all root-to-leaf numbers.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Binary Tree Maximum Path Sum",
+		"code": "// Find the maximum path sum in a binary tree\nfunction maxPathSum(root) {\n let maxSum = -Infinity;\n function dfs(node) {\n if (!node) return 0;\n let left = Math.max(dfs(node.left), 0);\n let right = Math.max(dfs(node.right), 0);\n let newPathSum = node.val + left + right;\n maxSum = Math.max(maxSum, newPathSum);\n return node.val + Math.max(left, right);\n }\n dfs(root);\n return maxSum;\n}\n",
+		"explanation": "This function finds the maximum path sum in a binary tree.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Binary Search Tree Iterator",
+		"code": "// Implement a binary search tree iterator\nclass BSTIterator {\n constructor(root) {\n this.stack = [];\n this.pushAll(root);\n }\n next() {\n let node = this.stack.pop();\n this.pushAll(node.right);\n return node.val;\n }\n hasNext() {\n return this.stack.length > 0;\n }\n pushAll(node) {\n while (node) {\n this.stack.push(node);\n node = node.left;\n }\n }\n}\n",
+		"explanation": "This class implements a binary search tree iterator with next and hasNext methods.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Count Complete Tree Nodes",
+		"code": "// Count the number of nodes in a complete binary tree\nfunction countNodes(root) {\n if (!root) return 0;\n let leftDepth = getDepth(root.left);\n let rightDepth = getDepth(root.right);\n if (leftDepth === rightDepth) {\n return (1 << leftDepth) + countNodes(root.right);\n } else {\n return (1 << rightDepth) + countNodes(root.left);\n }\n}\nfunction getDepth(node) {\n let depth = 0;\n while (node) {\n depth++;\n node = node.left;\n }\n return depth;\n}\n",
+		"explanation": "This function counts the number of nodes in a complete binary tree.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Lowest Common Ancestor of a Binary Tree",
+		"code": "// Find the lowest common ancestor of two nodes in a binary tree\nfunction lowestCommonAncestor(root, p, q) {\n if (!root || root === p || root === q) return root;\n let left = lowestCommonAncestor(root.left, p, q);\n let right = lowestCommonAncestor(root.right, p, q);\n if (left && right) return root;\n return left ? left : right;\n}\n",
+		"explanation": "This function finds the lowest common ancestor of two nodes in a binary tree.",
+		"category": "Binary Tree General"
+	},
+	{
+		"topic": "Binary Tree Right Side View",
+		"code": "// Find the right side view of a binary tree\nfunction rightSideView(root) {\n let result = [];\n function dfs(node, level) {\n if (!node) return;\n if (result.length === level) result.push(node.val);\n dfs(node.right, level + 1);\n dfs(node.left, level + 1);\n }\n dfs(root, 0);\n return result;\n}\n",
+		"explanation": "This function finds the right side view of a binary tree.",
+		"category": "Binary Tree BFS"
+	},
+	{
+		"topic": "Average of Levels in Binary Tree",
+		"code": "// Find the average of levels in a binary tree\nfunction averageOfLevels(root) {\n let result = [], queue = [root];\n while (queue.length) {\n let sum = 0, count = 0, nextQueue = [];\n for (let node of queue) {\n sum += node.val;\n count++;\n if (node.left) nextQueue.push(node.left);\n if (node.right) nextQueue.push(node.right);\n }\n result.push(sum / count);\n queue = nextQueue;\n }\n return result;\n}\n",
+		"explanation": "This function finds the average of levels in a binary tree.",
+		"category": "Binary Tree BFS"
+	},
+	{
+		"topic": "Binary Tree Level Order Traversal",
+		"code": "// Perform level order traversal of a binary tree\nfunction levelOrder(root) {\n let result = [], queue = [root];\n while (queue.length) {\n let level = [], nextQueue = [];\n for (let node of queue) {\n level.push(node.val);\n if (node.left) nextQueue.push(node.left);\n if (node.right) nextQueue.push(node.right);\n }\n result.push(level);\n queue = nextQueue;\n }\n return result;\n}\n",
+		"explanation": "This function performs level order traversal of a binary tree.",
+		"category": "Binary Tree BFS"
+	},
+	{
+		"topic": "Binary Tree Zigzag Level Order Traversal",
+		"code": "// Perform zigzag level order traversal of a binary tree\nfunction zigzagLevelOrder(root) {\n let result = [], queue = [root], leftToRight = true;\n while (queue.length) {\n let level = [], nextQueue = [];\n for (let node of queue) {\n if (leftToRight) level.push(node.val);\n else level.unshift(node.val);\n if (node.left) nextQueue.push(node.left);\n if (node.right) nextQueue.push(node.right);\n }\n result.push(level);\n queue = nextQueue;\n leftToRight = !leftToRight;\n }\n return result;\n}\n",
+		"explanation": "This function performs zigzag level order traversal of a binary tree.",
+		"category": "Binary Tree BFS"
 	}
 ]
