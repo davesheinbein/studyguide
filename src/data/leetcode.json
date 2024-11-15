@@ -628,5 +628,41 @@
 		"code": "// Find the number of trailing zeroes in factorial\nfunction trailingZeroes(n) {\n let count = 0;\n while (n > 0) {\n n = Math.floor(n / 5);\n count += n;\n }\n return count;\n}\n",
 		"explanation": "This function finds the number of trailing zeroes in the factorial of a given number.",
 		"category": "Math"
+	},
+	{
+		"topic": "Sqrt(x)",
+		"code": "// Calculate the square root of x\nfunction mySqrt(x) {\n if (x === 0) return 0;\n let left = 1, right = x;\n while (left <= right) {\n let mid = Math.floor((left + right) / 2);\n if (mid * mid === x) return mid;\n if (mid * mid < x) left = mid + 1;\n else right = mid - 1;\n }\n return right;\n}\n",
+		"explanation": "This function calculates the square root of x using binary search.",
+		"category": "Math"
+	},
+	{
+		"topic": "Pow(x, n)",
+		"code": "// Calculate x raised to the power n\nfunction myPow(x, n) {\n if (n === 0) return 1;\n if (n < 0) return 1 / myPow(x, -n);\n if (n % 2 === 0) return myPow(x * x, n / 2);\n return x * myPow(x * x, (n - 1) / 2);\n}\n",
+		"explanation": "This function calculates x raised to the power n using recursion.",
+		"category": "Math"
+	},
+	{
+		"topic": "Max Points on a Line",
+		"code": "// Find the maximum number of points on a line\nfunction maxPoints(points) {\n if (points.length < 3) return points.length;\n let max = 0;\n for (let i = 0; i < points.length; i++) {\n let map = new Map(), duplicates = 1;\n for (let j = i + 1; j < points.length; j++) {\n let dx = points[j][0] - points[i][0];\n let dy = points[j][1] - points[i][1];\n if (dx === 0 && dy === 0) {\n duplicates++;\n continue;\n }\n let gcd = getGCD(dx, dy);\n dx /= gcd;\n dy /= gcd;\n let key = `${dx}/${dy}`;\n map.set(key, (map.get(key) || 0) + 1);\n }\n max = Math.max(max, duplicates);\n for (let count of map.values()) {\n max = Math.max(max, count + duplicates);\n }\n }\n return max;\n}\nfunction getGCD(a, b) {\n if (b === 0) return a;\n return getGCD(b, a % b);\n}\n",
+		"explanation": "This function finds the maximum number of points on a line.",
+		"category": "Math"
+	},
+	{
+		"topic": "Climbing Stairs",
+		"code": "// Find the number of ways to climb stairs\nfunction climbStairs(n) {\n if (n <= 2) return n;\n let a = 1, b = 2;\n for (let i = 3; i <= n; i++) {\n let temp = a + b;\n a = b;\n b = temp;\n }\n return b;\n}\n",
+		"explanation": "This function finds the number of ways to climb a staircase with n steps.",
+		"category": "1D DP"
+	},
+	{
+		"topic": "House Robber",
+		"code": "// Find the maximum amount of money you can rob\nfunction rob(nums) {\n if (nums.length === 0) return 0;\n if (nums.length === 1) return nums[0];\n let dp = [nums[0], Math.max(nums[0], nums[1])];\n for (let i = 2; i < nums.length; i++) {\n dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);\n }\n return dp[nums.length - 1];\n}\n",
+		"explanation": "This function finds the maximum amount of money you can rob from houses without robbing two adjacent houses.",
+		"category": "1D DP"
+	},
+	{
+		"topic": "Word Break",
+		"code": "// Determine if you can segment the string into words\nfunction wordBreak(s, wordDict) {\n let dp = Array(s.length + 1).fill(false);\n dp[0] = true;\n for (let i = 1; i <= s.length; i++) {\n for (let j = 0; j < i; j++) {\n if (dp[j] && wordDict.includes(s.slice(j, i))) {\n dp[i] = true;\n break;\n }\n }\n }\n return dp[s.length];\n}\n",
+		"explanation": "This function determines if you can segment the string into words from the dictionary.",
+		"category": "1D DP"
 	}
 ]
