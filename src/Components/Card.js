@@ -1,53 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+	useEffect,
+	useState,
+	useContext,
+} from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
+import '../styles/prism-custom.css';
 import '../styles/Card/Card.css';
-import '../styles/prism-custom.css'; // Import custom CSS
 import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
-import principlesData from '../data/principles.json'; // Import principles data
+import principlesData from '../data/principles.json';
+import { AppContext } from '../App';
+import { filterData } from '../utils';
 
-const Card = ({ activeTab, searchQuery, filter }) => {
+const Card = () => {
+	const { activeTab, searchQuery, filter } =
+		useContext(AppContext);
 	const [reviewsheet, setReviewsheet] = useState([]);
 	const [leetcode, setLeetcode] = useState([]);
-	const [principles, setPrinciples] = useState([]); // State for principles
+	const [principles, setPrinciples] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
-	const [expandedIndex, setExpandedIndex] = useState(null);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		setReviewsheet(reviewsheetData);
-		setLeetcode(leetcodeData);
-		setPrinciples(principlesData);
-		Prism.highlightAll();
+		try {
+			setReviewsheet(reviewsheetData);
+			setLeetcode(leetcodeData);
+			setPrinciples(principlesData);
+			Prism.highlightAll();
+		} catch (err) {
+			setError('Failed to load data.');
+		}
 	}, []);
 
 	useEffect(() => {
-		const data = {
-			reviewsheet,
-			leetcode,
-			principles,
-		}[activeTab];
+		try {
+			const dataMap = { reviewsheet, leetcode, principles };
+			const data = dataMap[activeTab];
 
-		let filtered = data.filter((item) =>
-			item.topic
-				.toLowerCase()
-				.includes(searchQuery.toLowerCase())
-		);
+			if (!data) {
+				throw new Error('Invalid tab selected.');
+			}
 
-		if (filter === 'alphabetical') {
-			filtered = filtered.sort((a, b) =>
-				a.topic.localeCompare(b.topic)
+			const filtered = filterData(
+				data,
+				searchQuery,
+				filter
 			);
-		} else if (filter === 'category') {
-			filtered = filtered.sort((a, b) => {
-				if (a.category === b.category) {
-					return a.topic.localeCompare(b.topic);
-				}
-				return a.category.localeCompare(b.category);
-			});
+			setFilteredData(filtered);
+		} catch (err) {
+			setError('Failed to filter data.');
 		}
-
-		setFilteredData(filtered);
 	}, [
 		searchQuery,
 		activeTab,
@@ -77,13 +80,15 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 				</code></pre>
 			</div>
 			<div class='card-item-explanation'>
+				<div class='card-item-explanation-title'>
+					Explanation
+				</div>
 				<div class='card-item-explanation-text'>
 					${item.explanation}
 				</div>
+				<button class='close-explanation-button'>&#9660;</button>
 			</div>
-			<div class='card-item-category'>
-				${item.category}
-			</div>
+			<button class='explanation-button'>?</button>
 		`;
 
 		const overlay = document.createElement('div');
@@ -103,11 +108,48 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 			overlay.remove();
 		});
 
+		const explanationButton = cardClone.querySelector(
+			'.explanation-button'
+		);
+		const explanation = cardClone.querySelector(
+			'.card-item-explanation'
+		);
+		explanationButton.addEventListener('click', () => {
+			explanation.classList.toggle('active');
+		});
+
+		const closeExplanationButton = cardClone.querySelector(
+			'.close-explanation-button'
+		);
+		closeExplanationButton.addEventListener('click', () => {
+			explanation.classList.remove('active');
+		});
+
 		Prism.highlightAll();
 	};
 
 	const handleCardClick = (index, item) => {
 		createCardClone(item);
+	};
+
+	const handleDragStart = (event, index) => {
+		event.dataTransfer.setData('text/plain', index);
+	};
+
+	const handleDrop = (event) => {
+		const draggedIndex =
+			event.dataTransfer.getData('text/plain');
+		const targetIndex = event.target.dataset.index;
+
+		if (draggedIndex !== targetIndex) {
+			const updatedData = [...filteredData];
+			const [draggedItem] = updatedData.splice(
+				draggedIndex,
+				1
+			);
+			updatedData.splice(targetIndex, 0, draggedItem);
+			setFilteredData(updatedData);
+		}
 	};
 
 	const renderCards = (data) => {
@@ -116,6 +158,12 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 				key={index}
 				className='card-item'
 				onClick={() => handleCardClick(index, item)}
+				draggable
+				onDragStart={(event) =>
+					handleDragStart(event, index)
+				}
+				onDrop={handleDrop}
+				data-index={index}
 			>
 				<div className='card-item-topic'>
 					<div className='card-item-topic-text'>
@@ -130,6 +178,9 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 					</pre>
 				</div>
 				<div className='card-item-explanation'>
+					<div className='card-item-explanation-title'>
+						Explanation
+					</div>
 					<div className='card-item-explanation-text'>
 						{item.explanation}
 					</div>
@@ -143,6 +194,9 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 
 	return (
 		<>
+			{error && (
+				<div className='error-message'>{error}</div>
+			)}
 			{activeTab === 'reviewsheet' && (
 				<div className='card card-A'>
 					<div className='card-grid'>

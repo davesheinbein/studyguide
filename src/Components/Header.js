@@ -1,32 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
 import '../styles/Header/Header.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faGithub,
 	faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import {
+	faGlobe,
+	faMoon,
+	faSun,
+} from '@fortawesome/free-solid-svg-icons';
+import SearchBar from './SearchBar';
+import FilterDropdown from './FilterDropdown';
+import { AppContext } from '../App';
 
-const Header = ({ onTabClick, onSearch, onFilterChange }) => {
+const Header = () => {
+	const { handleTabClick, handleSearch, handleFilterChange } = useContext(AppContext);
 	const [activeTab, setActiveTab] = useState('reviewsheet');
-	const [searchQuery, setSearchQuery] = useState('');
-	const [filter, setFilter] = useState('alphabetical');
+	const [filter, setFilter] = useState('Default');
+	const [error, setError] = useState(null);
+	const [darkMode, setDarkMode] = useState(false);
 
-	const handleTabClick = (tab) => {
+	const onTabClick = (tab) => {
 		setActiveTab(tab);
-		onTabClick(tab);
+		handleTabClick(tab);
 	};
 
-	const handleSearchChange = (event) => {
-		const query = event.target.value;
-		setSearchQuery(query);
-		onSearch(query, activeTab);
+	const onSearchChange = (query) => {
+		handleSearch(query, activeTab);
 	};
 
-	const handleFilterChange = (event) => {
-		const selectedFilter = event.target.value;
-		setFilter(selectedFilter);
-		onFilterChange(selectedFilter);
+	const onFilterChange = (selectedFilter) => {
+		if (
+			['Default', 'Alphabetical', 'Category'].includes(
+				selectedFilter
+			)
+		) {
+			setError(null);
+			setFilter(selectedFilter);
+			handleFilterChange(selectedFilter);
+		} else {
+			setError('Invalid filter selected.');
+		}
+	};
+
+	const toggleDarkMode = () => {
+		setDarkMode(!darkMode);
+		document.body.classList.toggle('dark-mode', !darkMode);
 	};
 
 	return (
@@ -38,7 +60,11 @@ const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 						className={`tab ${
 							activeTab === 'reviewsheet' ? 'active' : ''
 						}`}
-						onClick={() => handleTabClick('reviewsheet')}
+						onClick={() => onTabClick('reviewsheet')}
+						role='button'
+						tabIndex={0}
+						onKeyPress={() => onTabClick('reviewsheet')}
+						aria-label='Reviewsheet Tab'
 					>
 						Reviewsheet
 					</div>
@@ -46,7 +72,11 @@ const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 						className={`tab ${
 							activeTab === 'leetcode' ? 'active' : ''
 						}`}
-						onClick={() => handleTabClick('leetcode')}
+						onClick={() => onTabClick('leetcode')}
+						role='button'
+						tabIndex={0}
+						onKeyPress={() => onTabClick('leetcode')}
+						aria-label='LeetCode Tab'
 					>
 						LeetCode
 					</div>
@@ -54,32 +84,29 @@ const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 						className={`tab ${
 							activeTab === 'principles' ? 'active' : ''
 						}`}
-						onClick={() => handleTabClick('principles')}
+						onClick={() => onTabClick('principles')}
+						role='button'
+						tabIndex={0}
+						onKeyPress={() => onTabClick('principles')}
+						aria-label='Principles Tab'
 					>
 						Principles
 					</div>
 				</div>
 			</div>
 			<div className='right-section'>
-				<div className='filter-dropdown'>
-					<select value={filter} onChange={handleFilterChange}>
-						<option value='alphabetical'>Alphabetical</option>
-						<option value='category'>Category</option>
-					</select>
-				</div>
-				<div className='search-bar'>
-						<input
-						type='text'
-						placeholder='Search...'
-						value={searchQuery}
-						onChange={handleSearchChange}
-					/>
-				</div>
+				<FilterDropdown
+					filter={filter}
+					onFilterChange={onFilterChange}
+				/>{' '}
+				{/* Use the new FilterDropdown component */}
+				<SearchBar onSearchChange={onSearchChange} />
 				<div className='links'>
 					<a
 						href='https://github.com/davesheinbein/'
 						target='_blank'
 						rel='noopener noreferrer'
+						aria-label='GitHub'
 					>
 						<FontAwesomeIcon icon={faGithub} />
 					</a>
@@ -87,6 +114,7 @@ const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 						href='https://linkedin.com/in/david-sheinbein'
 						target='_blank'
 						rel='noopener noreferrer'
+						aria-label='LinkedIn'
 					>
 						<FontAwesomeIcon icon={faLinkedin} />
 					</a>
@@ -94,11 +122,24 @@ const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 						href='https://davidsheinbeinengineer.com/'
 						target='_blank'
 						rel='noopener noreferrer'
+						aria-label='Personal Website'
 					>
 						<FontAwesomeIcon icon={faGlobe} />
 					</a>
 				</div>
+				<button
+					className='dark-mode-toggle'
+					onClick={toggleDarkMode}
+					aria-label='Toggle Dark Mode'
+				>
+					<FontAwesomeIcon
+						icon={darkMode ? faSun : faMoon}
+					/>
+				</button>
 			</div>
+			{error && (
+				<div className='error-message'>{error}</div>
+			)}
 		</header>
 	);
 };

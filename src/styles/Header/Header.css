@@ -4,9 +4,13 @@
   align-items: center;
   padding: 5px 20px;
   background: linear-gradient(45deg, #0d0d0d, #434343);
+  transition: background 0.3s ease;
+}
+.header:hover {
+  background: linear-gradient(45deg, #0d0d0d, #555555);
 }
 .header .name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
   margin-right: 20px;
@@ -31,7 +35,7 @@
   animation: slideIn 1s ease-in-out;
 }
 .header .tab {
-  padding: 5px 10px;
+  padding: 2px 5px;
   font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
@@ -43,11 +47,13 @@
 .header .tab:hover {
   background: #555;
   transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 .header .tab.active {
   background: #00ccff;
   color: #000;
   transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 .header .search-bar {
   width: 100%;
@@ -68,25 +74,13 @@
 .header .links a {
   text-decoration: none;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .header .links a:hover {
   color: #00ccff;
   transform: scale(1.2) rotate(360deg);
-}
-.header .filter-dropdown select {
-  padding: 5px;
-  border-radius: 3px;
-  border: none;
-  font-size: 1rem;
-  background: #333;
-  color: #ffffff;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-.header .filter-dropdown select:hover {
-  background: #555;
-  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
 }
 @keyframes fadeIn {
   0% {
@@ -103,4 +97,71 @@
   100% {
     transform: translateX(0);
   }
+}
+
+.header .tab:hover {
+  background: #555;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+.header .tab.active {
+  background: #00ccff;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+.header .links a:hover {
+  color: #00ccff;
+  transform: scale(1.2) rotate(360deg);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+body.dark-mode .header {
+  background: linear-gradient(45deg, #1a1a1a, #333333);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+body.dark-mode .header .name {
+  color: #dcdcdc;
+}
+
+body.dark-mode .header .tab {
+  background: #444;
+  color: #dcdcdc;
+  box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+}
+
+body.dark-mode .header .tab.active {
+  background: #00ccff;
+  color: #000;
+}
+
+body.dark-mode .header .links a {
+  color: #dcdcdc;
+}
+
+body.light-mode .header {
+  background: linear-gradient(45deg, #f0f0f0, #ffffff);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .header .name {
+  color: #333;
+}
+
+body.light-mode .header .tab {
+  background: #e0e0e0;
+  color: #333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .header .tab.active {
+  background: #00ccff;
+  color: #fff;
+}
+
+body.light-mode .header .links a {
+  color: #333;
 }/*# sourceMappingURL=Header.css.map */

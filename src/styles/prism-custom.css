@@ -3,7 +3,14 @@
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #008000 !important;
+  color: #158915 !important;
+}
+
+body.dark-mode .token.comment,
+body.dark-mode .token.prolog,
+body.dark-mode .token.doctype,
+body.dark-mode .token.cdata {
+  color: #027402 !important;
 }
 
 /* Customize the color of keywords */
@@ -11,9 +18,17 @@
   color: #0000ff !important;
 }
 
+body.dark-mode .token.keyword {
+  color: #07437e !important;
+}
+
 /* Customize the color of strings */
 .token.string {
   color: #a31515 !important;
+}
+
+body.dark-mode .token.string {
+  color: #701e00 !important;
 }
 
 /* Customize the color of functions */
@@ -21,13 +36,33 @@
   color: #795e26 !important;
 }
 
+body.dark-mode .token.function {
+  color: #e06004 !important;
+}
+
 /* Customize the color of operators */
 .token.operator {
   color: #000000 !important;
+}
+
+body.dark-mode .token.operator {
+  color: #cf0a0a !important;
+  background: transparent;
 }
 
 pre[class*=language-] {
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+body.dark-mode pre[class*=language-] {
+  background: #d3d3d3;
+  color: #000000;
+}
+
+body.light-mode pre[class*=language-] {
+  background: #ffffff;
+  color: #333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }/*# sourceMappingURL=prism-custom.css.map */
