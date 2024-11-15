@@ -838,5 +838,41 @@
 		"code": "// Perform zigzag level order traversal of a binary tree\nfunction zigzagLevelOrder(root) {\n let result = [], queue = [root], leftToRight = true;\n while (queue.length) {\n let level = [], nextQueue = [];\n for (let node of queue) {\n if (leftToRight) level.push(node.val);\n else level.unshift(node.val);\n if (node.left) nextQueue.push(node.left);\n if (node.right) nextQueue.push(node.right);\n }\n result.push(level);\n queue = nextQueue;\n leftToRight = !leftToRight;\n }\n return result;\n}\n",
 		"explanation": "This function performs zigzag level order traversal of a binary tree.",
 		"category": "Binary Tree BFS"
+	},
+	{
+		"topic": "Minimum Absolute Difference in BST",
+		"code": "// Find the minimum absolute difference in a BST\nfunction getMinimumDifference(root) {\n let prev = null, minDiff = Infinity;\n function inorder(node) {\n if (!node) return;\n inorder(node.left);\n if (prev !== null) minDiff = Math.min(minDiff, node.val - prev);\n prev = node.val;\n inorder(root);\n return minDiff;\n}\n",
+		"explanation": "This function finds the minimum absolute difference between values of any two nodes in a BST.",
+		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Kth Smallest Element in a BST",
+		"code": "// Find the kth smallest element in a BST\nfunction kthSmallest(root, k) {\n let stack = [];\n while (true) {\n while (root) {\n stack.push(root);\n root = root.left;\n }\n root = stack.pop();\n if (--k === 0) return root.val;\n root = root.right;\n }\n}\n",
+		"explanation": "This function finds the kth smallest element in a BST.",
+		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Validate Binary Search Tree",
+		"code": "// Validate if a tree is a binary search tree\nfunction isValidBST(root) {\n function validate(node, low = -Infinity, high = Infinity) {\n if (!node) return true;\n if (node.val <= low || node.val >= high) return false;\n return validate(node.left, low, node.val) && validate(node.right, node.val, high);\n }\n return validate(root);\n}\n",
+		"explanation": "This function validates if a tree is a binary search tree.",
+		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Convert Sorted Array to Binary Search Tree",
+		"code": "// Convert sorted array to binary search tree\nfunction sortedArrayToBST(nums) {\n if (!nums.length) return null;\n function convert(left, right) {\n if (left > right) return null;\n let mid = Math.floor((left + right) / 2);\n let node = new TreeNode(nums[mid]);\n node.left = convert(left, mid - 1);\n node.right = convert(mid + 1, right);\n return node;\n }\n return convert(0, nums.length - 1);\n}\n",
+		"explanation": "This function converts a sorted array to a binary search tree.",
+		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Convert Sorted List to Binary Search Tree",
+		"code": "// Convert sorted list to binary search tree\nfunction sortedListToBST(head) {\n if (!head) return null;\n function findMiddle(left, right) {\n let slow = left, fast = left;\n while (fast !== right && fast.next !== right) {\n slow = slow.next;\n fast = fast.next.next;\n }\n return slow;\n }\n function convert(left, right) {\n if (left === right) return null;\n let mid = findMiddle(left, right);\n let node = new TreeNode(mid.val);\n node.left = convert(left, mid);\n node.right = convert(mid.next, right);\n return node;\n }\n return convert(head, null);\n}\n",
+		"explanation": "This function converts a sorted linked list to a binary search tree.",
+		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Binary Search Tree to Greater Sum Tree",
+		"code": "// Convert BST to Greater Sum Tree\nfunction bstToGst(root) {\n let sum = 0;\n function dfs(node) {\n if (!node) return;\n dfs(node.right);\n sum += node.val;\n node.val = sum;\n dfs(node.left);\n }\n dfs(root);\n return root;\n}\n",
+		"explanation": "This function converts a BST to a Greater Sum Tree where each node's value is replaced by the sum of all greater values.",
+		"category": "Binary Search Tree"
 	}
 ]
