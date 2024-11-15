@@ -1,146 +1,175 @@
 [
 	{
 		"topic": "Functions",
+		"category": "JavaScript Basics",
 		"code": "// Function Declaration\nfunction add(a, b) {\n return a + b;\n}\n// Function Expression\nconst add = function(a, b) {\n return a + b;\n};\n// Arrow Function\nconst add = (a, b) => a + b;\n",
 		"explanation": "This snippet demonstrates three ways to define functions in JavaScript: function declaration, function expression, and arrow function."
 	},
 	{
 		"topic": "APIs",
+		"category": "Web APIs",
 		"code": "// Fetch API\nfetch('https://api.example.com/data')\n .then(response => response.json())\n .then(data => console.log(data))\n .catch(error => console.error('Error:', error));\n",
 		"explanation": "This snippet shows how to use the Fetch API to make an HTTP request, handle the response, and catch any errors."
 	},
 	{
 		"topic": "BigO",
+		"category": "Algorithms",
 		"code": "// Constant Time O(1)\nfunction getFirstElement(arr) {\n return arr[0];\n}\n// Linear Time O(n)\nfunction printAllElements(arr) {\n arr.forEach(element => console.log(element));\n}\n// Quadratic Time O(n^2)\nfunction printAllPairs(arr) {\n arr.forEach((el1, i) => {\n  arr.forEach((el2, j) => {\n   console.log(el1, el2);\n  });\n });\n}\n",
 		"explanation": "This snippet demonstrates different time complexities: O(1) for constant time, O(n) for linear time, and O(n^2) for quadratic time."
 	},
 	{
 		"topic": "Closures",
+		"category": "JavaScript Basics",
 		"code": "// Closure Example\nfunction makeCounter() {\n let count = 0;\n return function() {\n  count++;\n  return count;\n };\n}\nconst counter = makeCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2\n",
 		"explanation": "This snippet demonstrates a closure, where the inner function retains access to the outer function's variables even after the outer function has returned."
 	},
 	{
 		"topic": "Promises",
+		"category": "Asynchronous JavaScript",
 		"code": "// Creating a Promise\nconst promise = new Promise((resolve, reject) => {\n const success = true;\n if (success) {\n  resolve('Success!');\n } else {\n  reject('Failure!');\n }\n});\n// Consuming a Promise\npromise\n .then(result => console.log(result))\n .catch(error => console.error(error));\n",
 		"explanation": "This snippet shows how to create and consume a Promise in JavaScript, handling both success and failure cases."
 	},
 	{
 		"topic": "Async/Await",
+		"category": "Asynchronous JavaScript",
 		"code": "// Async/Await Example\nasync function fetchData() {\n try {\n  const response = await fetch('https://api.example.com/data');\n  const data = await response.json();\n  console.log(data);\n } catch (error) {\n  console.error('Error:', error);\n }\n}\nfetchData();\n",
 		"explanation": "This snippet demonstrates the use of async/await syntax for handling asynchronous operations in a more readable way compared to Promises."
 	},
 	{
 		"topic": "Event Loop",
+		"category": "JavaScript Basics",
 		"code": "// Event Loop Example\nconsole.log('Start');\nsetTimeout(() => {\n console.log('Timeout');\n}, 0);\nPromise.resolve().then(() => {\n console.log('Promise');\n});\nconsole.log('End');\n",
 		"explanation": "This snippet illustrates the JavaScript event loop, showing the order of execution for synchronous code, microtasks (Promises), and macrotasks (setTimeout)."
 	},
 	{
 		"topic": "Hoisting",
+		"category": "JavaScript Basics",
 		"code": "// Hoisting Example\nconsole.log(hoistedVar); // undefined\nvar hoistedVar = 'I am hoisted';\n// Function hoisting\nhoistedFunction();\nfunction hoistedFunction() {\n console.log('I am hoisted');\n}\n",
 		"explanation": "This snippet demonstrates hoisting in JavaScript, where variable and function declarations are moved to the top of their containing scope during the compilation phase."
 	},
 	{
 		"topic": "This Keyword",
+		"category": "JavaScript Basics",
 		"code": "// 'this' in Global Context\nconsole.log(this); // Window object (in browsers)\n// 'this' in Object Method\nconst obj = {\n name: 'Alice',\n greet() {\n  console.log(this.name);\n }\n};\nobj.greet(); // Alice\n// 'this' in a Function\nfunction showThis() {\n console.log(this);\n}\nshowThis(); // undefined (in strict mode) or Window object (in non-strict mode)\n",
 		"explanation": "This snippet shows different contexts of the 'this' keyword in JavaScript: global context, object method, and function context."
 	},
 	{
 		"topic": "Array Methods",
+		"category": "JavaScript Basics",
 		"code": "// forEach\n[1, 2, 3].forEach(num => console.log(num));\n// map\nconst squares = [1, 2, 3].map(num => num * num);\n// filter\nconst evens = [1, 2, 3, 4].filter(num => num % 2 === 0);\n// reduce\nconst sum = [1, 2, 3].reduce((acc, num) => acc + num, 0);\n",
 		"explanation": "This snippet demonstrates various array methods in JavaScript: forEach for iteration, map for transformation, filter for filtering, and reduce for reduction."
 	},
 	{
 		"topic": "Destructuring",
+		"category": "JavaScript Basics",
 		"code": "// Array Destructuring\nconst [a, b] = [1, 2];\n// Object Destructuring\nconst {name, age} = {name: 'Alice', age: 25};\n",
 		"explanation": "This snippet shows how to use destructuring assignment in JavaScript to extract values from arrays and objects."
 	},
 	{
-			"topic": "Spread Operator",
+		"topic": "Spread Operator",
+		"category": "JavaScript Basics",
 		"code": "// Spread in Arrays\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4];\n// Spread in Objects\nconst obj1 = {a: 1, b: 2};\nconst obj2 = {...obj1, c: 3};\n",
 		"explanation": "This snippet demonstrates the use of the spread operator in JavaScript to copy and merge arrays and objects."
 	},
 	{
 		"topic": "Rest Parameters",
+		"category": "JavaScript Basics",
 		"code": "// Rest Parameters\nfunction sum(...numbers) {\n return numbers.reduce((acc, num) => acc + num, 0);\n}\nconsole.log(sum(1, 2, 3)); // 6\n",
 		"explanation": "This snippet shows how to use rest parameters in JavaScript to handle an indefinite number of arguments as an array."
 	},
 	{
 		"topic": "Template Literals",
+		"category": "JavaScript Basics",
 		"code": "// Template Literals\nconst name = 'Alice';\nconst greeting = `Hello, ${name}!`;\nconsole.log(greeting); // Hello, Alice!\n",
 		"explanation": "This snippet demonstrates the use of template literals in JavaScript for string interpolation and multi-line strings."
 	},
 	{
 		"topic": "Default Parameters",
+		"category": "JavaScript Basics",
 		"code": "// Default Parameters\nfunction greet(name = 'Guest') {\n console.log(`Hello, ${name}!`);\n}\ngreet(); // Hello, Guest!\ngreet('Alice'); // Hello, Alice!\n",
 		"explanation": "This snippet shows how to use default parameters in JavaScript to provide default values for function parameters."
 	},
 	{
 		"topic": "Classes",
+		"category": "JavaScript Basics",
 		"code": "// Class Declaration\nclass Person {\n constructor(name, age) {\n  this.name = name;\n  this.age = age;\n }\n greet() {\n  console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n",
 		"explanation": "This snippet demonstrates how to define and use classes in JavaScript with a constructor and methods."
 	},
 	{
 		"topic": "Modules",
+		"category": "JavaScript Basics",
 		"code": "// Exporting a Module\nexport const add = (a, b) => a + b;\n// Importing a Module\nimport { add } from './math.js';\nconsole.log(add(2, 3)); // 5\n",
 		"explanation": "This snippet shows how to export and import modules in JavaScript using the ES6 module syntax."
 	},
 	{
 		"topic": "Set",
+		"category": "JavaScript Basics",
 		"code": "// Set Example\nconst set = new Set([1, 2, 3, 3]);\nset.add(4);\nset.delete(2);\nconsole.log(set.has(1)); // true\nconsole.log(set.size); // 3\n",
 		"explanation": "This snippet demonstrates the use of the Set object in JavaScript to store unique values and perform operations like add, delete, and has."
 	},
 	{
 		"topic": "Map",
+		"category": "JavaScript Basics",
 		"code": "// Map Example\nconst map = new Map();\nmap.set('a', 1);\nmap.set('b', 2);\nconsole.log(map.get('a')); // 1\nconsole.log(map.has('b')); // true\nmap.delete('b');\nconsole.log(map.size); // 1\n",
 		"explanation": "This snippet shows how to use the Map object in JavaScript to store key-value pairs and perform operations like set, get, has, and delete."
 	},
 	{
 		"topic": "Callbacks",
+		"category": "Asynchronous JavaScript",
 		"code": "// Callback Example\nfunction fetchData(callback) {\n setTimeout(() => {\n  callback('Data received');\n }, 1000);\n}\nfetchData(data => console.log(data)); // Data received\n",
 		"explanation": "This snippet demonstrates the use of callbacks in JavaScript to handle asynchronous operations."
 	},
 	{
 		"topic": "Error Handling",
+		"category": "JavaScript Basics",
 		"code": "// Try/Catch Example\ntry {\n throw new Error('Something went wrong');\n} catch (error) {\n console.error(error.message); // Something went wrong\n}\n",
 		"explanation": "This snippet shows how to use try/catch blocks in JavaScript for error handling."
 	},
 	{
 		"topic": "Strict Mode",
+		"category": "JavaScript Basics",
 		"code": "// Strict Mode Example\n'use strict';\nfunction myFunction() {\n x = 3.14; // This will cause an error because x is not declared\n}\nmyFunction();\n",
 		"explanation": "This snippet demonstrates the use of strict mode in JavaScript to enforce stricter parsing and error handling."
 	},
 	{
 		"topic": "Symbol",
+		"category": "JavaScript Basics",
 		"code": "// Symbol Example\nconst sym1 = Symbol('description');\nconst sym2 = Symbol('description');\nconsole.log(sym1 === sym2); // false\n",
 		"explanation": "This snippet shows how to use the Symbol type in JavaScript to create unique and immutable values."
 	},
 	{
 		"topic": "Iterators",
+		"category": "JavaScript Basics",
 		"code": "// Iterator Example\nconst iterable = [1, 2, 3];\nconst iterator = iterable[Symbol.iterator]();\nconsole.log(iterator.next()); // { value: 1, done: false }\nconsole.log(iterator.next()); // { value: 2, done: false }\nconsole.log(iterator.next()); // { value: 3, done: false }\nconsole.log(iterator.next()); // { value: undefined, done: true }\n",
 		"explanation": "This snippet demonstrates how to use iterators in JavaScript to iterate over iterable objects like arrays."
 	},
 	{
 		"topic": "Generators",
+		"category": "JavaScript Basics",
 		"code": "// Generator Example\nfunction* generator() {\n yield 1;\n yield 2;\n yield 3;\n}\nconst gen = generator();\nconsole.log(gen.next().value); // 1\nconsole.log(gen.next().value); // 2\nconsole.log(gen.next().value); // 3\n",
 		"explanation": "This snippet shows how to use generator functions in JavaScript to create iterators with the yield keyword."
 	},
 	{
 		"topic": "Proxy",
+		"category": "JavaScript Basics",
 		"code": "// Proxy Example\nconst target = {};\nconst handler = {\n get: function(obj, prop) {\n  return prop in obj ? obj[prop] : 'default';\n }\n};\nconst proxy = new Proxy(target, handler);\nproxy.name = 'Alice';\nconsole.log(proxy.name); // Alice\nconsole.log(proxy.age); // default\n",
 		"explanation": "This snippet demonstrates how to use the Proxy object in JavaScript to define custom behavior for fundamental operations on objects."
 	},
 	{
 		"topic": "Reflect",
+		"category": "JavaScript Basics",
 		"code": "// Reflect Example\nconst obj = {a: 1};\nReflect.set(obj, 'b', 2);\nconsole.log(obj.b); // 2\n",
 		"explanation": "This snippet shows how to use the Reflect object in JavaScript to perform operations on objects, similar to the Proxy object."
 	},
 	{
 		"topic": "WeakMap",
+		"category": "JavaScript Basics",
 		"code": "// WeakMap Example\nconst weakMap = new WeakMap();\nconst obj = {};\nweakMap.set(obj, 'value');\nconsole.log(weakMap.get(obj)); // value\n",
 		"explanation": "This snippet demonstrates the use of the WeakMap object in JavaScript to store key-value pairs where keys are objects and values can be garbage collected."
 	},
 	{
 		"topic": "WeakSet",
+		"category": "JavaScript Basics",
 		"code": "// WeakSet Example\nconst weakSet = new WeakSet();\nconst obj = {};\nweakSet.add(obj);\nconsole.log(weakSet.has(obj)); // true\n",
 		"explanation": "This snippet shows how to use the WeakSet object in JavaScript to store a collection of objects where objects can be garbage collected."
 	}

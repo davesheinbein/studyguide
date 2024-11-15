@@ -29,7 +29,9 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 		}[activeTab];
 
 		let filtered = data.filter((item) =>
-			item.topic.toLowerCase().includes(searchQuery.toLowerCase())
+			item.topic
+				.toLowerCase()
+				.includes(searchQuery.toLowerCase())
 		);
 
 		if (filter === 'alphabetical') {
@@ -46,7 +48,14 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 		}
 
 		setFilteredData(filtered);
-	}, [searchQuery, activeTab, reviewsheet, leetcode, principles, filter]);
+	}, [
+		searchQuery,
+		activeTab,
+		reviewsheet,
+		leetcode,
+		principles,
+		filter,
+	]);
 
 	useEffect(() => {
 		Prism.highlightAll();
@@ -58,10 +67,22 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 		cardClone.innerHTML = `
 			<button class='close-button'>&times;</button>
 			<div class='card-item-topic'>
-				<div class='card-item-topic-text'>${item.topic}</div>
+				<div class='card-item-topic-text'>
+					${item.topic}
+				</div>
 			</div>
-			<div className='card-item-code'>
-				<pre><code class='language-javascript'>${item.code}</code></pre>
+			<div class='card-item-code'>
+				<pre><code class='language-javascript'>
+					${item.code}
+				</code></pre>
+			</div>
+			<div class='card-item-explanation'>
+				<div class='card-item-explanation-text'>
+					${item.explanation}
+				</div>
+			</div>
+			<div class='card-item-category'>
+				${item.category}
 			</div>
 		`;
 
@@ -107,6 +128,14 @@ const Card = ({ activeTab, searchQuery, filter }) => {
 							{item.code}
 						</code>
 					</pre>
+				</div>
+				<div className='card-item-explanation'>
+					<div className='card-item-explanation-text'>
+						{item.explanation}
+					</div>
+				</div>
+				<div className='card-item-category'>
+					{item.category}
 				</div>
 			</div>
 		));

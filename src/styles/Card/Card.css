@@ -42,14 +42,12 @@
 .card-item-topic {
   font-size: 0.75rem;
   margin: 0;
-  padding: 0;
+  padding: 0 5px;
   font-weight: 900;
   text-decoration: underline;
-  margin-bottom: 1px;
-  width: 100%;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: linear-gradient(45deg, #0d47a1, #1976d2);
   color: #ffffff;
@@ -62,7 +60,24 @@
   height: 100%;
   color: #ffffff;
   overflow: scroll;
+  /* Hide scrollbar by default */
+  /* Show scrollbar when scrolling */
   /* Custom scrollbar styles */
+}
+.card-item-code::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.card-item-code:hover::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.card-item-code:hover::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+.card-item-code:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 .card-item-code pre {
   color: #f8f8f2;
@@ -75,8 +90,8 @@
   font-family: "Courier New", Courier, monospace;
 }
 .card-item-code::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 0px;
+  height: 0px;
 }
 .card-item-code::-webkit-scrollbar-thumb {
   background-color: #888;
@@ -84,6 +99,17 @@
 }
 .card-item-code::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+.card-item-category {
+  font-size: 0.75rem;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  color: #ff0000;
 }
 .card-item.expanded {
   grid-column: span 4;
@@ -106,10 +132,10 @@
   border: 2px solid rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
   animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  /* Custom scrollbar styles */
 }
 .card-item.expanded .card-item-topic {
   margin: 0;
+  margin-right: auto;
   padding: 3px 0;
   font-weight: 900;
   text-decoration: underline;
@@ -131,12 +157,47 @@
   color: #ffffff;
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  /* Hide scrollbar by default */
+  /* Show scrollbar when scrolling */
+}
+.card-item.expanded .card-item-code::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.card-item.expanded .card-item-code:hover::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.card-item.expanded .card-item-code:hover::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+.card-item.expanded .card-item-code:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 .card-item.expanded .card-item-code pre {
+  width: 100%;
+  height: 100%;
   padding: 3px 5px;
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: 12px !important;
+}
+.card-item.expanded .card-item-code pre code {
+  width: 100%;
+  height: 100%;
+}
+.card-item.expanded .card-item-category {
+  font-size: 0.75rem;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 11;
+  color: #ff0000;
 }
 .card-item.expanded::-webkit-scrollbar {
   width: 4px;
@@ -151,8 +212,8 @@
 }
 .card-item .close-button {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 2px;
+  right: 5px;
   background: #ff5f5f;
   border: none;
   border-radius: 50%;
