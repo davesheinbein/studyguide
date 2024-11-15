@@ -35,8 +35,10 @@ const SearchBar = ({ onSearchChange }) => {
 				value={searchQuery}
 				onChange={handleChange}
 				aria-label='Search'
+				aria-invalid={!!error}
+				aria-describedby='search-error'
 			/>
-			{error && <div className='error-message'>{error}</div>}
+			{error && <div id='search-error' className='error-message'>{error}</div>}
 		</div>
 	);
 };
