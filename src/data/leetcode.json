@@ -612,6 +612,24 @@
 		"category": "Backtracking"
 	},
 	{
+		"topic": "Permutations",
+		"code": "// Generate all permutations of an array of numbers\nfunction permute(nums) {\n let result = [];\n function backtrack(path = [], used = Array(nums.length).fill(false)) {\n if (path.length === nums.length) {\n result.push([...path]);\n return;\n }\n for (let i = 0; i < nums.length; i++) {\n if (used[i]) continue;\n used[i] = true;\n path.push(nums[i]);\n backtrack(path, used);\n path.pop();\n used[i] = false;\n }\n }\n backtrack();\n return result;\n}\n",
+		"explanation": "This function generates all possible permutations of an array using backtracking.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "Combination Sum",
+		"code": "// Find all unique combinations that sum up to the target\nfunction combinationSum(candidates, target) {\n let result = [];\n function backtrack(start = 0, path = [], remaining = target) {\n if (remaining === 0) {\n result.push([...path]);\n return;\n }\n for (let i = start; i < candidates.length; i++) {\n if (remaining < candidates[i]) continue;\n path.push(candidates[i]);\n backtrack(i, path, remaining - candidates[i]);\n path.pop();\n }\n }\n backtrack();\n return result;\n}\n",
+		"explanation": "This function finds all unique combinations of numbers from the candidates array that sum up to the target.",
+		"category": "Backtracking"
+	},
+	{
+		"topic": "N-Queens II",
+		"code": "// Count all unique solutions to the N-Queens problem\nfunction totalNQueens(n) {\n let count = 0;\n function backtrack(row = 0, cols = new Set(), diags1 = new Set(), diags2 = new Set()) {\n if (row === n) {\n count++;\n return;\n }\n for (let col = 0; col < n; col++) {\n let diag1 = row - col;\n let diag2 = row + col;\n if (cols.has(col) || diags1.has(diag1) || diags2.has(diag2)) continue;\n cols.add(col);\n diags1.add(diag1);\n diags2.add(diag2);\n backtrack(row + 1, cols, diags1, diags2);\n cols.delete(col);\n diags1.delete(diag1);\n diags2.delete(diag2);\n }\n }\n backtrack();\n return count;\n}\n",
+		"explanation": "This function counts all distinct solutions to the N-Queens problem using backtracking.",
+		"category": "Backtracking"
+	},
+	{
 		"topic": "Generate Parentheses",
 		"code": "// Generate all combinations of well-formed parentheses\nfunction generateParenthesis(n) {\n let result = [];\n function backtrack(s = '', left = 0, right = 0) {\n if (s.length === 2 * n) {\n result.push(s);\n return;\n }\n if (left < n) backtrack(s + '(', left + 1, right);\n if (right < left) backtrack(s + ')', left, right + 1);\n }\n backtrack();\n return result;\n}\n",
 		"explanation": "This function generates all combinations of well-formed parentheses.",
