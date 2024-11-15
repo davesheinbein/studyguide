@@ -10,16 +10,25 @@
   font-weight: bold;
   color: #ffffff;
   margin-right: 20px;
+  animation: fadeIn 1s ease-in-out;
 }
-.header .left-section,
+.header .left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
 .header .right-section {
   display: flex;
   align-items: center;
-  gap: 20px; /* Add gap to separate name and tabs */
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 .header .tabs {
   display: flex;
   gap: 10px;
+  animation: slideIn 1s ease-in-out;
 }
 .header .tab {
   padding: 5px 10px;
@@ -42,6 +51,7 @@
 }
 .header .search-bar {
   width: 100%;
+  animation: fadeIn 1s ease-in-out;
 }
 .header .search-bar input {
   width: 100%;
@@ -53,6 +63,7 @@
 .header .links {
   display: flex;
   gap: 15px;
+  animation: fadeIn 1s ease-in-out;
 }
 .header .links a {
   text-decoration: none;
@@ -63,4 +74,33 @@
 .header .links a:hover {
   color: #00ccff;
   transform: scale(1.2) rotate(360deg);
+}
+.header .filter-dropdown select {
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+  font-size: 1rem;
+  background: #333;
+  color: #ffffff;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.header .filter-dropdown select:hover {
+  background: #555;
+  transform: scale(1.05);
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }/*# sourceMappingURL=Header.css.map */

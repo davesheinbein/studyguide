@@ -7,7 +7,7 @@ import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
 import principlesData from '../data/principles.json'; // Import principles data
 
-const Card = ({ activeTab, searchQuery }) => {
+const Card = ({ activeTab, searchQuery, filter }) => {
 	const [reviewsheet, setReviewsheet] = useState([]);
 	const [leetcode, setLeetcode] = useState([]);
 	const [principles, setPrinciples] = useState([]); // State for principles
@@ -28,12 +28,25 @@ const Card = ({ activeTab, searchQuery }) => {
 			principles,
 		}[activeTab];
 
-		const filtered = data.filter((item) =>
+		let filtered = data.filter((item) =>
 			item.topic.toLowerCase().includes(searchQuery.toLowerCase())
 		);
 
+		if (filter === 'alphabetical') {
+			filtered = filtered.sort((a, b) =>
+				a.topic.localeCompare(b.topic)
+			);
+		} else if (filter === 'category') {
+			filtered = filtered.sort((a, b) => {
+				if (a.category === b.category) {
+					return a.topic.localeCompare(b.topic);
+				}
+				return a.category.localeCompare(b.category);
+			});
+		}
+
 		setFilteredData(filtered);
-	}, [searchQuery, activeTab, reviewsheet, leetcode, principles]);
+	}, [searchQuery, activeTab, reviewsheet, leetcode, principles, filter]);
 
 	useEffect(() => {
 		Prism.highlightAll();

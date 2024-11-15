@@ -7,9 +7,10 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ onTabClick, onSearch }) => {
+const Header = ({ onTabClick, onSearch, onFilterChange }) => {
 	const [activeTab, setActiveTab] = useState('reviewsheet');
 	const [searchQuery, setSearchQuery] = useState('');
+	const [filter, setFilter] = useState('alphabetical');
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
@@ -20,6 +21,12 @@ const Header = ({ onTabClick, onSearch }) => {
 		const query = event.target.value;
 		setSearchQuery(query);
 		onSearch(query, activeTab);
+	};
+
+	const handleFilterChange = (event) => {
+		const selectedFilter = event.target.value;
+		setFilter(selectedFilter);
+		onFilterChange(selectedFilter);
 	};
 
 	return (
@@ -54,6 +61,12 @@ const Header = ({ onTabClick, onSearch }) => {
 				</div>
 			</div>
 			<div className='right-section'>
+				<div className='filter-dropdown'>
+					<select value={filter} onChange={handleFilterChange}>
+						<option value='alphabetical'>Alphabetical</option>
+						<option value='category'>Category</option>
+					</select>
+				</div>
 				<div className='search-bar'>
 						<input
 						type='text'
