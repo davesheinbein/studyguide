@@ -874,5 +874,41 @@
 		"code": "// Convert BST to Greater Sum Tree\nfunction bstToGst(root) {\n let sum = 0;\n function dfs(node) {\n if (!node) return;\n dfs(node.right);\n sum += node.val;\n node.val = sum;\n dfs(node.left);\n }\n dfs(root);\n return root;\n}\n",
 		"explanation": "This function converts a BST to a Greater Sum Tree where each node's value is replaced by the sum of all greater values.",
 		"category": "Binary Search Tree"
+	},
+	{
+		"topic": "Number of Islands",
+		"code": "// Find the number of islands\nfunction numIslands(grid) {\n if (!grid.length) return 0;\n let count = 0;\n function dfs(i, j) {\n if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] === '0') return;\n grid[i][j] = '0';\n dfs(i + 1, j);\n dfs(i - 1, j);\n dfs(i, j + 1);\n dfs(i, j - 1);\n }\n for (let i = 0; i < grid.length; i++) {\n for (let j = 0; j < grid[0].length; j++) {\n if (grid[i][j] === '1') {\n count++;\n dfs(i, j);\n }\n }\n }\n return count;\n}\n",
+		"explanation": "This function finds the number of islands in a grid using DFS.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Surrounded Regions",
+		"code": "// Capture all regions surrounded by 'X'\nfunction solve(board) {\n if (!board.length) return;\n let m = board.length, n = board[0].length;\n function dfs(i, j) {\n if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] !== 'O') return;\n board[i][j] = 'T';\n dfs(i + 1, j);\n dfs(i - 1, j);\n dfs(i, j + 1);\n dfs(i, j - 1);\n }\n for (let i = 0; i < m; i++) {\n if (board[i][0] === 'O') dfs(i, 0);\n if (board[i][n - 1] === 'O') dfs(i, n - 1);\n }\n for (let j = 0; j < n; j++) {\n if (board[0][j] === 'O') dfs(0, j);\n if (board[m - 1][j] === 'O') dfs(m - 1, j);\n }\n for (let i = 0; i < m; i++) {\n for (let j = 0; j < n; j++) {\n if (board[i][j] === 'O') board[i][j] = 'X';\n if (board[i][j] === 'T') board[i][j] = 'O';\n }\n }\n}\n",
+		"explanation": "This function captures all regions surrounded by 'X' in a board.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Clone Graph",
+		"code": "// Clone a graph\nfunction cloneGraph(node) {\n if (!node) return null;\n let map = new Map();\n function clone(node) {\n if (!map.has(node)) {\n map.set(node, new Node(node.val));\n map.get(node).neighbors = node.neighbors.map(clone);\n }\n return map.get(node);\n }\n return clone(node);\n}\n",
+		"explanation": "This function clones a graph using DFS.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Evaluate Division",
+		"code": "// Evaluate division\nfunction calcEquation(equations, values, queries) {\n let graph = new Map();\n function buildGraph(equations, values) {\n for (let i = 0; i < equations.length; i++) {\n let [a, b] = equations[i];\n if (!graph.has(a)) graph.set(a, new Map());\n if (!graph.has(b)) graph.set(b, new Map());\n graph.get(a).set(b, values[i]);\n graph.get(b).set(a, 1 / values[i]);\n }\n }\n function dfs(start, end, visited) {\n if (!graph.has(start) || !graph.has(end)) return -1;\n if (start === end) return 1;\n visited.add(start);\n for (let [neighbor, value] of graph.get(start)) {\n if (!visited.has(neighbor)) {\n let product = dfs(neighbor, end, visited);\n if (product !== -1) return product * value;\n }\n }\n return -1;\n }\n buildGraph(equations, values);\n let results = [];\n for (let [a, b] of queries) {\n results.push(dfs(a, b, new Set()));\n }\n return results;\n}\n",
+		"explanation": "This function evaluates division using a graph and DFS.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Graph Valid Tree",
+		"code": "// Check if a graph is a valid tree\nfunction validTree(n, edges) {\n if (n === 0) return true;\n let graph = new Map();\n for (let [a, b] of edges) {\n if (!graph.has(a)) graph.set(a, []);\n if (!graph.has(b)) graph.set(b, []);\n graph.get(a).push(b);\n graph.get(b).push(a);\n }\n let visited = new Set();\n function dfs(node, parent) {\n if (visited.has(node)) return false;\n visited.add(node);\n for (let neighbor of graph.get(node)) {\n if (neighbor !== parent && !dfs(neighbor, node)) return false;\n }\n return true;\n }\n return dfs(0, -1) && visited.size === n;\n}\n",
+		"explanation": "This function checks if a graph is a valid tree.",
+		"category": "Graph General"
+	},
+	{
+		"topic": "Redundant Connection",
+		"code": "// Find the redundant connection\nfunction findRedundantConnection(edges) {\n let parent = Array.from({ length: edges.length + 1 }, (_, i) => i);\n function find(x) {\n if (parent[x] !== x) parent[x] = find(parent[x]);\n return parent[x];\n }\n function union(x, y) {\n let rootX = find(x);\n let rootY = find(y);\n if (rootX !== rootY) parent[rootX] = rootY;\n else return [x, y];\n }\n for (let [x, y] of edges) {\n let result = union(x, y);\n if (result) return result;\n }\n}\n",
+		"explanation": "This function finds the redundant connection in a graph.",
+		"category": "Graph General"
 	}
 ]
