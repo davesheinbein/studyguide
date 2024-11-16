@@ -1,7 +1,9 @@
+@import './styles/variables.scss';
+
 .App {
 	padding: 0;
 	margin: 0;
-	transition: background 0.3s ease;
+	@include transition(background 0.3s ease);
 
 	&:hover {
 		background: #f0f0f0;
@@ -10,11 +12,11 @@
 
 body.dark-mode {
 	background-color: #121212;
-	color: #ffffff;
+	color: $white;
 }
 
 body.dark-mode .header {
-	background: linear-gradient(45deg, #1a1a1a, #333333);
+	@include linear-gradient-bg(45deg, #1a1a1a, #333333);
 }
 
 body.dark-mode .card {
@@ -27,13 +29,13 @@ body.dark-mode .card-item {
 
 body.dark-mode .filter-dropdown select {
 	background: #1e1e1e;
-	color: #ffffff;
+	color: $white;
 	border: 1px solid #555555;
 }
 
 body.dark-mode .filter-dropdown .filter-selected {
 	background: #1e1e1e;
-	color: #ffffff;
+	color: $white;
 	border: 1px solid #555555;
 }
 
@@ -44,7 +46,7 @@ body.dark-mode .filter-dropdown .filter-options {
 
 body.dark-mode .App {
 	background-color: #121212;
-	color: #ffffff;
+	color: $white;
 }
 
 body.light-mode .App {

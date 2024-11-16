@@ -1,52 +1,47 @@
-/* Customize the color of comments */
 .token.comment,
 .token.prolog,
 .token.doctype,
-.token.cdata {
-  color: #158915 !important;
+.token .cdata {
+  color: #003366 !important;
 }
 
 body.dark-mode .token.comment,
 body.dark-mode .token.prolog,
 body.dark-mode .token.doctype,
 body.dark-mode .token.cdata {
-  color: #027402 !important;
+  color: #197278 !important;
 }
 
-/* Customize the color of keywords */
 .token.keyword {
-  color: #0000ff !important;
+  color: #20a4f3 !important;
 }
 
 body.dark-mode .token.keyword {
-  color: #07437e !important;
+  color: #9e2a2b !important;
 }
 
-/* Customize the color of strings */
 .token.string {
-  color: #a31515 !important;
+  color: #59f8e8 !important;
 }
 
 body.dark-mode .token.string {
-  color: #701e00 !important;
+  color: #fff3b0 !important;
 }
 
-/* Customize the color of functions */
 .token.function {
-  color: #795e26 !important;
+  color: #941c2f !important;
 }
 
 body.dark-mode .token.function {
-  color: #e06004 !important;
+  color: #e09f3e !important;
 }
 
-/* Customize the color of operators */
 .token.operator {
-  color: #000000 !important;
+  color: #03191e !important;
 }
 
 body.dark-mode .token.operator {
-  color: #cf0a0a !important;
+  color: #540b0e !important;
   background: transparent;
 }
 
@@ -63,6 +58,6 @@ body.dark-mode pre[class*=language-] {
 
 body.light-mode pre[class*=language-] {
   background: #ffffff;
-  color: #333;
+  color: #03191e;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }/*# sourceMappingURL=prism-custom.css.map */

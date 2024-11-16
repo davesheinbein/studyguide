@@ -1,7 +1,7 @@
 .card {
   position: relative;
-  background-color: #2c2c2c;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #03191e;
+  box-shadow: 0 4px 8px rgba(3, 25, 30, 0.1);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -11,13 +11,13 @@
   margin: 0 auto;
 }
 .card-A {
-  background-color: #46355f;
+  background-color: #941c2f;
 }
 .card-B {
-  background-color: #3e295c;
+  background-color: #783f8e;
 }
 .card-C {
-  background-color: #361a5d;
+  background-color: #4f1271;
 }
 .card-grid {
   display: grid;
@@ -353,55 +353,54 @@
 }
 
 body.dark-mode .card {
-  background-color: #1e1e1e;
+  background-color: #4a4063;
 }
 
 body.dark-mode .card-item {
-  border: 1px solid #555555;
+  border: 1px solid #4f1271;
 }
 
 body.dark-mode .card-item-topic {
-  background: linear-gradient(45deg, #004d40, #00796b);
+  background: linear-gradient(45deg, #783f8e, #4f1271);
   color: #ffffff;
 }
 
 body.dark-mode .card-item-code {
-  color: #dcdcdc;
+  color: #ffffff;
 }
 
 body.dark-mode .card-item-category {
-  color: #ff0000;
+  color: #c8c6d7;
 }
 
 body.dark-mode .card-item-explanation {
-  background: #333333;
-  color: #dcdcdc;
+  color: #000000;
 }
 
 body.light-mode .card {
-  background-color: #ffffff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #c1cfda;
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }
 
 body.light-mode .card-item {
-  border: 1px solid #cccccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #20a4f3;
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }
 
 body.light-mode .card-item-topic {
-  background: linear-gradient(45deg, #00ccff, #00aaff);
-  color: #333;
+  background: linear-gradient(45deg, #20a4f3, #59f8e8);
+  color: #03191e;
 }
 
 body.light-mode .card-item-code {
-  color: #333;
+  color: #03191e;
 }
 
 body.light-mode .card-item-category {
-  color: #ff0000;
+  color: #941c2f;
 }
 
 body.light-mode .card-item-explanation {
-  background: #f5f5f5;
-  color: #333;
+  background: #c1cfda;
+  color: #03191e;
 }/*# sourceMappingURL=Card.css.map */

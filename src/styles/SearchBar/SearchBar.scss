@@ -1,3 +1,6 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins';
+
 .search-bar {
 	width: 100%;
 }
@@ -8,29 +11,32 @@
 	border-radius: 5px;
 	border: none;
 	font-size: 1rem;
-	transition: box-shadow 0.3s ease, transform 0.3s ease;
+	@include transition(
+		box-shadow 0.3s ease,
+		transform 0.3s ease
+	);
 	outline: none;
 
 	&:focus {
-		box-shadow: 0 0 10px #00ccff;
+		@include box-shadow(0 0 10px $celestial-blue);
 		transform: scale(1.05);
 	}
 }
 
 body.dark-mode .search-bar input {
-	background: #333;
-	color: #fff;
+	background: $english-violet;
+	color: $thistle;
 }
 
 body.dark-mode .search-bar input:focus {
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	@include box-shadow(0 0 10px rgba($celestial-blue, 0.5));
 }
 
 body.light-mode .search-bar input {
-	background: #fff;
-	color: #333;
+	background: $columbia-blue;
+	color: $rich-black;
 }
 
 body.light-mode .search-bar input:focus {
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	@include box-shadow(0 0 5px rgba($rich-black, 0.1));
 }

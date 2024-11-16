@@ -1,0 +1,45 @@
+@mixin transition($properties...) {
+	transition: $properties;
+}
+
+@mixin box-shadow($shadow...) {
+	box-shadow: $shadow;
+}
+
+@mixin linear-gradient-bg($angle, $color1, $color2) {
+	background: linear-gradient($angle, $color1, $color2);
+}
+
+@mixin focus-style($color) {
+	&:focus {
+		outline: none;
+		border-color: $color;
+		@include box-shadow(0 0 10px rgba($color, 0.5));
+	}
+}
+
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+}
+
+@mixin text-shadow($shadow...) {
+	text-shadow: $shadow;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+}
+
+@mixin padding($values...) {
+	padding: $values;
+}
+
+@mixin margin($values...) {
+	margin: $values;
+}

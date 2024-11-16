@@ -1,19 +1,30 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins.scss';
+
 .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 20px;
-	background: linear-gradient(45deg, #0d0d0d, #434343);
-	transition: background 0.3s ease;
+	@include linear-gradient-bg(
+		45deg,
+		$rich-black,
+		$columbia-blue
+	);
+	@include transition(background 0.3s ease);
 
 	&:hover {
-		background: linear-gradient(45deg, #0d0d0d, #555555);
+		@include linear-gradient-bg(
+			45deg,
+			$rich-black,
+			$celestial-blue
+		);
 	}
 
 	.name {
 		font-size: 1rem;
 		font-weight: bold;
-		color: #ffffff;
+		color: $fluorescent-cyan;
 		margin-right: 20px;
 		animation: fadeIn 1s ease-in-out;
 	}
@@ -47,19 +58,22 @@
 		background: #333;
 		border-radius: 3px;
 		cursor: pointer;
-		transition: background 0.3s ease, transform 0.3s ease;
+		@include transition(
+			background 0.3s ease,
+			transform 0.3s ease
+		);
 
 		&:hover {
 			background: #555;
 			transform: scale(1.05);
-			box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+			@include box-shadow(0 0 10px rgba(0, 204, 255, 0.5));
 		}
 
 		&.active {
 			background: #00ccff;
 			color: #000;
 			transform: scale(1.1);
-			box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+			@include box-shadow(0 0 10px rgba(0, 204, 255, 0.5));
 		}
 	}
 
@@ -116,14 +130,14 @@
 .header .tab:hover {
 	background: #555;
 	transform: scale(1.05);
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	@include box-shadow(0 0 10px rgba(0, 204, 255, 0.5));
 }
 
 .header .tab.active {
 	background: #00ccff;
 	color: #000;
 	transform: scale(1.1);
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	@include box-shadow(0 0 10px rgba(0, 204, 255, 0.5));
 }
 
 .header .links a:hover {
@@ -133,49 +147,57 @@
 }
 
 body.dark-mode .header {
-	background: linear-gradient(45deg, #1a1a1a, #333333);
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	@include linear-gradient-bg(
+		45deg,
+		$english-violet,
+		$french-gray
+	);
+	@include box-shadow(0 0 10px rgba($celestial-blue, 0.5));
 }
 
 body.dark-mode .header .name {
-	color: #dcdcdc;
+	color: $thistle;
 }
 
 body.dark-mode .header .tab {
-	background: #444;
-	color: #dcdcdc;
-	box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+	background: $eminence;
+	color: $thistle;
+	box-shadow: 0 0 5px rgba($celestial-blue, 0.5);
 }
 
 body.dark-mode .header .tab.active {
-	background: #00ccff;
-	color: #000;
+	background: $celestial-blue;
+	color: $rich-black;
 }
 
 body.dark-mode .header .links a {
-	color: #dcdcdc;
+	color: $thistle;
 }
 
 body.light-mode .header {
-	background: linear-gradient(45deg, #f0f0f0, #ffffff);
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	@include linear-gradient-bg(
+		45deg,
+		$columbia-blue,
+		$celestial-blue
+	);
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .header .name {
-	color: #333;
+	color: $rich-black;
 }
 
 body.light-mode .header .tab {
-	background: #e0e0e0;
-	color: #333;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background: $fluorescent-cyan;
+	color: $rich-black;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .header .tab.active {
-	background: #00ccff;
-	color: #fff;
+	background: $celestial-blue;
+	color: $fluorescent-cyan;
 }
 
 body.light-mode .header .links a {
-	color: #333;
+	color: $rich-black;
 }

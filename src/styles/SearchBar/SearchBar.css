@@ -12,24 +12,24 @@
   outline: none;
 }
 .search-bar input:focus {
-  box-shadow: 0 0 10px #00ccff;
+  box-shadow: 0 0 10px #20a4f3;
   transform: scale(1.05);
 }
 
 body.dark-mode .search-bar input {
-  background: #333;
-  color: #fff;
+  background: #4a4063;
+  color: #bfacc8;
 }
 
 body.dark-mode .search-bar input:focus {
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 body.light-mode .search-bar input {
-  background: #fff;
-  color: #333;
+  background: #c1cfda;
+  color: #03191e;
 }
 
 body.light-mode .search-bar input:focus {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }/*# sourceMappingURL=SearchBar.css.map */

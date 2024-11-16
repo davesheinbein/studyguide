@@ -1,52 +1,50 @@
-/* Customize the color of comments */
+@import './variables/variables';
+@import './mixins/mixins';
+
 .token.comment,
 .token.prolog,
 .token.doctype,
-.token.cdata {
-	color: #158915 !important;
+.token .cdata {
+	color: $midnight-blue !important;
 }
 
 body.dark-mode .token.comment,
 body.dark-mode .token.prolog,
 body.dark-mode .token.doctype,
 body.dark-mode .token.cdata {
-	color: #027402 !important;
+	color: $caribbean-current !important;
 }
 
-/* Customize the color of keywords */
 .token.keyword {
-	color: #0000ff !important;
+	color: $celestial-blue !important;
 }
 
 body.dark-mode .token.keyword {
-	color: #07437e !important;
+	color: $auburn !important;
 }
 
-/* Customize the color of strings */
 .token.string {
-	color: #a31515 !important;
+	color: $fluorescent-cyan !important;
 }
 
 body.dark-mode .token.string {
-	color: #701e00 !important;
+	color: $vanilla !important;
 }
 
-/* Customize the color of functions */
 .token.function {
-	color: #795e26 !important;
+	color: $burgundy !important;
 }
 
 body.dark-mode .token.function {
-	color: #e06004 !important;
+	color: $hunyadi-yellow !important;
 }
 
-/* Customize the color of operators */
 .token.operator {
-	color: #000000 !important;
+	color: $rich-black !important;
 }
 
 body.dark-mode .token.operator {
-	color: #cf0a0a !important;
+	color: $chocolate-cosmos !important;
 	background: transparent;
 }
 
@@ -63,6 +61,6 @@ body.dark-mode pre[class*='language-'] {
 
 body.light-mode pre[class*='language-'] {
 	background: #ffffff;
-	color: #333;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	color: $rich-black;
+	@include box-shadow(0 0 5px rgba(0, 0, 0, 0.1));
 }

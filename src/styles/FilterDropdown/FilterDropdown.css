@@ -8,10 +8,10 @@
 .filter-dropdown select {
   padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #555;
+  border: 1px solid #03191e;
   font-size: 0.75rem;
-  background: #333;
-  color: #ffffff;
+  background: #c1cfda;
+  color: #03191e;
   transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -20,15 +20,15 @@
   padding-right: 30px;
 }
 .filter-dropdown select:hover {
-  background: #555;
+  background: #20a4f3;
   transform: scale(1.05);
-  border-color: #00ccff;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border-color: #20a4f3;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 .filter-dropdown select:focus {
   outline: none;
-  border-color: #00ccff;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border-color: #20a4f3;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 .filter-dropdown select option {
   position: relative;
@@ -41,37 +41,37 @@
   right: 10px;
   transform: translateY(-50%);
   pointer-events: none;
-  color: #ffffff;
+  color: #03191e;
 }
 select:focus + .filter-dropdown::after {
   transform: translateY(-50%) rotate(180deg);
 }
 .filter-dropdown select option {
-  background: #333;
-  color: #ffffff;
+  background: #c1cfda;
+  color: #03191e;
   padding: 5px;
 }
 
 .filter-dropdown select:focus {
   outline: none;
-  border-color: #00ccff;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border-color: #20a4f3;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 .filter-dropdown select:hover {
-  background: #555;
+  background: #20a4f3;
   transform: scale(1.05);
-  border-color: #00ccff;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border-color: #20a4f3;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 .filter-selected {
   padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #555;
+  border: 1px solid #03191e;
   font-size: 0.75rem;
-  background: #333;
-  color: #ffffff;
+  background: #c1cfda;
+  color: #03191e;
   transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   padding-right: 30px;
 }
@@ -80,11 +80,11 @@ select:focus + .filter-dropdown::after {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #333;
-  border: 1px solid #555;
+  background: #c1cfda;
+  border: 1px solid #03191e;
   border-radius: 5px;
   width: 100%;
-  z-index: 1;
+  z-index: 20;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -96,45 +96,46 @@ select:focus + .filter-dropdown::after {
 }
 
 .filter-options div:hover {
-  background: #555;
+  background: #20a4f3;
 }
 
 body.dark-mode .filter-dropdown select {
-  background: #d3d3d3;
+  background: #4a4063;
   color: #ffffff;
-  border: 1px solid #555555;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border: 1px solid #4f1271;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 body.dark-mode .filter-dropdown .filter-selected {
-  background: #d3d3d3;
+  background: #4a4063;
   color: #ffffff;
-  border: 1px solid #555555;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  border: 1px solid #4f1271;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 body.dark-mode .filter-dropdown .filter-options {
-  background: #d3d3d3;
-  border: 1px solid #555555;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  color: #ffffff;
+  background: #4a4063;
+  border: 1px solid #4f1271;
+  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
 }
 
 body.light-mode .filter-dropdown select {
-  background: #ffffff;
-  color: #333;
-  border: 1px solid #cccccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background: #c1cfda;
+  color: #ffffff;
+  border: 1px solid #20a4f3;
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }
 
 body.light-mode .filter-dropdown .filter-selected {
-  background: #ffffff;
-  color: #333;
-  border: 1px solid #cccccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background: #c1cfda;
+  color: #ffffff;
+  border: 1px solid #20a4f3;
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }
 
 body.light-mode .filter-dropdown .filter-options {
-  background: #ffffff;
-  border: 1px solid #cccccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background: #c1cfda;
+  border: 1px solid #20a4f3;
+  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
 }/*# sourceMappingURL=FilterDropdown.css.map */

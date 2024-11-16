@@ -1,7 +1,26 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins.scss';
+
+$white: #ffffff;
+$black: #000000;
+// Light Mode
+$columbia-blue: #c1cfdaff;
+$celestial-blue: #20a4f3ff;
+$fluorescent-cyan: #59f8e8ff;
+$burgundy: #941c2fff;
+$rich-black: #03191eff;
+
+// Dark Mode
+$english-violet: #4a4063ff;
+$thistle: #bfacc8ff;
+$french-gray: #c8c6d7ff;
+$eminence: #783f8eff;
+$indigo: #4f1271ff;
+
 .card {
 	position: relative;
-	background-color: #2c2c2c;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: $rich-black;
+	@include box-shadow(0 4px 8px rgba($rich-black, 0.1));
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -11,15 +30,15 @@
 	margin: 0 auto;
 
 	&-A {
-		background-color: #46355f; // Reviewsheet card background
+		background-color: $burgundy; // Reviewsheet card background
 	}
 
 	&-B {
-		background-color: #3e295c; // Leetcode card background
+		background-color: $eminence; // Leetcode card background
 	}
 
 	&-C {
-		background-color: #361a5d; // Principles card background
+		background-color: $indigo; // Principles card background
 	}
 
 	&-grid {
@@ -33,12 +52,13 @@
 	&-item {
 		position: relative;
 		outline: 1px solid #4a4a4a;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 		width: 100%;
 		height: 16vh;
 		overflow: hidden;
-		transition: all 0.5s
-			cubic-bezier(0.68, -0.55, 0.27, 1.55);
+		@include transition(
+			all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+		);
 		cursor: pointer;
 		margin: 0;
 		padding: 0;
@@ -46,8 +66,10 @@
 
 		&:hover {
 			transform: scale(1.05);
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2),
-				0 0 10px rgba(0, 204, 255, 0.5);
+			@include box-shadow(
+				0 6px 12px rgba(0, 0, 0, 0.2),
+				0 0 10px rgba(0, 204, 255, 0.5)
+			);
 			z-index: 10;
 		}
 
@@ -416,55 +438,58 @@
 }
 
 body.dark-mode .card {
-	background-color: #1e1e1e;
+	background-color: $english-violet;
 }
 
 body.dark-mode .card-item {
-	border: 1px solid #555555;
+	border: 1px solid $indigo;
 }
 
 body.dark-mode .card-item-topic {
-	background: linear-gradient(45deg, #004d40, #00796b);
-	color: #ffffff;
+	background: linear-gradient(45deg, $eminence, $indigo);
+	color: $white;
 }
 
 body.dark-mode .card-item-code {
-	color: #dcdcdc;
+	color: $white;
 }
 
 body.dark-mode .card-item-category {
-	color: #ff0000;
+	color: $french-gray;
 }
 
 body.dark-mode .card-item-explanation {
-	background: #333333;
-	color: #dcdcdc;
+	color: $black;
 }
 
 body.light-mode .card {
-	background-color: #ffffff;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background-color: $columbia-blue;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .card-item {
-	border: 1px solid #cccccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	border: 1px solid $celestial-blue;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .card-item-topic {
-	background: linear-gradient(45deg, #00ccff, #00aaff);
-	color: #333;
+	background: linear-gradient(
+		45deg,
+		$celestial-blue,
+		$fluorescent-cyan
+	);
+	color: $rich-black;
 }
 
 body.light-mode .card-item-code {
-	color: #333;
+	color: $rich-black;
 }
 
 body.light-mode .card-item-category {
-	color: #ff0000;
+	color: $burgundy;
 }
 
 body.light-mode .card-item-explanation {
-	background: #f5f5f5;
-	color: #333;
+	background: $columbia-blue;
+	color: $rich-black;
 }

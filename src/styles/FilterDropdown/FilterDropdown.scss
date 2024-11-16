@@ -1,3 +1,6 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins.scss';
+
 .filter-dropdown {
 	position: relative;
 	cursor: pointer;
@@ -6,28 +9,29 @@
 	select {
 		padding: 5px 10px;
 		border-radius: 5px;
-		border: 1px solid #555;
+		border: 1px solid $rich-black;
 		font-size: 0.75rem;
-		background: #333;
-		color: #ffffff;
-		transition: background 0.3s ease, transform 0.3s ease,
-			border-color 0.3s ease;
+		background: $columbia-blue;
+		color: $rich-black;
+		@include transition(
+			background 0.3s ease,
+			transform 0.3s ease,
+			border-color 0.3s ease
+		);
 		appearance: none;
 		cursor: pointer;
 		padding-right: 30px;
 
 		&:hover {
-			background: #555;
+			background: $celestial-blue;
 			transform: scale(1.05);
-			border-color: #00ccff;
-			box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+			border-color: $celestial-blue;
+			@include box-shadow(
+				0 0 10px rgba($celestial-blue, 0.5)
+			);
 		}
 
-		&:focus {
-			outline: none;
-			border-color: #00ccff;
-			box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
-		}
+		@include focus-style($celestial-blue);
 
 		option {
 			position: relative;
@@ -42,7 +46,7 @@
 		right: 10px;
 		transform: translateY(-50%);
 		pointer-events: none;
-		color: #ffffff;
+		color: $rich-black;
 	}
 
 	select:focus + &::after {
@@ -50,32 +54,32 @@
 	}
 
 	select option {
-		background: #333;
-		color: #ffffff;
+		background: $columbia-blue;
+		color: $rich-black;
 		padding: 5px;
 	}
 }
 
 .filter-dropdown select:focus {
 	outline: none;
-	border-color: #00ccff;
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	border-color: $celestial-blue;
+	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
 }
 
 .filter-dropdown select:hover {
-	background: #555;
+	background: $celestial-blue;
 	transform: scale(1.05);
-	border-color: #00ccff;
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	border-color: $celestial-blue;
+	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
 }
 
 .filter-selected {
 	padding: 5px 10px;
 	border-radius: 5px;
-	border: 1px solid #555;
+	border: 1px solid $rich-black;
 	font-size: 0.75rem;
-	background: #333;
-	color: #ffffff;
+	background: $columbia-blue;
+	color: $rich-black;
 	transition: background 0.3s ease, transform 0.3s ease,
 		border-color 0.3s ease;
 	padding-right: 30px;
@@ -85,60 +89,62 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	background: #333;
-	border: 1px solid #555;
+	background: $columbia-blue;
+	border: 1px solid $rich-black;
 	border-radius: 5px;
 	width: 100%;
-	z-index: 1;
+	z-index: 20;
 	width: fit-content;
 }
 
 .filter-options div {
 	padding: 5px 10px;
-	color: #ffffff;
+	color: $white;
 	transition: background 0.3s ease;
 }
 
 .filter-options div:hover {
-	background: #555;
+	background: $celestial-blue;
 }
 
 body.dark-mode .filter-dropdown select {
-	background: #d3d3d3; // Light gray
-	color: #ffffff;
-	border: 1px solid #555555;
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	background: $english-violet;
+	color: $white;
+	border: 1px solid $indigo;
+	@include box-shadow(0 0 10px rgba($celestial-blue, 0.5));
 }
 
 body.dark-mode .filter-dropdown .filter-selected {
-	background: #d3d3d3; // Light gray
-	color: #ffffff;
-	border: 1px solid #555555;
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	background: $english-violet;
+	// color: $thistle;
+	color: $white;
+	border: 1px solid $indigo;
+	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
 }
 
 body.dark-mode .filter-dropdown .filter-options {
-	background: #d3d3d3; // Light gray
-	border: 1px solid #555555;
-	box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+	color: $white;
+	background: $english-violet;
+	border: 1px solid $indigo;
+	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
 }
 
 body.light-mode .filter-dropdown select {
-	background: #ffffff;
-	color: #333;
-	border: 1px solid #cccccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background: $columbia-blue;
+	color: $white;
+	border: 1px solid $celestial-blue;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .filter-dropdown .filter-selected {
-	background: #ffffff;
-	color: #333;
-	border: 1px solid #cccccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background: $columbia-blue;
+	color: $white;
+	border: 1px solid $celestial-blue;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
 
 body.light-mode .filter-dropdown .filter-options {
-	background: #ffffff;
-	border: 1px solid #cccccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background: $columbia-blue;
+	border: 1px solid $celestial-blue;
+	box-shadow: 0 0 5px rgba($rich-black, 0.1);
 }
