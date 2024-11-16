@@ -12,6 +12,7 @@ import leetcodeData from '../data/leetcode.json';
 import principlesData from '../data/principles.json';
 import { AppContext } from '../App';
 import { filterData } from '../utils';
+import NoResults from './NoResults';
 
 const Card = () => {
 	const { activeTab, searchQuery, filter } =
@@ -73,6 +74,9 @@ const Card = () => {
 				<div class='card-item-topic-text'>
 					${item.topic}
 				</div>
+				<div class='card-item-topic-category'>
+					${item.category}
+				</div>
 			</div>
 			<div class='card-item-code'>
 				<pre><code class='language-javascript'>
@@ -116,6 +120,14 @@ const Card = () => {
 		);
 		explanationButton.addEventListener('click', () => {
 			explanation.classList.toggle('active');
+			explanation.style.maxHeight =
+				explanation.classList.contains('active')
+					? 'none'
+					: '0';
+			explanation.style.height =
+				explanation.classList.contains('active')
+					? 'auto'
+					: '0';
 		});
 
 		const closeExplanationButton = cardClone.querySelector(
@@ -197,26 +209,32 @@ const Card = () => {
 			{error && (
 				<div className='error-message'>{error}</div>
 			)}
-			{activeTab === 'reviewsheet' && (
-				<div className='card card-A'>
-					<div className='card-grid'>
-						{renderCards(filteredData)}
-					</div>
-				</div>
-			)}
-			{activeTab === 'leetcode' && (
-				<div className='card card-B'>
-					<div className='card-grid'>
-						{renderCards(filteredData)}
-					</div>
-				</div>
-			)}
-			{activeTab === 'principles' && (
-				<div className='card card-C'>
-					<div className='card-grid'>
-						{renderCards(filteredData)}
-					</div>
-				</div>
+			{filteredData.length === 0 ? (
+				<NoResults />
+			) : (
+				<>
+					{activeTab === 'reviewsheet' && (
+						<div className='card card-A'>
+							<div className='card-grid'>
+								{renderCards(filteredData)}
+							</div>
+						</div>
+					)}
+					{activeTab === 'leetcode' && (
+						<div className='card card-B'>
+							<div className='card-grid'>
+								{renderCards(filteredData)}
+							</div>
+						</div>
+					)}
+					{activeTab === 'principles' && (
+						<div className='card card-C'>
+							<div className='card-grid'>
+								{renderCards(filteredData)}
+							</div>
+						</div>
+					)}
+				</>
 			)}
 		</>
 	);

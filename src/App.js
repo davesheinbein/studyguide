@@ -2,25 +2,49 @@ import { useState, createContext, useContext } from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
+import leetcodeData from './data/leetcode.json';
+import principlesData from './data/principles.json';
+import reviewsheetData from './data/reviewsheet.json';
 
 export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-	const [activeTab, setActiveTab] = useState('reviewsheet');
+	const [activeTab, setActiveTab] = useState('leetcode');
 	const [searchQuery, setSearchQuery] = useState('');
 	const [filter, setFilter] = useState('Default');
 	const [error, setError] = useState(null);
+	const [results, setResults] = useState([]);
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
 	};
 
-	const handleSearch = (query, tab) => {
+	const handleSearch = (query) => {
 		setSearchQuery(query);
+		const allData = [
+			...leetcodeData,
+			...principlesData,
+			...reviewsheetData,
+		];
+		const filteredResults = allData.filter(
+			(item) =>
+				item.category
+					?.toLowerCase()
+					.includes(query.toLowerCase()) ||
+				item.topic
+					?.toLowerCase()
+					.includes(query.toLowerCase()) ||
+				item.id.toString().includes(query)
+		);
+		setResults(filteredResults);
 	};
 
 	const handleFilterChange = (selectedFilter) => {
-		if (['Default', 'Alphabetical', 'Category'].includes(selectedFilter)) {
+		if (
+			['Default', 'Alphabetical', 'Category'].includes(
+				selectedFilter
+			)
+		) {
 			setError(null);
 			setFilter(selectedFilter);
 		} else {
@@ -35,6 +59,7 @@ const AppProvider = ({ children }) => {
 				searchQuery,
 				filter,
 				error,
+				results,
 				handleTabClick,
 				handleSearch,
 				handleFilterChange,
@@ -54,7 +79,11 @@ const ErrorBoundary = ({ children }) => {
 	};
 
 	if (hasError) {
-		return <div className='error-message'>Something went wrong.</div>;
+		return (
+			<div className='error-message'>
+				Something went wrong.
+			</div>
+		);
 	}
 
 	return children;
@@ -67,7 +96,9 @@ const App = () => {
 		<ErrorBoundary>
 			<div className='app'>
 				<Header />
-				{error && <div className='error-message'>{error}</div>}
+				{error && (
+					<div className='error-message'>{error}</div>
+				)}
 				<Card />
 			</div>
 		</ErrorBoundary>

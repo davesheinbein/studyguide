@@ -18,7 +18,7 @@ import { AppContext } from '../App';
 
 const Header = () => {
 	const { handleTabClick, handleSearch, handleFilterChange } = useContext(AppContext);
-	const [activeTab, setActiveTab] = useState('reviewsheet');
+	const [activeTab, setActiveTab] = useState('leetcode');
 	const [filter, setFilter] = useState('Default');
 	const [error, setError] = useState(null);
 	const [darkMode, setDarkMode] = useState(false);
@@ -58,18 +58,6 @@ const Header = () => {
 				<div className='tabs'>
 					<div
 						className={`tab ${
-							activeTab === 'reviewsheet' ? 'active' : ''
-						}`}
-						onClick={() => onTabClick('reviewsheet')}
-						role='button'
-						tabIndex={0}
-						onKeyPress={() => onTabClick('reviewsheet')}
-						aria-label='Reviewsheet Tab'
-					>
-						Reviewsheet
-					</div>
-					<div
-						className={`tab ${
 							activeTab === 'leetcode' ? 'active' : ''
 						}`}
 						onClick={() => onTabClick('leetcode')}
@@ -91,6 +79,18 @@ const Header = () => {
 						aria-label='Principles Tab'
 					>
 						Principles
+					</div>
+					<div
+						className={`tab ${
+							activeTab === 'reviewsheet' ? 'active' : ''
+						}`}
+						onClick={() => onTabClick('reviewsheet')}
+						role='button'
+						tabIndex={0}
+						onKeyPress={() => onTabClick('reviewsheet')}
+						aria-label='Reviewsheet Tab'
+					>
+						Reviewsheet
 					</div>
 				</div>
 			</div>

@@ -31,14 +31,18 @@ const SearchBar = ({ onSearchChange }) => {
 		<div className='search-bar'>
 			<input
 				type='text'
-				placeholder='Search...'
+				placeholder='Search by topic, category, or ID...'
 				value={searchQuery}
 				onChange={handleChange}
 				aria-label='Search'
 				aria-invalid={!!error}
 				aria-describedby='search-error'
 			/>
-			{error && <div id='search-error' className='error-message'>{error}</div>}
+			{error && (
+				<div id='search-error' className='error-message'>
+					{error}
+				</div>
+			)}
 		</div>
 	);
 };

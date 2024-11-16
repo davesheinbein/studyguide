@@ -124,12 +124,12 @@ body.dark-mode .header {
 }
 
 body.dark-mode .header .name {
-  color: #bfacc8;
+  color: #ffffff;
 }
 
 body.dark-mode .header .tab {
   background: #783f8e;
-  color: #bfacc8;
+  color: #ffffff;
   box-shadow: 0 0 5px rgba(32, 164, 243, 0.5);
 }
 
@@ -139,7 +139,7 @@ body.dark-mode .header .tab.active {
 }
 
 body.dark-mode .header .links a {
-  color: #bfacc8;
+  color: #ffffff;
 }
 
 body.light-mode .header {
