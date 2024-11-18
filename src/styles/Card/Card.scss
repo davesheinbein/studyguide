@@ -444,6 +444,10 @@ $indigo: #4f1271ff;
 .card-item.expanded {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
 		0 0 10px rgba(0, 204, 255, 0.5);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1.05);
 }
 
 body.dark-mode .card {
