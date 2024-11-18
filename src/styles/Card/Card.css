@@ -364,7 +364,7 @@ body.dark-mode .card {
 }
 
 body.dark-mode .card-item {
-  border: 1px solid #4f1271;
+  outline: 1px solid #4f1271;
 }
 
 body.dark-mode .card-item-topic {

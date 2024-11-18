@@ -164,4 +164,27 @@ body.light-mode .header .tab.active {
 
 body.light-mode .header .links a {
   color: #03191e;
+}
+
+.dark-mode-toggle {
+  background-color: #444444;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark-mode-toggle:hover {
+  background-color: #555555;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+.dark-mode-toggle:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
 }/*# sourceMappingURL=Header.css.map */

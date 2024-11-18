@@ -17,7 +17,11 @@ import FilterDropdown from './FilterDropdown';
 import { AppContext } from '../App';
 
 const Header = () => {
-	const { handleTabClick, handleSearch, handleFilterChange } = useContext(AppContext);
+	const {
+		handleTabClick,
+		handleSearch,
+		handleFilterChange,
+	} = useContext(AppContext);
 	const [activeTab, setActiveTab] = useState('leetcode');
 	const [filter, setFilter] = useState('Default');
 	const [error, setError] = useState(null);
