@@ -112,6 +112,8 @@ const Card = () => {
 		);
 		closeExplanationButton.addEventListener('click', () => {
 			explanation.classList.remove('active');
+			explanation.style.maxHeight = '0';
+			explanation.style.height = '0';
 		});
 
 		Prism.highlightAll();
