@@ -69,30 +69,7 @@ const Card = () => {
 		const cardClone = document.createElement('div');
 		cardClone.className = 'card-item expanded';
 		cardClone.innerHTML = `
-			<button class='close-button'>&times;</button>
-			<div class='card-item-topic'>
-				<div class='card-item-topic-text'>
-					${item.topic}
-				</div>
-				<div class='card-item-topic-category'>
-					${item.category}
-				</div>
-			</div>
-			<div class='card-item-code'>
-				<pre><code class='language-javascript'>
-					${item.code}
-				</code></pre>
-			</div>
-			<div class='card-item-explanation'>
-				<div class='card-item-explanation-title'>
-					Explanation
-				</div>
-				<div class='card-item-explanation-text'>
-					${item.explanation}
-				</div>
-				<button class='close-explanation-button'>&#9660;</button>
-			</div>
-			<button class='explanation-button'>?</button>
+			<button class='close-button'>&times;</button><div class='card-item-topic'> <div class='card-item-topic-text'> ${item.topic} </div> <div class='card-item-topic-category'> ${item.category} </div></div><div class='card-item-code'> <pre><code class='language-javascript'> ${item.code} </code></pre></div><div class='card-item-explanation'> <div class='card-item-explanation-title'> Explanation </div> <div class='card-item-explanation-text'> ${item.explanation} </div> <button class='close-explanation-button'>&#9660;</button></div><button class='explanation-button'>?</button>
 		`;
 
 		const overlay = document.createElement('div');
