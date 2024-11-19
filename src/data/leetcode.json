@@ -394,8 +394,8 @@
 	{
 		"id": 57,
 		"topic": "Linked List Cycle",
-		"code": "// Check if a linked list has a cycle\nfunction hasCycle(head) {\n let slow = head, fast = head;\n while (fast && fast.next) {\n slow = slow.next;\n fast = fast.next.next;\n if (slow === fast) return true;\n }\n return false;\n}\n",
-		"explanation": "This function checks if a linked list has a cycle using the two-pointer technique.",
+		"code": "// Check if a linked list has a cycle\nvar hasCycle = function(head) {\n // Edge case: A list with no nodes or only one node cannot have a cycle.\n if (!head || !head.next) return false;\n \n // Initialize two pointers: \n // 'slow' moves one step at a time, while 'fast' moves two steps at a time.\n let slow = head;\n let fast = head;\n \n // Traverse the list using the two pointers.\n while (fast && fast.next) {\n slow = slow.next; // Move 'slow' one step forward.\n fast = fast.next.next; // Move 'fast' two steps forward.\n \n // If 'slow' and 'fast' meet, a cycle exists in the list.\n if (slow === fast) {\n return true;\n }\n }\n \n // If the loop ends, it means 'fast' reached the end of the list (no cycle).\n return false;\n};\n",
+		"explanation": "Explanation:\n\n1. Edge Case Handling:\n   - If the list is empty (`head` is null) or has only one node (`head.next` is null), \n     it cannot contain a cycle, so we return false.\n\n2. Pointer Initialization:\n   - 'slow' pointer moves one step at a time.\n   - 'fast' pointer moves two steps at a time.\n\n3. Cycle Detection:\n   - As 'fast' moves faster, if a cycle exists, 'slow' and 'fast' will eventually \n     meet within the cycle.\n   - If 'fast' or 'fast.next' becomes null, it means the list has no cycle.\n\n4. Return Value:\n   - If the two pointers meet, return true (a cycle is detected).\n   - If the loop terminates without the pointers meeting, return false (no cycle).\n\nExample Use Cases:\n- Input: [3, 2, 0, -4] with pos = 1 (tail connects to the node at index 1)\n  Output: true (cycle detected).\n- Input: [1, 2] with pos = 0 (tail connects to the head)\n  Output: true (cycle detected).\n- Input: [1] with pos = -1 (no cycle)\n  Output: false (no cycle).",
 		"category": "Linked List"
 	},
 	{
@@ -569,8 +569,8 @@
 	{
 		"id": 82,
 		"topic": "Binary Tree Right Side View",
-		"code": "// Find the right side view of a binary tree\nfunction rightSideView(root) {\n let result = [];\n function dfs(node, level) {\n if (!node) return;\n if (result.length === level) result.push(node.val);\n dfs(node.right, level + 1);\n dfs(node.left, level + 1);\n }\n dfs(root, 0);\n return result;\n}\n",
-		"explanation": "This function finds the right side view of a binary tree.",
+		"code": "// Find the right side view of a binary tree\nvar rightSideView = function(root) {\n // Return empty array if the tree is empty\n if (!root) return [];\n \n // Initialize queue for BFS and result array for the right-side view\n let queue = [root];\n let result = [];\n\n // Perform level-order traversal using BFS\n while (queue.length > 0) {\n let levelSize = queue.length; // Number of nodes at the current level\n \n for (let i = 0; i < levelSize; i++) {\n let currentNode = queue.shift(); // Dequeue the front node\n \n // If it's the last node in this level, add its value to the result\n if (i === levelSize - 1) {\n result.push(currentNode.val);\n }\n \n // Enqueue left and right children (if they exist)\n if (currentNode.left) queue.push(currentNode.left);\n if (currentNode.right) queue.push(currentNode.right);\n }\n }\n\n return result;\n};\n",
+		"explanation": "Explanation:\n 1. Edge Case:\n    - If the root is null, return an empty array [].\n \n 2. BFS Traversal:\n    - Use a queue to perform a level-order traversal.\n    - For each level, iterate through all nodes.\n    - Keep track of the last node's value at each level and add it to the result array.\n \n 3. Enqueue Children:\n    - After processing a node, enqueue its left and right children (if they exist)\n      for processing in the next level.",
 		"category": "Binary Tree BFS"
 	},
 	{
