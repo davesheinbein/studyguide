@@ -6,7 +6,7 @@
   width: fit-content;
 }
 .filter-dropdown select {
-  padding: 5px 10px;
+  padding: 5px 30px 5px 10px;
   border-radius: 5px;
   border: 1px solid #03191e;
   font-size: 0.75rem;
@@ -17,7 +17,6 @@
      -moz-appearance: none;
           appearance: none;
   cursor: pointer;
-  padding-right: 30px;
 }
 .filter-dropdown select:hover {
   background: #20a4f3;
@@ -138,4 +137,17 @@ body.light-mode .filter-dropdown .filter-options {
   background: #c1cfda;
   border: 1px solid #20a4f3;
   box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
+}
+
+@media (max-width: 768px) {
+  .filter-dropdown select {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+}
+@media (max-width: 480px) {
+  .filter-dropdown select {
+    font-size: 0.6rem;
+    padding: 2px 4px;
+  }
 }/*# sourceMappingURL=FilterDropdown.css.map */

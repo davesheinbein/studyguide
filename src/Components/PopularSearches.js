@@ -37,24 +37,37 @@ const PopularSearches = () => {
 	const handleTopicClick = (topic) => {
 		handleSearch(topic);
 		handleTabClick(activeTab);
+		navigate('/', { state: { openCard: topic } });
+	};
+
+	const handleGoBack = () => {
 		navigate('/');
 	};
 
 	return (
 		<div className='popular-searches'>
 			<h2>Popular Searches</h2>
-			<input
-				type='text'
-				placeholder='Search popular topics...'
-				value={searchQuery}
-				onChange={handleSearchChange}
-				className='search-input'
-			/>
-			<ul>
+			<div className='search-input-container'>
+				<input
+					type='text'
+					placeholder='Search popular topics...'
+					value={searchQuery}
+					onChange={handleSearchChange}
+					className='search-input'
+				/>
+			</div>
+			<button
+				onClick={handleGoBack}
+				className='go-back-button'
+			>
+				Go Back
+			</button>
+			<ul className='popular-searches__list'>
 				{filteredTopics.map((topic, index) => (
 					<li
 						key={index}
 						onClick={() => handleTopicClick(topic)}
+						className='popular-searches__list-item'
 					>
 						{topic}
 					</li>

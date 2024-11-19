@@ -1,10 +1,13 @@
 .popular-searches {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 20px 0px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100vw;
+  margin: 0;
   text-align: center;
 }
 
@@ -16,10 +19,11 @@
 
 .popular-searches ul {
   list-style: none;
-  padding: 0;
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  font-size: 12px;
 }
 
 .popular-searches li {
@@ -34,10 +38,89 @@
   transform: translateY(-5px);
 }
 
-.popular-searches .search-input {
+.popular-searches__list {
+  padding: 20px;
+}
+
+.popular-searches__list-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.popular-searches__list-item:hover {
+  transform: translateY(-5px);
+}
+
+.search-input-container {
+  width: 700px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.search-input-container .search-input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .popular-searches h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  .popular-searches ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    font-size: 10px;
+  }
+  .popular-searches li {
+    padding: 10px;
+  }
+  .popular-searches .search-input {
+    max-width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .search-input-container {
+    max-width: 500px;
+    width: 100%;
+  }
+  .search-input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .popular-searches__list-item {
+    padding: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .popular-searches ul {
+    grid-template-columns: 1fr;
+  }
+  .popular-searches h2 {
+    font-size: 1.2rem;
+  }
+  .popular-searches li {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .popular-searches .search-input {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+  .search-input-container {
+    max-width: 300px;
+    width: 100%;
+  }
+  .search-input {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+  .popular-searches__list-item {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
 }/*# sourceMappingURL=PopularSearches.css.map */

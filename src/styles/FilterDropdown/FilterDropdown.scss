@@ -7,7 +7,7 @@
 	width: fit-content;
 
 	select {
-		padding: 5px 10px;
+		padding: 5px 30px 5px 10px;
 		border-radius: 5px;
 		border: 1px solid $rich-black;
 		font-size: 0.75rem;
@@ -20,7 +20,6 @@
 		);
 		appearance: none;
 		cursor: pointer;
-		padding-right: 30px;
 
 		&:hover {
 			background: $celestial-blue;
@@ -147,4 +146,18 @@ body.light-mode .filter-dropdown .filter-options {
 	background: $columbia-blue;
 	border: 1px solid $celestial-blue;
 	box-shadow: 0 0 5px rgba($rich-black, 0.1);
+}
+
+@media (max-width: 768px) {
+	.filter-dropdown select {
+		font-size: 0.7rem;
+		padding: 3px 6px;
+	}
+}
+
+@media (max-width: 480px) {
+	.filter-dropdown select {
+		font-size: 0.6rem;
+		padding: 2px 4px;
+	}
 }

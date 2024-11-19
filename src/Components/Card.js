@@ -13,6 +13,7 @@ import principlesData from '../data/principles.json';
 import { AppContext } from '../App';
 import { filterData } from '../utils';
 import NoResults from './NoResults';
+import { useLocation } from 'react-router-dom';
 
 const Card = () => {
 	const { activeTab, searchQuery, filter } =
@@ -23,6 +24,7 @@ const Card = () => {
 	const [filteredData, setFilteredData] = useState([]);
 	const [error, setError] = useState(null);
 	const [expandedCard, setExpandedCard] = useState(null);
+	const location = useLocation();
 
 	useEffect(() => {
 		try {
@@ -66,6 +68,18 @@ const Card = () => {
 		Prism.highlightAll();
 	}, [filteredData]);
 
+	useEffect(() => {
+		if (location.state?.openCard) {
+			const topic = location.state.openCard;
+			const card = filteredData.find(
+				(item) => item.topic === topic
+			);
+			if (card) {
+				createCardClone(card);
+			}
+		}
+	}, [location.state, filteredData]);
+
 	const createCardClone = (item) => {
 		// Close the currently expanded card if there is one
 		if (expandedCard) {
@@ -104,6 +118,9 @@ const Card = () => {
 		const explanation = cardClone.querySelector(
 			'.card-item-explanation'
 		);
+		explanation.classList.remove('active');
+		explanation.style.maxHeight = '0';
+		explanation.style.height = '0';
 		explanationButton.addEventListener('click', () => {
 			explanation.classList.toggle('active');
 			explanation.style.maxHeight =
