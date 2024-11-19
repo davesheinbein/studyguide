@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
@@ -14,6 +14,16 @@ const AppProvider = ({ children }) => {
 	const [filter, setFilter] = useState('Default');
 	const [error, setError] = useState(null);
 	const [results, setResults] = useState([]);
+	const [topics, setTopics] = useState([]);
+
+	useEffect(() => {
+		const allTopics = [
+			...leetcodeData.map((item) => item.topic),
+			...principlesData.map((item) => item.topic),
+			...reviewsheetData.map((item) => item.topic),
+		];
+		setTopics(allTopics);
+	}, []);
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
@@ -60,6 +70,7 @@ const AppProvider = ({ children }) => {
 				filter,
 				error,
 				results,
+				topics,
 				handleTabClick,
 				handleSearch,
 				handleFilterChange,

@@ -22,6 +22,7 @@ const Card = () => {
 	const [principles, setPrinciples] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [error, setError] = useState(null);
+	const [expandedCard, setExpandedCard] = useState(null);
 
 	useEffect(() => {
 		try {
@@ -66,6 +67,12 @@ const Card = () => {
 	}, [filteredData]);
 
 	const createCardClone = (item) => {
+		// Close the currently expanded card if there is one
+		if (expandedCard) {
+			expandedCard.cardClone.remove();
+			expandedCard.overlay.remove();
+		}
+
 		const cardClone = document.createElement('div');
 		cardClone.className = 'card-item expanded';
 		cardClone.innerHTML = `
@@ -77,6 +84,7 @@ const Card = () => {
 		overlay.addEventListener('click', () => {
 			cardClone.remove();
 			overlay.remove();
+			setExpandedCard(null);
 		});
 
 		document.body.appendChild(overlay);
@@ -87,6 +95,7 @@ const Card = () => {
 		closeButton.addEventListener('click', () => {
 			cardClone.remove();
 			overlay.remove();
+			setExpandedCard(null);
 		});
 
 		const explanationButton = cardClone.querySelector(
@@ -117,6 +126,9 @@ const Card = () => {
 		});
 
 		Prism.highlightAll();
+
+		// Set the new expanded card
+		setExpandedCard({ cardClone, overlay });
 	};
 
 	const handleCardClick = (index, item) => {
