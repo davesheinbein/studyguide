@@ -1,10 +1,21 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import {
+	useState,
+	createContext,
+	useContext,
+	useEffect,
+} from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
+import PopularSearches from './Components/PopularSearches';
 import leetcodeData from './data/leetcode.json';
 import principlesData from './data/principles.json';
 import reviewsheetData from './data/reviewsheet.json';
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+} from 'react-router-dom';
 
 export const AppContext = createContext();
 
@@ -110,7 +121,13 @@ const App = () => {
 				{error && (
 					<div className='error-message'>{error}</div>
 				)}
-				<Card />
+				<Routes>
+					<Route
+						path='/popular-searches'
+						element={<PopularSearches />}
+					/>
+					<Route path='/' element={<Card />} />
+				</Routes>
 			</div>
 		</ErrorBoundary>
 	);
@@ -118,7 +135,9 @@ const App = () => {
 
 const WrappedApp = () => (
 	<AppProvider>
-		<App />
+		<Router>
+			<App />
+		</Router>
 	</AppProvider>
 );
 

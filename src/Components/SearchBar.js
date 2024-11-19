@@ -25,7 +25,7 @@ const SearchBar = ({ onSearchChange }) => {
 					)
 				);
 			}
-		}, 300);
+		}, [searchQuery]);
 
 		return () => {
 			clearTimeout(handler);
@@ -56,6 +56,12 @@ const SearchBar = ({ onSearchChange }) => {
 		setIsFocused(false);
 	};
 
+	const handleClear = () => {
+		setSearchQuery('');
+		onSearchChange('');
+		setFilteredTopics([]);
+	};
+
 	return (
 		<div className='search-bar'>
 			<input
@@ -69,6 +75,15 @@ const SearchBar = ({ onSearchChange }) => {
 				aria-invalid={!!error}
 				aria-describedby='search-error'
 			/>
+			{searchQuery && (
+				<button
+					className='clear-button'
+					onClick={handleClear}
+					aria-label='Clear search'
+				>
+					&times;
+				</button>
+			)}
 			{error && (
 				<div id='search-error' className='error-message'>
 					{error}

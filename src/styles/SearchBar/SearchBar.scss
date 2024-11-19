@@ -3,6 +3,7 @@
 
 .search-bar {
 	width: 100%;
+	position: relative;
 }
 
 .search-bar input {
@@ -11,10 +12,12 @@
 	border-radius: 5px;
 	border: none;
 	font-size: 1rem;
+
 	@include transition(
 		box-shadow 0.3s ease,
 		transform 0.3s ease
 	);
+
 	outline: none;
 
 	&:focus {
@@ -63,4 +66,28 @@ body.light-mode .search-bar input:focus {
 
 .autocomplete-dropdown li:hover {
 	background-color: #f0f0f0;
+}
+
+.clear-button {
+	position: absolute;
+	right: -5px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1rem;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	color: $white;
+	background: $french-gray;
+	border: 0px solid transparent;
+	border-radius: 50%;
+	z-index: 50;
+
+	&:hover {
+		background: darken($french-gray, 10%);
+	}
+
+	&:active {
+		background: darken($french-gray, 20%);
+	}
 }

@@ -1,5 +1,6 @@
 .search-bar {
   width: 100%;
+  position: relative;
 }
 
 .search-bar input {
@@ -56,4 +57,26 @@ body.light-mode .search-bar input:focus {
 
 .autocomplete-dropdown li:hover {
   background-color: #f0f0f0;
+}
+
+.clear-button {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+  background: #c8c6d7;
+  border: 0px solid transparent;
+  border-radius: 50%;
+  z-index: 50;
+}
+.clear-button:hover {
+  background: #aba8c2;
+}
+.clear-button:active {
+  background: #8e8aad;
 }/*# sourceMappingURL=SearchBar.css.map */
