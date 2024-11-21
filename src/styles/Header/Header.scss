@@ -54,8 +54,8 @@
 		padding: 2px 5px;
 		font-size: 1rem;
 		font-weight: bold;
-		color: #ffffff;
-		background: #333;
+		color: $white;
+		background: $dark-gray;
 		border-radius: 3px;
 		cursor: pointer;
 
@@ -96,7 +96,7 @@
 
 		a {
 			text-decoration: none;
-			color: #ffffff;
+			color: $white;
 			font-size: 1rem;
 			transition: transform 0.3s ease, color 0.3s ease;
 
@@ -153,7 +153,7 @@ body.dark-mode .header {
 		$english-violet,
 		$french-gray
 	);
-	@include box-shadow(0 0 10px rgba($celestial-blue, 0.5));
+	@include box-shadow(0 0 10px $dark-shadow);
 }
 
 body.dark-mode .header .name {
@@ -181,7 +181,7 @@ body.light-mode .header {
 		$columbia-blue,
 		$celestial-blue
 	);
-	box-shadow: 0 0 5px rgba($rich-black, 0.1);
+	box-shadow: 0 0 5px $light-shadow;
 }
 
 body.light-mode .header .name {

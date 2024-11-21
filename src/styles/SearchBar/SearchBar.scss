@@ -62,10 +62,10 @@ body.light-mode .search-bar input:focus {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	border: 1px solid #ccc;
+	border: 1px solid $light-border;
 	max-height: 150px;
 	overflow-y: auto;
-	background-color: #fff;
+	background-color: $white;
 	position: absolute;
 	width: 100%;
 	max-width: 300px;
@@ -75,11 +75,26 @@ body.light-mode .search-bar input:focus {
 .autocomplete-dropdown li {
 	padding: 8px;
 	cursor: pointer;
-	outline: 0.5px solid #000000;
+	outline: 0.5px solid $black;
 }
 
 .autocomplete-dropdown li:hover {
-	background-color: #f0f0f0;
+	background-color: $light-gray;
+}
+
+body.dark-mode .autocomplete-dropdown {
+	background-color: $rich-black;
+	border-color: $english-violet;
+}
+
+body.dark-mode .autocomplete-dropdown li {
+	background-color: $rich-black;
+	color: $white;
+	outline-color: $english-violet;
+}
+
+body.dark-mode .autocomplete-dropdown li:hover {
+	background-color: $highlight-color;
 }
 
 .clear-button {
@@ -91,7 +106,7 @@ body.light-mode .search-bar input:focus {
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
-	color: $white;
+	color: $button-text;
 	background: $french-gray;
 	border: 0px solid transparent;
 	border-radius: 50%;

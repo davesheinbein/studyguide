@@ -52,8 +52,8 @@ pre[class*=language-] {
 }
 
 body.dark-mode pre[class*=language-] {
-  background: #d3d3d3;
-  color: #000000;
+  background: #fff3b0;
+  color: #fff;
 }
 
 body.light-mode pre[class*=language-] {

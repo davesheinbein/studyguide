@@ -1,164 +1,133 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins.scss';
+
 .popular-searches {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #f9f9f9;
-	padding: 20px 0px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: $light-background;
+	padding: 20px 0;
+	@include box-shadow(0 4px 8px $light-shadow);
 	width: 100vw;
 	margin: 0;
 	text-align: center;
-}
 
-.popular-searches h2 {
-	font-size: 2rem;
-	color: #333;
-	margin-bottom: 20px;
-}
+	h2 {
+		font-size: 2rem;
+		color: $light-text;
+		margin-bottom: 20px;
+	}
 
-.popular-searches ul {
-	list-style: none;
-	padding: 20px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 10px;
-	font-size: 12px;
-}
+	ul {
+		list-style: none;
+		padding: 20px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		font-size: 12px;
 
-.popular-searches li {
-	background-color: #fff;
-	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: transform 0.2s;
-}
+		li {
+			background-color: $white;
+			padding: 15px;
+			border-radius: 5px;
+			@include box-shadow(0 2px 4px $light-shadow);
+			@include transition(transform 0.2s);
 
-.popular-searches li:hover {
-	transform: translateY(-5px);
-}
+			&:hover {
+				transform: translateY(-5px);
+			}
+		}
+	}
 
-.popular-searches__list {
-	padding: 20px;
-}
-
-.popular-searches__list-item {
-	background-color: #fff;
-	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: transform 0.2s;
-}
-
-.popular-searches__list-item:hover {
-	transform: translateY(-5px);
-}
-
-.search-input-container {
-	width: 700px;
-	border-radius: 4px;
-	margin-bottom: 20px;
-
-	.search-input {
-		width: 100%;
-		padding: 10px;
-		border: 1px solid #ccc;
+	.search-input-container {
+		width: 700px;
 		border-radius: 4px;
-	}
-}
+		margin-bottom: 20px;
 
-.go-back-button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	padding: 10px 20px;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: background-color 0.3s;
-
-	&:hover {
-		background-color: #0056b3;
-	}
-}
-
-body.dark-mode .go-back-button {
-	background-color: #444;
-	color: #fff;
-
-	&:hover {
-		background-color: #222;
-	}
-}
-
-@media (max-width: 768px) {
-	.popular-searches h2 {
-		font-size: 1.5rem;
-		margin-bottom: 15px;
+		.search-input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid $light-border;
+			border-radius: 4px;
+		}
 	}
 
-	.popular-searches ul {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 5px;
-		font-size: 10px;
+	.go-back-button {
+		background-color: $button-bg;
+		color: $button-text;
+		border: none;
+		border-radius: 5px;
+		padding: 10px 20px;
+		font-size: 1rem;
+		cursor: pointer;
+		@include transition(background-color 0.3s);
+
+		&:hover {
+			background-color: $button-hover-bg;
+		}
 	}
 
-	.popular-searches li {
-		padding: 10px;
+	body.dark-mode & {
+		.go-back-button {
+			background-color: $dark-gray;
+			color: $button-text;
+
+			&:hover {
+				background-color: #222;
+			}
+		}
 	}
 
-	.popular-searches .search-input {
-		max-width: 100%;
-		padding: 8px;
-		font-size: 0.9rem;
+	@media (max-width: 768px) {
+		h2 {
+			font-size: 1.5rem;
+			margin-bottom: 15px;
+		}
+
+		ul {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 5px;
+			font-size: 10px;
+
+			li {
+				padding: 10px;
+			}
+		}
+
+		.search-input-container {
+			max-width: 500px;
+			width: 100%;
+
+			.search-input {
+				padding: 8px;
+				font-size: 0.9rem;
+			}
+		}
 	}
 
-	.search-input-container {
-		max-width: 500px;
-		width: 100%;
-	}
+	@media (max-width: 480px) {
+		ul {
+			grid-template-columns: 1fr;
+		}
 
-	.search-input {
-		padding: 8px;
-		font-size: 0.9rem;
-	}
+		h2 {
+			font-size: 1.2rem;
+		}
 
-	.popular-searches__list-item {
-		padding: 10px;
-	}
-}
+		ul li {
+			padding: 8px;
+			font-size: 0.9rem;
+		}
 
-@media (max-width: 480px) {
-	.popular-searches ul {
-		grid-template-columns: 1fr;
-	}
+		.search-input-container {
+			max-width: 300px;
+			width: 100%;
 
-	.popular-searches h2 {
-		font-size: 1.2rem;
-	}
-
-	.popular-searches li {
-		padding: 8px;
-		font-size: 0.9rem;
-	}
-
-	.popular-searches .search-input {
-		font-size: 0.8rem;
-		padding: 6px;
-	}
-
-	.search-input-container {
-		max-width: 300px;
-		width: 100%;
-	}
-
-	.search-input {
-		font-size: 0.8rem;
-		padding: 6px;
-	}
-
-	.popular-searches__list-item {
-		padding: 8px;
-		font-size: 0.9rem;
+			.search-input {
+				font-size: 0.8rem;
+				padding: 6px;
+			}
+		}
 	}
 }

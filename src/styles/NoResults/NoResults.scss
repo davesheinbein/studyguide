@@ -4,14 +4,14 @@
 .no-results {
 	text-align: center;
 	font-size: 1.2rem;
-	color: #333;
+	color: $light-text;
 	margin-top: 50px;
 	padding: 20px;
 	animation: fadeIn 1s ease-in-out;
 
 	.icon {
 		font-size: 5rem;
-		color: #ff5733;
+		color: $highlight-color;
 		animation: pulse 2s infinite;
 	}
 
@@ -19,12 +19,12 @@
 		font-size: 2.5rem;
 		font-weight: bold;
 		margin: 20px 0;
-		color: #222;
+		color: $dark-text;
 	}
 
 	.message {
 		font-size: 1.2rem;
-		color: #555;
+		color: $medium-gray;
 		margin-bottom: 30px;
 	}
 
@@ -36,8 +36,8 @@
 		.button {
 			padding: 10px 20px;
 			font-size: 1rem;
-			color: #fff;
-			background-color: #007bff;
+			color: $button-text;
+			background-color: $button-bg;
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;

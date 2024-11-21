@@ -3,20 +3,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
-  padding: 20px 0px;
+  background-color: #f5f5f5;
+  padding: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100vw;
   margin: 0;
   text-align: center;
 }
-
 .popular-searches h2 {
   font-size: 2rem;
   color: #333;
   margin-bottom: 20px;
 }
-
 .popular-searches ul {
   list-style: none;
   padding: 20px;
@@ -25,48 +23,28 @@
   gap: 10px;
   font-size: 12px;
 }
-
-.popular-searches li {
-  background-color: #fff;
+.popular-searches ul li {
+  background-color: #ffffff;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
-
-.popular-searches li:hover {
+.popular-searches ul li:hover {
   transform: translateY(-5px);
 }
-
-.popular-searches__list {
-  padding: 20px;
-}
-
-.popular-searches__list-item {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.popular-searches__list-item:hover {
-  transform: translateY(-5px);
-}
-
-.search-input-container {
+.popular-searches .search-input-container {
   width: 700px;
   border-radius: 4px;
   margin-bottom: 20px;
 }
-.search-input-container .search-input {
+.popular-searches .search-input-container .search-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-.go-back-button {
+.popular-searches .go-back-button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -76,18 +54,16 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.go-back-button:hover {
+.popular-searches .go-back-button:hover {
   background-color: #0056b3;
 }
-
-body.dark-mode .go-back-button {
+body.dark-mode .popular-searches .go-back-button {
   background-color: #444;
   color: #fff;
 }
-body.dark-mode .go-back-button:hover {
+body.dark-mode .popular-searches .go-back-button:hover {
   background-color: #222;
 }
-
 @media (max-width: 768px) {
   .popular-searches h2 {
     font-size: 1.5rem;
@@ -98,24 +74,16 @@ body.dark-mode .go-back-button:hover {
     gap: 5px;
     font-size: 10px;
   }
-  .popular-searches li {
+  .popular-searches ul li {
     padding: 10px;
   }
-  .popular-searches .search-input {
-    max-width: 100%;
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-  .search-input-container {
+  .popular-searches .search-input-container {
     max-width: 500px;
     width: 100%;
   }
-  .search-input {
+  .popular-searches .search-input-container .search-input {
     padding: 8px;
     font-size: 0.9rem;
-  }
-  .popular-searches__list-item {
-    padding: 10px;
   }
 }
 @media (max-width: 480px) {
@@ -125,24 +93,16 @@ body.dark-mode .go-back-button:hover {
   .popular-searches h2 {
     font-size: 1.2rem;
   }
-  .popular-searches li {
+  .popular-searches ul li {
     padding: 8px;
     font-size: 0.9rem;
   }
-  .popular-searches .search-input {
-    font-size: 0.8rem;
-    padding: 6px;
-  }
-  .search-input-container {
+  .popular-searches .search-input-container {
     max-width: 300px;
     width: 100%;
   }
-  .search-input {
+  .popular-searches .search-input-container .search-input {
     font-size: 0.8rem;
     padding: 6px;
-  }
-  .popular-searches__list-item {
-    padding: 8px;
-    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=PopularSearches.css.map */

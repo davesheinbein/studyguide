@@ -59,6 +59,10 @@
 	}
 }
 
+.filter-dropdown.closed .filter-options {
+	display: none;
+}
+
 .filter-dropdown select:focus {
 	outline: none;
 	border-color: $celestial-blue;
@@ -98,6 +102,12 @@
 
 .filter-options div {
 	padding: 5px 10px;
+	color: $black;
+	transition: background 0.3s ease;
+}
+
+body.dark-mode .filter-options div {
+	padding: 5px 10px;
 	color: $white;
 	transition: background 0.3s ease;
 }
@@ -115,7 +125,6 @@ body.dark-mode .filter-dropdown select {
 
 body.dark-mode .filter-dropdown .filter-selected {
 	background: $english-violet;
-	// color: $thistle;
 	color: $white;
 	border: 1px solid $indigo;
 	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
@@ -125,7 +134,10 @@ body.dark-mode .filter-dropdown .filter-options {
 	color: $white;
 	background: $english-violet;
 	border: 1px solid $indigo;
-	box-shadow: 0 0 10px rgba($celestial-blue, 0.5);
+}
+
+body.dark-mode .filter-dropdown .filter-options div:hover {
+	background: $highlight-color;
 }
 
 body.light-mode .filter-dropdown select {

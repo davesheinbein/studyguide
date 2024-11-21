@@ -1,7 +1,7 @@
 .card {
   position: relative;
   background-color: #03191e;
-  box-shadow: 0 4px 8px rgba(3, 25, 30, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -27,7 +27,7 @@
 }
 .card-item {
   position: relative;
-  outline: 1px solid #4a4a4a;
+  outline: 1px solid #444;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 16vh;
@@ -53,7 +53,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(45deg, #004d40, #00796b);
+  background: linear-gradient(45deg, #444, #555);
   color: #ffffff;
 }
 .card-item-topic-text {
@@ -99,7 +99,7 @@
   height: -moz-fit-content;
   height: fit-content;
   max-height: 40%;
-  background: #e0e0e0;
+  background: #f0f0f0;
   z-index: 100;
 }
 .card-item .card-item-explanation-title {
@@ -110,12 +110,12 @@
   text-align: center;
   width: 100%;
   text-align: left;
-  background: linear-gradient(45deg, #004d40, #00796b);
+  background: linear-gradient(45deg, #444, #555);
   color: #ffffff;
 }
 .card-item .card-item-explanation-text {
   padding: 3px;
-  color: #444444;
+  color: #555;
   font-size: 0.75rem;
   font-weight: 900;
   width: 100%;
@@ -139,7 +139,7 @@
   width: 90%;
   height: 90%;
   z-index: 10;
-  background-color: #444444;
+  background-color: #444;
   border-radius: 8px;
   left: 50%;
   transform: translate(-50%, -50%) scale(1.05);
@@ -247,7 +247,7 @@
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  color: white;
+  color: #ffffff;
   font-size: 12px;
   cursor: pointer;
   display: flex;
@@ -270,12 +270,12 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background: #007acc;
+  background: #007bff;
   border: none;
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   display: flex;
@@ -294,19 +294,19 @@
   position: absolute;
   top: 2px;
   right: 5px;
-  background: #ff5f5f;
+  background: #ff5733;
   border: none;
   border-radius: 50%;
   width: 15px;
   height: 15px;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
   transition: transform 0.2s ease-in-out;
+  z-index: 5;
 }
 .card-item .close-button:hover {
   transform: scale(1.2);
@@ -399,12 +399,12 @@ body.dark-mode .card-item-explanation {
 
 body.light-mode .card {
   background-color: #c1cfda;
-  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .card-item {
   border: 1px solid #20a4f3;
-  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .card-item-topic {

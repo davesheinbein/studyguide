@@ -101,7 +101,10 @@ const Card = () => {
 		const handleEscapeKey = (event) => {
 			if (event.key === 'Escape') {
 				if (expandedCard) {
-					const explanation = expandedCard.cardClone.querySelector('.card-item-explanation');
+					const explanation =
+						expandedCard.cardClone.querySelector(
+							'.card-item-explanation'
+						);
 					if (explanation.classList.contains('active')) {
 						explanation.classList.remove('active');
 						explanation.style.maxHeight = '0';
@@ -117,7 +120,10 @@ const Card = () => {
 
 		document.addEventListener('keydown', handleEscapeKey);
 		return () => {
-			document.removeEventListener('keydown', handleEscapeKey);
+			document.removeEventListener(
+				'keydown',
+				handleEscapeKey
+			);
 		};
 	}, [expandedCard]);
 

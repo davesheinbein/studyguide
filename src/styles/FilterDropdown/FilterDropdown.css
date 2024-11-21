@@ -51,6 +51,10 @@ select:focus + .filter-dropdown::after {
   padding: 5px;
 }
 
+.filter-dropdown.closed .filter-options {
+  display: none;
+}
+
 .filter-dropdown select:focus {
   outline: none;
   border-color: #20a4f3;
@@ -90,6 +94,12 @@ select:focus + .filter-dropdown::after {
 
 .filter-options div {
   padding: 5px 10px;
+  color: #000000;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode .filter-options div {
+  padding: 5px 10px;
   color: #ffffff;
   transition: background 0.3s ease;
 }
@@ -116,7 +126,10 @@ body.dark-mode .filter-dropdown .filter-options {
   color: #ffffff;
   background: #4a4063;
   border: 1px solid #4f1271;
-  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
+}
+
+body.dark-mode .filter-dropdown .filter-options div:hover {
+  background: #ff5733;
 }
 
 body.light-mode .filter-dropdown select {

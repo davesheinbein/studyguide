@@ -15,45 +15,40 @@
 }
 
 body.dark-mode {
-	background-color: #121212;
+	background-color: $dark-background;
 	color: $white;
 }
 
 body.dark-mode .header {
-	@include linear-gradient-bg(45deg, #1a1a1a, #333333);
+	@include linear-gradient-bg(
+		45deg,
+		$dark-gray,
+		$medium-gray
+	);
 }
 
 body.dark-mode .card {
-	background-color: #1e1e1e;
+	background-color: $dark-gray;
 }
 
 body.dark-mode .card-item {
-	border: 1px solid #555555;
+	border: 1px solid $dark-border;
 }
 
-body.dark-mode .filter-dropdown select {
-	background: #1e1e1e;
-	color: $white;
-	border: 1px solid #555555;
-}
-
-body.dark-mode .filter-dropdown .filter-selected {
-	background: #1e1e1e;
-	color: $white;
-	border: 1px solid #555555;
-}
-
+body.dark-mode .filter-dropdown select,
+body.dark-mode .filter-dropdown .filter-selected,
 body.dark-mode .filter-dropdown .filter-options {
-	background: #1e1e1e;
-	border: 1px solid #555555;
+	background: $dark-gray;
+	color: $white;
+	border: 1px solid $dark-border;
 }
 
 body.dark-mode .App {
-	background-color: #121212;
+	background-color: $dark-background;
 	color: $white;
 }
 
 body.light-mode .App {
-	background-color: #f5f5f5;
-	color: #333;
+	background-color: $light-background;
+	color: $light-text;
 }

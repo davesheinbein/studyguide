@@ -39,7 +39,7 @@
   font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
-  background: #333;
+  background: #444;
   border-radius: 3px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -120,7 +120,7 @@
 
 body.dark-mode .header {
   background: linear-gradient(45deg, #4a4063, #c8c6d7);
-  box-shadow: 0 0 10px rgba(32, 164, 243, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode .header .name {
@@ -144,7 +144,7 @@ body.dark-mode .header .links a {
 
 body.light-mode .header {
   background: linear-gradient(45deg, #c1cfda, #20a4f3);
-  box-shadow: 0 0 5px rgba(3, 25, 30, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .header .name {
