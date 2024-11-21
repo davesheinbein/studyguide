@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import '../styles/NoResults/NoResults.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { AppContext } from '../App';
+import { AppContext } from '../Context/AppContext';
 
 const NoResults = () => {
-	const { resetResults, explorePopularSearches } = useContext(AppContext);
+	const { resetResults, explorePopularSearches } =
+		useContext(AppContext);
 
 	return (
 		<div className='no-results'>

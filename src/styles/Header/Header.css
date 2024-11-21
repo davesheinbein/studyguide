@@ -170,7 +170,7 @@ body.light-mode .header .links a {
   background-color: #444444;
   color: #ffffff;
   border: none;
-  border-radius: 100px;
+  border-radius: 50%;
   width: 60px;
   height: 30px;
   display: flex;

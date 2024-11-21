@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../Context/AppContext';
 import '../styles/PopularSearches/PopularSearches.css';
 import { useNavigate } from 'react-router-dom';
 

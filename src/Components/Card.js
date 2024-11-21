@@ -6,7 +6,7 @@ import '../styles/Card/Card.css';
 import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
 import principlesData from '../data/principles.json';
-import { AppContext } from '../App';
+import { AppContext } from '../Context/AppContext';
 import { filterData } from '../utils';
 import NoResults from './NoResults';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -52,21 +52,39 @@ const Card = () => {
 				throw new Error('Invalid tab selected.');
 			}
 
-			const filtered = filterData(data, searchQuery, filter);
+			const filtered = filterData(
+				data,
+				searchQuery,
+				filter
+			);
 			setFilteredData(filtered);
 		} catch (err) {
 			setError('Failed to filter data.');
 		}
-	}, [searchQuery, activeTab, reviewsheet, leetcode, principles, filter]);
+	}, [
+		searchQuery,
+		activeTab,
+		reviewsheet,
+		leetcode,
+		principles,
+		filter,
+	]);
 
 	useEffect(() => {
 		Prism.highlightAll();
 	}, [filteredData]);
 
 	useEffect(() => {
-		if (location.state?.openCard && location.state?.expandCard && (!expandedCard || expandedCard.topic !== location.state.openCard)) {
+		if (
+			location.state?.openCard &&
+			location.state?.expandCard &&
+			(!expandedCard ||
+				expandedCard.topic !== location.state.openCard)
+		) {
 			const topic = location.state.openCard;
-			const card = filteredData.find((item) => item.topic === topic);
+			const card = filteredData.find(
+				(item) => item.topic === topic
+			);
 			if (card) {
 				createCardClone(card);
 				navigate(location.pathname, {
@@ -78,6 +96,30 @@ const Card = () => {
 			}
 		}
 	}, [location.state, filteredData, expandedCard]);
+
+	useEffect(() => {
+		const handleEscapeKey = (event) => {
+			if (event.key === 'Escape') {
+				if (expandedCard) {
+					const explanation = expandedCard.cardClone.querySelector('.card-item-explanation');
+					if (explanation.classList.contains('active')) {
+						explanation.classList.remove('active');
+						explanation.style.maxHeight = '0';
+						explanation.style.height = '0';
+					} else {
+						expandedCard.cardClone.remove();
+						expandedCard.overlay.remove();
+						setExpandedCard(null);
+					}
+				}
+			}
+		};
+
+		document.addEventListener('keydown', handleEscapeKey);
+		return () => {
+			document.removeEventListener('keydown', handleEscapeKey);
+		};
+	}, [expandedCard]);
 
 	const createCardClone = (item) => {
 		// Close the currently expanded card if there is one

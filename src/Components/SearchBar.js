@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import '../styles/SearchBar/SearchBar.css';
-import { AppContext } from '../App';
+import { AppContext } from '../Context/AppContext';
 
 const SearchBar = ({ onSearchChange }) => {
 	const {

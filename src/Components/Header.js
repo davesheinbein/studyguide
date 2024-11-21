@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './SearchBar';
 import FilterDropdown from './FilterDropdown';
-import { AppContext } from '../App';
+import { AppContext } from '../Context/AppContext';
 
 const Header = () => {
 	const {
