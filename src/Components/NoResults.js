@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../styles/NoResults/NoResults.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { AppContext } from '../App';
 
 const NoResults = () => {
+	const { resetResults, explorePopularSearches } = useContext(AppContext);
+
 	return (
 		<div className='no-results'>
 			<FontAwesomeIcon icon={faSearch} className='icon' />
@@ -14,17 +17,12 @@ const NoResults = () => {
 				else.
 			</p>
 			<div className='actions'>
-				<button
-					className='button'
-					onClick={() => window.location.reload()}
-				>
-					Reset Filters
+				<button className='button' onClick={resetResults}>
+					Reset results
 				</button>
 				<button
 					className='button'
-					onClick={() =>
-						(window.location.href = '/popular-searches')
-					}
+					onClick={explorePopularSearches}
 				>
 					Explore Popular Searches
 				</button>

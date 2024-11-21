@@ -1,8 +1,4 @@
-import React, {
-	useEffect,
-	useState,
-	useContext,
-} from 'react';
+import React, { useEffect, useContext } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import '../styles/prism-custom.css';
@@ -13,18 +9,28 @@ import principlesData from '../data/principles.json';
 import { AppContext } from '../App';
 import { filterData } from '../utils';
 import NoResults from './NoResults';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Card = () => {
-	const { activeTab, searchQuery, filter } =
-		useContext(AppContext);
-	const [reviewsheet, setReviewsheet] = useState([]);
-	const [leetcode, setLeetcode] = useState([]);
-	const [principles, setPrinciples] = useState([]);
-	const [filteredData, setFilteredData] = useState([]);
-	const [error, setError] = useState(null);
-	const [expandedCard, setExpandedCard] = useState(null);
+	const {
+		activeTab,
+		searchQuery,
+		filter,
+		reviewsheet,
+		leetcode,
+		principles,
+		filteredData,
+		error,
+		expandedCard,
+		setReviewsheet,
+		setLeetcode,
+		setPrinciples,
+		setFilteredData,
+		setError,
+		setExpandedCard,
+	} = useContext(AppContext);
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		try {
@@ -46,39 +52,32 @@ const Card = () => {
 				throw new Error('Invalid tab selected.');
 			}
 
-			const filtered = filterData(
-				data,
-				searchQuery,
-				filter
-			);
+			const filtered = filterData(data, searchQuery, filter);
 			setFilteredData(filtered);
 		} catch (err) {
 			setError('Failed to filter data.');
 		}
-	}, [
-		searchQuery,
-		activeTab,
-		reviewsheet,
-		leetcode,
-		principles,
-		filter,
-	]);
+	}, [searchQuery, activeTab, reviewsheet, leetcode, principles, filter]);
 
 	useEffect(() => {
 		Prism.highlightAll();
 	}, [filteredData]);
 
 	useEffect(() => {
-		if (location.state?.openCard) {
+		if (location.state?.openCard && location.state?.expandCard && (!expandedCard || expandedCard.topic !== location.state.openCard)) {
 			const topic = location.state.openCard;
-			const card = filteredData.find(
-				(item) => item.topic === topic
-			);
+			const card = filteredData.find((item) => item.topic === topic);
 			if (card) {
 				createCardClone(card);
+				navigate(location.pathname, {
+					state: {
+						openCard: topic,
+						expandCard: false,
+					},
+				});
 			}
 		}
-	}, [location.state, filteredData]);
+	}, [location.state, filteredData, expandedCard]);
 
 	const createCardClone = (item) => {
 		// Close the currently expanded card if there is one

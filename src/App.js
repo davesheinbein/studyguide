@@ -26,6 +26,16 @@ const AppProvider = ({ children }) => {
 	const [error, setError] = useState(null);
 	const [results, setResults] = useState([]);
 	const [topics, setTopics] = useState([]);
+	const [darkMode, setDarkMode] = useState(false);
+	const [reviewsheet, setReviewsheet] = useState([]);
+	const [leetcode, setLeetcode] = useState([]);
+	const [principles, setPrinciples] = useState([]);
+	const [filteredData, setFilteredData] = useState([]);
+	const [expandedCard, setExpandedCard] = useState(null);
+	const [filteredTopics, setFilteredTopics] = useState([]);
+	const [isFocused, setIsFocused] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [expandCard, setExpandCard] = useState(false);
 
 	useEffect(() => {
 		const allTopics = [
@@ -73,6 +83,19 @@ const AppProvider = ({ children }) => {
 		}
 	};
 
+	const toggleDarkMode = () => {
+		setDarkMode(!darkMode);
+		document.body.classList.toggle('dark-mode', !darkMode);
+	};
+
+	const resetResults = () => {
+		window.location.reload();
+	};
+
+	const explorePopularSearches = () => {
+		window.location.href = '/popular-searches';
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -82,9 +105,33 @@ const AppProvider = ({ children }) => {
 				error,
 				results,
 				topics,
+				darkMode,
+				reviewsheet,
+				leetcode,
+				principles,
+				filteredData,
+				expandedCard,
+				filteredTopics,
+				isFocused,
+				isOpen,
+				expandCard,
+				setReviewsheet,
+				setLeetcode,
+				setPrinciples,
+				setFilteredData,
+				setError,
+				setExpandedCard,
+				setSearchQuery,
+				setFilteredTopics,
+				setIsFocused,
+				setIsOpen,
+				setExpandCard, // Ensure setExpandCard is included in the context provider
 				handleTabClick,
 				handleSearch,
 				handleFilterChange,
+				toggleDarkMode,
+				resetResults,
+				explorePopularSearches,
 			}}
 		>
 			{children}

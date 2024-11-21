@@ -1,8 +1,4 @@
-import React, {
-	useContext,
-	useState,
-	useEffect,
-} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../App';
 import '../styles/PopularSearches/PopularSearches.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +9,14 @@ const PopularSearches = () => {
 		topics,
 		handleSearch,
 		handleTabClick,
+		searchQuery,
+		setSearchQuery,
+		filteredTopics,
+		setFilteredTopics,
+		expandCard,
+		setExpandCard,
 	} = useContext(AppContext);
 
-	const [searchQuery, setSearchQuery] = useState('');
-	const [filteredTopics, setFilteredTopics] =
-		useState(topics);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -37,7 +36,10 @@ const PopularSearches = () => {
 	const handleTopicClick = (topic) => {
 		handleSearch(topic);
 		handleTabClick(activeTab);
-		navigate('/', { state: { openCard: topic } });
+		setExpandCard(true);
+		navigate('/', {
+			state: { openCard: topic, expandCard: true },
+		});
 	};
 
 	const handleGoBack = () => {

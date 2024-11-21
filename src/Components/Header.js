@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import '../styles/Header/Header.css';
 
@@ -21,14 +21,14 @@ const Header = () => {
 		handleTabClick,
 		handleSearch,
 		handleFilterChange,
+		activeTab,
+		filter,
+		error,
+		darkMode,
+		toggleDarkMode,
 	} = useContext(AppContext);
-	const [activeTab, setActiveTab] = useState('leetcode');
-	const [filter, setFilter] = useState('Default');
-	const [error, setError] = useState(null);
-	const [darkMode, setDarkMode] = useState(false);
 
 	const onTabClick = (tab) => {
-		setActiveTab(tab);
 		handleTabClick(tab);
 	};
 
@@ -37,22 +37,7 @@ const Header = () => {
 	};
 
 	const onFilterChange = (selectedFilter) => {
-		if (
-			['Default', 'Alphabetical', 'Category'].includes(
-				selectedFilter
-			)
-		) {
-			setError(null);
-			setFilter(selectedFilter);
-			handleFilterChange(selectedFilter);
-		} else {
-			setError('Invalid filter selected.');
-		}
-	};
-
-	const toggleDarkMode = () => {
-		setDarkMode(!darkMode);
-		document.body.classList.toggle('dark-mode', !darkMode);
+		handleFilterChange(selectedFilter);
 	};
 
 	return (

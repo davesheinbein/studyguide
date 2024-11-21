@@ -1,17 +1,19 @@
-import React, {
-	useState,
-	useEffect,
-	useContext,
-} from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../styles/SearchBar/SearchBar.css';
 import { AppContext } from '../App';
 
 const SearchBar = ({ onSearchChange }) => {
-	const [searchQuery, setSearchQuery] = useState('');
-	const [error, setError] = useState(null);
-	const { topics } = useContext(AppContext);
-	const [filteredTopics, setFilteredTopics] = useState([]);
-	const [isFocused, setIsFocused] = useState(false);
+	const {
+		searchQuery,
+		setSearchQuery,
+		error,
+		setError,
+		topics,
+		filteredTopics,
+		setFilteredTopics,
+		isFocused,
+		setIsFocused,
+	} = useContext(AppContext);
 
 	useEffect(() => {
 		const handler = setTimeout(() => {
@@ -30,7 +32,12 @@ const SearchBar = ({ onSearchChange }) => {
 		return () => {
 			clearTimeout(handler);
 		};
-	}, [searchQuery, onSearchChange, topics]);
+	}, [
+		searchQuery,
+		onSearchChange,
+		topics,
+		setFilteredTopics,
+	]);
 
 	const handleChange = (event) => {
 		const query = event.target.value;

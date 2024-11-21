@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import '../styles/FilterDropdown/FilterDropdown.css';
+import { AppContext } from '../App';
 
-const FilterDropdown = ({ filter, onFilterChange }) => {
-	const [isOpen, setIsOpen] = useState(false);
-	const [error, setError] = useState(null);
+const FilterDropdown = ({ onFilterChange }) => {
+	const { filter, setFilter, error, setError, isOpen, setIsOpen } = useContext(AppContext);
 
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -12,6 +12,7 @@ const FilterDropdown = ({ filter, onFilterChange }) => {
 	const handleOptionClick = (selectedFilter) => {
 		if (['Default', 'Alphabetical', 'Category'].includes(selectedFilter)) {
 			setError(null);
+			setFilter(selectedFilter);
 			onFilterChange(selectedFilter);
 			setIsOpen(false);
 		} else {
