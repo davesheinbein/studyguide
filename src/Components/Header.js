@@ -40,10 +40,16 @@ const Header = () => {
 		handleFilterChange(selectedFilter);
 	};
 
+	const redirectToHome = () => {
+		window.location.href = '/';
+	};
+
 	return (
 		<header className='header'>
 			<div className='left-section'>
-				<div className='name'>Study Guide</div>
+				<div className='name' onClick={redirectToHome}>
+					Study Guide
+				</div>
 				<div className='tabs'>
 					<div
 						className={`tab ${
