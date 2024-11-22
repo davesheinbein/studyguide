@@ -9,9 +9,6 @@ Welcome to the Study Guide project. This application helps you organize and filt
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Description
 
@@ -64,18 +61,3 @@ Once the project is running, you can use the following features:
 - **Filter Options**: Sort materials by category or alphabetically.
 - **Dark Mode**: Switch between light and dark themes.
 - **Responsive Design**: The application is fully responsive and works on all devices.
-
-## Contributing
-
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) for more information.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- **React**: The project is built using the React framework.
-- **PrismJS**: Syntax highlighting is provided by PrismJS.
-- **FontAwesome**: Icons are provided by FontAwesome.
-- **Contributors**: Thanks to all the contributors who have helped improve this project.
