@@ -91,22 +91,23 @@
 	}
 
 	.links {
-		display: flex;
-		gap: 15px;
+		display: none;
+	}
 
-		a {
-			text-decoration: none;
-			color: #ffffff;
-			font-size: 1rem;
-			transition: transform 0.3s ease, color 0.3s ease;
+	.dark-mode-toggle {
+		display: none;
+	}
 
-			&:hover {
-				color: #00ccff;
-				transform: scale(1.2) rotate(360deg);
-				box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
-			}
+	.lock-icon {
+		cursor: pointer;
+		margin-left: 10px;
+		color: $fluorescent-cyan;
+		@include transition(color 0.3s ease);
+		outline: none;
+
+		&:hover {
+			color: $auburn;
 		}
-		animation: fadeIn 1s ease-in-out;
 	}
 
 	@keyframes fadeIn {
@@ -201,32 +202,6 @@ body.light-mode .header .tab.active {
 
 body.light-mode .header .links a {
 	color: $rich-black;
-}
-
-.dark-mode-toggle {
-	background-color: $dark-mode-button-bg;
-	color: $dark-mode-button-color;
-	border: none;
-	border-radius: 50%;
-	width: 60px;
-	height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	transition: background-color 0.3s ease,
-		transform 0.3s ease, box-shadow 0.3s ease;
-
-	&:hover {
-		background-color: $dark-mode-button-hover-bg;
-		transform: scale(1.1);
-		box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
-	}
-
-	&:active {
-		transform: scale(0.95);
-		box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
-	}
 }
 
 @media (max-width: 768px) {

@@ -1,22 +1,6 @@
 @import '../variables/variables.scss';
 @import '../mixins/mixins.scss';
 
-$white: #ffffff;
-$black: #000000;
-// Light Mode
-$columbia-blue: #c1cfdaff;
-$celestial-blue: #20a4f3ff;
-$fluorescent-cyan: #59f8e8ff;
-$burgundy: #941c2fff;
-$rich-black: #03191eff;
-
-// Dark Mode
-$english-violet: #4a4063ff;
-$thistle: #bfacc8ff;
-$french-gray: #c8c6d7ff;
-$eminence: #783f8eff;
-$indigo: #4f1271ff;
-
 .card {
 	position: relative;
 	background-color: $rich-black;
@@ -26,7 +10,7 @@ $indigo: #4f1271ff;
 	justify-content: center;
 	font-size: 9px;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	margin: 0 auto;
 
 	&-A {

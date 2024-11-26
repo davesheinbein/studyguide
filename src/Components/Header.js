@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import '../styles/Header/Header.css';
 
@@ -11,9 +11,11 @@ import {
 	faGlobe,
 	faMoon,
 	faSun,
+	faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './SearchBar';
 import FilterDropdown from './FilterDropdown';
+import Unlock from './Unlock';
 import { AppContext } from '../Context/AppContext';
 
 const Header = () => {
@@ -24,9 +26,13 @@ const Header = () => {
 		activeTab,
 		filter,
 		error,
-		darkMode,
-		toggleDarkMode,
 	} = useContext(AppContext);
+
+	const [isUnlockModalOpen, setUnlockModalOpen] =
+		useState(false);
+	const [isLeetCodeUnlocked, setLeetCodeUnlocked] =
+		useState(false);
+	const [unlockError, setUnlockError] = useState('');
 
 	const onTabClick = (tab) => {
 		handleTabClick(tab);
@@ -40,96 +46,95 @@ const Header = () => {
 		handleFilterChange(selectedFilter);
 	};
 
+	const toggleUnlockModal = () => {
+		setUnlockModalOpen(!isUnlockModalOpen);
+	};
+
+	const handleUnlock = (code) => {
+		const validCodes = ['Abcde12345!', 'Xyz98765!', 'Unlock2023!', 'TestCode!'];
+		if (validCodes.includes(code)) {
+			setLeetCodeUnlocked(true);
+			setUnlockModalOpen(false);
+			setUnlockError('');
+		} else {
+			setUnlockError('Incorrect code. Please try again.');
+		}
+	};
+
 	return (
-		<header className='header'>
-			<div className='left-section'>
-				<div className='name'>Study Guide</div>
-				<div className='tabs'>
-					<div
-						className={`tab ${
-							activeTab === 'leetcode' ? 'active' : ''
-						}`}
-						onClick={() => onTabClick('leetcode')}
-						role='button'
-						tabIndex={0}
-						onKeyPress={() => onTabClick('leetcode')}
-						aria-label='LeetCode Tab'
-					>
-						LeetCode
-					</div>
-					<div
-						className={`tab ${
-							activeTab === 'principles' ? 'active' : ''
-						}`}
-						onClick={() => onTabClick('principles')}
-						role='button'
-						tabIndex={0}
-						onKeyPress={() => onTabClick('principles')}
-						aria-label='Principles Tab'
-					>
-						Principles
-					</div>
-					<div
-						className={`tab ${
-							activeTab === 'reviewsheet' ? 'active' : ''
-						}`}
-						onClick={() => onTabClick('reviewsheet')}
-						role='button'
-						tabIndex={0}
-						onKeyPress={() => onTabClick('reviewsheet')}
-						aria-label='Reviewsheet Tab'
-					>
-						Reviewsheet
+		<>
+			<header className='header'>
+				<div className='left-section'>
+					<div className='name'>Study Guide</div>
+					<div className='tabs'>
+						{isLeetCodeUnlocked && (
+							<div
+								className={`tab ${
+									activeTab === 'leetcode' ? 'active' : ''
+								}`}
+								onClick={() => onTabClick('leetcode')}
+								role='button'
+								tabIndex={0}
+								onKeyPress={() => onTabClick('leetcode')}
+								aria-label='LeetCode Tab'
+							>
+								LeetCode
+							</div>
+						)}
+						<div
+							className={`tab ${
+								activeTab === 'principles' ? 'active' : ''
+							}`}
+							onClick={() => onTabClick('principles')}
+							role='button'
+							tabIndex={0}
+							onKeyPress={() => onTabClick('principles')}
+							aria-label='Principles Tab'
+						>
+							Principles
+						</div>
+						<div
+							className={`tab ${
+								activeTab === 'reviewsheet' ? 'active' : ''
+							}`}
+							onClick={() => onTabClick('reviewsheet')}
+							role='button'
+							tabIndex={0}
+							onKeyPress={() => onTabClick('reviewsheet')}
+							aria-label='Reviewsheet Tab'
+						>
+							Reviewsheet
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className='right-section'>
-				<FilterDropdown
-					filter={filter}
-					onFilterChange={onFilterChange}
-				/>{' '}
-				{/* Use the new FilterDropdown component */}
-				<SearchBar onSearchChange={onSearchChange} />
-				<div className='links'>
-					<a
-						href='https://github.com/davesheinbein/'
-						target='_blank'
-						rel='noopener noreferrer'
-						aria-label='GitHub'
-					>
-						<FontAwesomeIcon icon={faGithub} />
-					</a>
-					<a
-						href='https://linkedin.com/in/david-sheinbein'
-						target='_blank'
-						rel='noopener noreferrer'
-						aria-label='LinkedIn'
-					>
-						<FontAwesomeIcon icon={faLinkedin} />
-					</a>
-					<a
-						href='https://davidsheinbeinengineer.com/'
-						target='_blank'
-						rel='noopener noreferrer'
-						aria-label='Personal Website'
-					>
-						<FontAwesomeIcon icon={faGlobe} />
-					</a>
-				</div>
-				<button
-					className='dark-mode-toggle'
-					onClick={toggleDarkMode}
-					aria-label='Toggle Dark Mode'
-				>
-					<FontAwesomeIcon
-						icon={darkMode ? faSun : faMoon}
+				<div className='right-section'>
+					<FilterDropdown
+						filter={filter}
+						onFilterChange={onFilterChange}
 					/>
-				</button>
-			</div>
-			{error && (
-				<div className='error-message'>{error}</div>
+					<SearchBar onSearchChange={onSearchChange} />
+					<FontAwesomeIcon
+						icon={faLock}
+						className='lock-icon'
+						onClick={toggleUnlockModal}
+						role='button'
+						tabIndex={0}
+						onKeyPress={toggleUnlockModal}
+						aria-label='Unlock Feature'
+					/>
+				</div>
+				{error && (
+					<div className='error-message'>{error}</div>
+				)}
+			</header>
+			{isUnlockModalOpen && (
+				<Unlock
+					onClose={toggleUnlockModal}
+					onUnlock={handleUnlock}
+					error={unlockError}
+				/>
 			)}
-		</header>
+		</>
 	);
 };
 

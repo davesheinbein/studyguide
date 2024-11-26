@@ -3,6 +3,7 @@ import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
 import PopularSearches from './Components/PopularSearches';
+import Footer from './Components/Footer';
 import {
 	AppProvider,
 	AppContext,
@@ -49,6 +50,7 @@ const App = () => {
 					/>
 					<Route path='/' element={<Card />} />
 				</Routes>
+				<Footer />
 			</div>
 		</ErrorBoundary>
 	);

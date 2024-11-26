@@ -1,0 +1,106 @@
+@import '../variables/variables.scss';
+@import '../mixins/mixins.scss';
+
+.footer {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background: $rich-black;
+	color: $white;
+
+	.copyright {
+		font-size: 0.9rem;
+	}
+
+	.links {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		a {
+			text-decoration: none;
+			color: $white;
+			font-size: 1rem;
+			transition: transform 0.3s ease, color 0.3s ease;
+
+			&:hover {
+				color: $celestial-blue;
+				transform: scale(1.2);
+				box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+			}
+		}
+
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 30px;
+
+			input {
+				opacity: 0;
+				width: 0;
+				height: 0;
+			}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: $dark-mode-button-bg;
+				@include border-radius(34px);
+				@include transition(0.4s);
+
+				&:before {
+					position: absolute;
+					content: '';
+					height: 26px;
+					width: 26px;
+					left: 2px;
+					bottom: 2px;
+					background-color: $dark-mode-button-color;
+					@include border-radius(50%);
+					@include transition(0.4s);
+				}
+			}
+
+			input:checked + .slider {
+				background-color: $dark-mode-button-hover-bg;
+			}
+
+			input:checked + .slider:before {
+				transform: translateX(30px);
+			}
+		}
+	}
+
+	.dark-mode-toggle {
+		background-color: $dark-mode-button-bg;
+		color: $dark-mode-button-color;
+		border: none;
+		border-radius: 50%;
+		width: 60px;
+		height: 30px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: background-color 0.3s ease,
+			transform 0.3s ease, box-shadow 0.3s ease;
+
+		&:hover {
+			background-color: $dark-mode-button-hover-bg;
+			transform: scale(1.1);
+			box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+		}
+
+		&:active {
+			transform: scale(0.95);
+			box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+		}
+	}
+}

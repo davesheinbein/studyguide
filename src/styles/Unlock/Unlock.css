@@ -1,0 +1,85 @@
+.unlock-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 120;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.unlock-modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #335c67;
+  width: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+.unlock-modal-content .unlock-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.unlock-modal-content h2 {
+  margin-top: 0;
+}
+.unlock-modal-content .unlock-input-container {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.unlock-modal-content .unlock-input-container input {
+  width: 100%;
+  max-width: 290px;
+  padding: 10px 5px;
+  margin: 10px 0;
+  border: 1px solid #335c67;
+  border-radius: 5px;
+  outline: none;
+}
+.unlock-modal-content .unlock-input-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #20a4f3;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.unlock-modal-content .unlock-input-container button:hover {
+  background-color: #59f8e8;
+}
+.unlock-modal-content .unlock-error-message {
+  color: #941c2f;
+  margin-top: 10px;
+}
+
+body.dark-mode .unlock-modal-content {
+  background-color: #335c67;
+  color: #ffffff;
+  border: 1px solid #bfacc8;
+}
+body.dark-mode .unlock-modal-content .unlock-input-container input {
+  background-color: #335c67;
+  color: #ffffff;
+  border: 1px solid #bfacc8;
+}
+body.dark-mode .unlock-modal-content .unlock-input-container button {
+  background-color: #4f1271;
+  color: #ffffff;
+}
+body.dark-mode .unlock-modal-content .unlock-input-container button:hover {
+  background-color: #783f8e;
+}
+body.dark-mode .unlock-modal-content .unlock-error-message {
+  color: #bfacc8;
+}/*# sourceMappingURL=Unlock.css.map */
