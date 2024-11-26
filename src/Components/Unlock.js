@@ -4,10 +4,16 @@ import '../styles/Unlock/Unlock.css';
 const Unlock = ({ onClose, onUnlock, error }) => {
 	const [code, setCode] = useState('');
 
+	const handleUnlock = () => {
+		onUnlock(code);
+	};
+
 	useEffect(() => {
 		const handleKeyDown = (event) => {
 			if (event.key === 'Escape') {
 				onClose();
+			} else if (event.key === 'Enter') {
+				handleUnlock();
 			}
 		};
 
@@ -19,10 +25,6 @@ const Unlock = ({ onClose, onUnlock, error }) => {
 			);
 		};
 	}, [onClose]);
-
-	const handleUnlock = () => {
-		onUnlock(code);
-	};
 
 	return (
 		<div className='unlock-modal'>

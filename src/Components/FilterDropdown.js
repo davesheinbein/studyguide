@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '../styles/FilterDropdown/FilterDropdown.css';
 import { AppContext } from '../Context/AppContext';
 
@@ -11,6 +11,7 @@ const FilterDropdown = ({ onFilterChange }) => {
 		isOpen,
 		setIsOpen,
 	} = useContext(AppContext);
+	const dropdownRef = useRef(null);
 
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -31,8 +32,32 @@ const FilterDropdown = ({ onFilterChange }) => {
 		}
 	};
 
+	const handleClickOutside = (event) => {
+		if (
+			dropdownRef.current &&
+			!dropdownRef.current.contains(event.target)
+		) {
+			setIsOpen(false);
+		}
+	};
+
+	const handleEscapeKey = (event) => {
+		if (event.key === 'Escape') {
+			setIsOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutside);
+		document.addEventListener('keydown', handleEscapeKey);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('keydown', handleEscapeKey);
+		};
+	}, []);
+
 	return (
-		<div className='filter-dropdown'>
+		<div className='filter-dropdown' ref={dropdownRef}>
 			<div
 				className='filter-selected'
 				onClick={handleToggle}

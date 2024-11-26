@@ -46,7 +46,7 @@
 
 	.tabs {
 		display: flex;
-		gap: 10px;
+		gap: 8px;
 		animation: slideIn 1s ease-in-out;
 	}
 
@@ -101,7 +101,7 @@
 	.lock-icon {
 		cursor: pointer;
 		margin-left: 10px;
-		color: $fluorescent-cyan;
+		color: $hunyadi-yellow;
 		@include transition(color 0.3s ease);
 		outline: none;
 

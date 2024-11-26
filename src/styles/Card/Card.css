@@ -311,6 +311,9 @@
 .card-item .close-button:hover {
   transform: scale(1.2);
 }
+.card-item.dragging {
+  opacity: 0.5;
+}
 .card-overlay {
   position: fixed;
   top: 0;

@@ -4,6 +4,7 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
+  padding-left: 10px;
 }
 .filter-dropdown select {
   padding: 5px 30px 5px 10px;

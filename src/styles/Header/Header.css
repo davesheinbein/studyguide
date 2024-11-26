@@ -31,7 +31,7 @@
 }
 .header .tabs {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   animation: slideIn 1s ease-in-out;
 }
 .header .tab {
@@ -75,7 +75,7 @@
 .header .lock-icon {
   cursor: pointer;
   margin-left: 10px;
-  color: #59f8e8;
+  color: #e09f3e;
   transition: color 0.3s ease;
   outline: none;
 }

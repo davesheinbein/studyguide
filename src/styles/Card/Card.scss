@@ -370,6 +370,10 @@
 				transform: scale(1.2);
 			}
 		}
+
+		&.dragging {
+			opacity: 0.5;
+		}
 	}
 
 	&-overlay {

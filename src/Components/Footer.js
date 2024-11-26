@@ -4,9 +4,7 @@ import {
 	faGithub,
 	faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-import {
-	faGlobe,
-} from '@fortawesome/free-solid-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from '../Context/AppContext';
 import '../styles/Footer/Footer.css';
 

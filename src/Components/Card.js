@@ -32,11 +32,17 @@ const Card = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
+	const originalData = {
+		reviewsheet: [...reviewsheetData],
+		leetcode: [...leetcodeData],
+		principles: [...principlesData],
+	};
+
 	useEffect(() => {
 		try {
-			setReviewsheet(reviewsheetData);
-			setLeetcode(leetcodeData);
-			setPrinciples(principlesData);
+			setReviewsheet([...reviewsheetData]);
+			setLeetcode([...leetcodeData]);
+			setPrinciples([...principlesData]);
 			Prism.highlightAll();
 		} catch (err) {
 			setError('Failed to load data.');
@@ -52,11 +58,12 @@ const Card = () => {
 				throw new Error('Invalid tab selected.');
 			}
 
-			const filtered = filterData(
-				data,
-				searchQuery,
-				filter
-			);
+			let filtered;
+			if (filter === 'Default') {
+				filtered = [...originalData[activeTab]];
+			} else {
+				filtered = filterData(data, searchQuery, filter);
+			}
 			setFilteredData(filtered);
 		} catch (err) {
 			setError('Failed to filter data.');
@@ -101,7 +108,10 @@ const Card = () => {
 		const handleEscapeKey = (event) => {
 			if (event.key === 'Escape') {
 				if (expandedCard) {
-					const explanation = expandedCard.cardClone.querySelector('.card-item-explanation');
+					const explanation =
+						expandedCard.cardClone.querySelector(
+							'.card-item-explanation'
+						);
 					if (explanation.classList.contains('active')) {
 						explanation.classList.remove('active');
 						explanation.style.maxHeight = '0';
@@ -117,7 +127,10 @@ const Card = () => {
 
 		document.addEventListener('keydown', handleEscapeKey);
 		return () => {
-			document.removeEventListener('keydown', handleEscapeKey);
+			document.removeEventListener(
+				'keydown',
+				handleEscapeKey
+			);
 		};
 	}, [expandedCard]);
 
@@ -197,11 +210,14 @@ const Card = () => {
 		event.dataTransfer.setData('text/plain', index);
 	};
 
-	const handleDrop = (event) => {
+	const handleDragOver = (event) => {
+		event.preventDefault();
+	};
+
+	const handleDrop = (event, targetIndex) => {
+		event.preventDefault();
 		const draggedIndex =
 			event.dataTransfer.getData('text/plain');
-		const targetIndex = event.target.dataset.index;
-
 		if (draggedIndex !== targetIndex) {
 			const updatedData = [...filteredData];
 			const [draggedItem] = updatedData.splice(
@@ -223,7 +239,8 @@ const Card = () => {
 				onDragStart={(event) =>
 					handleDragStart(event, index)
 				}
-				onDrop={handleDrop}
+				onDragOver={handleDragOver}
+				onDrop={(event) => handleDrop(event, index)}
 				data-index={index}
 			>
 				<div className='card-item-topic'>

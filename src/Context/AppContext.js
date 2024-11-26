@@ -22,6 +22,16 @@ export const AppProvider = ({ children }) => {
 	const [isFocused, setIsFocused] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const [expandCard, setExpandCard] = useState(false);
+	const [isLeetCodeUnlocked, setLeetCodeUnlocked] =
+		useState(() => {
+			const savedState = localStorage.getItem(
+				'isLeetCodeUnlocked'
+			);
+			return savedState === 'true';
+		});
+	const [unlockModalOpen, setUnlockModalOpen] =
+		useState(false);
+	const [unlockError, setUnlockError] = useState('');
 
 	useEffect(() => {
 		const allTopics = [
@@ -82,6 +92,29 @@ export const AppProvider = ({ children }) => {
 		window.location.href = '/popular-searches';
 	};
 
+	const handleUnlock = (code) => {
+		const validCodes = [
+			'Abcde12345!',
+			'Sherlock!',
+			'Testcode!',
+		];
+		if (validCodes.includes(code)) {
+			const newUnlockState = !isLeetCodeUnlocked;
+			setLeetCodeUnlocked(newUnlockState);
+			if (newUnlockState) {
+				localStorage.setItem('isLeetCodeUnlocked', 'true');
+				setActiveTab('leetcode');
+			} else {
+				localStorage.removeItem('isLeetCodeUnlocked');
+				setActiveTab('principles');
+			}
+			setUnlockModalOpen(false);
+			setUnlockError('');
+		} else {
+			setUnlockError('Incorrect code. Please try again.');
+		}
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -101,6 +134,8 @@ export const AppProvider = ({ children }) => {
 				isFocused,
 				isOpen,
 				expandCard,
+				isLeetCodeUnlocked,
+				setLeetCodeUnlocked,
 				setReviewsheet,
 				setLeetcode,
 				setPrinciples,
@@ -119,6 +154,10 @@ export const AppProvider = ({ children }) => {
 				resetResults,
 				explorePopularSearches,
 				setFilter,
+				unlockModalOpen,
+				setUnlockModalOpen,
+				unlockError,
+				setUnlockError,
 			}}
 		>
 			{children}

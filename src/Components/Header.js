@@ -12,6 +12,7 @@ import {
 	faMoon,
 	faSun,
 	faLock,
+	faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './SearchBar';
 import FilterDropdown from './FilterDropdown';
@@ -26,11 +27,11 @@ const Header = () => {
 		activeTab,
 		filter,
 		error,
+		isLeetCodeUnlocked,
+		setLeetCodeUnlocked,
 	} = useContext(AppContext);
 
 	const [isUnlockModalOpen, setUnlockModalOpen] =
-		useState(false);
-	const [isLeetCodeUnlocked, setLeetCodeUnlocked] =
 		useState(false);
 	const [unlockError, setUnlockError] = useState('');
 
@@ -51,9 +52,22 @@ const Header = () => {
 	};
 
 	const handleUnlock = (code) => {
-		const validCodes = ['Abcde12345!', 'Xyz98765!', 'Unlock2023!', 'TestCode!'];
+		const validCodes = [
+			'Abcde12345!',
+			'Sherlock!',
+			'Testcode!',
+		];
+
 		if (validCodes.includes(code)) {
-			setLeetCodeUnlocked(true);
+			const newUnlockState = !isLeetCodeUnlocked;
+			setLeetCodeUnlocked(newUnlockState);
+			if (newUnlockState) {
+				localStorage.setItem('isLeetCodeUnlocked', 'true');
+				handleTabClick('leetcode');
+			} else {
+				localStorage.removeItem('isLeetCodeUnlocked');
+				handleTabClick('principles');
+			}
 			setUnlockModalOpen(false);
 			setUnlockError('');
 		} else {
@@ -114,7 +128,7 @@ const Header = () => {
 					/>
 					<SearchBar onSearchChange={onSearchChange} />
 					<FontAwesomeIcon
-						icon={faLock}
+						icon={isLeetCodeUnlocked ? faUnlock : faLock}
 						className='lock-icon'
 						onClick={toggleUnlockModal}
 						role='button'
