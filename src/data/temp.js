@@ -1,102 +1,89 @@
 /**
  * @param {string} s
- * @return {number}
+ * @param {number} numRows
+ * @return {string}
  */
 
-var romanToInt = function (s) {
-	// Define a mapping of Roman numerals to their integer values.
-	const romanMap = {
-		I: 1,
-		V: 5,
-		X: 10,
-		L: 50,
-		C: 100,
-		D: 500,
-		M: 1000,
-	};
+var convert = function (s, numRows) {
+	if (numRows === 1 || s.length <= numRows) return s; // Handle edge cases.
 
-	let total = 0; // Initialize total to 0.
+	// Create an array to store strings for each row.
+	const rows = Array.from({ length: numRows }, () => '');
+	let currentRow = 0; // Track the current row.
+	let goingDown = false; // Direction flag.
 
-	// Iterate through the string, checking each numeral.
-	for (let i = 0; i < s.length; i++) {
-		const current = romanMap[s[i]]; // Get the value of the current Roman numeral.
-		const next = romanMap[s[i + 1]]; // Get the value of the next Roman numeral (if it exists).
+	// Iterate through each character in the string.
+	for (let char of s) {
+		rows[currentRow] += char; // Add the character to the current row.
 
-		// If the current numeral is smaller than the next, subtract it. Otherwise, add it.
-		if (next && current < next) {
-			total -= current; // Subtract current from total.
-		} else {
-			total += current; // Add current to total.
+		// Change direction at the top and bottom rows.
+		if (currentRow === 0 || currentRow === numRows - 1) {
+			goingDown = !goingDown;
 		}
+
+		// Move to the next row.
+		currentRow += goingDown ? 1 : -1;
 	}
 
-	return total; // Return the computed total.
+	// Combine all rows to form the final zigzag string.
+	return rows.join('');
 };
+
+console.log(convert('PAYPALISHIRING', 3));
+// Output: "PAHNAPLSIIGYIR"
+
+console.log(convert('PAYPALISHIRING', 4));
+// Output: "PINALSIGYAHRPI"
+
+console.log(convert('A', 1));
+// Output: "A"
+
+console.log(convert('HELLO', 2));
+// Output: "HLOEL"
+
+console.log(convert('ABCDEF', 5));
+// Output: "ABDFC"
 
 /*
 Explanation:
 
-The function `romanToInt` converts a Roman numeral string into its integer representation by following these steps:
+1. Handle Edge Cases:
+   - If `numRows` is 1 or the string length is less than or equal to `numRows`, return the string directly.
 
-1. Mapping Roman Numerals to Values:
-   - A dictionary `romanMap` is used to map each Roman numeral to its corresponding integer value.
+2. Create Row Storage:
+   - Use an array of strings, where each string corresponds to a row in the zigzag pattern.
 
-2. Iterating Through the Input String:
-   - The function loops through each character in the Roman numeral string.
-   - For each character, it retrieves the value of the current numeral (`current`) and the value of the next numeral (`next`).
+3. Traverse the String:
+   - Iterate through each character in the input string.
+   - Append the character to the appropriate row based on the current row index.
 
-3. Handling Subtractive Notation:
-   - If the current numeral is smaller than the next numeral (e.g., `I` before `V` in "IV"), it represents a subtractive case.
-   - In such cases, subtract the `current` value from the total.
+4. Adjust Row Direction:
+   - Use a flag `goingDown` to track whether the row index should increase or decrease.
+   - Flip the direction at the topmost (`currentRow === 0`) and bottommost (`currentRow === numRows - 1`) rows.
 
-4. Adding Standard Values:
-   - If the current numeral is not part of a subtractive pair, add its value to the total.
-
-5. Returning the Result:
-   - After completing the loop, the accumulated total is returned, representing the integer value of the Roman numeral.
+5. Combine the Rows:
+   - After constructing the zigzag pattern, concatenate all rows to produce the final result.
 
 Example Walkthrough:
 
 Example 1:
-Input: `"III"`
-
-- `current = 1`, `next = 1`. Add `1`.
-- `current = 1`, `next = 1`. Add `1`.
-- `current = 1`, no `next`. Add `1`.
-
-Output: `3`.
-
----
+Input: `s = "PAYPALISHIRING"`, `numRows = 3`
+- Rows: ["P   A   H   N", "A P L S I I G", "Y   I   R"]
+- Output: `"PAHNAPLSIIGYIR"`
 
 Example 2:
-Input: `"LVIII"`
-
-- `L = 50`, `V = 5`. Add `50`.
-- `V = 5`, `I = 1`. Add `5`.
-- `I = 1`, `I = 1`. Add `1`.
-- `I = 1`, no `next`. Add `1`.
-
-Output: `58`.
-
----
+Input: `s = "PAYPALISHIRING"`, `numRows = 4`
+- Rows: ["P     I    N", "A   L S  I G", "Y A   H R", "P     I"]
+- Output: `"PINALSIGYAHRPI"`
 
 Example 3:
-Input: `"MCMXCIV"`
-
-- `M = 1000`, `C = 100`. Add `1000`.
-- `C = 100`, `M = 1000`. Subtract `100`.
-- `M = 1000`, `X = 10`. Add `900`.
-- `X = 10`, `C = 100`. Subtract `10`.
-- `C = 100`, `I = 1`. Add `90`.
-- `I = 1`, `V = 5`. Subtract `1`.
-- `V = 5`, no `next`. Add `4`.
-
-Output: `1994`.
-
----
+Input: `s = "A"`, `numRows = 1`
+- Rows: ["A"]
+- Output: `"A"`
 
 Complexity:
+- Time Complexity: \(O(n)\), where \(n\) is the length of the string. Each character is visited once.
+- Space Complexity: \(O(n)\), for storing the rows.
 
-- Time Complexity: \(O(n)\), where \(n\) is the length of the input string, as we iterate through it once.
-- Space Complexity: \(O(1)\), since the memory usage is constant regardless of input size (only the `romanMap` and a few variables are used).
+Console Log Examples:
 */

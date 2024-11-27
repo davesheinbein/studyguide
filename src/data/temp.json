@@ -1,7 +1,7 @@
 {
-	"id": 20,
-	"topic": "Longest Common Prefix",
-	"code": "// Find longest common prefix\nfunction longestCommonPrefix(strs) {\n if (!strs.length) return '';\n let prefix = strs[0];\n for (let i = 1; i < strs.length; i++) {\n while (strs[i].indexOf(prefix) !== 0) {\n prefix = prefix.slice(0, -1);\n if (!prefix) return '';\n }\n }\n return prefix;\n}\n",
-	"explanation": "This function finds the longest common prefix string amongst an array of strings.",
+	"id": 23,
+	"topic": "Find the Index of the First Occurrence in a String",
+	"code": "// Find the index of the first occurrence in a string\nfunction strStr(haystack, needle) {\n if (!needle) return 0;\n for (let i = 0; i <= haystack.length - needle.length; i++) {\n if (haystack.slice(i, i + needle.length) === needle) return i;\n }\n return -1;\n}\n",
+	"explanation": "This function finds the index of the first occurrence of a substring in a string.",
 	"category": "Array / String"
 }

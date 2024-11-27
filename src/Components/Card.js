@@ -64,6 +64,20 @@ const Card = () => {
 			} else {
 				filtered = filterData(data, searchQuery, filter);
 			}
+
+			if (searchQuery) {
+				filtered = filtered.filter(
+					(item) =>
+						item.topic
+							.toLowerCase()
+							.includes(searchQuery.toLowerCase()) ||
+						item.category
+							.toLowerCase()
+							.includes(searchQuery.toLowerCase()) ||
+						item.id.toString().includes(searchQuery)
+				);
+			}
+
 			setFilteredData(filtered);
 		} catch (err) {
 			setError('Failed to filter data.');

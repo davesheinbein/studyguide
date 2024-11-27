@@ -1,10 +1,16 @@
 .no-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 1.2rem;
   color: #333;
   margin-top: 50px;
   padding: 20px;
   animation: fadeIn 1s ease-in-out;
+  height: 100%;
+  min-height: 82vh;
 }
 .no-results .icon {
   font-size: 5rem;

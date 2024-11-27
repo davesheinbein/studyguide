@@ -16,7 +16,7 @@ const Footer = () => {
 	return (
 		<footer className='footer'>
 			<div className='copyright'>
-				&copy; {currentYear} David Sheinbein
+				&copy; David Sheinbein {currentYear}
 			</div>
 			<div className='links'>
 				<a
