@@ -1,140 +1,88 @@
 /**
- * @param {string[]} words - An array of words to be justified.
- * @param {number} maxWidth - The maximum width of each line.
- * @return {string[]} - Array of fully justified lines.
+ * @param {number[]} height
+ * @return {number}
  */
-var fullJustify = function (words, maxWidth) {
-	const result = []; // Stores the fully justified lines.
-	let line = []; // Keeps track of words in the current line.
-	let lineLength = 0; // Tracks the total length of characters in the current line (excluding spaces).
+var maxArea = function (height) {
+	let left = 0; // Initialize the left pointer
+	let right = height.length - 1; // Initialize the right pointer
+	let maxArea = 0; // Variable to store the maximum area found
 
-	// Iterate over each word in the input array.
-	for (let word of words) {
-		// Check if adding the next word plus necessary spaces would exceed maxWidth.
-		if (lineLength + line.length + word.length > maxWidth) {
-			// Distribute extra spaces for the current line.
-			for (let i = 0; i < maxWidth - lineLength; i++) {
-				// Add an extra space to each gap, cycling through gaps cyclically.
-				// If there is only one word in the line, add spaces to its end.
-				line[i % (line.length - 1 || 1)] += ' ';
-			}
+	while (left < right) {
+		// Calculate the current area
+		const currentHeight = Math.min(
+			height[left],
+			height[right]
+		);
+		const currentWidth = right - left;
+		const currentArea = currentHeight * currentWidth;
 
-			// Add the justified line to the result.
-			result.push(line.join(''));
-			// Reset the line and lineLength for the next line.
-			line = [];
-			lineLength = 0;
+		// Update maxArea if the current area is larger
+		maxArea = Math.max(maxArea, currentArea);
+
+		// Move the pointer pointing to the shorter line
+		if (height[left] < height[right]) {
+			left++;
+		} else {
+			right--;
 		}
-
-		// Add the current word to the line and update lineLength.
-		line.push(word);
-		lineLength += word.length;
 	}
 
-	// Handle the last line: left-justified.
-	// Words are joined with a single space, and trailing spaces are added to match maxWidth.
-	result.push(
-		line.join(' ') +
-			' '.repeat(maxWidth - lineLength - (line.length - 1))
-	);
-
-	return result;
+	return maxArea;
 };
 
 // Examples:
-console.log(
-	fullJustify(
-		[
-			'This',
-			'is',
-			'an',
-			'example',
-			'of',
-			'text',
-			'justification.',
-		],
-		16
-	)
-);
-// Output:
-// [
-//   "This    is    an",
-//   "example  of text",
-//   "justification.  "
-// ]
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+// Output: 49
 
-console.log(
-	fullJustify(
-		['What', 'must', 'be', 'acknowledgment', 'shall', 'be'],
-		16
-	)
-);
-// Output:
-// [
-//   "What   must   be",
-//   "acknowledgment  ",
-//   "shall be        "
-// ]
+console.log(maxArea([1, 1]));
+// Output: 1
 
-console.log(
-	fullJustify(
-		[
-			'Science',
-			'is',
-			'what',
-			'we',
-			'understand',
-			'well',
-			'enough',
-			'to',
-			'explain',
-			'to',
-			'a',
-			'computer.',
-			'Art',
-			'is',
-			'everything',
-			'else',
-			'we',
-			'do',
-		],
-		20
-	)
-);
-// Output:
-// [
-//   "Science  is  what we",
-//   "understand      well",
-//   "enough to explain to",
-//   "a  computer.  Art is",
-//   "everything  else  we",
-//   "do                  "
-// ]
+console.log(maxArea([4, 3, 2, 1, 4]));
+// Output: 16
+
+console.log(maxArea([1, 2, 1]));
+// Output: 2
 
 /*
 Explanation:
+1. Two-pointer Approach:
+   - Start with two pointers, one at the beginning (`left`) and one at the end (`right`) of the array.
+   - Calculate the area between the two lines as:
+     \[
+     \text{Area} = \min(\text{height}[left], \text{height}[right]) \times (\text{right} - \text{left})
+     \]
 
-1. Line Construction:
-   - Words are added to a line until adding another word would exceed `maxWidth`.
-   - `lineLength` tracks the total number of characters in the current line, excluding spaces.
+2. Move the Pointer:
+   - To maximize the area, the shorter line is the limiting factor.
+   - Move the pointer pointing to the shorter line inward, as it might lead to a taller line and potentially a larger area.
 
-2. Space Distribution:
-   - For fully justified lines:
-     - Calculate the total extra spaces needed: `maxWidth - lineLength`.
-     - Distribute these spaces evenly between words:
-       - Use the `%` operator to cycle through gaps when distributing unevenly.
-     - For lines with only one word, all extra spaces are added to the end.
+3. Update maxArea:
+   - Keep track of the largest area found so far.
 
-3. Last Line:
-   - The last line is left-justified:
-     - Words are joined with a single space.
-     - Remaining spaces are added to the end to match `maxWidth`.
-
-4. Output:
-   - Once all words are processed, the `result` contains all justified lines.
+4. Stop Condition:
+   - The loop stops when the two pointers meet.
 
 Complexity:
+- Time Complexity: \(O(n)\), where \(n\) is the length of the `height` array. Each element is processed at most once.
+- Space Complexity: \(O(1)\), as only a few variables are used.
 
-- Time Complexity: \(O(n)\), where \(n\) is the total number of characters in `words`. Each word is processed once.
-- Space Complexity: \(O(1)\) additional space, excluding the output array.
+Example Walkthrough:
+
+Example 1:
+Input: `height = [1, 8, 6, 2, 5, 4, 8, 3, 7]`
+- Initial: `left = 0`, `right = 8`
+- Iterations:
+  - Calculate area between heights `1` and `7`: \( \min(1, 7) \times 8 = 8 \).
+  - Move `left` to `1`, as `height[left] < height[right]`.
+  - Calculate area between `8` and `7`: \( \min(8, 7) \times 7 = 49 \).
+  - Update `maxArea` to `49`.
+  - Continue shrinking the window.
+- Output: `49`
+
+Example 2:
+Input: `height = [1, 1]`
+- Initial: `left = 0`, `right = 1`
+- Calculate area: \( \min(1, 1) \times 1 = 1 \).
+- Output: `1`
+
 */
