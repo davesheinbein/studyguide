@@ -1,88 +1,116 @@
 /**
- * @param {number[]} height
- * @return {number}
+ * @param {string} s - The input string in which we are searching for the substring.
+ * @param {string} t - The string containing characters that must be included in the substring.
+ * @return {string} - The minimum window substring of `s` that contains all characters of `t`. Returns an empty string if no such substring exists.
  */
-var maxArea = function (height) {
-	let left = 0; // Initialize the left pointer
-	let right = height.length - 1; // Initialize the right pointer
-	let maxArea = 0; // Variable to store the maximum area found
 
-	while (left < right) {
-		// Calculate the current area
-		const currentHeight = Math.min(
-			height[left],
-			height[right]
-		);
-		const currentWidth = right - left;
-		const currentArea = currentHeight * currentWidth;
+var minWindow = function (s, t) {
+	// If `s` is shorter than `t`, it is impossible to form a valid substring.
+	if (s.length < t.length) return '';
 
-		// Update maxArea if the current area is larger
-		maxArea = Math.max(maxArea, currentArea);
-
-		// Move the pointer pointing to the shorter line
-		if (height[left] < height[right]) {
-			left++;
-		} else {
-			right--;
-		}
+	// Step 1: Create a frequency map for characters in `t`
+	const tMap = new Map();
+	for (let char of t) {
+		tMap.set(char, (tMap.get(char) || 0) + 1);
 	}
 
-	return maxArea;
+	// Variables for sliding window technique
+	let left = 0, // Left pointer for the sliding window
+		right = 0; // Right pointer for the sliding window
+	let required = tMap.size; // Number of unique characters in `t` that need to be matched
+	let formed = 0; // Count of unique characters in the current window that satisfy the required frequency
+	const windowCounts = new Map(); // Frequency map for characters in the current sliding window
+	let minLength = Infinity; // Length of the smallest valid window
+	let result = [0, 0]; // Indices of the smallest valid window
+
+	// Step 3: Expand the sliding window by moving the `right` pointer
+	while (right < s.length) {
+		const char = s[right]; // Add the current character to the window
+		windowCounts.set(
+			char,
+			(windowCounts.get(char) || 0) + 1
+		);
+
+		// If the current character's frequency in the window matches `tMap`, increment `formed`
+		if (
+			tMap.has(char) &&
+			windowCounts.get(char) === tMap.get(char)
+		) {
+			formed++;
+		}
+
+		// Step 4: Shrink the window from the left while it contains all required characters
+		while (formed === required) {
+			const windowSize = right - left + 1; // Current window size
+			if (windowSize < minLength) {
+				minLength = windowSize; // Update minimum window size
+				result = [left, right]; // Update the indices of the smallest window
+			}
+
+			// Remove the character at the `left` pointer from the window
+			const leftChar = s[left];
+			windowCounts.set(
+				leftChar,
+				windowCounts.get(leftChar) - 1
+			);
+
+			// If removing this character breaks the condition for `formed`, decrement `formed`
+			if (
+				tMap.has(leftChar) &&
+				windowCounts.get(leftChar) < tMap.get(leftChar)
+			) {
+				formed--;
+			}
+			left++; // Move the left pointer to shrink the window
+		}
+
+		// Expand the window by moving the `right` pointer
+		right++;
+	}
+
+	// If no valid window is found, return an empty string; otherwise, return the smallest window
+	return minLength === Infinity
+		? ''
+		: s.slice(result[0], result[1] + 1);
 };
 
 // Examples:
-console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
-// Output: 49
-
-console.log(maxArea([1, 1]));
-// Output: 1
-
-console.log(maxArea([4, 3, 2, 1, 4]));
-// Output: 16
-
-console.log(maxArea([1, 2, 1]));
-// Output: 2
+console.log(minWindow('ADOBECODEBANC', 'ABC')); // Output: "BANC"
+console.log(minWindow('a', 'a')); // Output: "a"
+console.log(minWindow('a', 'aa')); // Output: ""
 
 /*
 Explanation:
-1. Two-pointer Approach:
-   - Start with two pointers, one at the beginning (`left`) and one at the end (`right`) of the array.
-   - Calculate the area between the two lines as:
-     \[
-     \text{Area} = \min(\text{height}[left], \text{height}[right]) \times (\text{right} - \text{left})
-     \]
+1. Goal:
+   - Find the smallest substring in `s` that contains all characters of `t` (including duplicates).
 
-2. Move the Pointer:
-   - To maximize the area, the shorter line is the limiting factor.
-   - Move the pointer pointing to the shorter line inward, as it might lead to a taller line and potentially a larger area.
+2. Approach:
+   - Use the sliding window technique with two pointers (`left` and `right`).
+   - Maintain a frequency map (`tMap`) for characters in `t`.
+   - Track the number of unique characters in the current window that match the required frequency using `formed`.
 
-3. Update maxArea:
-   - Keep track of the largest area found so far.
+3. Steps:
+   - Expand the window by moving the `right` pointer.
+   - When all characters in `t` are present in the window (`formed === required`), try shrinking the window by moving the `left` pointer.
+   - Update the result when a smaller valid window is found.
 
-4. Stop Condition:
-   - The loop stops when the two pointers meet.
+4. Time Complexity:
+   - \(O(m + n)\): Iterating over `s` with `right` and at most once with `left`, plus constructing `tMap`.
 
-Complexity:
-- Time Complexity: \(O(n)\), where \(n\) is the length of the `height` array. Each element is processed at most once.
-- Space Complexity: \(O(1)\), as only a few variables are used.
+5. Space Complexity:
+   - \(O(m + n)\): Space for `tMap` and `windowCounts`.
 
-Example Walkthrough:
+6. Edge Cases:
+   - If `s` is shorter than `t`, return an empty string.
+   - If characters in `t` are not in `s`, return an empty string.
 
-Example 1:
-Input: `height = [1, 8, 6, 2, 5, 4, 8, 3, 7]`
-- Initial: `left = 0`, `right = 8`
-- Iterations:
-  - Calculate area between heights `1` and `7`: \( \min(1, 7) \times 8 = 8 \).
-  - Move `left` to `1`, as `height[left] < height[right]`.
-  - Calculate area between `8` and `7`: \( \min(8, 7) \times 7 = 49 \).
-  - Update `maxArea` to `49`.
-  - Continue shrinking the window.
-- Output: `49`
-
-Example 2:
-Input: `height = [1, 1]`
-- Initial: `left = 0`, `right = 1`
-- Calculate area: \( \min(1, 1) \times 1 = 1 \).
-- Output: `1`
-
+7. Walkthrough:
+   - Input: `s = "ADOBECODEBANC", t = "ABC"`
+   - Initial `tMap`: `{A: 1, B: 1, C: 1}`
+   - Sliding window:
+     - Expand: `ADOBE` (not valid)
+     - Expand: `ADOBEC` (valid, size = 6)
+     - Shrink: `DOBEC` (still valid, size = 5)
+     - Expand: Continue until finding `BANC` (size = 4).
+   - Output: `"BANC"`.
 */
