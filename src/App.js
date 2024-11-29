@@ -20,7 +20,7 @@ const ErrorBoundary = ({ children }) => {
 
 	const componentDidCatch = (error, info) => {
 		setHasError(true);
-		console.error(error, info);
+		console.error('Error caught in ErrorBoundary:', error, info);
 	};
 
 	if (hasError) {

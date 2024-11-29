@@ -73,75 +73,119 @@ export const AppProvider = ({ children }) => {
 	}, [activeTab]);
 
 	const handleTabClick = (tab) => {
-		setActiveTab(tab);
+		try {
+			setActiveTab(tab);
+		} catch (error) {
+			setError('Error changing tab.');
+			console.error('Error changing tab:', error);
+		}
 	};
 
 	const handleSearch = (query) => {
-		setSearchQuery(query);
-		const allData = [
-			...leetcodeData,
-			...principlesData,
-			...reviewsheetData,
-		];
-		const filteredResults = allData.filter(
-			(item) =>
-				item.category
-					?.toLowerCase()
-					.includes(query.toLowerCase()) ||
-				item.topic
-					?.toLowerCase()
-					.includes(query.toLowerCase()) ||
-				item.id.toString().includes(query)
-		);
-		setResults(filteredResults);
+		try {
+			setSearchQuery(query);
+			const allData = [
+				...leetcodeData,
+				...principlesData,
+				...reviewsheetData,
+			];
+			const filteredResults = allData.filter(
+				(item) =>
+					item.category
+						?.toLowerCase()
+						.includes(query.toLowerCase()) ||
+					item.topic
+						?.toLowerCase()
+						.includes(query.toLowerCase()) ||
+					item.id.toString().includes(query)
+			);
+			setResults(filteredResults);
+		} catch (error) {
+			setError('Error performing search.');
+			console.error('Error performing search:', error);
+		}
 	};
 
 	const handleFilterChange = (selectedFilter) => {
-		if (
-			['Default', 'Alphabetical', 'Category'].includes(
-				selectedFilter
-			)
-		) {
-			setError(null);
-			setFilter(selectedFilter);
-		} else {
-			setError('Invalid filter selected.');
+		try {
+			if (
+				['Default', 'Alphabetical', 'Category'].includes(
+					selectedFilter
+				)
+			) {
+				setError(null);
+				setFilter(selectedFilter);
+			} else {
+				setError('Invalid filter selected.');
+			}
+		} catch (error) {
+			setError('Error changing filter.');
+			console.error('Error changing filter:', error);
 		}
 	};
 
 	const toggleDarkMode = () => {
-		setDarkMode(!darkMode);
-		document.body.classList.toggle('dark-mode', !darkMode);
+		try {
+			setDarkMode(!darkMode);
+			document.body.classList.toggle(
+				'dark-mode',
+				!darkMode
+			);
+		} catch (error) {
+			setError('Error toggling dark mode.');
+			console.error('Error toggling dark mode:', error);
+		}
 	};
 
 	const resetResults = () => {
-		window.location.reload();
+		try {
+			window.location.reload();
+		} catch (error) {
+			setError('Error resetting results.');
+			console.error('Error resetting results:', error);
+		}
 	};
 
 	const explorePopularSearches = () => {
-		window.location.href = '/popular-searches';
+		try {
+			window.location.href = '/popular-searches';
+		} catch (error) {
+			setError('Error exploring popular searches.');
+			console.error(
+				'Error exploring popular searches:',
+				error
+			);
+		}
 	};
 
 	const handleUnlock = (code) => {
-		const validCodes = [
-			'Abcde12345!',
-			'Sherlock!',
-			'Testcode!',
-		];
-		if (validCodes.includes(code)) {
-			const newUnlockState = !isLeetCodeUnlocked;
-			setLeetCodeUnlocked(newUnlockState);
-			if (newUnlockState) {
-				localStorage.setItem('isLeetCodeUnlocked', 'true');
-				setActiveTab('leetcode');
+		try {
+			const validCodes = [
+				'Abcde12345!',
+				'Sherlock!',
+				'Testcode!',
+			];
+			if (validCodes.includes(code)) {
+				const newUnlockState = !isLeetCodeUnlocked;
+				setLeetCodeUnlocked(newUnlockState);
+				if (newUnlockState) {
+					localStorage.setItem(
+						'isLeetCodeUnlocked',
+						'true'
+					);
+					setActiveTab('leetcode');
+				} else {
+					localStorage.removeItem('isLeetCodeUnlocked');
+					setActiveTab('principles');
+				}
+				setUnlockModalOpen(false);
+				setUnlockError('');
 			} else {
-				localStorage.removeItem('isLeetCodeUnlocked');
-				setActiveTab('principles');
+				setUnlockError('Incorrect code. Please try again.');
 			}
-			setUnlockModalOpen(false);
-			setUnlockError('');
-		} else {
-			setUnlockError('Incorrect code. Please try again.');
+		} catch (error) {
+			setUnlockError('Error unlocking feature.');
+			console.error('Error unlocking feature:', error);
 		}
 	};
 
