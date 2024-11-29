@@ -16,7 +16,7 @@ The Study Guide project is designed to help users filter and search through stud
 
 ## Demo
 
-Check out the live site: [Study Guide](https://davesheinbein.github.io/studyguide/)
+Check out the live site: [Study Guide](https://studyguide-8d2f5.web.app/)
 
 ## Installation
 
