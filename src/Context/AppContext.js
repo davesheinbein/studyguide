@@ -32,6 +32,7 @@ export const AppProvider = ({ children }) => {
 	const [unlockModalOpen, setUnlockModalOpen] =
 		useState(false);
 	const [unlockError, setUnlockError] = useState('');
+	const [activeTopics, setActiveTopics] = useState([]);
 
 	useEffect(() => {
 		const allTopics = [
@@ -41,6 +42,18 @@ export const AppProvider = ({ children }) => {
 		];
 		setTopics(allTopics);
 	}, []);
+
+	useEffect(() => {
+		let currentTopics = [];
+		if (activeTab === 'leetcode') {
+			currentTopics = leetcodeData.map((item) => item.topic);
+		} else if (activeTab === 'principles') {
+			currentTopics = principlesData.map((item) => item.topic);
+		} else if (activeTab === 'reviewsheet') {
+			currentTopics = reviewsheetData.map((item) => item.topic);
+		}
+		setActiveTopics(currentTopics);
+	}, [activeTab]);
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
@@ -158,6 +171,7 @@ export const AppProvider = ({ children }) => {
 				setUnlockModalOpen,
 				unlockError,
 				setUnlockError,
+				activeTopics,
 			}}
 		>
 			{children}

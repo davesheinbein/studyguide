@@ -16,6 +16,10 @@
   margin-right: 20px;
   animation: fadeIn 1s ease-in-out;
 }
+.header .name img {
+  width: 50px;
+  height: auto;
+}
 .header .left-section {
   display: flex;
   align-items: center;

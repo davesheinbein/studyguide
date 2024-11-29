@@ -95,7 +95,7 @@ body.light-mode .search-bar input:focus {
 	background: $french-gray;
 	border: 0px solid transparent;
 	border-radius: 50%;
-	z-index: 50;
+	z-index: 5;
 
 	&:hover {
 		background: darken($french-gray, 10%);

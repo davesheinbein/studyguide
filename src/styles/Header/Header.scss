@@ -27,6 +27,11 @@
 		color: $fluorescent-cyan;
 		margin-right: 20px;
 		animation: fadeIn 1s ease-in-out;
+
+		img {
+			width: 50px; // Adjust the width as needed
+			height: auto;
+		}
 	}
 
 	.left-section {

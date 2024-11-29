@@ -8,7 +8,7 @@ const SearchBar = ({ onSearchChange }) => {
 		setSearchQuery,
 		error,
 		setError,
-		topics,
+		activeTopics,
 		filteredTopics,
 		setFilteredTopics,
 		isFocused,
@@ -20,14 +20,14 @@ const SearchBar = ({ onSearchChange }) => {
 			if (searchQuery.length <= 100) {
 				onSearchChange(searchQuery);
 				setFilteredTopics(
-					topics.filter((topic) =>
+					activeTopics.filter((topic) =>
 						topic
 							.toLowerCase()
 							.includes(searchQuery.toLowerCase())
 					)
 				);
 			}
-		}, [searchQuery]);
+		}, 300);
 
 		return () => {
 			clearTimeout(handler);
@@ -35,7 +35,7 @@ const SearchBar = ({ onSearchChange }) => {
 	}, [
 		searchQuery,
 		onSearchChange,
-		topics,
+		activeTopics,
 		setFilteredTopics,
 	]);
 

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom'; // Add this import
 
 import '../styles/Header/Header.css';
 
@@ -79,7 +80,15 @@ const Header = () => {
 		<>
 			<header className='header'>
 				<div className='left-section'>
-					<div className='name'>Study Guide</div>
+					<div className='name'>
+						<Link to='/'>
+							<img
+								src='https://i.imgur.com/1DQ7j3Y.png'
+								alt='Study Guide'
+								className='logo-img'
+							/>
+						</Link>
+					</div>
 					<div className='tabs'>
 						{isLeetCodeUnlocked && (
 							<div

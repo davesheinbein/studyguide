@@ -84,7 +84,7 @@ body.light-mode .search-bar input:focus {
   background: #c8c6d7;
   border: 0px solid transparent;
   border-radius: 50%;
-  z-index: 50;
+  z-index: 5;
 }
 .clear-button:hover {
   background: #aba8c2;
