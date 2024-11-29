@@ -4,6 +4,7 @@ import Card from './Components/Card';
 import Header from './Components/Header';
 import PopularSearches from './Components/PopularSearches';
 import Footer from './Components/Footer';
+import NoResults from './Components/NoResults';
 import {
 	AppProvider,
 	AppContext,
@@ -34,7 +35,7 @@ const ErrorBoundary = ({ children }) => {
 };
 
 const App = () => {
-	const { error } = useContext(AppContext);
+	const { error, dataLoadError } = useContext(AppContext);
 
 	return (
 		<ErrorBoundary>
@@ -43,13 +44,17 @@ const App = () => {
 				{error && (
 					<div className='error-message'>{error}</div>
 				)}
-				<Routes>
-					<Route
-						path='/popular-searches'
-						element={<PopularSearches />}
-					/>
-					<Route path='/' element={<Card />} />
-				</Routes>
+				{dataLoadError ? (
+					<NoResults />
+				) : (
+					<Routes>
+						<Route
+							path='/popular-searches'
+							element={<PopularSearches />}
+						/>
+						<Route path='/' element={<Card />} />
+					</Routes>
+				)}
 				<Footer />
 			</div>
 		</ErrorBoundary>

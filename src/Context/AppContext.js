@@ -33,26 +33,43 @@ export const AppProvider = ({ children }) => {
 		useState(false);
 	const [unlockError, setUnlockError] = useState('');
 	const [activeTopics, setActiveTopics] = useState([]);
+	const [dataLoadError, setDataLoadError] = useState(false);
 
 	useEffect(() => {
-		const allTopics = [
-			...leetcodeData.map((item) => item.topic),
-			...principlesData.map((item) => item.topic),
-			...reviewsheetData.map((item) => item.topic),
-		];
-		setTopics(allTopics);
+		try {
+			const allTopics = [
+				...leetcodeData.map((item) => item.topic),
+				...principlesData.map((item) => item.topic),
+				...reviewsheetData.map((item) => item.topic),
+			];
+			setTopics(allTopics);
+		} catch (error) {
+			setDataLoadError(true);
+			console.error('Error loading data:', error);
+		}
 	}, []);
 
 	useEffect(() => {
-		let currentTopics = [];
-		if (activeTab === 'leetcode') {
-			currentTopics = leetcodeData.map((item) => item.topic);
-		} else if (activeTab === 'principles') {
-			currentTopics = principlesData.map((item) => item.topic);
-		} else if (activeTab === 'reviewsheet') {
-			currentTopics = reviewsheetData.map((item) => item.topic);
+		try {
+			let currentTopics = [];
+			if (activeTab === 'leetcode') {
+				currentTopics = leetcodeData.map(
+					(item) => item.topic
+				);
+			} else if (activeTab === 'principles') {
+				currentTopics = principlesData.map(
+					(item) => item.topic
+				);
+			} else if (activeTab === 'reviewsheet') {
+				currentTopics = reviewsheetData.map(
+					(item) => item.topic
+				);
+			}
+			setActiveTopics(currentTopics);
+		} catch (error) {
+			setDataLoadError(true);
+			console.error('Error loading data:', error);
 		}
-		setActiveTopics(currentTopics);
 	}, [activeTab]);
 
 	const handleTabClick = (tab) => {
@@ -172,6 +189,7 @@ export const AppProvider = ({ children }) => {
 				unlockError,
 				setUnlockError,
 				activeTopics,
+				dataLoadError,
 			}}
 		>
 			{children}
