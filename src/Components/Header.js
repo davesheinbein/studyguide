@@ -1,17 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'; // Add this import
-
+import { Link } from 'react-router-dom';
 import '../styles/Header/Header.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faGithub,
-	faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-	faGlobe,
-	faMoon,
-	faSun,
 	faLock,
 	faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
@@ -53,11 +44,8 @@ const Header = () => {
 	};
 
 	const handleUnlock = (code) => {
-		const validCodes = [
-			'Abcde12345!',
-			'Sherlock!',
-			'Testcode!',
-		];
+		const validCodes =
+			process.env.REACT_APP_VALID_CODES?.split(',');
 
 		if (validCodes.includes(code)) {
 			const newUnlockState = !isLeetCodeUnlocked;

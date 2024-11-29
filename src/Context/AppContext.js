@@ -166,19 +166,12 @@ export const AppProvider = ({ children }) => {
 
 	const handleUnlock = (code) => {
 		try {
-			const validCodes = [
-				'Abcde12345!',
-				'Sherlock!',
-				'Testcode!',
-			];
+			const validCodes = process.env.REACT_APP_VALID_CODES?.split(',') || [];
 			if (validCodes.includes(code)) {
 				const newUnlockState = !isLeetCodeUnlocked;
 				setLeetCodeUnlocked(newUnlockState);
 				if (newUnlockState) {
-					localStorage.setItem(
-						'isLeetCodeUnlocked',
-						'true'
-					);
+					localStorage.setItem('isLeetCodeUnlocked', 'true');
 					setActiveTab('leetcode');
 				} else {
 					localStorage.removeItem('isLeetCodeUnlocked');
