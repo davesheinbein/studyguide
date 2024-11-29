@@ -1,10 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, {
+	useContext,
+	useState,
+	useEffect,
+} from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
 import PopularSearches from './Components/PopularSearches';
 import Footer from './Components/Footer';
 import NoResults from './Components/NoResults';
+import NotFound from './Components/NotFound';
 import {
 	AppProvider,
 	AppContext,
@@ -57,6 +62,7 @@ const App = () => {
 							element={<PopularSearches />}
 						/>
 						<Route path='/' element={<Card />} />
+						<Route path='*' element={<NotFound />} />
 					</Routes>
 				)}
 				<Footer />
@@ -67,9 +73,7 @@ const App = () => {
 
 const WrappedApp = () => (
 	<AppProvider>
-		<Router>
-			<App />
-		</Router>
+		<App />
 	</AppProvider>
 );
 

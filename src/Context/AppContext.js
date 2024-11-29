@@ -72,6 +72,12 @@ export const AppProvider = ({ children }) => {
 		}
 	}, [activeTab]);
 
+	useEffect(() => {
+		if (!isLeetCodeUnlocked && activeTab === 'leetcode') {
+			setActiveTab('principles');
+		}
+	}, [isLeetCodeUnlocked, activeTab]);
+
 	const handleTabClick = (tab) => {
 		try {
 			setActiveTab(tab);
