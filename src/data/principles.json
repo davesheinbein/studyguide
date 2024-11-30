@@ -239,14 +239,14 @@
 	},
 	{
 		"id": 35,
-		"topic": "Prototype and Inheritance (Implementation, Examples)",
+		"topic": "Prototype and Inheritance (Object Relationships, Prototypes)",
 		"category": "JavaScript Basics",
 		"code": "// Prototype Example\nfunction Person(name) {\n this.name = name;\n}\nPerson.prototype.greet = function() {\n console.log(`Hello, my name is ${this.name}`);\n};\nconst alice = new Person('Alice');\nalice.greet(); // Hello, my name is Alice\n\n// Inheritance Example\nfunction Employee(name, jobTitle) {\n Person.call(this, name);\n this.jobTitle = jobTitle;\n}\nEmployee.prototype = Object.create(Person.prototype);\nEmployee.prototype.constructor = Employee;\nEmployee.prototype.work = function() {\n console.log(`${this.name} is working as a ${this.jobTitle}`);\n};\nconst bob = new Employee('Bob', 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
 		"explanation": "This snippet demonstrates prototype-based inheritance. In an interview, you might be asked to explain how prototypes work and how inheritance is implemented in JavaScript."
 	},
 	{
 		"id": 36,
-		"topic": "Class Syntax and Inheritance (Benefits, Examples)",
+		"topic": "Class Syntax and Inheritance (Object-Oriented Design, Benefits)",
 		"category": "JavaScript Basics",
 		"code": "// Class Declaration\nclass Person {\n constructor(name, age) {\n  this.name = name;\n  this.age = age;\n }\n greet() {\n  console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n\n// Class Inheritance\nclass Employee extends Person {\n constructor(name, age, jobTitle) {\n  super(name, age);\n  this.jobTitle = jobTitle;\n }\n work() {\n  console.log(`${this.name} is working as a ${this.jobTitle}`);\n }\n}\nconst bob = new Employee('Bob', 30, 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
 		"explanation": "This snippet demonstrates how to define and use classes. In an interview, you might be asked to explain the benefits of using classes for a more structured and object-oriented approach."
