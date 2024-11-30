@@ -1,116 +1,82 @@
 /**
- * @param {string} s - The input string in which we are searching for the substring.
- * @param {string} t - The string containing characters that must be included in the substring.
- * @return {string} - The minimum window substring of `s` that contains all characters of `t`. Returns an empty string if no such substring exists.
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
  */
 
-var minWindow = function (s, t) {
-	// If `s` is shorter than `t`, it is impossible to form a valid substring.
-	if (s.length < t.length) return '';
-
-	// Step 1: Create a frequency map for characters in `t`
-	const tMap = new Map();
-	for (let char of t) {
-		tMap.set(char, (tMap.get(char) || 0) + 1);
+var isIsomorphic = function (s, t) {
+	// Step 1: Ensure the strings have the same length
+	if (s.length !== t.length) {
+		return false; // If lengths are different, they cannot be isomorphic.
 	}
 
-	// Variables for sliding window technique
-	let left = 0, // Left pointer for the sliding window
-		right = 0; // Right pointer for the sliding window
-	let required = tMap.size; // Number of unique characters in `t` that need to be matched
-	let formed = 0; // Count of unique characters in the current window that satisfy the required frequency
-	const windowCounts = new Map(); // Frequency map for characters in the current sliding window
-	let minLength = Infinity; // Length of the smallest valid window
-	let result = [0, 0]; // Indices of the smallest valid window
+	// Step 2: Create two maps to track character mappings
+	const forwardMapping = new Map(); // Maps characters from s to t
+	const reverseMapping = new Map(); // Maps characters from t to s
 
-	// Step 3: Expand the sliding window by moving the `right` pointer
-	while (right < s.length) {
-		const char = s[right]; // Add the current character to the window
-		windowCounts.set(
-			char,
-			(windowCounts.get(char) || 0) + 1
-		);
+	// Step 3: Iterate through both strings simultaneously
+	for (let i = 0; i < s.length; i++) {
+		const currentSource = s[i]; // Current character from s
+		const currentTarget = t[i]; // Current character from t
 
-		// If the current character's frequency in the window matches `tMap`, increment `formed`
-		if (
-			tMap.has(char) &&
-			windowCounts.get(char) === tMap.get(char)
-		) {
-			formed++;
-		}
-
-		// Step 4: Shrink the window from the left while it contains all required characters
-		while (formed === required) {
-			const windowSize = right - left + 1; // Current window size
-			if (windowSize < minLength) {
-				minLength = windowSize; // Update minimum window size
-				result = [left, right]; // Update the indices of the smallest window
-			}
-
-			// Remove the character at the `left` pointer from the window
-			const leftChar = s[left];
-			windowCounts.set(
-				leftChar,
-				windowCounts.get(leftChar) - 1
-			);
-
-			// If removing this character breaks the condition for `formed`, decrement `formed`
+		// Check the mapping from s to t
+		if (forwardMapping.has(currentSource)) {
 			if (
-				tMap.has(leftChar) &&
-				windowCounts.get(leftChar) < tMap.get(leftChar)
+				forwardMapping.get(currentSource) !== currentTarget
 			) {
-				formed--;
+				return false; // Mismatch in mapping
 			}
-			left++; // Move the left pointer to shrink the window
+		} else {
+			forwardMapping.set(currentSource, currentTarget); // Add mapping from s to t
 		}
 
-		// Expand the window by moving the `right` pointer
-		right++;
+		// Check the mapping from t to s
+		if (reverseMapping.has(currentTarget)) {
+			if (
+				reverseMapping.get(currentTarget) !== currentSource
+			) {
+				return false; // Mismatch in mapping
+			}
+		} else {
+			reverseMapping.set(currentTarget, currentSource); // Add mapping from t to s
+		}
 	}
 
-	// If no valid window is found, return an empty string; otherwise, return the smallest window
-	return minLength === Infinity
-		? ''
-		: s.slice(result[0], result[1] + 1);
+	// If we complete the loop without conflicts, the strings are isomorphic
+	return true;
 };
 
-// Examples:
-console.log(minWindow('ADOBECODEBANC', 'ABC')); // Output: "BANC"
-console.log(minWindow('a', 'a')); // Output: "a"
-console.log(minWindow('a', 'aa')); // Output: ""
+// Examples
+// Example 1: "egg" and "add" should return true
+console.log(isIsomorphic('egg', 'add')); // Output: true
+
+// Example 2: "foo" and "bar" should return false
+console.log(isIsomorphic('foo', 'bar')); // Output: false
+
+// Example 3: "paper" and "title" should return true
+console.log(isIsomorphic('paper', 'title')); // Output: true
 
 /*
 Explanation:
-1. Goal:
-   - Find the smallest substring in `s` that contains all characters of `t` (including duplicates).
+- This function checks if two strings `s` and `t` are isomorphic.
+- Two strings are isomorphic if each character in `s` can be uniquely mapped to a character in `t`, 
+  preserving the order, and vice versa.
+  
+Approach:
+- Use two hash maps (or dictionaries):
+  - `forwardMapping`: Maps characters from `s` to `t`.
+  - `reverseMapping`: Maps characters from `t` to `s`.
+- Iterate through the characters of both strings simultaneously:
+  1. If a character in `s` is already mapped, check if it matches the current character in `t`.
+  2. Similarly, ensure that characters in `t` are consistently mapped back to `s`.
+  3. If any mismatch occurs, return `false`.
+- If the iteration completes without inconsistencies, the strings are isomorphic.
 
-2. Approach:
-   - Use the sliding window technique with two pointers (`left` and `right`).
-   - Maintain a frequency map (`tMap`) for characters in `t`.
-   - Track the number of unique characters in the current window that match the required frequency using `formed`.
+Edge Cases:
+- Strings of different lengths are not isomorphic and should return `false`.
+- Empty strings are trivially isomorphic.
 
-3. Steps:
-   - Expand the window by moving the `right` pointer.
-   - When all characters in `t` are present in the window (`formed === required`), try shrinking the window by moving the `left` pointer.
-   - Update the result when a smaller valid window is found.
-
-4. Time Complexity:
-   - \(O(m + n)\): Iterating over `s` with `right` and at most once with `left`, plus constructing `tMap`.
-
-5. Space Complexity:
-   - \(O(m + n)\): Space for `tMap` and `windowCounts`.
-
-6. Edge Cases:
-   - If `s` is shorter than `t`, return an empty string.
-   - If characters in `t` are not in `s`, return an empty string.
-
-7. Walkthrough:
-   - Input: `s = "ADOBECODEBANC", t = "ABC"`
-   - Initial `tMap`: `{A: 1, B: 1, C: 1}`
-   - Sliding window:
-     - Expand: `ADOBE` (not valid)
-     - Expand: `ADOBEC` (valid, size = 6)
-     - Shrink: `DOBEC` (still valid, size = 5)
-     - Expand: Continue until finding `BANC` (size = 4).
-   - Output: `"BANC"`.
-*/
+Complexity:
+- Time Complexity: O(n), where `n` is the length of the strings. We traverse the strings once.
+- Space Complexity: O(1) since the hash maps have a maximum of 128 entries (one for each ASCII character).
+ */
