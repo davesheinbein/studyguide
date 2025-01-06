@@ -1,82 +1,82 @@
+var WordDictionary = function () {
+	this.root = {}; // The root of the Trie
+};
+
 /**
- * @param {string} s
- * @param {string} t
+ * @param {string} word
+ * @return {void}
+ */
+
+WordDictionary.prototype.addWord = function (word) {
+	let currentNode = this.root;
+
+	// Insert each character of the word into the Trie
+	for (const char of word) {
+		if (!currentNode[char]) {
+			currentNode[char] = {}; // Create a new node if it doesn't exist
+		}
+		currentNode = currentNode[char];
+	}
+
+	// Mark the end of the word
+	currentNode.isEnd = true;
+};
+
+/**
+ * @param {string} word
  * @return {boolean}
  */
 
-var isIsomorphic = function (s, t) {
-	// Step 1: Ensure the strings have the same length
-	if (s.length !== t.length) {
-		return false; // If lengths are different, they cannot be isomorphic.
-	}
-
-	// Step 2: Create two maps to track character mappings
-	const forwardMapping = new Map(); // Maps characters from s to t
-	const reverseMapping = new Map(); // Maps characters from t to s
-
-	// Step 3: Iterate through both strings simultaneously
-	for (let i = 0; i < s.length; i++) {
-		const currentSource = s[i]; // Current character from s
-		const currentTarget = t[i]; // Current character from t
-
-		// Check the mapping from s to t
-		if (forwardMapping.has(currentSource)) {
-			if (
-				forwardMapping.get(currentSource) !== currentTarget
-			) {
-				return false; // Mismatch in mapping
-			}
-		} else {
-			forwardMapping.set(currentSource, currentTarget); // Add mapping from s to t
+WordDictionary.prototype.search = function (word) {
+	// Helper function for recursive search with dot handling
+	const searchHelper = (node, index) => {
+		// If we have reached the end of the word, check if it's a valid word
+		if (index === word.length) {
+			return node.isEnd === true;
 		}
 
-		// Check the mapping from t to s
-		if (reverseMapping.has(currentTarget)) {
-			if (
-				reverseMapping.get(currentTarget) !== currentSource
-			) {
-				return false; // Mismatch in mapping
+		const char = word[index];
+
+		// If the character is a dot, recursively check all possible children
+		if (char === '.') {
+			for (const key in node) {
+				// Skip the `isEnd` property to avoid checking it while iterating over children
+				if (
+					key !== 'isEnd' &&
+					searchHelper(node[key], index + 1)
+				) {
+					return true;
+				}
 			}
 		} else {
-			reverseMapping.set(currentTarget, currentSource); // Add mapping from t to s
+			// If it's a regular character, check the corresponding child node
+			if (
+				node[char] &&
+				searchHelper(node[char], index + 1)
+			) {
+				return true;
+			}
 		}
-	}
 
-	// If we complete the loop without conflicts, the strings are isomorphic
-	return true;
+		return false;
+	};
+
+	return searchHelper(this.root, 0);
 };
-
-// Examples
-// Example 1: "egg" and "add" should return true
-console.log(isIsomorphic('egg', 'add')); // Output: true
-
-// Example 2: "foo" and "bar" should return false
-console.log(isIsomorphic('foo', 'bar')); // Output: false
-
-// Example 3: "paper" and "title" should return true
-console.log(isIsomorphic('paper', 'title')); // Output: true
 
 /*
 Explanation:
-- This function checks if two strings `s` and `t` are isomorphic.
-- Two strings are isomorphic if each character in `s` can be uniquely mapped to a character in `t`, 
-  preserving the order, and vice versa.
-  
-Approach:
-- Use two hash maps (or dictionaries):
-  - `forwardMapping`: Maps characters from `s` to `t`.
-  - `reverseMapping`: Maps characters from `t` to `s`.
-- Iterate through the characters of both strings simultaneously:
-  1. If a character in `s` is already mapped, check if it matches the current character in `t`.
-  2. Similarly, ensure that characters in `t` are consistently mapped back to `s`.
-  3. If any mismatch occurs, return `false`.
-- If the iteration completes without inconsistencies, the strings are isomorphic.
 
-Edge Cases:
-- Strings of different lengths are not isomorphic and should return `false`.
-- Empty strings are trivially isomorphic.
+*/
 
-Complexity:
-- Time Complexity: O(n), where `n` is the length of the strings. We traverse the strings once.
-- Space Complexity: O(1) since the hash maps have a maximum of 128 entries (one for each ASCII character).
+/**
+  Example usage:
+  var obj = new WordDictionary();
+  obj.addWord("bad");
+  obj.addWord("dad");
+  obj.addWord("mad");
+  console.log(obj.search("pad")); // false
+  console.log(obj.search("bad")); // true
+  console.log(obj.search(".ad")); // true
+  console.log(obj.search("b..")); // true
  */

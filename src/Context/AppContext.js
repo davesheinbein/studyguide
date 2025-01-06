@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 import leetcodeData from '../data/leetcode.json';
 import principlesData from '../data/principles.json';
