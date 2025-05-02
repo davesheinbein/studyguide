@@ -5,18 +5,29 @@ describe('Card Component', () => {
 
 	it('should render cards based on active tab', () => {
 		cy.get('.tab').contains('Reviewsheet').click();
-		cy.get('.card-item').should('have.length.greaterThan', 0);
+		cy.get('.card-item').should(
+			'have.length.greaterThan',
+			0
+		);
 
 		cy.get('.tab').contains('LeetCode').click();
-		cy.get('.card-item').should('have.length.greaterThan', 0);
+		cy.get('.card-item').should(
+			'have.length.greaterThan',
+			0
+		);
 
-		cy.get('.tab').contains('Principles').click();
-		cy.get('.card-item').should('have.length.greaterThan', 0);
+		cy.get('.tab').contains('jsPrinciples').click();
+		cy.get('.card-item').should(
+			'have.length.greaterThan',
+			0
+		);
 	});
 
 	it('should filter cards based on search query', () => {
 		const query = 'javascript';
-		cy.get('input[placeholder="Search by topic, category, or ID..."]').type(query);
+		cy.get(
+			'input[placeholder="Search by topic, category, or ID..."]'
+		).type(query);
 		cy.get('.card-item').each(($el) => {
 			cy.wrap($el).should('contain.text', query);
 		});

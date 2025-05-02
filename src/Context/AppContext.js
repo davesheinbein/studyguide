@@ -1,7 +1,8 @@
 import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 import leetcodeData from '../data/leetcode.json';
-import principlesData from '../data/principles.json';
+import jsPrinciplesData from '../data/jsprinciples.json';
+import tsPrinciplesData from '../data/tsprinciples.json';
 import reviewsheetData from '../data/reviewsheet.json';
 
 export const AppContext = createContext();
@@ -16,7 +17,8 @@ export const AppProvider = ({ children }) => {
 	const [darkMode, setDarkMode] = useState(false);
 	const [reviewsheet, setReviewsheet] = useState([]);
 	const [leetcode, setLeetcode] = useState([]);
-	const [principles, setPrinciples] = useState([]);
+	const [jsPrinciples, setJsPrinciples] = useState([]);
+	const [tsPrinciples, setTsPrinciples] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [expandedCard, setExpandedCard] = useState(null);
 	const [filteredTopics, setFilteredTopics] = useState([]);
@@ -40,7 +42,8 @@ export const AppProvider = ({ children }) => {
 		try {
 			const allTopics = [
 				...leetcodeData.map((item) => item.topic),
-				...principlesData.map((item) => item.topic),
+				...jsPrinciplesData.map((item) => item.topic),
+				...tsPrinciplesData.map((item) => item.topic),
 				...reviewsheetData.map((item) => item.topic),
 			];
 			setTopics(allTopics);
@@ -57,8 +60,12 @@ export const AppProvider = ({ children }) => {
 				currentTopics = leetcodeData.map(
 					(item) => item.topic
 				);
-			} else if (activeTab === 'principles') {
-				currentTopics = principlesData.map(
+			} else if (activeTab === 'jsPrinciples') {
+				currentTopics = jsPrinciplesData.map(
+					(item) => item.topic
+				);
+			} else if (activeTab === 'tsPrinciples') {
+				currentTopics = tsPrinciplesData.map(
 					(item) => item.topic
 				);
 			} else if (activeTab === 'reviewsheet') {
@@ -75,7 +82,7 @@ export const AppProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (!isLeetCodeUnlocked && activeTab === 'leetcode') {
-			setActiveTab('principles');
+			setActiveTab('jsPrinciples');
 		}
 	}, [isLeetCodeUnlocked, activeTab]);
 
@@ -93,7 +100,8 @@ export const AppProvider = ({ children }) => {
 			setSearchQuery(query);
 			const allData = [
 				...leetcodeData,
-				...principlesData,
+				...jsPrinciplesData,
+				...tsPrinciplesData,
 				...reviewsheetData,
 			];
 			const filteredResults = allData.filter(
@@ -167,16 +175,20 @@ export const AppProvider = ({ children }) => {
 
 	const handleUnlock = (code) => {
 		try {
-			const validCodes = process.env.REACT_APP_VALID_CODES?.split(',') || [];
+			const validCodes =
+				process.env.REACT_APP_VALID_CODES?.split(',') || [];
 			if (validCodes.includes(code)) {
 				const newUnlockState = !isLeetCodeUnlocked;
 				setLeetCodeUnlocked(newUnlockState);
 				if (newUnlockState) {
-					localStorage.setItem('isLeetCodeUnlocked', 'true');
+					localStorage.setItem(
+						'isLeetCodeUnlocked',
+						'true'
+					);
 					setActiveTab('leetcode');
 				} else {
 					localStorage.removeItem('isLeetCodeUnlocked');
-					setActiveTab('principles');
+					setActiveTab('jsPrinciples');
 				}
 				setUnlockModalOpen(false);
 				setUnlockError('');
@@ -201,7 +213,8 @@ export const AppProvider = ({ children }) => {
 				darkMode,
 				reviewsheet,
 				leetcode,
-				principles,
+				jsPrinciples,
+				tsPrinciples,
 				filteredData,
 				expandedCard,
 				filteredTopics,
@@ -212,7 +225,8 @@ export const AppProvider = ({ children }) => {
 				setLeetCodeUnlocked,
 				setReviewsheet,
 				setLeetcode,
-				setPrinciples,
+				setJsPrinciples,
+				setTsPrinciples,
 				setFilteredData,
 				setError,
 				setExpandedCard,

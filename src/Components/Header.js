@@ -55,7 +55,7 @@ const Header = () => {
 				handleTabClick('leetcode');
 			} else {
 				localStorage.removeItem('isLeetCodeUnlocked');
-				handleTabClick('principles');
+				handleTabClick('jsPrinciples');
 			}
 			setUnlockModalOpen(false);
 			setUnlockError('');
@@ -94,15 +94,27 @@ const Header = () => {
 						)}
 						<div
 							className={`tab ${
-								activeTab === 'principles' ? 'active' : ''
+								activeTab === 'jsPrinciples' ? 'active' : ''
 							}`}
-							onClick={() => onTabClick('principles')}
+							onClick={() => onTabClick('jsPrinciples')}
 							role='button'
 							tabIndex={0}
-							onKeyPress={() => onTabClick('principles')}
-							aria-label='Principles Tab'
+							onKeyPress={() => onTabClick('jsPrinciples')}
+							aria-label='jsPrinciples Tab'
 						>
-							Principles
+							JS Principles
+						</div>
+						<div
+							className={`tab ${
+								activeTab === 'tsPrinciples' ? 'active' : ''
+							}`}
+							onClick={() => onTabClick('tsPrinciples')}
+							role='button'
+							tabIndex={0}
+							onKeyPress={() => onTabClick('tsPrinciples')}
+							aria-label='tsPrinciples Tab'
+						>
+							TS Principles
 						</div>
 						<div
 							className={`tab ${

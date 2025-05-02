@@ -5,7 +5,8 @@ import '../styles/prism-custom.css';
 import '../styles/Card/Card.css';
 import reviewsheetData from '../data/reviewsheet.json';
 import leetcodeData from '../data/leetcode.json';
-import principlesData from '../data/principles.json';
+import jsPrinciplesData from '../data/jsprinciples.json';
+import tsPrinciplesData from '../data/tsprinciples.json';
 import { AppContext } from '../Context/AppContext';
 import { filterData } from '../utils';
 import NoResults from './NoResults';
@@ -18,13 +19,15 @@ const Card = () => {
 		filter,
 		reviewsheet,
 		leetcode,
-		principles,
+		jsPrinciples,
+		tsPrinciples,
 		filteredData,
 		error,
 		expandedCard,
 		setReviewsheet,
 		setLeetcode,
-		setPrinciples,
+		setJsPrinciples,
+		setTsPrinciples,
 		setFilteredData,
 		setError,
 		setExpandedCard,
@@ -35,14 +38,16 @@ const Card = () => {
 	const originalData = {
 		reviewsheet: [...reviewsheetData],
 		leetcode: [...leetcodeData],
-		principles: [...principlesData],
+		jsPrinciples: [...jsPrinciplesData],
+		tsPrinciples: [...tsPrinciplesData],
 	};
 
 	useEffect(() => {
 		try {
 			setReviewsheet([...reviewsheetData]);
 			setLeetcode([...leetcodeData]);
-			setPrinciples([...principlesData]);
+			setJsPrinciples([...jsPrinciplesData]);
+			setTsPrinciples([...tsPrinciplesData]);
 			Prism.highlightAll();
 		} catch (err) {
 			setError('Failed to load data.');
@@ -51,7 +56,12 @@ const Card = () => {
 
 	useEffect(() => {
 		try {
-			const dataMap = { reviewsheet, leetcode, principles };
+			const dataMap = {
+				reviewsheet,
+				leetcode,
+				jsPrinciples,
+				tsPrinciples,
+			};
 			const data = dataMap[activeTab];
 
 			if (!data) {
@@ -87,7 +97,8 @@ const Card = () => {
 		activeTab,
 		reviewsheet,
 		leetcode,
-		principles,
+		jsPrinciples,
+		tsPrinciples,
 		filter,
 	]);
 
@@ -307,7 +318,14 @@ const Card = () => {
 							</div>
 						</div>
 					)}
-					{activeTab === 'principles' && (
+					{activeTab === 'jsPrinciples' && (
+						<div className='card card-C'>
+							<div className='card-grid'>
+								{renderCards(filteredData)}
+							</div>
+						</div>
+					)}
+					{activeTab === 'tsPrinciples' && (
 						<div className='card card-C'>
 							<div className='card-grid'>
 								{renderCards(filteredData)}
