@@ -44,14 +44,11 @@ const Card = () => {
 
 	useEffect(() => {
 		try {
-			console.log('🚀 ~ originalData:', originalData);
-			console.log('setting data');
 			setReviewsheet([...reviewsheetData]);
 			setLeetcode([...leetcodeData]);
 			setTsPrinciples([...tsPrinciplesData]);
 			setJsPrinciples([...jsPrinciplesData]);
 			Prism.highlightAll();
-			console.log('finished setting data');
 		} catch (err) {
 			setError('Failed to load data.');
 		}
