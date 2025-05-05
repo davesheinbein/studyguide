@@ -1,554 +1,554 @@
 [
 	{
 		"id": 1,
-		"topic": "Functions (Declaration, Expression, Arrow, IIFE)",
-		"category": "JavaScript Basics",
+		"topic": "TS Functions (Declaration, Expression, Arrow, IIFE)",
+		"category": "TypeScript Basics",
 		"code": "// Function Declaration\nfunction add(a: number, b: number): number {\n return a + b;\n}\n// Function Expression\nconst add = function(a: number, b: number): number {\n return a + b;\n};\n// Arrow Function\nconst add = (a: number, b: number): number => a + b;\n// IIFE (Immediately Invoked Function Expression)\n(function(): void {\n console.log('IIFE');\n})();\n",
 		"explanation": "This snippet demonstrates three ways to define functions in JavaScript: function declaration, function expression, and arrow function. In an interview, you might be asked to explain the differences, such as hoisting behavior and the 'this' binding in arrow functions. Additionally, you could discuss the use cases for each type and their performance implications."
 	},
 	{
 		"id": 2,
-		"topic": "APIs (Fetch, XMLHttpRequest, Axios)",
+		"topic": "TS APIs (Fetch, XMLHttpRequest, Axios)",
 		"category": "Web APIs",
-		"code": "// Fetch API\nfetch('https://api.example.com/data')\n .then((response: Response) => response.json())\n .then((data: any) => console.log(data))\n .catch((error: any) => console.error('Error:', error));\n// XMLHttpRequest\nconst xhr = new XMLHttpRequest();\nxhr.open('GET', 'https://api.example.com/data');\nxhr.onload = (): void => console.log(xhr.responseText);\nxhr.onerror = (): void => console.error('Error:', xhr.statusText);\nxhr.send();\n\n// Using Async/Await\nasync function fetchData(): Promise<void> {\n try {\n  const response: Response = await fetch('https://api.example.com/data');\n  const data: any = await response.json();\n  console.log(data);\n } catch (error: any) {\n  console.error('Error:', error);\n }\n}\nfetchData();\n\n// Using Axios\naxios.get('https://api.example.com/data')\n .then((response: any) => console.log(response.data))\n .catch((error: any) => console.error('Error:', error));\n",
+		"code": "// Fetch API\nfetch('https://api.example.com/data')\n .then((response: Response) => response.json())\n .then((data: any) => console.log(data))\n .catch((error: any) => console.error('Error:', error));\n// XMLHttpRequest\nconst xhr = new XMLHttpRequest();\nxhr.open('GET', 'https://api.example.com/data');\nxhr.onload = (): void => console.log(xhr.responseText);\nxhr.onerror = (): void => console.error('Error:', xhr.statusText);\nxhr.send();\n\n// Using Async/Await\nasync function fetchData(): Promise<void> {\n try {\n const response: Response = await fetch('https://api.example.com/data');\n const data: any = await response.json();\n console.log(data);\n } catch (error: any) {\n console.error('Error:', error);\n }\n}\nfetchData();\n\n// Using Axios\naxios.get('https://api.example.com/data')\n .then((response: any) => console.log(response.data))\n .catch((error: any) => console.error('Error:', error));\n",
 		"explanation": "This snippet shows how to use the Fetch API, XMLHttpRequest, and Axios to make HTTP requests. In an interview, you might be asked to explain how promises work and how to handle asynchronous operations and errors. You could also discuss the differences between these methods and their advantages and disadvantages."
 	},
 	{
 		"id": 3,
-		"topic": "BigO (Constant, Linear, Quadratic, Logarithmic)",
+		"topic": "TS BigO (Constant, Linear, Quadratic, Logarithmic)",
 		"category": "Algorithms",
-		"code": "// Constant Time O(1)\nfunction getFirstElement<T>(arr: T[]): T {\n return arr[0];\n}\n// Linear Time O(n)\nfunction printAllElements<T>(arr: T[]): void {\n arr.forEach((element: T) => console.log(element));\n}\n// Quadratic Time O(n^2)\nfunction printAllPairs<T>(arr: T[]): void {\n arr.forEach((el1: T, i: number) => {\n  arr.forEach((el2: T, j: number) => {\n   console.log(el1, el2);\n  });\n });\n}\n// Logarithmic Time O(log n)\nfunction binarySearch(arr: number[], target: number): number {\n let left = 0, right = arr.length - 1;\n while (left <= right) {\n  const mid = Math.floor((left + right) / 2);\n  if (arr[mid] === target) return mid;\n  else if (arr[mid] < target) left = mid + 1;\n  else right = mid - 1;\n }\n return -1;\n}\n",
+		"code": "// Constant Time O(1)\nfunction getFirstElement<T>(arr: T[]): T {\n return arr[0];\n}\n// Linear Time O(n)\nfunction printAllElements<T>(arr: T[]): void {\n arr.forEach((element: T) => console.log(element));\n}\n// Quadratic Time O(n^2)\nfunction printAllPairs<T>(arr: T[]): void {\n arr.forEach((el1: T, i: number) => {\n arr.forEach((el2: T, j: number) => {\n console.log(el1, el2);\n });\n });\n}\n// Logarithmic Time O(log n)\nfunction binarySearch(arr: number[], target: number): number {\n let left = 0, right = arr.length - 1;\n while (left <= right) {\n const mid = Math.floor((left + right) / 2);\n if (arr[mid] === target) return mid;\n else if (arr[mid] < target) left = mid + 1;\n else right = mid - 1;\n }\n return -1;\n}\n",
 		"explanation": "This snippet demonstrates different time complexities: O(1), O(n), and O(n^2). In an interview, you might be asked to analyze the efficiency of algorithms and discuss how to optimize them. You could also explain how to identify the time complexity of a given algorithm and the impact of different data structures on performance."
 	},
 	{
 		"id": 4,
-		"topic": "Closures (Data Encapsulation, Private Variables)",
-		"category": "JavaScript Basics",
-		"code": "// Closure Example\nfunction makeCounter(): () => number {\n let count = 0;\n return function(): number {\n  count++;\n  return count;\n };\n}\nconst counter = makeCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2\n// Closure with Parameters\nfunction createAdder(x: number): (y: number) => number {\n return function(y: number): number {\n  return x + y;\n };\n}\nconst addFive = createAdder(5);\nconsole.log(addFive(2)); // 7\n",
+		"topic": "TS Closures (Data Encapsulation, Private Variables)",
+		"category": "TypeScript Basics",
+		"code": "// Closure Example\nfunction makeCounter(): () => number {\n let count = 0;\n return function(): number {\n count++;\n return count;\n };\n}\nconst counter = makeCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2\n// Closure with Parameters\nfunction createAdder(x: number): (y: number) => number {\n return function(y: number): number {\n return x + y;\n };\n}\nconst addFive = createAdder(5);\nconsole.log(addFive(2)); // 7\n",
 		"explanation": "This snippet demonstrates a closure. In an interview, you might be asked to explain how closures work and their use cases, such as data encapsulation and creating private variables. You could also discuss how closures are used in functional programming and event handlers."
 	},
 	{
 		"id": 5,
-		"topic": "Promises (Creation, Consumption, Promise.all)",
+		"topic": "TS Promises (Creation, Consumption, Promise.all)",
 		"category": "Asynchronous JavaScript",
-		"code": "// Creating a Promise\nconst promise = new Promise<string>((resolve, reject) => {\n const success = true;\n if (success) {\n  resolve('Success!');\n } else {\n  reject('Failure!');\n }\n});\n// Consuming a Promise\npromise\n .then((result: string) => console.log(result))\n .catch((error: string) => console.error(error));\n// Promise.all\nconst promise1 = Promise.resolve(3);\nconst promise2 = Promise.resolve(42);\nconst promise3 = new Promise<string>((resolve, reject) => {\n setTimeout(resolve, 100, 'foo');\n});\nPromise.all([promise1, promise2, promise3]).then((values: (number | string)[]) => {\n console.log(values); // [3, 42, 'foo']\n});\n",
+		"code": "// Creating a Promise\nconst promise = new Promise<string>((resolve, reject) => {\n const success = true;\n if (success) {\n resolve('Success!');\n } else {\n reject('Failure!');\n }\n});\n// Consuming a Promise\npromise\n .then((result: string) => console.log(result))\n .catch((error: string) => console.error(error));\n// Promise.all\nconst promise1 = Promise.resolve(3);\nconst promise2 = Promise.resolve(42);\nconst promise3 = new Promise<string>((resolve, reject) => {\n setTimeout(resolve, 100, 'foo');\n});\nPromise.all([promise1, promise2, promise3]).then((values: (number | string)[]) => {\n console.log(values); // [3, 42, 'foo']\n});\n",
 		"explanation": "This snippet shows how to create and consume a Promise. In an interview, you might be asked to discuss the advantages of promises over callbacks and how to handle asynchronous operations. You could also explain how to chain multiple promises and handle errors at different stages."
 	},
 	{
 		"id": 6,
-		"topic": "Async/Await (Error Handling, Multiple Promises)",
+		"topic": "TS Async/Await (Error Handling, Multiple Promises)",
 		"category": "Asynchronous JavaScript",
-		"code": "// Async/Await Example\nasync function fetchData(): Promise<void> {\n try {\n  const response: Response = await fetch('https://api.example.com/data');\n  const data: any = await response.json();\n  console.log(data);\n } catch (error: any) {\n  console.error('Error:', error);\n }\n}\nfetchData();\n// Async/Await with Multiple Promises\nasync function fetchMultipleData(): Promise<void> {\n try {\n  const [data1, data2]: [any, any] = await Promise.all([\n   fetch('https://api.example.com/data1').then((res: Response) => res.json()),\n   fetch('https://api.example.com/data2').then((res: Response) => res.json())\n  ]);\n  console.log(data1, data2);\n } catch (error: any) {\n  console.error('Error:', error);\n }\n}\nfetchMultipleData();\n",
+		"code": "// Async/Await Example\nasync function fetchData(): Promise<void> {\n try {\n const response: Response = await fetch('https://api.example.com/data');\n const data: any = await response.json();\n console.log(data);\n } catch (error: any) {\n console.error('Error:', error);\n }\n}\nfetchData();\n// Async/Await with Multiple Promises\nasync function fetchMultipleData(): Promise<void> {\n try {\n const [data1, data2]: [any, any] = await Promise.all([\n fetch('https://api.example.com/data1').then((res: Response) => res.json()),\n fetch('https://api.example.com/data2').then((res: Response) => res.json())\n ]);\n console.log(data1, data2);\n } catch (error: any) {\n console.error('Error:', error);\n }\n}\nfetchMultipleData();\n",
 		"explanation": "This snippet demonstrates the use of async/await syntax. In an interview, you might be asked to explain how async/await improves code readability and how it works under the hood. You could also discuss how to handle errors in async functions and the differences between async/await and traditional promise chaining."
 	},
 	{
 		"id": 7,
-		"topic": "Event Loop (Order of Execution, Microtasks, Macrotasks)",
-		"category": "JavaScript Basics",
+		"topic": "TS Event Loop (Order of Execution, Microtasks, Macrotasks)",
+		"category": "TypeScript Basics",
 		"code": "// Event Loop Example\nconsole.log('Start');\nsetTimeout((): void => {\n console.log('Timeout');\n}, 0);\nPromise.resolve().then((): void => {\n console.log('Promise');\n});\nconsole.log('End');\n// Event Loop with Async/Await\nasync function asyncFunction(): Promise<void> {\n console.log('Async Start');\n await Promise.resolve();\n console.log('Async End');\n}\nasyncFunction();\nconsole.log('After Async Function');\n",
 		"explanation": "This snippet illustrates the JavaScript event loop. In an interview, you might be asked to explain the order of execution for synchronous code, microtasks, and macrotasks, and how it affects asynchronous programming. You could also discuss how the event loop handles different types of events and the impact on performance."
 	},
 	{
 		"id": 8,
-		"topic": "Hoisting (Variables, Functions, Let, Const)",
-		"category": "JavaScript Basics",
+		"topic": "TS Hoisting (Variables, Functions, Let, Const)",
+		"category": "TypeScript Basics",
 		"code": "// Hoisting Example\nconsole.log(hoistedVar); // undefined\nvar hoistedVar: string = 'I am hoisted';\n// Function hoisting\nhoistedFunction();\nfunction hoistedFunction(): void {\n console.log('I am hoisted');\n}\n// Let and Const Hoisting\ntry {\n console.log(notHoistedVar); // ReferenceError\n let notHoistedVar: string = 'I am not hoisted';\n} catch (e: any) {\n console.error(e);\n}\n",
 		"explanation": "This snippet demonstrates hoisting in JavaScript. In an interview, you might be asked to explain how hoisting works and its implications for variable and function declarations. You could also discuss the differences between var, let, and const in terms of hoisting and scope."
 	},
 	{
 		"id": 9,
-		"topic": "This Keyword (Global, Object Method, Function, Arrow Function)",
-		"category": "JavaScript Basics",
-		"code": "// 'this' in Global Context\nconsole.log(this); // Window object (in browsers)\n// 'this' in Object Method\nconst obj = {\n name: 'Alice',\n greet(): void {\n  console.log(this.name);\n }\n};\nobj.greet(); // Alice\n// 'this' in a Function\nfunction showThis(): void {\n console.log(this);\n}\nshowThis(); // undefined (in strict mode) or Window object (in non-strict mode)\n// 'this' in Arrow Function\nconst arrowFunc = (): void => {\n console.log(this);\n};\narrowFunc(); // Window object (in browsers)\n",
+		"topic": "TS This Keyword (Global, Object Method, Function, Arrow Function)",
+		"category": "TypeScript Basics",
+		"code": "// 'this' in Global Context\nconsole.log(this); // Window object (in browsers)\n// 'this' in Object Method\nconst obj = {\n name: 'Alice',\n greet(): void {\n console.log(this.name);\n }\n};\nobj.greet(); // Alice\n// 'this' in a Function\nfunction showThis(): void {\n console.log(this);\n}\nshowThis(); // undefined (in strict mode) or Window object (in non-strict mode)\n// 'this' in Arrow Function\nconst arrowFunc = (): void => {\n console.log(this);\n};\narrowFunc(); // Window object (in browsers)\n",
 		"explanation": "This snippet shows different contexts of the 'this' keyword. In an interview, you might be asked to explain how 'this' is determined and how it behaves in different scenarios. You could also discuss how to explicitly set the value of 'this' using call, apply, and bind methods."
 	},
 	{
 		"id": 10,
-		"topic": "Array Methods (forEach, map, filter, reduce, find, some)",
-		"category": "JavaScript Basics",
+		"topic": "TS Array Methods (forEach, map, filter, reduce, find, some)",
+		"category": "TypeScript Basics",
 		"code": "// forEach\n[1, 2, 3].forEach((num: number): void => console.log(num));\n// map\nconst squares: number[] = [1, 2, 3].map((num: number): number => num * num);\n// filter\nconst evens: number[] = [1, 2, 3, 4].filter((num: number): boolean => num % 2 === 0);\n// reduce\nconst sum: number = [1, 2, 3].reduce((acc: number, num: number): number => acc + num, 0);\n// find\nconst found: number | undefined = [1, 2, 3, 4].find((num: number): boolean => num > 2);\nconsole.log(found); // 3\n// some\nconst hasEven: boolean = [1, 2, 3, 4].some((num: number): boolean => num % 2 === 0);\nconsole.log(hasEven); // true\n",
 		"explanation": "This snippet demonstrates various array methods. In an interview, you might be asked to explain the use cases for each method and how they provide a functional approach to array manipulation. You could also discuss the performance implications of these methods and how to choose the appropriate method for a given task."
 	},
 	{
 		"id": 11,
-		"topic": "Destructuring (Arrays, Objects, Nested, Default Values)",
-		"category": "JavaScript Basics",
+		"topic": "TS Destructuring (Arrays, Objects, Nested, Default Values)",
+		"category": "TypeScript Basics",
 		"code": "// Array Destructuring\nconst [a, b] = [1, 2];\n// Object Destructuring\nconst {name, age} = {name: 'Alice', age: 25};\n// Nested Destructuring\nconst user = {id: 1, profile: {name: 'Alice', age: 25}};\nconst {profile: {name: userName, age: userAge}} = user;\nconsole.log(userName, userAge); // Alice 25\n// Default Values\nconst {x = 10, y = 20} = {x: 5};\nconsole.log(x, y); // 5 20\n",
 		"explanation": "This snippet shows how to use destructuring assignment. In an interview, you might be asked to explain how destructuring simplifies working with arrays and objects. You could also discuss advanced destructuring techniques, such as nested destructuring and default values."
 	},
 	{
 		"id": 12,
-		"topic": "Spread Operator (Arrays, Objects, Function Arguments)",
-		"category": "JavaScript Basics",
+		"topic": "TS Spread Operator (Arrays, Objects, Function Arguments)",
+		"category": "TypeScript Basics",
 		"code": "// Spread in Arrays\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4];\n// Spread in Objects\nconst obj1 = {a: 1, b: 2};\nconst obj2 = {...obj1, c: 3};\n// Spread with Function Arguments\nfunction sum(a: number, b: number, c: number): number {\n return a + b + c;\n}\nconst numbers = [1, 2, 3];\nconsole.log(sum(...numbers)); // 6\n",
 		"explanation": "This snippet demonstrates the use of the spread operator. In an interview, you might be asked to explain how the spread operator helps in copying and merging arrays and objects. You could also discuss the differences between the spread operator and other methods like Object.assign and Array.concat."
 	},
 	{
 		"id": 13,
-		"topic": "Rest Parameters (Functions, Destructuring)",
-		"category": "JavaScript Basics",
+		"topic": "TS Rest Parameters (Functions, Destructuring)",
+		"category": "TypeScript Basics",
 		"code": "// Rest Parameters\nfunction sum(...numbers: number[]): number {\n return numbers.reduce((acc: number, num: number) => acc + num, 0);\n}\nconsole.log(sum(1, 2, 3)); // 6\n// Rest Parameters with Destructuring\nfunction multiply(multiplier: number, ...numbers: number[]): number[] {\n return numbers.map((num: number) => num * multiplier);\n}\nconsole.log(multiply(2, 1, 2, 3)); // [2, 4, 6]\n",
 		"explanation": "This snippet shows how to use rest parameters. In an interview, you might be asked to explain how rest parameters make it easier to handle functions with an indefinite number of arguments. You could also discuss the differences between rest parameters and the arguments object."
 	},
 	{
 		"id": 14,
-		"topic": "Template Literals (Interpolation, Multi-line, Tagged Templates)",
-		"category": "JavaScript Basics",
+		"topic": "TS Template Literals (Interpolation, Multi-line, Tagged Templates)",
+		"category": "TypeScript Basics",
 		"code": "// Template Literals\nconst name: string = 'Alice';\nconst greeting: string = `Hello, ${name}!`;\nconsole.log(greeting); // Hello, Alice!\n// Multi-line Strings\nconst multiLine: string = `This is a\nmulti-line string`;\nconsole.log(multiLine);\n// Tagged Templates\nfunction tag(strings: TemplateStringsArray, ...values: string[]): string {\n return strings.raw[0] + values.join('');\n}\nconst tagged: string = tag`Hello, ${name}!`;\nconsole.log(tagged); // Hello, Alice!\n",
 		"explanation": "This snippet demonstrates the use of template literals. In an interview, you might be asked to explain how template literals improve string interpolation and multi-line strings. You could also discuss the use of tagged templates and how they can be used for custom string processing."
 	},
 	{
 		"id": 15,
-		"topic": "Default Parameters (Functions, Destructuring)",
-		"category": "JavaScript Basics",
+		"topic": "TS Default Parameters (Functions, Destructuring)",
+		"category": "TypeScript Basics",
 		"code": "// Default Parameters\nfunction greet(name: string = 'Guest'): void {\n console.log(`Hello, ${name}!`);\n}\ngreet(); // Hello, Guest!\ngreet('Alice'); // Hello, Alice!\n// Default Parameters with Destructuring\nfunction createUser({name = 'Guest', age = 18}: {name?: string, age?: number} = {}): void {\n console.log(`Name: ${name}, Age: ${age}`);\n}\ncreateUser(); // Name: Guest, Age: 18\ncreateUser({name: 'Alice'}); // Name: Alice, Age: 18\n",
 		"explanation": "This snippet shows how to use default parameters. In an interview, you might be asked to explain how default parameters provide default values and make functions more flexible. You could also discuss how default parameters interact with other function features like rest parameters and destructuring."
 	},
 	{
 		"id": 16,
-		"topic": "Classes (Declaration, Inheritance)",
-		"category": "JavaScript Basics",
-		"code": "// Class Declaration\nclass Person {\n name: string;\n age: number;\n constructor(name: string, age: number) {\n  this.name = name;\n  this.age = age;\n }\n greet(): void {\n  console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n// Class Inheritance\nclass Employee extends Person {\n jobTitle: string;\n constructor(name: string, age: number, jobTitle: string) {\n  super(name, age);\n  this.jobTitle = jobTitle;\n }\n work(): void {\n  console.log(`${this.name} is working as a ${this.jobTitle}`);\n }\n}\nconst bob = new Employee('Bob', 30, 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
+		"topic": "TS Classes (Declaration, Inheritance)",
+		"category": "TypeScript Basics",
+		"code": "// Class Declaration\nclass Person {\n name: string;\n age: number;\n constructor(name: string, age: number) {\n this.name = name;\n this.age = age;\n }\n greet(): void {\n console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n// Class Inheritance\nclass Employee extends Person {\n jobTitle: string;\n constructor(name: string, age: number, jobTitle: string) {\n super(name, age);\n this.jobTitle = jobTitle;\n }\n work(): void {\n console.log(`${this.name} is working as a ${this.jobTitle}`);\n }\n}\nconst bob = new Employee('Bob', 30, 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
 		"explanation": "This snippet demonstrates how to define and use classes. In an interview, you might be asked to explain the benefits of using classes for a more structured and object-oriented approach. You could also discuss the differences between ES6 classes and traditional constructor functions."
 	},
 	{
 		"id": 17,
-		"topic": "Modules (Exporting, Importing, Default Export)",
-		"category": "JavaScript Basics",
+		"topic": "TS Modules (Exporting, Importing, Default Export)",
+		"category": "TypeScript Basics",
 		"code": "// Exporting a Module\nexport const add = (a: number, b: number): number => a + b;\n// Importing a Module\nimport { add } from './math.js';\nconsole.log(add(2, 3)); // 5\n// Default Export\nexport default function subtract(a: number, b: number): number {\n return a - b;\n}\n// Importing Default Export\nimport subtract from './math.js';\nconsole.log(subtract(5, 3)); // 2\n",
 		"explanation": "This snippet shows how to export and import modules. In an interview, you might be asked to explain how modules help in organizing code and managing dependencies. You could also discuss the differences between ES6 modules and other module systems like CommonJS and AMD."
 	},
 	{
 		"id": 18,
-		"topic": "Set (Unique Items, Iteration)",
-		"category": "JavaScript Basics",
+		"topic": "TS Set (Unique Items, Iteration)",
+		"category": "TypeScript Basics",
 		"code": "// Set Example\nconst set: Set<number> = new Set([1, 2, 3, 3]);\nset.add(4);\nset.delete(2);\nconsole.log(set.has(1)); // true\nconsole.log(set.size); // 3\n// Iterating over a Set\nset.forEach((value: number): void => console.log(value));\nfor (const value of set) {\n console.log(value);\n}\n",
 		"explanation": "This snippet demonstrates the use of the Set object. In an interview, you might be asked to explain how Sets manage collections of unique items and their operations. You could also discuss the differences between Sets and arrays, and when to use each."
 	},
 	{
 		"id": 19,
-		"topic": "Map (Key-Value Pairs, Iteration)",
-		"category": "JavaScript Basics",
+		"topic": "TS Map (Key-Value Pairs, Iteration)",
+		"category": "TypeScript Basics",
 		"code": "// Map Example\nconst map: Map<string, number> = new Map();\nmap.set('a', 1);\nmap.set('b', 2);\nconsole.log(map.get('a')); // 1\nconsole.log(map.has('b')); // true\nmap.delete('b');\nconsole.log(map.size); // 1\n// Iterating over a Map\nmap.forEach((value: number, key: string): void => console.log(key, value));\nfor (const [key, value] of map) {\n console.log(key, value);\n}\n",
 		"explanation": "This snippet shows how to use the Map object. In an interview, you might be asked to explain how Maps efficiently manage key-value pairs compared to plain objects. You could also discuss the differences between Maps and objects, and when to use each."
 	},
 	{
 		"id": 20,
-		"topic": "Callbacks (Asynchronous Operations, Callback Hell)",
+		"topic": "TS Callbacks (Asynchronous Operations, Callback Hell)",
 		"category": "Asynchronous JavaScript",
-		"code": "// Callback Example\nfunction fetchData(callback: (data: string) => void): void {\n setTimeout(() => {\n  callback('Data received');\n }, 1000);\n}\nfetchData((data: string): void => console.log(data)); // Data received\n// Callback Hell Example\nfunction step1(callback: () => void): void {\n setTimeout(() => {\n  console.log('Step 1');\n  callback();\n }, 1000);\n}\nfunction step2(callback: () => void): void {\n setTimeout(() => {\n  console.log('Step 2');\n  callback();\n }, 1000);\n}\nfunction step3(callback: () => void): void {\n setTimeout(() => {\n  console.log('Step 3');\n  callback();\n }, 1000);\n}\nstep1(() => {\n step2(() => {\n  step3(() => {\n   console.log('All steps completed');\n  });\n });\n});\n",
+		"code": "// Callback Example\nfunction fetchData(callback: (data: string) => void): void {\n setTimeout(() => {\n callback('Data received');\n }, 1000);\n}\nfetchData((data: string): void => console.log(data)); // Data received\n// Callback Hell Example\nfunction step1(callback: () => void): void {\n setTimeout(() => {\n console.log('Step 1');\n callback();\n }, 1000);\n}\nfunction step2(callback: () => void): void {\n setTimeout(() => {\n console.log('Step 2');\n callback();\n }, 1000);\n}\nfunction step3(callback: () => void): void {\n setTimeout(() => {\n console.log('Step 3');\n callback();\n }, 1000);\n}\nstep1(() => {\n step2(() => {\n step3(() => {\n console.log('All steps completed');\n });\n });\n});\n",
 		"explanation": "This snippet demonstrates the use of callbacks. In an interview, you might be asked to explain how callbacks handle asynchronous operations and their drawbacks compared to promises. You could also discuss how to avoid callback hell and improve code readability."
 	},
 	{
 		"id": 21,
-		"topic": "Error Handling (Try/Catch, Finally)",
-		"category": "JavaScript Basics",
+		"topic": "TS Error Handling (Try/Catch, Finally)",
+		"category": "TypeScript Basics",
 		"code": "// Try/Catch Example\ntry {\n throw new Error('Something went wrong');\n} catch (error: any) {\n console.error(error.message); // Something went wrong\n}\n// Try/Catch with Finally\ntry {\n console.log('Try block');\n} catch (error: any) {\n console.error(error.message);\n} finally {\n console.log('Finally block');\n}\n",
 		"explanation": "This snippet shows how to use try/catch blocks. In an interview, you might be asked to explain how try/catch blocks handle exceptions and improve error management. You could also discuss how to use finally blocks and custom error types."
 	},
 	{
 		"id": 22,
-		"topic": "Strict Mode (Parsing, Error Handling)",
-		"category": "JavaScript Basics",
-		"code": "// Strict Mode Example\n'use strict';\nfunction myFunction(): void {\n let x: number = 3.14; // This will cause an error because x is not declared\n}\nmyFunction();\n// Strict Mode in Classes\nclass MyClass {\n constructor() {\n  'use strict';\n  this.x = 3.14; // This will cause an error if x is not declared\n }\n}\n",
+		"topic": "TS Strict Mode (Parsing, Error Handling)",
+		"category": "TypeScript Basics",
+		"code": "// Strict Mode Example\n'use strict';\nfunction myFunction(): void {\n let x: number = 3.14; // This will cause an error because x is not declared\n}\nmyFunction();\n// Strict Mode in Classes\nclass MyClass {\n constructor() {\n 'use strict';\n this.x = 3.14; // This will cause an error if x is not declared\n }\n}\n",
 		"explanation": "This snippet demonstrates the use of strict mode. In an interview, you might be asked to explain how strict mode enforces stricter parsing and error handling, improving code quality. You could also discuss the differences between strict mode and non-strict mode."
 	},
 	{
 		"id": 23,
-		"topic": "Symbol (Unique Values, Object Properties)",
-		"category": "JavaScript Basics",
+		"topic": "TS Symbol (Unique Values, Object Properties)",
+		"category": "TypeScript Basics",
 		"code": "// Symbol Example\nconst sym1: symbol = Symbol('description');\nconst sym2: symbol = Symbol('description');\nconsole.log(sym1 === sym2); // false\n// Symbol as Object Property\nconst obj: Record<symbol, string> = {\n [sym1]: 'value'\n};\nconsole.log(obj[sym1]); // value\n",
 		"explanation": "This snippet shows how to use the Symbol type. In an interview, you might be asked to explain how Symbols create unique and immutable values, avoiding name collisions. You could also discuss how Symbols are used in well-known symbols and meta-programming."
 	},
 	{
 		"id": 24,
-		"topic": "Iterators (Traversal, Custom Iterators)",
-		"category": "JavaScript Basics",
-		"code": "// Iterator Example\nconst iterable: number[] = [1, 2, 3];\nconst iterator: Iterator<number> = iterable[Symbol.iterator]();\nconsole.log(iterator.next()); // { value: 1, done: false }\nconsole.log(iterator.next()); // { value: 2, done: false }\nconsole.log(iterator.next()); // { value: 3, done: false }\nconsole.log(iterator.next()); // { value: undefined, done: true }\n// Custom Iterator\nconst customIterable: Iterable<number> = {\n [Symbol.iterator](): Iterator<number> {\n  let step = 0;\n  return {\n   next(): IteratorResult<number> {\n    step++;\n    if (step <= 3) {\n     return { value: step, done: false };\n    }\n    return { value: undefined, done: true };\n   }\n  };\n }\n};\nfor (const value of customIterable) {\n console.log(value); // 1, 2, 3\n}\n",
+		"topic": "TS Iterators (Traversal, Custom Iterators)",
+		"category": "TypeScript Basics",
+		"code": "// Iterator Example\nconst iterable: number[] = [1, 2, 3];\nconst iterator: Iterator<number> = iterable[Symbol.iterator]();\nconsole.log(iterator.next()); // { value: 1, done: false }\nconsole.log(iterator.next()); // { value: 2, done: false }\nconsole.log(iterator.next()); // { value: 3, done: false }\nconsole.log(iterator.next()); // { value: undefined, done: true }\n// Custom Iterator\nconst customIterable: Iterable<number> = {\n [Symbol.iterator](): Iterator<number> {\n let step = 0;\n return {\n next(): IteratorResult<number> {\n step++;\n if (step <= 3) {\n return { value: step, done: false };\n }\n return { value: undefined, done: true };\n }\n };\n }\n};\nfor (const value of customIterable) {\n console.log(value); // 1, 2, 3\n}\n",
 		"explanation": "This snippet demonstrates how to use iterators. In an interview, you might be asked to explain how iterators provide a standard way to traverse data structures. You could also discuss how to create custom iterators and the differences between iterators and generators."
 	},
 	{
 		"id": 25,
-		"topic": "Generators (Control Flow, Delegation)",
-		"category": "JavaScript Basics",
+		"topic": "TS Generators (Control Flow, Delegation)",
+		"category": "TypeScript Basics",
 		"code": "// Generator Example\nfunction* generator(): Generator<number> {\n yield 1;\n yield 2;\n yield 3;\n}\nconst gen: Generator<number> = generator();\nconsole.log(gen.next().value); // 1\nconsole.log(gen.next().value); // 2\nconsole.log(gen.next().value); // 3\n// Generator Delegation\nfunction* anotherGenerator(): Generator<number> {\n yield* generator();\n yield 4;\n}\nconst anotherGen: Generator<number> = anotherGenerator();\nconsole.log(anotherGen.next().value); // 1\nconsole.log(anotherGen.next().value); // 2\nconsole.log(anotherGen.next().value); // 3\nconsole.log(anotherGen.next().value); // 4\n",
 		"explanation": "This snippet shows how to use generator functions. In an interview, you might be asked to explain how generators create iterators and manage control flow with the yield keyword. You could also discuss advanced generator techniques, such as delegation and asynchronous generators."
 	},
 	{
 		"id": 26,
-		"topic": "Proxy (Custom Behavior, Use Cases)",
-		"category": "JavaScript Basics",
-		"code": "// Proxy Example\nconst target: Record<string, any> = {};\nconst handler: ProxyHandler<Record<string, any>> = {\n get: function(obj: Record<string, any>, prop: string): any {\n  return prop in obj ? obj[prop] : 'default';\n }\n};\nconst proxy: Record<string, any> = new Proxy(target, handler);\nproxy.name = 'Alice';\nconsole.log(proxy.name); // Alice\nconsole.log(proxy.age); // default\n",
+		"topic": "TS Proxy (Custom Behavior, Use Cases)",
+		"category": "TypeScript Basics",
+		"code": "// Proxy Example\nconst target: Record<string, any> = {};\nconst handler: ProxyHandler<Record<string, any>> = {\n get: function(obj: Record<string, any>, prop: string): any {\n return prop in obj ? obj[prop] : 'default';\n }\n};\nconst proxy: Record<string, any> = new Proxy(target, handler);\nproxy.name = 'Alice';\nconsole.log(proxy.name); // Alice\nconsole.log(proxy.age); // default\n",
 		"explanation": "This snippet demonstrates how to use the Proxy object. In an interview, you might be asked to explain how Proxies define custom behavior for fundamental operations on objects. You could also discuss use cases for Proxies, such as validation, logging, and data binding."
 	},
 	{
 		"id": 27,
-		"topic": "Reflect (Object Manipulation, Operations)",
-		"category": "JavaScript Basics",
+		"topic": "TS Reflect (Object Manipulation, Operations)",
+		"category": "TypeScript Basics",
 		"code": "// Reflect Example\nconst obj: Record<string, any> = {a: 1};\nReflect.set(obj, 'b', 2);\nconsole.log(obj.b); // 2\n",
 		"explanation": "This snippet shows how to use the Reflect object. In an interview, you might be asked to explain how Reflect performs operations on objects, similar to Proxies. You could also discuss the differences between Reflect and traditional object manipulation methods."
 	},
 	{
 		"id": 28,
-		"topic": "WeakMap (Garbage Collection, Differences from Map)",
-		"category": "JavaScript Basics",
+		"topic": "TS WeakMap (Garbage Collection, Differences from Map)",
+		"category": "TypeScript Basics",
 		"code": "// WeakMap Example\nconst weakMap: WeakMap<object, string> = new WeakMap();\nconst obj: object = {};\nweakMap.set(obj, 'value');\nconsole.log(weakMap.get(obj)); // value\n",
 		"explanation": "This snippet demonstrates the use of the WeakMap object. In an interview, you might be asked to explain how WeakMaps store key-value pairs with keys that can be garbage collected. You could also discuss the differences between WeakMaps and Maps, and when to use each."
 	},
 	{
 		"id": 29,
-		"topic": "WeakSet (Garbage Collection, Differences from Set)",
-		"category": "JavaScript Basics",
+		"topic": "TS WeakSet (Garbage Collection, Differences from Set)",
+		"category": "TypeScript Basics",
 		"code": "// WeakSet Example\nconst weakSet: WeakSet<object> = new WeakSet();\nconst obj: object = {};\nweakSet.add(obj);\nconsole.log(weakSet.has(obj)); // true\n",
 		"explanation": "This snippet shows how to use the WeakSet object. In an interview, you might be asked to explain how WeakSets store collections of objects that can be garbage collected. You could also discuss the differences between WeakSets and Sets, and when to use each."
 	},
 	{
 		"id": 30,
-		"topic": "Event Delegation (Performance, Implementation)",
-		"category": "JavaScript Basics",
-		"code": "// Event Delegation Example\ndocument.querySelector('#parent')?.addEventListener('click', function(event: MouseEvent): void {\n if (event.target && (event.target as HTMLElement).matches('button')) {\n  console.log('Button clicked:', (event.target as HTMLElement).textContent);\n }\n});\n",
+		"topic": "TS Event Delegation (Performance, Implementation)",
+		"category": "TypeScript Basics",
+		"code": "// Event Delegation Example\ndocument.querySelector('#parent')?.addEventListener('click', function(event: MouseEvent): void {\n if (event.target && (event.target as HTMLElement).matches('button')) {\n console.log('Button clicked:', (event.target as HTMLElement).textContent);\n }\n});\n",
 		"explanation": "This snippet demonstrates event delegation. In an interview, you might be asked to explain how event delegation improves performance by reducing the number of event listeners. You could also discuss use cases and how to implement it."
 	},
 	{
 		"id": 31,
-		"topic": "Modules (ES6, CommonJS)",
-		"category": "JavaScript Basics",
+		"topic": "TS Modules (ES6, CommonJS)",
+		"category": "TypeScript Basics",
 		"code": "// ES6 Modules\n// Exporting\nexport const add = (a: number, b: number): number => a + b;\n// Importing\nimport { add } from './math.js';\n\n// CommonJS\n// Exporting\nmodule.exports = function subtract(a: number, b: number): number {\n return a - b;\n};\n// Importing\nconst subtract = require('./math');\n",
 		"explanation": "This snippet shows how to use ES6 modules and CommonJS. In an interview, you might be asked to explain the differences between these module systems and their use cases."
 	},
 	{
 		"id": 32,
-		"topic": "Set and Map (Unique Items, Key-Value Pairs)",
-		"category": "JavaScript Basics",
+		"topic": "TS Set and Map (Unique Items, Key-Value Pairs)",
+		"category": "TypeScript Basics",
 		"code": "// Set Example\nconst set: Set<number> = new Set([1, 2, 3, 3]);\nset.add(4);\nset.delete(2);\nconsole.log(set.has(1)); // true\nconsole.log(set.size); // 3\n\n// Map Example\nconst map: Map<string, number> = new Map();\nmap.set('a', 1);\nmap.set('b', 2);\nconsole.log(map.get('a')); // 1\nconsole.log(map.has('b')); // true\nmap.delete('b');\nconsole.log(map.size); // 1\n",
 		"explanation": "This snippet demonstrates the use of Set and Map objects. In an interview, you might be asked to explain how Sets and Maps manage collections of unique items and key-value pairs, respectively."
 	},
 	{
 		"id": 33,
-		"topic": "Symbol (Unique Values, Object Properties)",
-		"category": "JavaScript Basics",
+		"topic": "TS Symbol (Unique Values, Object Properties)",
+		"category": "TypeScript Basics",
 		"code": "// Symbol Example\nconst sym1: symbol = Symbol('description');\nconst sym2: symbol = Symbol('description');\nconsole.log(sym1 === sym2); // false\n\n// Symbol as Object Property\nconst obj: Record<symbol, string> = {\n [sym1]: 'value'\n};\nconsole.log(obj[sym1]); // value\n",
 		"explanation": "This snippet shows how to use the Symbol type. In an interview, you might be asked to explain how Symbols create unique and immutable values, avoiding name collisions."
 	},
 	{
 		"id": 34,
-		"topic": "Generators and Iterators (Control Flow, Differences)",
-		"category": "JavaScript Basics",
+		"topic": "TS Generators and Iterators (Control Flow, Differences)",
+		"category": "TypeScript Basics",
 		"code": "// Generator Example\nfunction* generator(): Generator<number> {\n yield 1;\n yield 2;\n yield 3;\n}\nconst gen: Generator<number> = generator();\nconsole.log(gen.next().value); // 1\nconsole.log(gen.next().value); // 2\nconsole.log(gen.next().value); // 3\n\n// Iterator Example\nconst iterable: number[] = [1, 2, 3];\nconst iterator: Iterator<number> = iterable[Symbol.iterator]();\nconsole.log(iterator.next()); // { value: 1, done: false }\nconsole.log(iterator.next()); // { value: 2, done: false }\nconsole.log(iterator.next()); // { value: 3, done: false }\nconsole.log(iterator.next()); // { value: undefined, done: true }\n",
 		"explanation": "This snippet demonstrates how to use generator functions and iterators. In an interview, you might be asked to explain how generators create iterators and manage control flow with the yield keyword."
 	},
 	{
 		"id": 35,
-		"topic": "Prototype and Inheritance (Object Relationships, Prototypes)",
-		"category": "JavaScript Basics",
+		"topic": "TS Prototype and Inheritance (Object Relationships, Prototypes)",
+		"category": "TypeScript Basics",
 		"code": "// Prototype Example\nfunction Person(name: string): void {\n this.name = name;\n}\nPerson.prototype.greet = function(): void {\n console.log(`Hello, my name is ${this.name}`);\n};\nconst alice = new Person('Alice');\nalice.greet(); // Hello, my name is Alice\n\n// Inheritance Example\nfunction Employee(name: string, jobTitle: string): void {\n Person.call(this, name);\n this.jobTitle = jobTitle;\n}\nEmployee.prototype = Object.create(Person.prototype);\nEmployee.prototype.constructor = Employee;\nEmployee.prototype.work = function(): void {\n console.log(`${this.name} is working as a ${this.jobTitle}`);\n};\nconst bob = new Employee('Bob', 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
 		"explanation": "This snippet demonstrates prototype-based inheritance. In an interview, you might be asked to explain how prototypes work and how inheritance is implemented in JavaScript."
 	},
 	{
 		"id": 36,
-		"topic": "Class Syntax and Inheritance (Object-Oriented Design, Benefits)",
-		"category": "JavaScript Basics",
-		"code": "// Class Declaration\nclass Person {\n name: string;\n age: number;\n constructor(name: string, age: number) {\n  this.name = name;\n  this.age = age;\n }\n greet(): void {\n  console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n\n// Class Inheritance\nclass Employee extends Person {\n jobTitle: string;\n constructor(name: string, age: number, jobTitle: string) {\n  super(name, age);\n  this.jobTitle = jobTitle;\n }\n work(): void {\n  console.log(`${this.name} is working as a ${this.jobTitle}`);\n }\n}\nconst bob = new Employee('Bob', 30, 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
+		"topic": "TS Class Syntax and Inheritance (Object-Oriented Design, Benefits)",
+		"category": "TypeScript Basics",
+		"code": "// Class Declaration\nclass Person {\n name: string;\n age: number;\n constructor(name: string, age: number) {\n this.name = name;\n this.age = age;\n }\n greet(): void {\n console.log(`Hello, my name is ${this.name}`);\n }\n}\nconst alice = new Person('Alice', 25);\nalice.greet(); // Hello, my name is Alice\n\n// Class Inheritance\nclass Employee extends Person {\n jobTitle: string;\n constructor(name: string, age: number, jobTitle: string) {\n super(name, age);\n this.jobTitle = jobTitle;\n }\n work(): void {\n console.log(`${this.name} is working as a ${this.jobTitle}`);\n }\n}\nconst bob = new Employee('Bob', 30, 'Developer');\nbob.greet(); // Hello, my name is Bob\nbob.work(); // Bob is working as a Developer\n",
 		"explanation": "This snippet demonstrates how to define and use classes. In an interview, you might be asked to explain the benefits of using classes for a more structured and object-oriented approach."
 	},
 	{
 		"id": 37,
-		"topic": "Destructuring Nested Objects and Arrays (Simplification, Examples)",
-		"category": "JavaScript Basics",
+		"topic": "TS Destructuring Nested Objects and Arrays (Simplification, Examples)",
+		"category": "TypeScript Basics",
 		"code": "// Nested Object Destructuring\nconst user: {id: number, profile: {name: string, age: number}} = {id: 1, profile: {name: 'Alice', age: 25}};\nconst {profile: {name: userName, age: userAge}} = user;\nconsole.log(userName, userAge); // Alice 25\n\n// Nested Array Destructuring\nconst nestedArray: [number, [number, number]] = [1, [2, 3]];\nconst [a, [b, c]] = nestedArray;\nconsole.log(a, b, c); // 1 2 3\n",
 		"explanation": "This snippet shows how to use destructuring assignment with nested objects and arrays. In an interview, you might be asked to explain how destructuring simplifies working with complex data structures."
 	},
 	{
 		"id": 38,
-		"topic": "Private Class Fields (Encapsulation, Examples)",
-		"category": "JavaScript Basics",
-		"code": "// Private Class Fields\nclass Person {\n #name: string;\n constructor(name: string) {\n  this.#name = name;\n }\n greet(): void {\n  console.log(`Hello, my name is ${this.#name}`);\n }\n}\nconst alice = new Person('Alice');\nalice.greet(); // Hello, my name is Alice\nconsole.log(alice.#name); // SyntaxError: Private field '#name' must be declared in an enclosing class\n",
+		"topic": "TS Private Class Fields (Encapsulation, Examples)",
+		"category": "TypeScript Basics",
+		"code": "// Private Class Fields\nclass Person {\n #name: string;\n constructor(name: string) {\n this.#name = name;\n }\n greet(): void {\n console.log(`Hello, my name is ${this.#name}`);\n }\n}\nconst alice = new Person('Alice');\nalice.greet(); // Hello, my name is Alice\nconsole.log(alice.#name); // SyntaxError: Private field '#name' must be declared in an enclosing class\n",
 		"explanation": "This snippet demonstrates how to use private class fields. In an interview, you might be asked to explain how private fields improve encapsulation and data hiding in classes."
 	},
 	{
 		"id": 39,
-		"topic": "WeakMap and WeakSet (Garbage Collection, Differences)",
-		"category": "JavaScript Basics",
+		"topic": "TS WeakMap and WeakSet (Garbage Collection, Differences)",
+		"category": "TypeScript Basics",
 		"code": "// WeakMap Example\nconst weakMap: WeakMap<object, string> = new WeakMap();\nconst obj: object = {};\nweakMap.set(obj, 'value');\nconsole.log(weakMap.get(obj)); // value\n\n// WeakSet Example\nconst weakSet: WeakSet<object> = new WeakSet();\nconst obj2: object = {};\nweakSet.add(obj2);\nconsole.log(weakSet.has(obj2)); // true\n",
 		"explanation": "This snippet demonstrates the use of WeakMap and WeakSet objects. In an interview, you might be asked to explain how they store collections of objects that can be garbage collected. You could also discuss the differences between WeakMap/WeakSet and Map/Set, and when to use each."
 	},
 	{
 		"id": 40,
-		"topic": "Debouncing and Throttling (Rate Control, Use Cases)",
-		"category": "JavaScript Basics",
-		"code": "// Debouncing Example\nfunction debounce(func: (...args: any[]) => void, wait: number): (...args: any[]) => void {\n let timeout: NodeJS.Timeout;\n return function(...args: any[]): void {\n  clearTimeout(timeout);\n  timeout = setTimeout(() => func.apply(this, args), wait);\n };\n}\n\n// Throttling Example\nfunction throttle(func: (...args: any[]) => void, limit: number): (...args: any[]) => void {\n let inThrottle: boolean;\n return function(...args: any[]): void {\n  if (!inThrottle) {\n   func.apply(this, args);\n   inThrottle = true;\n   setTimeout(() => inThrottle = false, limit);\n  }\n };\n}\n",
+		"topic": "TS Debouncing and Throttling (Rate Control, Use Cases)",
+		"category": "TypeScript Basics",
+		"code": "// Debouncing Example\nfunction debounce(func: (...args: any[]) => void, wait: number): (...args: any[]) => void {\n let timeout: NodeJS.Timeout;\n return function(...args: any[]): void {\n clearTimeout(timeout);\n timeout = setTimeout(() => func.apply(this, args), wait);\n };\n}\n\n// Throttling Example\nfunction throttle(func: (...args: any[]) => void, limit: number): (...args: any[]) => void {\n let inThrottle: boolean;\n return function(...args: any[]): void {\n if (!inThrottle) {\n func.apply(this, args);\n inThrottle = true;\n setTimeout(() => inThrottle = false, limit);\n }\n };\n}\n",
 		"explanation": "This snippet demonstrates debouncing and throttling techniques. In an interview, you might be asked to explain how these techniques help in controlling the rate of function execution. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 41,
-		"topic": "Function Currying (Transformation, Benefits)",
-		"category": "JavaScript Basics",
-		"code": "// Function Currying Example\nfunction curry(func: (...args: any[]) => any): (...args: any[]) => any {\n return function curried(...args: any[]): any {\n  if (args.length >= func.length) {\n   return func.apply(this, args);\n  } else {\n   return function(...args2: any[]): any {\n    return curried.apply(this, args.concat(args2));\n   };\n  }\n };\n}\n\nfunction add(a: number, b: number, c: number): number {\n return a + b + c;\n}\nconst curriedAdd = curry(add);\nconsole.log(curriedAdd(1)(2)(3)); // 6\n",
+		"topic": "TS Function Currying (Transformation, Benefits)",
+		"category": "TypeScript Basics",
+		"code": "// Function Currying Example\nfunction curry(func: (...args: any[]) => any): (...args: any[]) => any {\n return function curried(...args: any[]): any {\n if (args.length >= func.length) {\n return func.apply(this, args);\n } else {\n return function(...args2: any[]): any {\n return curried.apply(this, args.concat(args2));\n };\n }\n };\n}\n\nfunction add(a: number, b: number, c: number): number {\n return a + b + c;\n}\nconst curriedAdd = curry(add);\nconsole.log(curriedAdd(1)(2)(3)); // 6\n",
 		"explanation": "This snippet demonstrates function currying. In an interview, you might be asked to explain how currying transforms a function with multiple arguments into a sequence of functions with a single argument. You could also discuss use cases and benefits."
 	},
 	{
 		"id": 42,
-		"topic": "Memoization (Optimization, Use Cases)",
-		"category": "JavaScript Basics",
-		"code": "// Memoization Example\nfunction memoize(fn: (...args: any[]) => any): (...args: any[]) => any {\n const cache: Map<string, any> = new Map();\n return function(...args: any[]): any {\n  const key: string = JSON.stringify(args);\n  if (cache.has(key)) {\n   return cache.get(key);\n  }\n  const result: any = fn.apply(this, args);\n  cache.set(key, result);\n  return result;\n };\n}\n\nfunction slowFunction(num: number): number {\n for (let i = 0; i < 1e9; i++) {} // Simulate a slow computation\n return num * 2;\n}\nconst memoizedSlowFunction = memoize(slowFunction);\nconsole.log(memoizedSlowFunction(5)); // 10\n",
+		"topic": "TS Memoization (Optimization, Use Cases)",
+		"category": "TypeScript Basics",
+		"code": "// Memoization Example\nfunction memoize(fn: (...args: any[]) => any): (...args: any[]) => any {\n const cache: Map<string, any> = new Map();\n return function(...args: any[]): any {\n const key: string = JSON.stringify(args);\n if (cache.has(key)) {\n return cache.get(key);\n }\n const result: any = fn.apply(this, args);\n cache.set(key, result);\n return result;\n };\n}\n\nfunction slowFunction(num: number): number {\n for (let i = 0; i < 1e9; i++) {} // Simulate a slow computation\n return num * 2;\n}\nconst memoizedSlowFunction = memoize(slowFunction);\nconsole.log(memoizedSlowFunction(5)); // 10\n",
 		"explanation": "This snippet demonstrates memoization. In an interview, you might be asked to explain how memoization optimizes function performance by caching results of expensive function calls. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 43,
-		"topic": "Memory Management and Garbage Collection (Best Practices)",
-		"category": "JavaScript Basics",
+		"topic": "TS Memory Management and Garbage Collection (Best Practices)",
+		"category": "TypeScript Basics",
 		"code": "// Memory Management Example\nlet obj: Record<string, any> = {};\nfunction createLargeObject(): void {\n obj.largeArray = new Array(1e6).fill('data');\n}\ncreateLargeObject();\nobj = null; // Allow garbage collection\n",
 		"explanation": "This snippet demonstrates memory management and garbage collection. In an interview, you might be asked to explain how JavaScript manages memory and the role of garbage collection. You could also discuss best practices for memory management."
 	},
 	{
 		"id": 44,
-		"topic": "Type Coercion (Implicit, Explicit)",
-		"category": "JavaScript Basics",
+		"topic": "TS Type Coercion (Implicit, Explicit)",
+		"category": "TypeScript Basics",
 		"code": "// Type Coercion Example\nconsole.log('5' + 5); // '55'\nconsole.log('5' - 5); // 0\nconsole.log(true + 1); // 2\nconsole.log(false + 1); // 1\n",
 		"explanation": "This snippet demonstrates type coercion. In an interview, you might be asked to explain how JavaScript implicitly converts values between different types. You could also discuss the differences between implicit and explicit coercion."
 	},
 	{
 		"id": 45,
-		"topic": "Regular Expressions (Pattern Matching, Text Manipulation)",
-		"category": "JavaScript Basics",
+		"topic": "TS Regular Expressions (Pattern Matching, Text Manipulation)",
+		"category": "TypeScript Basics",
 		"code": "// Regular Expressions Example\nconst regex: RegExp = /\\d+/g;\nconst str: string = 'There are 123 apples and 456 oranges';\nconst matches: RegExpMatchArray | null = str.match(regex);\nconsole.log(matches); // ['123', '456']\n",
 		"explanation": "This snippet demonstrates the use of regular expressions. In an interview, you might be asked to explain how regular expressions help in pattern matching and text manipulation. You could also discuss common patterns and use cases."
 	},
 	{
 		"id": 46,
-		"topic": "JSON Handling (Data Interchange, Best Practices)",
-		"category": "JavaScript Basics",
+		"topic": "TS JSON Handling (Data Interchange, Best Practices)",
+		"category": "TypeScript Basics",
 		"code": "// JSON Handling Example\nconst obj: Record<string, any> = {name: 'Alice', age: 25};\nconst jsonString: string = JSON.stringify(obj);\nconsole.log(jsonString); // \"{\"name\":\"Alice\",\"age\":25}\"\nconst parsedObj: Record<string, any> = JSON.parse(jsonString);\nconsole.log(parsedObj); // {name: 'Alice', age: 25}\n",
 		"explanation": "This snippet demonstrates JSON handling. In an interview, you might be asked to explain how JSON is used for data interchange and how to parse and stringify JSON data. You could also discuss common pitfalls and best practices."
 	},
 	{
 		"id": 47,
-		"topic": "Dynamic Import (Code Splitting, Lazy Loading)",
-		"category": "JavaScript Basics",
+		"topic": "TS Dynamic Import (Code Splitting, Lazy Loading)",
+		"category": "TypeScript Basics",
 		"code": "// Dynamic Import Example\nimport('./math.js').then((module: any) => {\n const add: (a: number, b: number) => number = module.add;\n console.log(add(2, 3)); // 5\n});\n",
 		"explanation": "This snippet demonstrates dynamic import. In an interview, you might be asked to explain how dynamic imports enable code splitting and lazy loading. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 48,
-		"topic": "Shadowing and Scope (Variable Shadowing, Best Practices)",
-		"category": "JavaScript Basics",
+		"topic": "TS Shadowing and Scope (Variable Shadowing, Best Practices)",
+		"category": "TypeScript Basics",
 		"code": "// Shadowing Example\nlet x: number = 10;\nfunction scopeExample(): void {\n let x: number = 20; // Shadows the outer x\n console.log(x); // 20\n}\nscopeExample();\nconsole.log(x); // 10\n",
 		"explanation": "This snippet demonstrates variable shadowing and scope. In an interview, you might be asked to explain how variable shadowing occurs and its implications for scope. You could also discuss best practices for avoiding shadowing issues."
 	},
 	{
 		"id": 49,
-		"topic": "Tail Call Optimization (Recursion, Performance)",
-		"category": "JavaScript Basics",
+		"topic": "TS Tail Call Optimization (Recursion, Performance)",
+		"category": "TypeScript Basics",
 		"code": "// Tail Call Optimization Example\nfunction factorial(n: number, acc: number = 1): number {\n if (n <= 1) return acc;\n return factorial(n - 1, n * acc); // Tail call\n}\nconsole.log(factorial(5)); // 120\n",
 		"explanation": "This snippet demonstrates tail call optimization. In an interview, you might be asked to explain how tail call optimization improves recursion performance. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 50,
-		"topic": "Concurrency Model and Web Workers (Concurrent Execution, Use Cases)",
-		"category": "JavaScript Basics",
+		"topic": "TS Concurrency Model and Web Workers (Concurrent Execution, Use Cases)",
+		"category": "TypeScript Basics",
 		"code": "// Web Worker Example\nconst worker: Worker = new Worker('worker.js');\nworker.postMessage('Hello, worker');\nworker.onmessage = function(event: MessageEvent): void {\n console.log('Message from worker:', event.data);\n};\n",
 		"explanation": "This snippet demonstrates the use of Web Workers. In an interview, you might be asked to explain how Web Workers enable concurrent execution in JavaScript. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 51,
-		"topic": "Service Workers (Offline Capabilities, Background Tasks)",
+		"topic": "TS Service Workers (Offline Capabilities, Background Tasks)",
 		"category": "Web APIs",
-		"code": "// Service Worker Example\nif ('serviceWorker' in navigator) {\n navigator.serviceWorker.register('/service-worker.js')\n  .then((registration: ServiceWorkerRegistration): void => {\n   console.log('Service Worker registered with scope:', registration.scope);\n  })\n  .catch((error: Error): void => {\n   console.error('Service Worker registration failed:', error);\n  });\n}\n",
+		"code": "// Service Worker Example\nif ('serviceWorker' in navigator) {\n navigator.serviceWorker.register('/service-worker.js')\n .then((registration: ServiceWorkerRegistration): void => {\n console.log('Service Worker registered with scope:', registration.scope);\n })\n .catch((error: Error): void => {\n console.error('Service Worker registration failed:', error);\n });\n}\n",
 		"explanation": "This snippet demonstrates the use of Service Workers. In an interview, you might be asked to explain how Service Workers enable offline capabilities and background tasks. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 52,
-		"topic": "Intersection Observer API (Visibility, Use Cases)",
+		"topic": "TS Intersection Observer API (Visibility, Use Cases)",
 		"category": "Web APIs",
-		"code": "// Intersection Observer Example\nconst observer: IntersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[], observer: IntersectionObserver): void => {\n entries.forEach((entry: IntersectionObserverEntry): void => {\n  if (entry.isIntersecting) {\n   console.log('Element is in view:', entry.target);\n   observer.unobserve(entry.target);\n  }\n });\n});\nconst target: HTMLElement | null = document.querySelector('#target');\nif (target) observer.observe(target);\n",
+		"code": "// Intersection Observer Example\nconst observer: IntersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[], observer: IntersectionObserver): void => {\n entries.forEach((entry: IntersectionObserverEntry): void => {\n if (entry.isIntersecting) {\n console.log('Element is in view:', entry.target);\n observer.unobserve(entry.target);\n }\n });\n});\nconst target: HTMLElement | null = document.querySelector('#target');\nif (target) observer.observe(target);\n",
 		"explanation": "This snippet demonstrates the use of the Intersection Observer API. In an interview, you might be asked to explain how this API helps in observing the visibility of elements. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 53,
-		"topic": "Error Handling (Custom Errors, try/catch)",
-		"category": "JavaScript Basics",
-		"code": "// Custom Error Example\nclass CustomError extends Error {\n constructor(message: string) {\n  super(message);\n  this.name = 'CustomError';\n }\n}\ntry {\n throw new CustomError('Something went wrong');\n} catch (error: any) {\n console.error(error.name + ': ' + error.message); // CustomError: Something went wrong\n}\n",
+		"topic": "TS Error Handling (Custom Errors, try/catch)",
+		"category": "TypeScript Basics",
+		"code": "// Custom Error Example\nclass CustomError extends Error {\n constructor(message: string) {\n super(message);\n this.name = 'CustomError';\n }\n}\ntry {\n throw new CustomError('Something went wrong');\n} catch (error: any) {\n console.error(error.name + ': ' + error.message); // CustomError: Something went wrong\n}\n",
 		"explanation": "This snippet demonstrates custom error handling. In an interview, you might be asked to explain how to create and handle custom errors. You could also discuss best practices for error handling and debugging."
 	},
 	{
 		"id": 54,
-		"topic": "Reactivity (React State Management)",
+		"topic": "TS Reactivity (React State Management)",
 		"category": "JavaScript Frameworks",
-		"code": "// Reactivity Example\nimport React, { useState } from 'react';\n\nfunction Counter(): JSX.Element {\n const [count, setCount] = useState<number>(0);\n return (\n  <div>\n   <p>{count}</p>\n   <button onClick={() => setCount(count + 1)}>Increment</button>\n  </div>\n );\n}\nexport default Counter;\n",
+		"code": "// Reactivity Example\nimport React, { useState } from 'react';\n\nfunction Counter(): JSX.Element {\n const [count, setCount] = useState<number>(0);\n return (\n <div>\n <p>{count}</p>\n <button onClick={() => setCount(count + 1)}>Increment</button>\n </div>\n );\n}\nexport default Counter;\n",
 		"explanation": "This snippet demonstrates reactivity in React. In an interview, you might be asked to explain how React's state management enables reactive updates. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 55,
-		"topic": "Callbacks vs Promises vs Async/Await (Asynchronous Operations)",
+		"topic": "TS Callbacks vs Promises vs Async/Await (Asynchronous Operations)",
 		"category": "Asynchronous JavaScript",
-		"code": "// Callback Example\nfunction fetchData(callback: (data: string) => void): void {\n setTimeout(() => {\n  callback('Data received');\n }, 1000);\n}\nfetchData((data: string): void => console.log(data)); // Data received\n\n// Promise Example\nconst promise: Promise<string> = new Promise((resolve: (value: string) => void, reject: (reason?: any) => void): void => {\n setTimeout(() => {\n  resolve('Data received');\n }, 1000);\n});\npromise.then((data: string): void => console.log(data)); // Data received\n\n// Async/Await Example\nasync function fetchDataAsync(): Promise<void> {\n const data: string = await new Promise((resolve: (value: string) => void): void => {\n  setTimeout(() => {\n   resolve('Data received');\n  }, 1000);\n });\n console.log(data);\n}\nfetchDataAsync(); // Data received\n",
+		"code": "// Callback Example\nfunction fetchData(callback: (data: string) => void): void {\n setTimeout(() => {\n callback('Data received');\n }, 1000);\n}\nfetchData((data: string): void => console.log(data)); // Data received\n\n// Promise Example\nconst promise: Promise<string> = new Promise((resolve: (value: string) => void, reject: (reason?: any) => void): void => {\n setTimeout(() => {\n resolve('Data received');\n }, 1000);\n});\npromise.then((data: string): void => console.log(data)); // Data received\n\n// Async/Await Example\nasync function fetchDataAsync(): Promise<void> {\n const data: string = await new Promise((resolve: (value: string) => void): void => {\n setTimeout(() => {\n resolve('Data received');\n }, 1000);\n });\n console.log(data);\n}\nfetchDataAsync(); // Data received\n",
 		"explanation": "This snippet demonstrates callbacks, promises, and async/await. In an interview, you might be asked to explain the differences between these approaches for handling asynchronous operations. You could also discuss use cases and best practices."
 	},
 	{
 		"id": 56,
-		"topic": "WebSockets (Real-time Communication)",
+		"topic": "TS WebSockets (Real-time Communication)",
 		"category": "Web APIs",
 		"code": "// WebSocket Example\nconst socket: WebSocket = new WebSocket('ws://example.com/socket');\nsocket.onopen = function(event: Event): void {\n console.log('WebSocket is open now.');\n};\nsocket.onmessage = function(event: MessageEvent): void {\n console.log('Message from server:', event.data);\n};\nsocket.onclose = function(event: CloseEvent): void {\n console.log('WebSocket is closed now.');\n};\n",
 		"explanation": "This snippet demonstrates the use of WebSockets. In an interview, you might be asked to explain how WebSockets enable real-time communication between the client and server. You could also discuss use cases and implementation details."
 	},
 	{
 		"id": 57,
-		"topic": "Event Loop and Microtasks Queue (Order of Execution)",
-		"category": "JavaScript Basics",
+		"topic": "TS Event Loop and Microtasks Queue (Order of Execution)",
+		"category": "TypeScript Basics",
 		"code": "// Event Loop Example\nconsole.log('Start');\nsetTimeout((): void => {\n console.log('Timeout');\n}, 0);\nPromise.resolve().then((): void => {\n console.log('Promise');\n});\nconsole.log('End');\n",
 		"explanation": "This snippet demonstrates the JavaScript event loop and microtasks queue. In an interview, you might be asked to explain the order of execution for synchronous code, microtasks, and macrotasks. You could also discuss how the event loop handles different types of events and the impact on performance."
 	},
 	{
 		"id": 58,
-		"topic": "Const (Immutability)",
-		"category": "JavaScript Basics",
+		"topic": "TS Const (Immutability)",
+		"category": "TypeScript Basics",
 		"code": "// Const Example\nconst PI: number = 3.14;\nconsole.log(PI); // 3.14\n// PI = 3.14159; // TypeError: Assignment to constant variable.\n",
 		"explanation": "This snippet demonstrates the use of the const keyword. In an interview, you might be asked to explain how const declares variables that cannot be reassigned and its implications for immutability."
 	},
 	{
 		"id": 59,
-		"topic": "Let (Block Scope)",
-		"category": "JavaScript Basics",
+		"topic": "TS Let (Block Scope)",
+		"category": "TypeScript Basics",
 		"code": "// Let Example\nlet count: number = 0;\nif (true) {\n let count: number = 1;\n console.log(count); // 1\n}\nconsole.log(count); // 0\n",
 		"explanation": "This snippet demonstrates the use of the let keyword. In an interview, you might be asked to explain how let declares block-scoped variables and its differences from var."
 	},
 	{
 		"id": 60,
-		"topic": "Var (Function Scope)",
-		"category": "JavaScript Basics",
+		"topic": "TS Var (Function Scope)",
+		"category": "TypeScript Basics",
 		"code": "// Var Example\nvar count: number = 0;\nif (true) {\n var count: number = 1;\n console.log(count); // 1\n}\nconsole.log(count); // 1\n",
 		"explanation": "This snippet demonstrates the use of the var keyword. In an interview, you might be asked to explain how var declares function-scoped variables and its differences from let and const."
 	},
 	{
 		"id": 61,
-		"topic": "Try/Catch (Error Management)",
-		"category": "JavaScript Basics",
+		"topic": "TS Try/Catch (Error Management)",
+		"category": "TypeScript Basics",
 		"code": "// Try/Catch Example\ntry {\n throw new Error('Something went wrong');\n} catch (error: any) {\n console.error(error.message); // Something went wrong\n}\n",
 		"explanation": "This snippet demonstrates the use of try/catch blocks. In an interview, you might be asked to explain how try/catch blocks handle exceptions and improve error management."
 	},
 	{
 		"id": 62,
-		"topic": "Console Logging Variations (Debugging)",
-		"category": "JavaScript Basics",
+		"topic": "TS Console Logging Variations (Debugging)",
+		"category": "TypeScript Basics",
 		"code": "// Console Logging Variations\nconsole.log('Log message');\nconsole.warn('Warning message');\nconsole.error('Error message');\nconsole.info('Info message');\n",
 		"explanation": "This snippet demonstrates different console logging methods. In an interview, you might be asked to explain how to use console.log, console.warn, console.error, and console.info for debugging and logging."
 	},
 	{
 		"id": 63,
-		"topic": "Modal (User Interaction)",
+		"topic": "TS Modal (User Interaction)",
 		"category": "Web APIs",
-		"code": "// Modal Example\nconst modal: HTMLElement | null = document.getElementById('myModal');\nconst btn: HTMLElement | null = document.getElementById('myBtn');\nconst span: HTMLElement | null = document.getElementsByClassName('close')[0] as HTMLElement;\nif (btn) {\n btn.onclick = function(): void {\n  if (modal) modal.style.display = 'block';\n };\n}\nif (span) {\n span.onclick = function(): void {\n  if (modal) modal.style.display = 'none';\n };\n}\nwindow.onclick = function(event: MouseEvent): void {\n if (event.target === modal) {\n  if (modal) modal.style.display = 'none';\n }\n};\n",
+		"code": "// Modal Example\nconst modal: HTMLElement | null = document.getElementById('myModal');\nconst btn: HTMLElement | null = document.getElementById('myBtn');\nconst span: HTMLElement | null = document.getElementsByClassName('close')[0] as HTMLElement;\nif (btn) {\n btn.onclick = function(): void {\n if (modal) modal.style.display = 'block';\n };\n}\nif (span) {\n span.onclick = function(): void {\n if (modal) modal.style.display = 'none';\n };\n}\nwindow.onclick = function(event: MouseEvent): void {\n if (event.target === modal) {\n if (modal) modal.style.display = 'none';\n }\n};\n",
 		"explanation": "This snippet demonstrates how to create a simple modal. In an interview, you might be asked to explain how modals improve user interaction and how to implement them using HTML, CSS, and JavaScript."
 	},
 	{
 		"id": 64,
-		"topic": "Simple Dropdown (Navigation)",
+		"topic": "TS Simple Dropdown (Navigation)",
 		"category": "Web APIs",
-		"code": "// Simple Dropdown Example\nconst dropdown: HTMLElement | null = document.getElementById('myDropdown');\nconst btn: HTMLElement | null = document.getElementById('dropBtn');\nif (btn) {\n btn.onclick = function(): void {\n  if (dropdown) dropdown.classList.toggle('show');\n };\n}\nwindow.onclick = function(event: MouseEvent): void {\n if (!(event.target as HTMLElement).matches('#dropBtn')) {\n  const dropdowns: HTMLCollectionOf<Element> = document.getElementsByClassName('dropdown-content');\n  for (let i = 0; i < dropdowns.length; i++) {\n   const openDropdown: Element = dropdowns[i];\n   if (openDropdown.classList.contains('show')) {\n    openDropdown.classList.remove('show');\n   }\n  }\n }\n};\n",
+		"code": "// Simple Dropdown Example\nconst dropdown: HTMLElement | null = document.getElementById('myDropdown');\nconst btn: HTMLElement | null = document.getElementById('dropBtn');\nif (btn) {\n btn.onclick = function(): void {\n if (dropdown) dropdown.classList.toggle('show');\n };\n}\nwindow.onclick = function(event: MouseEvent): void {\n if (!(event.target as HTMLElement).matches('#dropBtn')) {\n const dropdowns: HTMLCollectionOf<Element> = document.getElementsByClassName('dropdown-content');\n for (let i = 0; i < dropdowns.length; i++) {\n const openDropdown: Element = dropdowns[i];\n if (openDropdown.classList.contains('show')) {\n openDropdown.classList.remove('show');\n }\n }\n }\n};\n",
 		"explanation": "This snippet demonstrates how to create a simple dropdown menu. In an interview, you might be asked to explain how dropdowns enhance navigation and how to implement them using HTML, CSS, and JavaScript."
 	},
 	{
 		"id": 65,
-		"topic": "Event Bubbling and Capturing (Propagation)",
-		"category": "JavaScript Basics",
-		"code": "// Event Bubbling Example\nconst parent: HTMLElement | null = document.getElementById('parent');\nconst child: HTMLElement | null = document.getElementById('child');\nif (parent) {\n parent.addEventListener('click', (): void => {\n  console.log('Parent clicked');\n });\n}\nif (child) {\n child.addEventListener('click', (): void => {\n  console.log('Child clicked');\n });\n}\n// Event Capturing Example\nif (parent) {\n parent.addEventListener('click', (): void => {\n  console.log('Parent clicked');\n }, true);\n}\nif (child) {\n child.addEventListener('click', (): void => {\n  console.log('Child clicked');\n }, true);\n}\n",
+		"topic": "TS Event Bubbling and Capturing (Propagation)",
+		"category": "TypeScript Basics",
+		"code": "// Event Bubbling Example\nconst parent: HTMLElement | null = document.getElementById('parent');\nconst child: HTMLElement | null = document.getElementById('child');\nif (parent) {\n parent.addEventListener('click', (): void => {\n console.log('Parent clicked');\n });\n}\nif (child) {\n child.addEventListener('click', (): void => {\n console.log('Child clicked');\n });\n}\n// Event Capturing Example\nif (parent) {\n parent.addEventListener('click', (): void => {\n console.log('Parent clicked');\n }, true);\n}\nif (child) {\n child.addEventListener('click', (): void => {\n console.log('Child clicked');\n }, true);\n}\n",
 		"explanation": "This snippet demonstrates event bubbling and capturing. In an interview, you might be asked to explain how event propagation works in the DOM and the differences between bubbling and capturing phases. You could also discuss use cases and how to control event propagation using stopPropagation and stopImmediatePropagation."
 	},
 	{
 		"id": 66,
-		"topic": "Deep and Shallow Copy (Object Copying)",
-		"category": "JavaScript Basics",
+		"topic": "TS Deep and Shallow Copy (Object Copying)",
+		"category": "TypeScript Basics",
 		"code": "// Shallow Copy\nconst obj: { a: number, b: { c: number } } = { a: 1, b: { c: 2 } };\nconst shallowCopy: { a: number, b: { c: number } } = { ...obj };\nshallowCopy.b.c = 3;\nconsole.log(obj.b.c); // 3\n\n// Deep Copy\nconst deepCopy: { a: number, b: { c: number } } = JSON.parse(JSON.stringify(obj));\ndeepCopy.b.c = 4;\nconsole.log(obj.b.c); // 3\n",
 		"explanation": "This snippet demonstrates the difference between shallow and deep copying of objects. In an interview, you might be asked to explain how shallow copy only copies the first level of the object, while deep copy creates a new instance of the entire object."
 	},
 	{
 		"id": 67,
-		"topic": "Polyfills (Compatibility)",
-		"category": "JavaScript Basics",
-		"code": "// Polyfill for Array.prototype.includes\nif (!Array.prototype.includes) {\n Array.prototype.includes = function(element: any): boolean {\n  return this.indexOf(element) !== -1;\n };\n}\n",
+		"topic": "TS Polyfills (Compatibility)",
+		"category": "TypeScript Basics",
+		"code": "// Polyfill for Array.prototype.includes\nif (!Array.prototype.includes) {\n Array.prototype.includes = function(element: any): boolean {\n return this.indexOf(element) !== -1;\n };\n}\n",
 		"explanation": "This snippet demonstrates how to create a polyfill for a JavaScript feature. In an interview, you might be asked to explain how polyfills help in providing modern functionality in older environments that do not support it."
 	},
 	{
 		"id": 68,
-		"topic": "Higher-Order Functions (Functional Programming)",
-		"category": "JavaScript Basics",
-		"code": "// Higher-Order Function Example\nfunction higherOrderFunction(callback: (x: number) => number): (x: number) => number {\n return function(x: number): number {\n  return callback(x);\n };\n}\nconst double: (x: number) => number = higherOrderFunction((x: number): number => x * 2);\nconsole.log(double(5)); // 10\n",
+		"topic": "TS Higher-Order Functions (Functional Programming)",
+		"category": "TypeScript Basics",
+		"code": "// Higher-Order Function Example\nfunction higherOrderFunction(callback: (x: number) => number): (x: number) => number {\n return function(x: number): number {\n return callback(x);\n };\n}\nconst double: (x: number) => number = higherOrderFunction((x: number): number => x * 2);\nconsole.log(double(5)); // 10\n",
 		"explanation": "This snippet demonstrates higher-order functions. In an interview, you might be asked to explain how higher-order functions take other functions as arguments or return them as results, enabling functional programming techniques."
 	},
 	{
 		"id": 69,
-		"topic": "Functional Programming (Concepts)",
-		"category": "JavaScript Basics",
+		"topic": "TS Functional Programming (Concepts)",
+		"category": "TypeScript Basics",
 		"code": "// Functional Programming Example\nconst numbers: number[] = [1, 2, 3, 4];\nconst doubled: number[] = numbers.map((num: number): number => num * 2);\nconst sum: number = numbers.reduce((acc: number, num: number): number => acc + num, 0);\nconsole.log(doubled); // [2, 4, 6, 8]\nconsole.log(sum); // 10\n",
 		"explanation": "This snippet demonstrates functional programming concepts. In an interview, you might be asked to explain how functional programming emphasizes immutability, pure functions, and higher-order functions."
 	},
 	{
 		"id": 70,
-		"topic": "Immutable Data Structures (Benefits)",
-		"category": "JavaScript Basics",
+		"topic": "TS Immutable Data Structures (Benefits)",
+		"category": "TypeScript Basics",
 		"code": "// Immutable Data Structure Example\nconst obj: { a: number, b: number } = { a: 1, b: 2 };\nconst newObj: { a: number, b: number } = { ...obj, b: 3 };\nconsole.log(obj.b); // 2\nconsole.log(newObj.b); // 3\n",
 		"explanation": "This snippet demonstrates immutable data structures. In an interview, you might be asked to explain how immutability helps in avoiding side effects and making code more predictable and easier to debug."
 	},
 	{
 		"id": 71,
-		"topic": "Asynchronous Iteration (Data Streams)",
+		"topic": "TS Asynchronous Iteration (Data Streams)",
 		"category": "Asynchronous JavaScript",
-		"code": "// Asynchronous Iteration Example\nasync function* asyncGenerator(): AsyncGenerator<string, void, unknown> {\n yield 'Hello';\n yield 'World';\n}\n(async (): Promise<void> => {\n for await (const value of asyncGenerator()) {\n  console.log(value);\n }\n})();\n",
+		"code": "// Asynchronous Iteration Example\nasync function* asyncGenerator(): AsyncGenerator<string, void, unknown> {\n yield 'Hello';\n yield 'World';\n}\n(async (): Promise<void> => {\n for await (const value of asyncGenerator()) {\n console.log(value);\n }\n})();\n",
 		"explanation": "This snippet demonstrates asynchronous iteration. In an interview, you might be asked to explain how asynchronous iterators and the for-await-of loop enable handling of asynchronous data streams."
 	},
 	{
 		"id": 72,
-		"topic": "MutationObserver API (DOM Changes)",
+		"topic": "TS MutationObserver API (DOM Changes)",
 		"category": "Web APIs",
-		"code": "// MutationObserver Example\nconst targetNode: HTMLElement | null = document.getElementById('target');\nconst config: MutationObserverInit = { attributes: true, childList: true, subtree: true };\nconst callback: MutationCallback = function(mutationsList: MutationRecord[], observer: MutationObserver): void {\n for (const mutation of mutationsList) {\n  console.log(mutation);\n }\n};\nconst observer: MutationObserver = new MutationObserver(callback);\nif (targetNode) observer.observe(targetNode, config);\n",
+		"code": "// MutationObserver Example\nconst targetNode: HTMLElement | null = document.getElementById('target');\nconst config: MutationObserverInit = { attributes: true, childList: true, subtree: true };\nconst callback: MutationCallback = function(mutationsList: MutationRecord[], observer: MutationObserver): void {\n for (const mutation of mutationsList) {\n console.log(mutation);\n }\n};\nconst observer: MutationObserver = new MutationObserver(callback);\nif (targetNode) observer.observe(targetNode, config);\n",
 		"explanation": "This snippet demonstrates the use of the MutationObserver API. In an interview, you might be asked to explain how this API helps in observing changes to the DOM and its use cases."
 	},
 	{
 		"id": 73,
-		"topic": "ResizeObserver API (Element Size Changes)",
+		"topic": "TS ResizeObserver API (Element Size Changes)",
 		"category": "Web APIs",
-		"code": "// ResizeObserver Example\nconst resizeObserver: ResizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {\n for (const entry of entries) {\n  console.log('Element resized:', entry.target);\n }\n});\nconst target: HTMLElement | null = document.getElementById('target');\nif (target) resizeObserver.observe(target);\n",
+		"code": "// ResizeObserver Example\nconst resizeObserver: ResizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {\n for (const entry of entries) {\n console.log('Element resized:', entry.target);\n }\n});\nconst target: HTMLElement | null = document.getElementById('target');\nif (target) resizeObserver.observe(target);\n",
 		"explanation": "This snippet demonstrates the use of the ResizeObserver API. In an interview, you might be asked to explain how this API helps in observing changes to the size of elements and its use cases."
 	},
 	{
 		"id": 74,
-		"topic": "Custom Elements (Reusable Components)",
+		"topic": "TS Custom Elements (Reusable Components)",
 		"category": "Web APIs",
-		"code": "// Custom Elements Example\nclass MyElement extends HTMLElement {\n constructor() {\n  super();\n  this.attachShadow({ mode: 'open' });\n  if (this.shadowRoot) this.shadowRoot.innerHTML = '<p>Hello, World!</p>';\n }\n}\ncustomElements.define('my-element', MyElement);\n",
+		"code": "// Custom Elements Example\nclass MyElement extends HTMLElement {\n constructor() {\n super();\n this.attachShadow({ mode: 'open' });\n if (this.shadowRoot) this.shadowRoot.innerHTML = '<p>Hello, World!</p>';\n }\n}\ncustomElements.define('my-element', MyElement);\n",
 		"explanation": "This snippet demonstrates how to create custom elements. In an interview, you might be asked to explain how custom elements enable the creation of reusable components and their integration with the Shadow DOM."
 	},
 	{
 		"id": 75,
-		"topic": "Shadow DOM (Encapsulation)",
+		"topic": "TS Shadow DOM (Encapsulation)",
 		"category": "Web APIs",
-		"code": "// Shadow DOM Example\nclass MyElement extends HTMLElement {\n constructor() {\n  super();\n  this.attachShadow({ mode: 'open' });\n  if (this.shadowRoot) this.shadowRoot.innerHTML = '<p>Hello, World!</p>';\n }\n}\ncustomElements.define('my-element', MyElement);\nconst element: HTMLElement = document.createElement('my-element');\ndocument.body.appendChild(element);\n",
+		"code": "// Shadow DOM Example\nclass MyElement extends HTMLElement {\n constructor() {\n super();\n this.attachShadow({ mode: 'open' });\n if (this.shadowRoot) this.shadowRoot.innerHTML = '<p>Hello, World!</p>';\n }\n}\ncustomElements.define('my-element', MyElement);\nconst element: HTMLElement = document.createElement('my-element');\ndocument.body.appendChild(element);\n",
 		"explanation": "This snippet demonstrates the use of the Shadow DOM. In an interview, you might be asked to explain how the Shadow DOM provides encapsulation for custom elements, preventing style and script conflicts."
 	},
 	{
 		"id": 76,
-		"topic": "Intl API (Internationalization)",
-		"category": "JavaScript Basics",
+		"topic": "TS Intl API (Internationalization)",
+		"category": "TypeScript Basics",
 		"code": "// Intl API Example\nconst number: number = 123456.789;\nconst formattedNumber: string = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);\nconsole.log(formattedNumber); // $123,456.79\n",
 		"explanation": "This snippet demonstrates the use of the Intl API. In an interview, you might be asked to explain how the Intl API helps in internationalizing number, date, and time formats."
 	},
 	{
 		"id": 77,
-		"topic": "BigInt (Large Integers)",
-		"category": "JavaScript Basics",
+		"topic": "TS BigInt (Large Integers)",
+		"category": "TypeScript Basics",
 		"code": "// BigInt Example\nconst bigInt: bigint = 1234567890123456789012345678901234567890n;\nconsole.log(bigInt + 1n); // 1234567890123456789012345678901234567891n\n",
 		"explanation": "This snippet demonstrates the use of BigInt. In an interview, you might be asked to explain how BigInt provides a way to represent integers larger than the Number type can safely store."
 	},
 	{
 		"id": 78,
-		"topic": "Optional Chaining (Nested Properties)",
-		"category": "JavaScript Basics",
+		"topic": "TS Optional Chaining (Nested Properties)",
+		"category": "TypeScript Basics",
 		"code": "// Optional Chaining Example\nconst user: { profile?: { name?: string } } = { profile: { name: 'Alice' } };\nconsole.log(user.profile?.name); // Alice\nconsole.log(user.address?.street); // undefined\n",
 		"explanation": "This snippet demonstrates the use of optional chaining. In an interview, you might be asked to explain how optional chaining simplifies accessing nested properties and handling null or undefined values."
 	},
 	{
 		"id": 79,
-		"topic": "Nullish Coalescing (Handling Null/Undefined)",
-		"category": "JavaScript Basics",
+		"topic": "TS Nullish Coalescing (Handling Null/Undefined)",
+		"category": "TypeScript Basics",
 		"code": "// Nullish Coalescing Example\nconst value: string | null = null ?? 'default';\nconsole.log(value); // default\nconst anotherValue: number = 0 ?? 'default';\nconsole.log(anotherValue); // 0\n",
 		"explanation": "This snippet demonstrates the use of nullish coalescing. In an interview, you might be asked to explain how nullish coalescing provides a way to handle null or undefined values, distinguishing them from falsy values like 0 or ''."
 	}

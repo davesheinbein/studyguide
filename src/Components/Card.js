@@ -44,11 +44,14 @@ const Card = () => {
 
 	useEffect(() => {
 		try {
+			console.log('🚀 ~ originalData:', originalData);
+			console.log('setting data');
 			setReviewsheet([...reviewsheetData]);
 			setLeetcode([...leetcodeData]);
-			setJsPrinciples([...jsPrinciplesData]);
 			setTsPrinciples([...tsPrinciplesData]);
+			setJsPrinciples([...jsPrinciplesData]);
 			Prism.highlightAll();
+			console.log('finished setting data');
 		} catch (err) {
 			setError('Failed to load data.');
 		}
@@ -160,6 +163,8 @@ const Card = () => {
 	}, [expandedCard]);
 
 	const createCardClone = (item) => {
+		console.log('🚀 ~ item:', item);
+		console.log('🚀 ~ expandedCard:', expandedCard);
 		// Close the currently expanded card if there is one
 		if (expandedCard) {
 			expandedCard.cardClone.remove();
@@ -168,9 +173,38 @@ const Card = () => {
 
 		const cardClone = document.createElement('div');
 		cardClone.className = 'card-item expanded';
+
+		// Set the innerHTML for static parts
 		cardClone.innerHTML = `
-			<button class='close-button'>&times;</button><div class='card-item-topic'> <div class='card-item-topic-text'> ${item.topic} </div> <div class='card-item-topic-category'> ${item.category} </div></div><div class='card-item-code'> <pre><code class='language-javascript'> ${item.code} </code></pre></div><div class='card-item-explanation'> <div class='card-item-explanation-title'> Explanation </div> <div class='card-item-explanation-text'> ${item.explanation} </div> <button class='close-explanation-button'>&#9660;</button></div><button class='explanation-button'>?</button>
+			<button class='close-button'>&times;</button>
+			<div class='card-item-topic'>
+				<div class='card-item-topic-text'></div>
+				<div class='card-item-topic-category'></div>
+			</div>
+			<div class='card-item-code'>
+				<pre><code class='language-javascript'></code></pre>
+			</div>
+			<div class='card-item-explanation'>
+				<div class='card-item-explanation-title'>Explanation</div>
+				<div class='card-item-explanation-text'></div>
+				<button class='close-explanation-button'>&#9660;</button>
+			</div>
+			<button class='explanation-button'>?</button>
 		`;
+
+		// Safely set text content for dynamic parts
+		cardClone.querySelector(
+			'.card-item-topic-text'
+		).textContent = item.topic;
+		cardClone.querySelector(
+			'.card-item-topic-category'
+		).textContent = item.category;
+		cardClone.querySelector(
+			'.card-item-code code'
+		).textContent = item.code;
+		cardClone.querySelector(
+			'.card-item-explanation-text'
+		).textContent = item.explanation;
 
 		const overlay = document.createElement('div');
 		overlay.className = 'card-overlay active';
@@ -326,7 +360,7 @@ const Card = () => {
 						</div>
 					)}
 					{activeTab === 'tsPrinciples' && (
-						<div className='card card-C'>
+						<div className='card card-D'>
 							<div className='card-grid'>
 								{renderCards(filteredData)}
 							</div>

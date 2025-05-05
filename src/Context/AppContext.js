@@ -173,33 +173,33 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
-	const handleUnlock = (code) => {
-		try {
-			const validCodes =
-				process.env.REACT_APP_VALID_CODES?.split(',') || [];
-			if (validCodes.includes(code)) {
-				const newUnlockState = !isLeetCodeUnlocked;
-				setLeetCodeUnlocked(newUnlockState);
-				if (newUnlockState) {
-					localStorage.setItem(
-						'isLeetCodeUnlocked',
-						'true'
-					);
-					setActiveTab('leetcode');
-				} else {
-					localStorage.removeItem('isLeetCodeUnlocked');
-					setActiveTab('jsPrinciples');
-				}
-				setUnlockModalOpen(false);
-				setUnlockError('');
-			} else {
-				setUnlockError('Incorrect code. Please try again.');
-			}
-		} catch (error) {
-			setUnlockError('Error unlocking feature.');
-			console.error('Error unlocking feature:', error);
-		}
-	};
+	// const handleUnlock = (code) => {
+	// 	try {
+	// 		const validCodes =
+	// 			process.env.REACT_APP_VALID_CODES?.split(',') || [];
+	// 		if (validCodes.includes(code)) {
+	// 			const newUnlockState = !isLeetCodeUnlocked;
+	// 			setLeetCodeUnlocked(newUnlockState);
+	// 			if (newUnlockState) {
+	// 				localStorage.setItem(
+	// 					'isLeetCodeUnlocked',
+	// 					'true'
+	// 				);
+	// 				setActiveTab('leetcode');
+	// 			} else {
+	// 				localStorage.removeItem('isLeetCodeUnlocked');
+	// 				setActiveTab('jsPrinciples');
+	// 			}
+	// 			setUnlockModalOpen(false);
+	// 			setUnlockError('');
+	// 		} else {
+	// 			setUnlockError('Incorrect code. Please try again.');
+	// 		}
+	// 	} catch (error) {
+	// 		setUnlockError('Error unlocking feature.');
+	// 		console.error('Error unlocking feature:', error);
+	// 	}
+	// };
 
 	return (
 		<AppContext.Provider

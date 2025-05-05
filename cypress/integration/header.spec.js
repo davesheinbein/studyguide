@@ -15,6 +15,14 @@ describe('Header Component', () => {
 		cy.get('.tab.active').should('contain', 'Reviewsheet');
 	});
 
+	it('should switch tabs', () => {
+		cy.visit('/');
+		cy.get('[aria-label="tsPrinciples Tab"]').click();
+		cy.get('.tab.active').should('contain', 'tsPrinciples');
+		cy.get('[aria-label="Reviewsheet Tab"]').click();
+		cy.get('.tab.active').should('contain', 'Reviewsheet');
+	});
+
 	it('should search topics', () => {
 		cy.visit('/');
 		cy.get('[aria-label="Search"]').type('React');

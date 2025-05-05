@@ -9,6 +9,11 @@ describe('Header Component', () => {
 			.contains('jsPrinciples')
 			.should('have.class', 'active');
 
+		cy.get('.tab').contains('tsPrinciples').click();
+		cy.get('.tab')
+			.contains('tsPrinciples')
+			.should('have.class', 'active');
+
 		cy.get('.tab').contains('Reviewsheet').click();
 		cy.get('.tab')
 			.contains('Reviewsheet')

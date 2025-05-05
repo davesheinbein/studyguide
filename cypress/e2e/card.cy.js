@@ -21,6 +21,12 @@ describe('Card Component', () => {
 			'have.length.greaterThan',
 			0
 		);
+
+		cy.get('.tab').contains('tsPrinciples').click();
+		cy.get('.card-item').should(
+			'have.length.greaterThan',
+			0
+		);
 	});
 
 	it('should filter cards based on search query', () => {
